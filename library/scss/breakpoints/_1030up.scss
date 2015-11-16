@@ -1,0 +1,39 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Desktop Stylsheet
+
+This is the desktop size. It's larger than an iPad so it will only
+be seen on the Desktop.
+
+******************************************************************/
+
+// .legend {
+// 	float: none;
+// 	width: auto;
+// 	text-align: left;
+// 	position: absolute;
+// 	left:15px;
+// 	top:15px;
+// 	background:none;
+// 	padding:0;
+// 	.check {
+// 		float: none;
+// 		display: block;
+// 		margin-bottom: 10px;
+// 	}
+// }
+
+.filters-fixed {
+	&.fixed {
+		top:0;
+	}
+  .container {
+    width: 940px;
+  }
+}
+
+/*#openaid-main {
+  padding-top:60px;
+}*/

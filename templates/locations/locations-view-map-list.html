@@ -1,0 +1,17 @@
+<div id="main-content" >
+    <div class="row">
+        <div class="col-md-12">
+
+            <filter-bar 
+                views="[{'id':'locations-map', 'name': 'Map & list'}]"
+                current-page="countries"></filter-bar>
+
+            <locations-geo-map geo-view="vm.geoView" map-height="600px" map-legend='true' map-dropdown='false'></locations-geo-map>
+
+            <country-list ng-show="vm.geoView == 'countries'"></country-list>
+            
+            <region-list ng-show="vm.geoView == 'regions'"></region-list>
+
+        </div>
+    </div>
+</div>

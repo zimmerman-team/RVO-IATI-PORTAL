@@ -1,0 +1,75 @@
+<div class="tabs-wrapper">
+	<div class="row">
+		<div class="col-xs-12 tab-headers">
+			<a class="tab-header" href="javascript:void(0)" ng-class="{ 'active' : vm.isSelected(tab.id) }" ng-click="vm.setTab(tab.id)" ng-repeat="tab in vm.tabs">{{tab.header}}</a>
+		</div>	
+	</div>
+	<div class="row">
+		<div class="col-xs-4">
+			<div class="tab-item"  ng-show="vm.isSelected(tab.id)" ng-repeat="tab in vm.tabs">
+				<h3>{{tab.title}}</h3>
+				<p>{{tab.text}}</p>
+				<p style="padding: 100px 40px; border: 1px dotted #444;text-align: center;">Legenda wrapper</p>
+			</div>
+		</div>
+		<div class="col-xs-8 bubble-chart-wrapper">
+			
+			<div class="row bar-chart-wrapper">
+				<div class="col-md-offset-3 col-md-8">
+					<stacked-bar-chart 
+						endpoint="{{vm.sbcOptions.endpoint}}" 
+					    group-by="{{vm.sbcOptions.groupBy}}" 
+					    aggregation-key="{{vm.sbcOptions.aggregationKey}}" 
+					    aggregation-filters="&policy_marker__in=1"
+					    time-slider="true"
+					    watch-source-url="true"
+					    ng-show="vm.isSelected(1) || vm.isSelected(2)">
+					</stacked-bar-chart>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-3 col-md-8">
+					<bubble-chart 
+						endpoint="{{vm.bcOptions.endpoint}}" 
+					    group-by="{{vm.bcOptions.groupBy}}" 
+					    aggregation-key="{{vm.bcOptions.aggregationKey}}" 
+					    detail-url="{{vm.bcOptions.detailUrl}}"
+					    time-slider="true"
+					    country-types="{{vm.bcOptions.colorMapUrl}}"
+						reformat-data="false"
+						box-width="450" 
+						box-height="400"
+						min-range="0"
+						max-range="50"
+						watch-source-url="true"
+						ng-show="vm.isSelected(3) || vm.isSelected(4) || vm.isSelected(5)">
+					</bubble-chart>
+				</div>
+			</div>
+
+			<div class="row time-slider-wrapper">
+				<div class="col-xs-offset-3 col-xs-8">
+					<slider slider-id="time-slider"
+				        ng-model="vm.slider.value"
+				        value="vm.slider.value"
+				        min="vm.slider.min"
+				        max="vm.slider.max"
+				        step="1"
+				        range="0"
+				        precision="2"
+				        reversed="false"
+				        orientation="horizontal"
+				        handle="round"
+				        enabled="true"
+				        ng-disabled="false"
+				        naturalarrowkeys="false"
+				        selection="before"
+				        tooltip="always"
+						>
+					</slider>
+					<span>{{vm.slider.min}}</span><span style="float:right;">{{vm.slider.max}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

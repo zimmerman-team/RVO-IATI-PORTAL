@@ -1,0 +1,90 @@
+<div class="col-md-6">
+    <div class="hp-block explore">
+        <div class="explore-block-header">Total number of projects</div>
+        <div class="explore-block-content">
+            <oipa-line-chart 
+                aggregation-filters='vm.selectionString' 
+                group-by='start_actual' 
+                group-by-id='start_actual_year' 
+                group-by-name='start_actual_year' 
+                aggregation-key='iati-identifier' 
+                aggregation-key-id='activity_count' 
+                chart-x-axis=''
+                chart-x-axis-stagger-labels='true'  
+                chart-y-axis=''
+                chart-y-axis-label-distance='0' 
+                chart-type='discreteBarChart'
+                left-margin='40'></oipa-line-chart>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="hp-block explore">
+        <div class="explore-block-header">Total budget</div>
+        <div class="explore-block-content">
+            <oipa-line-chart 
+                aggregation-filters='vm.selectionString' 
+                group-by='transaction_date_year' 
+                group-by-id='transaction_date_year' 
+                group-by-name='transaction_date_year' 
+                aggregation-key='disbursement' 
+                aggregation-key-id='total_disbursements' 
+                chart-x-axis=''
+                chart-x-axis-stagger-labels='true'  
+                chart-y-axis=''
+                chart-y-axis-euro-format='true' 
+                chart-y-axis-label-distance='20' 
+                chart-type='discreteBarChart'
+                left-margin='60'></oipa-line-chart>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="hp-block explore">
+        <div class="explore-block-header">Expenditure per country profile</div>
+        <div class="explore-block-content">
+            <oipa-line-chart 
+                aggregation-filters='vm.selectionString' 
+                group-by='recipient-country' 
+                group-by-id='country_id' 
+                group-by-name='name' 
+                aggregation-key='disbursement' 
+                aggregation-key-id='total_disbursements' 
+                chart-x-axis=''
+                chart-x-axis-stagger-labels='false'  
+                chart-y-axis=''
+                chart-y-axis-euro-format='true' 
+                chart-y-axis-label-distance='46' 
+                chart-type='discreteBarChart'
+                mapping='partnerlanden'
+                color-range='true'
+                left-margin='56'></oipa-line-chart>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="hp-block explore">
+        <div class="explore-block-header">Commitment per country profile</div>
+        <div class="explore-block-content">
+            <oipa-line-chart 
+                aggregation-filters='vm.selectionString' 
+                group-by='recipient-country' 
+                group-by-id='country_id' 
+                group-by-name='name' 
+                aggregation-key='commitment' 
+                aggregation-key-id='total_commitments' 
+                chart-x-axis='' 
+                chart-x-axis-stagger-labels='false' 
+                chart-y-axis=''
+                chart-y-axis-euro-format='true' 
+                chart-y-axis-label-distance='46' 
+                chart-type='discreteBarChart'
+                mapping='partnerlanden' 
+                color-range='true'
+                left-margin='56'></oipa-line-chart>
+        </div>
+    </div>
+</div>

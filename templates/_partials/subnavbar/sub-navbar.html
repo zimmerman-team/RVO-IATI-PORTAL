@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="subnav">
+            <ul>
+                <li ng-repeat="tab in vm.tabs" ng-class="{'active': vm.isOpenedTab(tab.id)}">
+                    <a ng-click="vm.openTab(tab.id)">{{tab.name}} <span ng-show='tab.count > -1'>({{tab.count}})</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,120 @@
+<div id="main-content">
+
+    <filter-bar 
+        views="[]"
+        current-page="themas"></filter-bar>
+        
+    <div class="row">
+        <div class="col-md-12">
+            <div class="hp-block wit">
+                <h1>{{vm.organisation.name}}</h1>
+            </div>
+        </div>
+    </div>
+
+    <sub-navbar 
+        tabs='vm.tabs' 
+        selected-tab='vm.selectedTab'>
+    </sub-navbar>
+
+    <div ng-show="vm.selectedTab == 'samenvatting'">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12">
+
+                    <div class="hp-block wit">
+                        <h3>Transactions</h3>
+                        <financials-line-chart 
+                            has-to-contain="participating_organisations__organisation__code__in">
+                        </financials-line-chart>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-sm-12 activity-list-item">
+                            <div class="hp-block wit financial">
+                                <p><b>Expenditure per year</b></p>
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr ng-repeat="disbursement in vm.disbursements_by_year">
+                                            <td>{{disbursement.transaction_date_year}}</td>
+                                            <td>{{disbursement.total_disbursements | shortcurrency :'€'}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 activity-list-item">
+                    <div class="hp-block wit financial">
+                        <p><b>Budget</b></p>
+                        <table class="table table-striped" ng-if="budget_by_year.budget__period_start_year != 0" >
+                            <tbody>
+                                <tr ng-repeat="budget in vm.budget_by_year">
+                                    <td>Total</td>
+                                    <td>{{budget.budget__value | shortcurrency :'€'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-4 activity-list-item">
+                    <div class="hp-block wit financial">
+                        <p><b>Commitment per year</b></p>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr ng-repeat="commitment in vm.commitments_by_year">
+                                    <td>{{commitment.transaction_date_year}}</td>
+                                    <td>{{commitment.total_commitments | shortcurrency :'€'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- einde samenvatting -->
+
+    <div ng-show="vm.selectedTab == 'activities'">
+        <activity-list 
+            has-to-contain='participating_organisations__organisation__code__in' 
+            count='vm.tabs[1].count'
+            shown="vm.selectedTab == 'activities'"></activity-list>
+    </div>
+
+    <div ng-show="vm.selectedTab == 'sectors'">
+        <sector-list 
+            has-to-contain='participating_organisations__organisation__code__in' 
+            count='vm.tabs[2].count'
+            shown="vm.selectedTab == 'sectors'"></sector-list>
+    </div>
+
+    <div ng-show="vm.selectedTab == 'countries'">
+        <country-list 
+            has-to-contain='participating_organisations__organisation__code__in' 
+            count='vm.tabs[3].count'
+            shown="vm.selectedTab == 'countries'"></country-list>
+    </div>
+    <div ng-show="vm.selectedTab == 'regions'">
+        <region-list 
+            has-to-contain='participating_organisations__organisation__code__in' 
+            count='vm.tabs[4].count'
+            shown="vm.selectedTab == 'regions'"></region-list>
+    </div>
+
+
+</div>
+
+

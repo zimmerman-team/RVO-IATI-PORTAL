@@ -1,0 +1,108 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Typography
+
+Need to import a font or set of icons for your site? Drop them in
+here or just use this to establish your typographical grid. Or not.
+Do whatever you want to...GOSH!
+
+Helpful Articles:
+http://trentwalton.com/2012/06/19/fluid-type/
+http://ia.net/blog/responsive-typography-the-basics/
+http://alistapart.com/column/responsive-typography-is-a-physical-discipline
+
+******************************************************************/
+
+
+/*********************
+FONT FACE
+*********************/
+
+/*  To embed your own fonts, use this syntax
+  and place your fonts inside the
+  library/fonts folder. For more information
+  on embedding fonts, go to:
+  http://www.fontsquirrel.com/
+  Be sure to remove the comment brackets.
+*/
+
+@font-face {
+  font-family: 'iconscustom';
+  src: url('../fonts/icons-custom-webfont.eot');
+  src: url('../fonts/icons-custom-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/icons-custom-webfont.woff2') format('woff2'),
+    url('../fonts/icons-custom-webfont.woff') format('woff'),
+    url('../fonts/icons-custom-webfont.ttf') format('truetype'),
+    url('../fonts/icons-custom-webfont.svg#iconscustom') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AGNL-Icon-Font';
+  src: url('../fonts/AGNL-Icon-Font.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "RijksOverheidSans";
+  src: url("../fonts/rijksoverheidsansheading-bold_2_0.eot");
+  src: url("../fonts/rijksoverheidsansheading-bold_2_0.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidsansheading-bold_2_0.woff") format("woff"), url("../fonts/rijksoverheidsansheading-bold_2_0.ttf") format("truetype"), url("../fonts/rijksoverheidsansheading-bold_2_0.svg#RijksOverheidSansBold") format("svg");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "RijksOverheidSans";
+  src: url("../fonts/rijksoverheidsansheading-regular_2_0.eot");
+  src: url("../fonts/rijksoverheidsansheading-regular_2_0.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidsansheading-regular_2_0.woff") format("woff"), url("../fonts/rijksoverheidsansheading-regular_2_0.ttf") format("truetype"), url("../fonts/rijksoverheidsansheading-regular_2_0.svg#RijksOverheidSansRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+The following is based of Typebase:
+https://github.com/devinhunt/typebase.css
+I've edited it a bit, but it's a nice starting point.
+*/
+
+
+// font stacks
+$sans-serif:        "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serif:             "Georgia", Cambria, Times New Roman, Times, serif;
+$titillium: 'RijksOverheidSans', sans-serif;
+
+/*
+some nice typographical defaults
+more here: http://www.newnet-soft.com/blog/csstypography
+*/
+// p {
+//   -ms-word-wrap: break-word;
+//   word-break: break-word; //non-standart css for webkit
+//   word-wrap: break-word;
+//   // cleaning up the ragged lines and breaks
+//   -webkit-hyphens: auto;
+//      -moz-hyphens: auto;
+//           hyphens: auto;
+//   // sets a minimum number of characters before and after the break
+//   -webkit-hyphenate-before: 2;
+//    -webkit-hyphenate-after: 3;
+//            hyphenate-lines: 3;
+//   // enabling fancy ligatures when available
+//   -webkit-font-feature-settings: "liga", "dlig";
+//    -moz-font-feature-settings: "liga=1, dlig=1";
+//       -ms-font-feature-settings: "liga", "dlig";
+//        -o-font-feature-settings: "liga", "dlig";
+//           font-feature-settings: "liga", "dlig";
+// }
+
+h1 {
+  font-weight: 600;
+  font-size: 36px;
+  color: #114476;
+  line-height: 1.3em;
+  margin: 0.4em 0;
+}

@@ -1,0 +1,98 @@
+<script type="text/ng-template" id="tree">
+    <div ng-if="item.children" class="hp-block wit parent collapsed">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3 class="no-margin left-pad">
+                    <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span>
+                    <a ui-sref="region({ region_id: item.region_id })">{{ item.name }}</a>
+                    </h3>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="no-margin">{{item.total_disbursements  | shortcurrency :'€'}}</h3>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="no-margin">{{item.activity_count || 0}} projects</h3>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="!item.children" class="hp-block wit">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3 class="no-margin left-pad"><a ui-sref="region({ region_id: item.region_id })">{{ item.name }}</a></h3>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="no-margin">{{item.total_disbursements  | shortcurrency :'€'}}</h3>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="no-margin">{{item.activity_count || 0}} projects</h3>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="item.children" class="children" style="display: none;">
+        <div collapse="vm.isCollapsed" ng-repeat="item in item.children" ng-include="'tree'"></div>
+    </div>    
+</script>
+
+<div class="container list-view-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="sort">
+                <div class="row">
+                    <div class="col-xs-8">
+                        {{vm.totalRegions}} results
+                    </div>
+                    <div class="col-xs-4 text-right-not-xs">
+                        <label class="wrapper">
+                          <div class="custom-select ff-hack">
+                            <select
+                              ng-model="vm.order_by"
+                              ng-change="vm.toggleOrder()">
+                              <option value="">Sort by...</option>
+                              <option value="name">Name (A - Z)</option>
+                              <option value="-name">Name (Z - A)</option>
+                              <option value="total_disbursements">Expenditure (increasing)</option>
+                              <option value="-total_disbursements">Expenditure (decreasing)</option>
+                            </select>
+                          </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if='vm.totalRegions == 0' class="col-sm-12">
+            <div class="hp-block wit">
+                <h2>Nothing found</h2>
+                <p>Please select some different filters.</p>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+    <!--         <div class="activity-list-item" 
+                ng-show="vm.activities.length != 0"
+                ng-repeat="item in vm.regions">
+                <div class="hp-block wit">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h3 class="no-margin"><a ui-sref="region({ region_id: item.region_id })">{{ item.name }}</a></h3>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3 class="no-margin">{{item.total_disbursements  | shortcurrency :'€'}}</h3>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3 class="no-margin">{{item.activity_count}} projecten</h3>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="activity-list-item" 
+                ng-show="vm.regions.length != 0"
+                ng-repeat="item in vm.regions"
+                ng-include="'tree'">
+            </div>
+        </div>
+
+    </div>
+</div>

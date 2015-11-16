@@ -1,0 +1,60 @@
+<div class="filter-panel">
+	<div class="row filter-panel-header-wrapper">
+
+		<div class="col-md-4">
+			<div class="search-box">
+			    <div class="form-group">
+			        <input ng-model="vm.q" class="form-control" placeholder="Search by sector name..">
+			        <button class="btn-search" type="button">
+			            <span class="glyphicon glyphicon-search"></span>
+			        </button>
+		        </div>
+			</div>
+		</div>
+
+	</div>
+	<div class="row" ng-show="vm.recipientSectors.length == 0">
+		<div class="svg-loader">
+			There are no sectors found within your current selection. 
+		</div>
+	</div>
+	<div class="row" ng-show="vm.recipientSectors.length != 0">
+		<div class="col-md-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<td class="th-first">Select one or more sectors</td>
+						<td>Projects<span class="glyphicon glyphicon-resize-vertical"></span></td>
+					</tr>
+				</thead>
+				<tbody>
+
+				    <tr 
+				    	dir-paginate="item in vm.recipientSectors | orderBy: 'name' | itemsPerPage: 4"
+				    	total-items="vm.totalCount" 
+				    	current-page="vm.currentPage"
+				    	pagination-id="sectors">
+				    	<td>
+				    		<div class="checkbox">
+					    		<label class="switch">
+					    			<input type="checkbox" checklist-model="vm.selectedSectors" checklist-value="item"><i></i>
+					    			<span>{{ item.name }}</span>
+					    		</label>
+					    	</div>
+				    	</td>
+				    	<td>
+				    		{{ item.activity_count }}
+				    	</td>
+				    </tr>
+
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-12 text-center">
+			<button class="btn btn-default btn-save btn-openaid" ng-click="vm.save()">Save</button>
+			<dir-pagination-controls 
+				pagination-id="sectors"
+				on-page-change="vm.pageChanged(newPageNumber)"></dir-pagination-controls>
+		</div>
+	</div>
+</div>

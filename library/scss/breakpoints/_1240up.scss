@@ -1,0 +1,44 @@
+/******************************************************************
+Site Name: 
+Author: 
+
+Stylesheet: Super Large Monitor Stylesheet
+
+You can add some advanced styles here if you like. This kicks in
+on larger screens.
+
+******************************************************************/
+
+//navbar centreren, pas bij hoge res, anders gaat het springen
+.navbar {
+	padding-bottom:3px;
+	.navbar-nav {
+		width:56%;
+		text-align: center;
+		li {
+			display: inline-block;
+			float: none;
+		}
+	}
+	.navbar-header,.navbar-right {
+		width:22%;
+		padding-top:4px;
+	}
+
+	.navbar-right {
+		text-align: right;
+	}
+}
+
+.filters-fixed {
+	&.fixed {
+		top:0;
+	}
+	.container {
+		width: 1140px;
+	}
+}
+
+/*#openaid-main {
+  padding-top:70px;
+}*/

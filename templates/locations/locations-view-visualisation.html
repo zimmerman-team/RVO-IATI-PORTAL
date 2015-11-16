@@ -1,0 +1,19 @@
+<div id="main-content" >
+
+    <filter-bar 
+        current-page="regions"
+        views="[{'id':'locations', 'name': 'Visualisation'}, {'id':'locations-map', 'name': 'List'}]"></filter-bar>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="spec clearfix">              
+                <div class="locaties-visualisation">
+                    <geo-visualisation 
+                        refresh-visualisation="vm.refreshVisualisation" 
+                        formatted-data="vm.visualisationData">
+                    </geo-visualisation>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div id="main-content" >
+    
+    <filter-bar 
+        views="[{'id':'sectors', 'name': 'Visualisation'}, {'id':'sector-list', 'name': 'List'}]"
+        current-page="themas"></filter-bar>
+
+    <!-- <top-navbar 
+        search-value="vm.searchValue"
+        submit-search="vm.submitSearch"></top-navbar> -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="sector-vis-sunburst">
+                <sunburst 
+                    refresh-sunburst="vm.refreshSunburst" 
+                    formatted-data="vm.sunburstData"></sunburst>
+            </div>
+        </div>
+    </div>
+</div>
