@@ -24,9 +24,7 @@
 
     vm.tabs = [
       {'id': 'summary', 'name': 'Summary', 'count': -1},
-      {'id': 'transactions', 'name': 'Transactions', 'count': -1},
-      {'id': 'documents', 'name': 'Documents', 'count': -1},
-      {'id': 'media', 'name': 'Media', 'count': 5},
+      {'id': 'detailedreport', 'name': 'Detailed report', 'count': -1},
     ]
 
     activate();

@@ -79,3 +79,34 @@
         text-align: justify;
     }
 }
+
+@for $i from 1 through 12 { 
+    .padding-top-#{$i} {
+        padding-top: #{$i*7}px;
+    }
+    .margin-top-#{$i} {
+        margin-top: #{$i*7}px;
+    }
+    .padding-bottom-#{$i} {
+        padding-bottom: #{$i*7}px;
+    }
+    .margin-bottom-#{$i} {
+        margin-top: #{$i*7}px;
+    }
+    .padding-right-#{$i} {
+        padding-right: #{$i*7}px;
+    }
+    .margin-right-#{$i} {
+        margin-right: #{$i*7}px;
+    }
+    .padding-left-#{$i} {
+        padding-left: #{$i*7}px;
+    }
+    .margin-left-#{$i} {
+        margin-left: #{$i*7}px;
+    }
+}
+
+.container.extra {
+    padding:0 30px;
+}

@@ -11,15 +11,4 @@
 </a>
 
 
-<div id="service_menu">
-    <h2>Service menu right</h2>  
-    <ul class="menu">
-        <li class="first last leaf">
-            <a href="http://www.rvo.nl" title="">
-                Dutch
-            </a>
-        </li>
-    </ul>  
-</div>
-
 <?php get_footer(); ?>

@@ -1,98 +1,87 @@
-<div class="container">
-    <div class="explore-block-content row">
-
+<div class="container">  
+    <div class="row">
         <div class="col-md-12">
             <div class="sort">
-                <div class="row">
-                    <div class="col-xs-8">
-                        {{vm.totalActivities}} results
+                <span class="sort-by">Sort by: </span>
+                    <div class="custom-select ff-hack">
+                        <select
+                          ng-model="vm.order_by"
+                          ng-change="vm.toggleOrder()">
+                          <option value="start_actual">Starting date (increasing)</option>
+                          <option value="-start_actual">Starting date (decreasing)</option>
+                          <option value="total_budget">Budget (increasing)</option>
+                          <option value="-total_budget">Budget (decreasing)</option>
+                        </select>
                     </div>
-                    <div class="col-xs-4 text-right-not-xs">
-                        <label class="wrapper">
-                          <div class="custom-select ff-hack">
-                            <select
-                              ng-model="vm.order_by"
-                              ng-change="vm.toggleOrder()">
-                              <option value="">Sort by...</option>
-                              <option value="start_actual">Starting date (increasing)</option>
-                              <option value="-start_actual">Starting date (decreasing)</option>
-                              <option value="total_budget">Budget (increasing)</option>
-                              <option value="-total_budget">Budget (decreasing)</option>
-                            </select>
-                          </div>
-                        </label>
-                    </div>
+                <span class="results">Results: <span class="total">{{vm.totalActivities}}</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if='vm.totalActivities == 0' class="row">
+        <div class="col-sm-12">
+            <h2>Nothing found</h2>
+            <p>Please select some different filters.</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1'>
+    <div class="activity-list-item col-sm-12" 
+        ng-show="vm.activities.length != 0"
+        ng-repeat="item in vm.activities">
+        <div class="panel">
+            <h2><a ui-sref="activiteit({ activity_id: item.id })">{{ item.titles[0].title }}</a></h2>
+            <p>{{item.descriptions[0].description | cut :true:300:' ...'}}</p>
+            <hr />
+            <div class="row">
+                <div class="col-md-3">
+                    <p>
+                        <b>Total budget: </b>
+                        <span ng-if='item.total_budget.length'>{{item.total_budget | shortcurrency :'€'}}</span>
+                        <span ng-if='!item.total_budget.length'>No data available</span>
+                    </p>
+                    <p>
+                        <b>Project status</b>
+                        {{item.activity_status.name}}
+                    </p> 
                 </div>
-            </div>
-        </div>
-
-        <div ng-if='vm.totalActivities == 0' class="col-sm-12">
-            <div class="hp-block wit">
-                <h2>Nothing found</h2>
-                <p>Please select some different filters.</p>
-            </div>
-        </div>
-
-        <div class="row" infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1'>
-            <div class="activity-list-item col-sm-12" 
-                ng-show="vm.activities.length != 0"
-                ng-repeat="item in vm.activities">
-                    <div class="hp-block wit header">
-                        <h2><a ui-sref="activiteit({ activity_id: item.id })">{{ item.titles[0].title }}</a></h2>
-                        <p>{{item.descriptions[0].description | cut :true:300:' ...'}}</p>
-                    </div>
-                    <div class="hp-block wit">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <p><b>IATI identifier</b><br>{{item.iati_identifier}}</p> 
-                                <p><b>Total budget</b><br>
-                                    <span ng-if='item.total_budget.length'>{{item.total_budget | shortcurrency :'€'}}</span>
-                                    <span ng-if='!item.total_budget.length'>No data available</span>
-                                </p>
-                                <p><b>Country</b><br>
-                                    <a ui-sref="country({'country_id': country.code})" ng-repeat="country in item.countries">
-                                        {{ country.name }}
-                                    </a>
-                                    <span ng-show='!item.countries.length'>No data available</span>
-                                </p>
-                                <p><b>Region</b><br>
-                                    <a ui-sref="region({'region_id': region.code})" ng-repeat="region in item.regions">
-                                        {{ region.name }}
-                                    </a>
-                                    <span ng-show='!item.regions.length'>No data available</span>
-                                </p>
-                                
-                            </div>
-                            <div class="col-md-4">
-                                <p><b>Status</b><br>{{item.activity_status.name}}</p> 
-                                <p><b>Starting date</b><br>
-                                    {{item.start_actual.length ? item.start_actual : 'No data available'}}
-                                </p>
-                                <p><b>Ending date</b><br>
-                                    {{item.end_actual.length ? item.end_actual : 'No data available'}}
-                                </p> 
-                                <p><b>Sector</b><br>
-                                    <a ui-sref="sector({'sector_id': sector.code})" ng-repeat="(key, sector) in item.sectors" ng-show="key < 4">
-                                        {{ sector.name }}, 
-                                    </a>
-                                    <span ng-if="item.sectors.length > 5">... {{item.sectors.length - 5}} more</span>
-                                    <span ng-show='!item.sectors.length'>No data available</span>
-                                </p>
-                            </div>
-                            <div class="col-md-4">
-                                <p><b>Participating organisations</b><br>
-                                    <a ui-sref="organisation({'organisation_id': org.code})" ng-repeat="(key, org) in item.participating_organisations" ng-show="key < 4">
-                                        {{ org.name }}, 
-                                    </a>
-                                    <span ng-if="item.participating_organisations.length > 5">... {{item.participating_organisations.length - 5}} more</span>
-                                    <span ng-show='!item.participating_organisations.length'>No data available</span>
-                                </p>
-                                <p><b>Reporting organisation</b><br>{{item.reporting_organisation.name}}</p> 
-                                <p><b>Last updated</b><br>{{item.last_updated_datetime | date : 'yyyy-MM-dd'}}</p> 
-                                
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-3">
+                    <p>
+                        <b>Region:</b>
+                        <a ui-sref="region({'region_id': region.code})" ng-repeat="region in item.regions">
+                            {{ region.name }}
+                        </a>
+                        <span ng-show='!item.regions.length'>No data available</span>
+                    </p>
+                    <p>
+                        <b>Country:</b>
+                        <a ui-sref="country({'country_id': country.code})" ng-repeat="country in item.countries">
+                            {{ country.name }}
+                        </a>
+                        <span ng-show='!item.countries.length'>No data available</span>
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <p>
+                        <b>Reporting organisation:</b>
+                        {{item.reporting_organisation.name}}
+                    </p> 
+                    <p>
+                        <b>Last updated:</b>
+                        {{item.last_updated_datetime | date : 'yyyy-MM-dd'}}
+                    </p> 
+                </div>
+                <div class="col-md-3">
+                    <p>
+                        <b>Starting date:</b>
+                        {{item.start_actual.length ? item.start_actual : 'No data available'}}
+                    </p>
+                    <p>
+                        <b>Ending date:</b>
+                        {{item.end_actual.length ? item.end_actual : 'No data available'}}
+                    </p>
+                </div>
             </div>
         </div>
     </div>

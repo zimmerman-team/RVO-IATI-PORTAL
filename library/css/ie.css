@@ -72,14 +72,12 @@ FONT FACE
   font-weight: normal;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'AGNL-Icon-Font';
   src: url("../fonts/AGNL-Icon-Font.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
-
 @font-face {
   font-family: "RijksOverheidSans";
   src: url("../fonts/rijksoverheidsansheading-bold_2_0.eot");
@@ -87,7 +85,6 @@ FONT FACE
   font-weight: bold;
   font-style: normal;
 }
-
 @font-face {
   font-family: "RijksOverheidSans";
   src: url("../fonts/rijksoverheidsansheading-regular_2_0.eot");
@@ -95,7 +92,6 @@ FONT FACE
   font-weight: normal;
   font-style: normal;
 }
-
 /*
 The following is based of Typebase:
 https://github.com/devinhunt/typebase.css
@@ -105,15 +101,6 @@ I've edited it a bit, but it's a nice starting point.
 some nice typographical defaults
 more here: http://www.newnet-soft.com/blog/csstypography
 */
-/* line 102, ../scss/partials/_typography.scss */
-h1 {
-  font-weight: 600;
-  font-size: 36px;
-  color: #114476;
-  line-height: 1.3em;
-  margin: 0.4em 0;
-}
-
 /******************************************************************
 Site Name:
 Author:
@@ -373,6 +360,11 @@ come into play. Have fun!
 /* line 264, ../scss/breakpoints/_768up.scss */
 .filters-fixed .container {
   width: 720px;
+}
+
+/* line 271, ../scss/breakpoints/_768up.scss */
+.homepage-blocks .col-md-2 {
+  width: 20%;
 }
 
 /******************************************************************

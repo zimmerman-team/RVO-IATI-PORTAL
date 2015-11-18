@@ -4,97 +4,100 @@
         views="[]"
         current-page="themas"></filter-bar>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="hp-block wit">
-                <span class="flag-icon flag-icon-{{vm.country.code | lowercase }} big"></span><h1 class="title">{{vm.country.name}}</h1> 
-            </div>
-        </div>
+    <div class="container extra">
+        <sub-navbar 
+            tabs='vm.tabs' 
+            selected-tab='vm.selectedTab'>
+        </sub-navbar>
     </div>
-    <sub-navbar 
-        tabs='vm.tabs' 
-        selected-tab='vm.selectedTab'>
-    </sub-navbar>
-
 
     <div ng-show="vm.selectedTab == 'samenvatting'">
 
-        <temp-locations-geo-map exact-location="vm.country" map-height="350px"></temp-locations-geo-map>
+        <div class="container extra">
 
-        <div class="row">
-            <div class="col-md-12">
-
-                <div class="col-md-12">
-
-                <!--start van een wit blokje -->
-                <div class="row">
-                    <div class="col-sm-12 activity-list-item">
-                        <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                            <h3>Transactions</h3>
-                            <financials-line-chart 
-                                has-to-contain="countries__in">
-                            </financials-line-chart>
-                        </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="panel blue no-margin-bottom">
+                        <span class="flag-icon flag-icon-{{vm.country.code | lowercase }} big"></span><h1 class="title no-margin-bottom">{{vm.country.name}}</h1> 
+                    </div>
+                    <div class="featured-image">
+                        <img src="{{vm.templateBaseUrl}}/images/Develop2Build header.jpg">
+                    </div>
+                    <div class="panel white no-margin-bottom no-padding-bottom">
+                        <h2><i class="icon globe"></i>Related project map</h2>
+                    </div>
+                    <div class="map country">
+                        <temp-locations-geo-map exact-location="vm.country" map-height="350px"></temp-locations-geo-map>
+                    </div>
+                    <div class="panel white no-margin-bottom no-padding-bottom">
+                        <h2><i class="icon euro"></i>Financial</h2>
+                    </div>
+                    <div class="panel lightblue">
+                        <p><b>Finance type:</b> <span ng-if='vm.activity.default_finance_type.name.length'>{{vm.activity.default_finance_type.name}}</span><span ng-if='!vm.activity.default_finance_type.name.length'>No data available</span></p>
+                        <p><b>Project budget:</b> <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span><span ng-if='!vm.activity.total_budget.length'>No data available</span></p>
+                    </div>
+                    <table class="finance">
+                        <thead>
+                            <tr>
+                                <th>Transaction type</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Total programme expenditure
+                                </td>
+                                <td>
+                                    {{budget.budget__value | shortcurrency :'€'}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Total programme budget
+                                </td>
+                                <td>
+                                    {{budget.budget__value | shortcurrency :'€'}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="graph">
+                        <financials-line-chart has-to-contain="countries__in"></financials-line-chart>
                     </div>
                 </div>
-
-            </div>
-                <!-- eind van een wit blokje -->
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <!-- start linker kolom -->
-                <div class="col-md-4 activity-list-item">
-                    
-                        <div class="row">
-                            <div class="col-sm-12 activity-list-item">
-                                <div class="hp-block wit">
-                                    <p><b>Country code</b><br>{{vm.country.code}}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="hp-block wit financial">
-                            <p><b>Expenditure per year</b></p>
-                            <table class="table table-striped">
-                                <tbody>
-                                    <tr ng-repeat="disbursement in vm.disbursements_by_year">
-                                        <td>{{disbursement.transaction_date_year}}</td>
-                                        <td>{{disbursement.total_disbursements | shortcurrency :'€'}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                </div>
-
-                <div class="col-md-4 activity-list-item">
-                    <div class="hp-block wit financial">
-                        <p><b>Budget</b></p>
-                        <table class="table table-striped" ng-if="budget_by_year.budget__period_start_year != 0" >
-                            <tbody>
-                                <tr ng-repeat="budget in vm.budget_by_year">
-                                    <td>Total</td>
-                                    <td>{{budget.budget__value | shortcurrency :'€'}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="col-md-4">
+                    <div class="panel lightblue">
+                        <h3>Export & share</h3>
+                        <hr>
+                        <p>Select the format and download the data for this project</p>
                     </div>
-                </div>
-
-                <div class="col-md-4 activity-list-item">
-                    <div class="hp-block wit financial">
-                        <p><b>Commitment per year</b></p>
-                        <table class="table table-striped">
-                            <tbody>
-                                <tr ng-repeat="commitment in vm.commitments_by_year">
-                                    <td>{{commitment.transaction_date_year}}</td>
-                                    <td>{{commitment.total_commitments | shortcurrency :'€'}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="panel lightblue">
+                        <h3>Related videos</h3>
+                        <hr>
+                        <div class="video">
+                            <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="video">
+                            <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="panel lightblue">
+                        <h3>Related documents</h3>
+                        <hr>
+                            <p ng-show="vm.activity.documents.length == 0">
+                                No documents available.
+                            </p>
+                            <p ng-repeat="document in vm.activity.documents">
+                                <a target="_blank" href="{{document.url}}">
+                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title}}
+                                </a>
+                            </p>
+                    </div>
+                    <div class="panel lightblue">
+                        <h3>Embed code</h3>
+                        <hr>
+                        <p>Copy and paste on your site</p>
                     </div>
                 </div>
             </div>
@@ -121,7 +124,4 @@
             count="vm.tabs[3].count"
             shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
     </div>
-
 </div>
-
-

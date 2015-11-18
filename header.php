@@ -50,8 +50,7 @@
 	</head>
 
 	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage" ng-app="oipa">
-<div id="top-message">This beta IATI website was created as part of a PoC for RvO.nl, it is optimised for Google Chrome. Because of the beta status of the website some functionalities need more attention. For more information contact Zimmerman & Zimmerman.</div>
 
-<div id="page">
+<div class="container page-wrap">
 
 

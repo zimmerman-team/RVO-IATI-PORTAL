@@ -1,20 +1,14 @@
-
 <header role="banner" ng-controller="NavbarController as vm">
 
-    <a id="nav-open-button" href="#primary-navigation">
-      <span>Menu</span>
-    </a>
+    <div class="row logo">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+        <a ui-sref="home" title="Home" rel="home">
+          <img src="{{templateBaseUrl}}/images/logo-nl-highres.png" />
+        </a>
+      </div>
+    </div>
 
-    <div class="branding">
-      <a ui-sref="home" title="Home" rel="home">
-        <span id="logo-main"></span>
-<!-- 
-        <img src="{{templateBaseUrl}}/images/logo-nl-highres.png" /> -->
-
-        <!-- img id="default-logo" src="/sites/all/themes/custom/agnl_theme/logos/logo-nl.png" alt="RVO.nl" />
-        <img id="mobile-logo" src="/sites/all/themes/custom/agnl_theme/logos/logo-mobile-nl.png" alt="RVO.nl" height="57" width="283" / -->
-      </a>
-    </div><nav id="primary-navigation" role="navigation">
+    <nav id="primary-navigation" role="navigation">
         <ul id="main-menu-links" class="inline main-menu">
           <li 
             class="home first" 
@@ -22,26 +16,21 @@
             ui-sref-active="active">
             <a ng-class="{'active': vm.stateName == 'home'}" ui-sref="home">Home</a></li>
         <li  
-          ng-class="{'active': vm.stateName == 'activities'}" 
-          class="hidden-xs">
+          ng-class="{'active': vm.stateName == 'activities'}">
           <a ng-class="{'active': vm.stateName == 'activities'}"  ui-sref="activities">Projects</a></li>
         <li 
-          ng-class="{'active': vm.stateName == 'locations'}" 
-          class="hidden-xs">
+          ng-class="{'active': vm.stateName == 'locations'}">
           <a ng-class="{'active': vm.stateName == 'locations'}"  ui-sref="locations-map">Countries</a></li>
         <li 
-          ng-class="{'active': vm.stateName == 'sectors'}" 
-          class="hidden-xs"><a ng-class="{'active': vm.stateName == 'sectors'}"  ui-sref="sectors">Sectors</a></li>
+          ng-class="{'active': vm.stateName == 'sectors'}"><a ng-class="{'active': vm.stateName == 'sectors'}"  ui-sref="sectors">Sectors</a></li>
         <li 
-          ng-class="{'active': vm.stateName == 'organisations'}" 
-          class="hidden-xs"><a ng-class="{'active': vm.stateName == 'organisations'}"  ui-sref="organisations">Organisations</a></li>
-        <li 
-          ng-class="{'active': vm.stateName == 'search'}" 
-          class="hidden-xs"><a ng-class="{'active': vm.stateName == 'search'}"  ui-sref="search">Search</a></li>
+          ng-class="{'active': vm.stateName == 'organisations'}"><a ng-class="{'active': vm.stateName == 'organisations'}"  ui-sref="organisations">Organisations</a></li>
 
         <li 
-          ng-class="{'active': vm.stateName == 'about'}" 
-          class="hidden-xs"><a ng-class="{'active': vm.stateName == 'about'}"  ui-sref="about">About</a></li>
+          ng-class="{'active': vm.stateName == 'search'}"><a ng-class="{'active': vm.stateName == 'search'}"  ui-sref="search">Search</a></li>
+
+        <li 
+          ng-class="{'active': vm.stateName == 'about'}"><a ng-class="{'active': vm.stateName == 'about'}"  ui-sref="about">About</a></li>
 
           
 </nav><!-- /.branding -->
