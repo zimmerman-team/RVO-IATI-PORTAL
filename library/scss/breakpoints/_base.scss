@@ -2113,6 +2113,19 @@ footer {
   padding:15px 30px;
   border-top: 13px solid #b2d7ee;
   background:$rvo-xlichtblauw;
+  color:$rvo-donkerblauw;
+  font-size: 14px;
+  a {
+    color:$rvo-donkerblauw;
+  }
+  li {
+    margin-bottom: 7px;
+    &:before {
+      font-family: 'FontAwesome';
+      content: '\f105';
+      margin-right: 5px;
+    }
+  }
 }
 #footer-ribbon {
   clear: both;
