@@ -67,10 +67,20 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="panel lightblue">
+                    <div class="panel lightblue share">
                         <h3>Export & share</h3>
                         <hr>
-                        <p>Select the format and download the data for this project</p>
+                        <p class="no-margin-bottom">Download the project data</p>
+                        <p>
+                            <a ng-click="vm.download('json')"><i class="icon download"></i>JSON</a>
+                        </p>
+                        <p class="no-margin-bottom">Share this project</p>
+                        <p class="two-columns">
+                            <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="icon twitter"></i>Twitter</a>
+                            <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="icon facebook"></i>Facebook</a>
+                            <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="icon linkedin"></i>LinkedIn</a>
+                            <a href=""><i class="icon email"></i>Email</a>
+                        </p>
                     </div>
                     <div class="panel lightblue">
                         <h3>Related videos</h3>

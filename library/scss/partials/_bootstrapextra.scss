@@ -118,3 +118,9 @@
 .extra-padding-30 {
     padding:0 30px;
 }
+
+.two-columns {
+    // -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    // -moz-column-count: 2; /* Firefox */
+    // column-count: 2;
+}
