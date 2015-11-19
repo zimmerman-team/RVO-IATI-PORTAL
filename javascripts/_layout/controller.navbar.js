@@ -42,13 +42,14 @@
         var $fixedbar = $('.filters-fixed');
 
         if(height  > 170 ) {
+            var barHeight = $('.filters-fixed').height();
             $fixedbar.addClass('fixed');
-            $('.pad-helper').addClass('faux-pad');
+            $('.pad-helper').css('height',barHeight);
             $("#toTop").fadeIn();
         }
         if (height < 170 ) {
            $fixedbar.removeClass('fixed');
-           $('.pad-helper').removeClass('faux-pad');
+           $('.pad-helper').css('height',0);
            $("#toTop").fadeOut();
         }
       });

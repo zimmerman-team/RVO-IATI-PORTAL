@@ -15,13 +15,7 @@
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('recipient_countries')" 
                 ng-class="{'active': vm.isOpenedHeader('recipient_countries')}"
-                ng-mouseover="vm.hoverIn('recipient_countries')" 
-                ng-mouseleave="vm.hoverOut('recipient_countries')"
                 ng-show="vm.isIncludedFilter('recipient_countries')">
-              <div 
-                class="glyphicon-popup" 
-                ng-show="vm.buttonTexts['recipient_countries'].hoverShow" 
-                ng-bind-html="vm.currentHoverText"></div>
               Countries
             </span>
 
@@ -44,39 +38,21 @@
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('budget')" 
                 ng-class="{'active': vm.isOpenedHeader('budget')}"
-                ng-mouseover="vm.hoverIn('recipient_budget')" 
-                ng-mouseleave="vm.hoverOut('recipient_budget')"
                 ng-show="vm.isIncludedFilter('recipient_budget')">
-              <div 
-                class="glyphicon-popup" 
-                ng-show="vm.buttonTexts['recipient_budget'].hoverShow" 
-                ng-bind-html="vm.currentHoverText"></div>
               Budget
             </span>
             <span 
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('sectors')" 
                 ng-class="{'active': vm.isOpenedHeader('sectors')}"
-                ng-mouseover="vm.hoverIn('recipient_sectors')" 
-                ng-mouseleave="vm.hoverOut('recipient_sectors')"
                 ng-show="vm.isIncludedFilter('recipient_sectors')">
-              <div 
-                class="glyphicon-popup" 
-                ng-show="vm.buttonTexts['recipient_sectors'].hoverShow" 
-                ng-bind-html="vm.currentHoverText"></div>
               Sectors
             </span>
             <span 
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('activity_status')" 
                 ng-class="{'active': vm.isOpenedHeader('activity_status')}"
-                ng-mouseover="vm.hoverIn('recipient_activity_status')" 
-                ng-mouseleave="vm.hoverOut('recipient_activity_status')"
                 ng-show="vm.isIncludedFilter('recipient_activity_status')">
-              <div 
-                class="glyphicon-popup" 
-                ng-show="vm.buttonTexts['recipient_activity_status'].hoverShow" 
-                ng-bind-html="vm.currentHoverText"></div>
               Status
             </span>
         
@@ -84,13 +60,7 @@
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('transaction_year')" 
                 ng-class="{'active': vm.isOpenedHeader('transaction_year')}"
-                ng-mouseover="vm.hoverIn('transaction_year')" 
-                ng-mouseleave="vm.hoverOut('transaction_year')"
                 ng-show="vm.isIncludedFilter('transaction_year')">
-              <div 
-                class="glyphicon-popup"
-                ng-show="vm.buttonTexts['transaction_year'].hoverShow" 
-                ng-bind-html="vm.currentHoverText"></div>
               Time range
             </span>
 
@@ -98,13 +68,7 @@
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('recipient_implementing_organisations')" 
                 ng-class="{'active': vm.isOpenedHeader('recipient_implementing_organisations')}"
-                ng-mouseover="vm.hoverIn('recipient_implementing_organisations')" 
-                ng-mouseleave="vm.hoverOut('recipient_implementing_organisations')"
                 ng-show="vm.isIncludedFilter('recipient_implementing_organisations')">
-              <div 
-                class="glyphicon-popup"
-                ng-show="vm.buttonTexts['recipient_implementing_organisations'].hoverShow" 
-                ng-bind-html="vm.currentHoverText"></div>
               Implementing organisations
             </span>
 
@@ -112,25 +76,13 @@
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('search')" 
                 ng-class="{'active': vm.isOpenedHeader('search')}"
-                ng-mouseover="vm.hoverIn('search')" 
-                ng-mouseleave="vm.hoverOut('search')"
                 ng-show="vm.isIncludedFilter('search')">
-              <div 
-                class="glyphicon-popup" 
-                ng-show="vm.buttonTexts['search'].hoverShow" 
-                ng-bind-html="vm.currentHoverText"></div>
               Search
             </span>
 
             <span
-              class="filter-pop"
-              ng-click="vm.resetFilters()" 
-              ng-mouseover="vm.hoverIn('reset')" 
-              ng-mouseleave="vm.hoverOut('reset')">
-              <div 
-                class="glyphicon-popup" 
-                ng-show="vm.buttonTexts['reset'].hoverShow" 
-                ng-bind-html="vm.currentHoverText"></div>
+              class="filter-pop reset"
+              ng-click="vm.resetFilters()">
               Reset all
             </span>
 

@@ -169,11 +169,12 @@
        
           var partnerType = 'Other';
 
-          var message = '<span class="flag-icon flag-icon-'+vm.countryMarkerData[i].country_id.toLowerCase()+'"></span>'+
-                '<h4>'+vm.countryMarkerData[i].name+'</h4>'+
-                '<p><b>Activities:</b> '+vm.countryMarkerData[i]['activity_count']+'</p>'+
-                '<p><b>Total expenditure:</b> '+ $filter('shortcurrency')(vm.countryMarkerData[i]['total_disbursements'],'€') +'</p>'+
-                '<a class="btn btn-default" href="'+homeUrl+'/countries/'+vm.countryMarkerData[i].country_id+'/">Go to country overview</a>';
+          var message = '<h4><span class="flag-icon flag-icon-'+vm.countryMarkerData[i].country_id.toLowerCase()+'"></span>'+vm.countryMarkerData[i].name+'</h4>'+
+                '<hr>'+
+                '<p><i class="icon lightbulb"></i><b>Projects:</b> '+vm.countryMarkerData[i]['activity_count']+'</p>'+
+                '<p><i class="icon euro"></i><b>Total expenditure:</b> '+ $filter('shortcurrency')(vm.countryMarkerData[i]['total_disbursements'],'€') +'</p>'+
+                '<hr>'+
+                '<a href="'+homeUrl+'/countries/'+vm.countryMarkerData[i].country_id+'/"><i class="icon graph"></i>Go to country overview</a>';
 
           if(vm.markers[vm.countryMarkerData[i].country_id] === undefined){
             if(vm.countryMarkerData[i].location != null){

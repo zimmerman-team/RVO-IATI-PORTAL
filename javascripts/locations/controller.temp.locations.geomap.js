@@ -191,7 +191,7 @@
         for(var i = 0;i < data.data.objects.length;i++){
           for(var y = 0;y < data.data.objects[i].locations.length;y++){
 
-            var message = '<h4 style="margin-top: 50px; font-size: 16px; color: #007bc7;">'+data.data.objects[i].titles[0].title+'</h4><a target="_blank" class="btn btn-default" href="'+homeUrl+'/projects/'+data.data.objects[i].id+'/">Go to project</a>';
+            var message = '<h4>'+data.data.objects[i].titles[0].title+'</h4><hr><a target="_blank" href="'+homeUrl+'/projects/'+data.data.objects[i].id+'/"><i class="icon graph"></i>Go to project overview</a>';
 
             newMarkers[i + '_' + y] = {
               lat: parseInt(data.data.objects[i].locations[y].latitude),

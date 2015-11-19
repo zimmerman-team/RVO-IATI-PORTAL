@@ -43,19 +43,6 @@ a {
       text-decoration: none;
   }
 
-.col-centered{
-  float: none;
-  margin: 0 auto;
-}
-
-/*#openaid-main {
-  padding-top:65px;
-}*/
-
-.faux-pad {
-  padding-top:32px;
-}
-
 
 /****
 TEMP
@@ -142,10 +129,6 @@ body{
   font-size: 1.3em;
 }
 
-#openaid-main{
-  min-height: 1000px;
-}
-
 .white-background{
   background-color: #fff;
 }
@@ -221,122 +204,6 @@ hr{
 
 .title {
   display: inline-block;
-}
-
-.hp-block{
-  padding: 15px;
-  margin: 0 0 0 0;
-  font-size: 17px;
-  &.wit {
-    background-color:#f2f8fc;
-    h4 {
-      font-weight: 600;
-    }
-  }
-
-  &.hp-block-top{
-    font-size: 17px;
-    margin-bottom: 0;
-    h1{
-      margin-bottom: 10px;
-    }
-  }
-
-  &.hp-home {
-    text-align: center;
-    small {
-      display: block;
-      color: #444;
-    }
-    #toggle-container {
-      display: block;
-      position:absolute;
-      top:15px;
-      right: 30px;
-      color: rgba(#fff,.6);
-      font-size: 15px;
-      cursor:pointer;
-    }
-  }
-
-  &.spec {
-    padding: 15px 0;
-  }
-  &.explore {
-    padding:0;
-  }
-  h2.title {
-    padding-bottom: 15px;
-  }
-  &.blauw {
-    background-color:$blauw;
-    background-color: rgba($blauw, 0.35);
-  }
-  &.groen {
-    background-color: #fff;
-  }
-  &.roze {
-    background-color:$roze;
-    background-color: rgba($roze, 0.35);
-  }
-
-  h4, h3, h2, h1{
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-
-  hr{
-    border-top: 1px solid $textstd;
-  }
-
-  .number{
-    font-size: 4rem;
-    font-weight: bold;
-  }
-
-  .number.large{
-    font-size: 5rem;
-    /*border-bottom: 2px solid $textstd;*/
-    line-height: 5rem;
-    display: inline-block;
-    margin-bottom: 15px;
-  }
-
-  .glyphicon{
-    color: rgba(55,55,55,.5);
-    font-size: 18px;
-    position: relative;
-  }
-
-  .glyphicon:hover{
-    text-decoration: none;
-    color: #aaa;
-    cursor: pointer;
-  }
-  .expand {
-    font-size: 1.5em;
-    float:right;
-    color:#fff;
-    .fa-circle {
-      color:rgba(0,0,0,.2);
-    }
-  }
-  &.white {
-    background: rgba(255,255,255,0.3);
-  }
-  &#main-visualisation-wrapper {
-    h1 {
-      font-size: 3em;
-      text-align: center;
-      margin-bottom: .4em;
-    }
-  }
-  td {
-    max-width: 250px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 }
 
 .search-box {
@@ -568,24 +435,54 @@ NAVBAR
       }
     }
   }
-}
-//Breadcrumbs
-
-.angular-leaflet-map  {
-  //margin-bottom: 15px;
-}
-
-.breadcrumb {
-  margin:0 0 10px;
-  background: rgba(255,255,255,0.3);
-  li {
+  a {
     &:before {
-      color:#fff !important;
-    }
-    a,span {
-      color:#fff !important;
+      margin-right: 3px !important;
     }
   }
+  .summary, .samenvatting {
+    a {
+      @extend .icon.presentation;
+      @extend .icon;
+    }
+  }
+  .detailedreport {
+    a {
+      @extend .icon.graph;
+      @extend .icon;
+    }
+  }
+  .activities {
+    a {
+      @extend .icon.lightbulb;
+      @extend .icon;
+    }
+  }    
+  .sectors {
+    a {
+      @extend .icon.medal;
+      @extend .icon;
+    }
+  } 
+  .regions {
+    a {
+      @extend .icon.pin;
+      @extend .icon;
+    }
+  } 
+  .countries {
+    a {
+      @extend .icon.globe;
+      @extend .icon;
+    }
+  } 
+  .implementing-organisations {
+    a {
+      @extend .icon.buildings;
+      @extend .icon;
+    }
+  }               
+
 }
 
 /*********************
@@ -722,6 +619,17 @@ FILTER BAR
       content:'\e60d';
       color:$rvo-groen;
       transition: all .2s ease-in-out;
+    }
+    &.reset {
+      &:before {
+        content:'\e605';
+        color:darken(red,10%);
+      }
+      &:hover {
+        &:before {
+          color:darken(red,1%);
+        }
+      }
     }
     &:after {
       display: none;
@@ -1297,8 +1205,9 @@ tr {
     }
   }
   .icon:before {
-    margin-top:-6px;
+    margin-top:-7px;
     float: left;
+    font-size:30px;
   }
 }
 .front-callout {
@@ -1887,7 +1796,7 @@ ACTIVITY LIST
   }
   &.countries:nth-of-type(2n),&.projects:nth-of-type(2n),&.sectors {
     .panel {
-      background:$rvo-lichtblauw;
+      background:lighten($rvo-lichtblauw,8%);
       color:$rvo-blauw;
       a,h3,h4 {
         color:$rvo-blauw;
@@ -1934,7 +1843,7 @@ ACTIVITY LIST
 .activity-list-item > .children {
 
   .panel {
-    background: lighten($rvo-lichtblauw,10%);
+    background: lighten($rvo-lichtblauw,14%);
   }
 
   .left-pad {
@@ -1944,7 +1853,7 @@ ACTIVITY LIST
 
 .activity-list-item .children .children {
   .panel {
-    background: lighten($rvo-lichtblauw,15%);
+    background: lighten($rvo-lichtblauw,16%);
   }
 
   .left-pad {
@@ -2002,7 +1911,7 @@ ACTIVITY LIST
     }
   }
   &.lightblue {
-    background:lighten($rvo-lichtblauw,13%);
+    background:lighten($rvo-lichtblauw,8%);
     padding:15px;
     color:$rvo-blauw;
     h1,h2,h3,h4,h5,h6 {
@@ -2045,30 +1954,7 @@ ACTIVITY LIST
 }
 
 //formatting for detail page
-.activity {
-  .subnav {
-    li {
-      &:first-of-type {
-        a {
-          &:before {
-            font-family: 'AGNL-Icon-Font';
-            content:'\e606';
-            margin-right:3px;
-          }
-        }
-      }
-      &:last-of-type {
-        a {
-          &:before {
-            font-family: 'AGNL-Icon-Font';
-            content:'\e61e';
-            margin-right:3px;
-          }
-        }
-      }    
-    }
-  }
-}
+
 .featured-image {
   img {
     width: 100%;
@@ -2108,7 +1994,7 @@ table.finance {
     background:$rvo-xlichtblauw;
     border-bottom:1px solid $white;
     &:nth-of-type(2n) {
-      background:$rvo-lichtblauw;
+      background:lighten($rvo-lichtblauw,8%);
     }
   }
 }
@@ -2399,19 +2285,18 @@ footer {
   }
   .leaflet-popup-content-wrapper {
     width: 280px;
-    height: 280px;
-    border-radius: 140px;
-    text-align: center;
-    padding:20px;
-    background-color: rgba(255,255,255,0.9); 
+    padding:0;
+    background-color: $white; 
+    border-radius:0;
+  }
+  .leaflet-popup-content {
+    margin:0;
+    padding:10px;
   }
   .leaflet-container {
-    a.btn {
-      color: #fff;
-      text-decoration: none;
-      background:$groen;
+    a {
       &:hover {
-        background:darken($oranje, 10%);
+        color:$rvo-donkerblauw;
       }
     }
   }
@@ -2420,24 +2305,31 @@ footer {
   }
   a.leaflet-popup-close-button {
     display: block;
-    background: #fff;
     height:30px;
     width:30px;
     border-radius: 15px;
-    font-size: 24px;
+    font-size: 14px;
     color:$grijs;
     line-height: 20px;
     text-indent:5px;
     font-weight: 700;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.4);
   }
   p {
     margin:0 0 2px;
     font-size: 1em;
+    color:$rvo-donkerblauw;
+  }
+  h4 {
+    margin-top:0;
+    color:$rvo-donkerblauw;
+  }
+  hr {
+    margin:10px -10px;
+    border-top:1px dotted $rvo-donkerblauw;
   }
   .flag-icon {
-    font-size: 2.5em;
     border-radius: 4px;
+    margin-right: 10px;
   }
   .btn {
     margin-top:10px;
@@ -2631,6 +2523,31 @@ footer {
   &.email {
     &:before {
       content: '\2605';
+    }
+  }
+  &.graph {
+    &:before {
+      content: '\e61e';
+    }
+  }
+  &.medal {
+    &:before {
+      content: '\e60f';
+    }
+  }
+  &.buildings {
+    &:before {
+      content: '\e61a';
+    }
+  }
+  &.pin {
+    &:before {
+      content: '\e60b';
+    }
+  }
+  &.refresh {
+    &:before {
+      content: '\e605';
     }
   }
 }

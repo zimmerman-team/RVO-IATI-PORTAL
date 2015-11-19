@@ -120,10 +120,11 @@
         vm.markers[country.code] = {
             lat: parseInt(location[1]),
             lng: parseInt(location[0]),
-            message: '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
-                '<h4>'+country.name+'</h4>'+
-                '<p><b>Relationship type:</b> '+partnerType+'</p>'+
-                '<a class="btn btn-default" href="'+homeUrl+'/landen/'+country.code+'/">Go to country overview</a>',
+            message: '<h4><span class="flag-icon flag-icon-'+flag_lc+'"></span>'+country.name+'</h4>'+
+                     '<hr>'+
+                     '<p><i class="icon lightbulb"></i><b>Relationship type:</b> '+partnerType+'</p>'+
+                     '<hr>'+
+                     '<a href="'+homeUrl+'/landen/'+country.code+'/"><i class="icon graph"></i>Go to country overview</a>',
             icon: vm.markerIcons[partnerType],
         }
       }
