@@ -32,10 +32,6 @@
                     <div class="panel white no-margin-bottom no-padding-bottom">
                         <h2><i class="icon euro"></i>Financial</h2>
                     </div>
-                    <div class="panel lightblue">
-                        <p><b>Finance type:</b> <span ng-if='vm.activity.default_finance_type.name.length'>{{vm.activity.default_finance_type.name}}</span><span ng-if='!vm.activity.default_finance_type.name.length'>No data available</span></p>
-                        <p><b>Project budget:</b> <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span><span ng-if='!vm.activity.total_budget.length'>No data available</span></p>
-                    </div>
                     <table class="finance">
                         <thead>
                             <tr>

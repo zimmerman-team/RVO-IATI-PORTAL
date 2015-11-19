@@ -115,7 +115,7 @@
                     <div class="panel lightblue">
                         <h3>Project partners</h3>
                         <hr>
-                        <p><b>Reporting organisations:</b> {{vm.activity.reporting_organisation.name}}</p>
+                        <p><b>Reporting organisation:</b> {{vm.activity.reporting_organisation.name}}</p>
                         <p><b>Participating organisations:</b> <span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></p>
                     </div>
                     <div class="panel lightblue">
@@ -181,27 +181,68 @@
                     <div class="panel no-margin-bottom">
                         <div class="row">
                             <div class="col-sm-4">
-                                Activity status
+                                Project scope
                             </div>
                             <div class="col-sm-8">
-                                {{vm.activity.activity_status.name}}
+                                <span ng-if='vm.activity.activity_scope.name.length'>{{vm.activity.activity_scope.name}}</span>
+                                <span ng-if='!vm.activity.activity_scope.name.length'>No data available</span>
                             </div>
                         </div>
                     </div>
                     <div class="panel no-margin-bottom">
                         <div class="row">
                             <div class="col-sm-4">
-                                Activity date
+                                Start date planned
                             </div>
                             <div class="col-sm-8">
-                                {{vm.activity.iati_identifier}}
+                                {{vm.activity.start_planned.length ? vm.activity.start_planned : 'No data available' | date : 'dd MMM yyyy'}}
                             </div>
                         </div>
                     </div>
                     <div class="panel no-margin-bottom">
                         <div class="row">
                             <div class="col-sm-4">
-                                Participating organisation
+                                Start date actual
+                            </div>
+                            <div class="col-sm-8">
+                                {{vm.activity.start_actual.length ? vm.activity.start_actual : 'No data available' | date : 'dd MMM yyyy'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                End date planned
+                            </div>
+                            <div class="col-sm-8">
+                                {{vm.activity.end_planned.length ? vm.activity.end_planned : 'No data available' | date : 'dd MMM yyyy'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                End date actual
+                            </div>
+                            <div class="col-sm-8">
+                                {{vm.activity.end_actual.length ? vm.activity.end_actual : 'No data available' | date : 'dd MMM yyyy'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Reporting organisation
+                            </div>
+                            <div class="col-sm-8">
+                                {{vm.activity.reporting_organisation.name}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Participating organisations
                             </div>
                             <div class="col-sm-8">
                                 <span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}},</span>
@@ -211,7 +252,7 @@
                     <div class="panel no-margin-bottom">
                         <div class="row">
                             <div class="col-sm-4">
-                                Recipient country
+                                Country
                             </div>
                             <div class="col-sm-8">
                                 <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">{{country.name}}</a><span ng-if='vm.activity.countries.length == 0'>No data available</span>
@@ -221,20 +262,72 @@
                     <div class="panel no-margin-bottom">
                         <div class="row">
                             <div class="col-sm-4">
-                                Sector
+                                Region
+                            </div>
+                            <div class="col-sm-8">
+                                <a ng-repeat="region in vm.activity.regions" ui-sref="region({ region_id: region.code })">
+                                    {{region.name}}
+                                </a>
+                                <span ng-if='vm.activity.regions.length == 0'>No data available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Locations
+                            </div>
+                            <div class="col-sm-8">
+                                <span ng-repeat="location in vm.activity.locations" >
+                                    {{location.name}},
+                                </span>
+                                <span ng-if='vm.activity.locations.length == 0'>No data available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Sectors
                             </div>
                             <div class="col-sm-8">
                                 <a ui-sref="sector({'sector_id': sector.code})" ng-repeat="(key, sector) in vm.activity.sectors">{{ sector.name }}, </a><span ng-show='!vm.activity.sectors.length'>No data available</span>
                             </div>
                         </div>
                     </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Sector code
+                            </div>
+                            <div class="col-sm-8">
+                                <a ui-sref="sector({ sector_id: vm.activity.sectors[0].code })">{{vm.activity.sectors[0].code}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Other identifiers
+                            </div>
+                            <div class="col-sm-8">
+                                <a ng-repeat="other_identifier in vm.activity.other_identifier">
+                                    {{other_identifier.name}}
+                                </a>
+                                <span ng-if='vm.activity.related_activities.length == 0'>No data available</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="panel">
                         <div class="row">
                             <div class="col-sm-4">
-                                Default finance type
+                                Related activities
                             </div>
                             <div class="col-sm-8">
-                                {{vm.activity.iati_identifier}}
+                                <a ng-repeat="act in vm.activity.related_activities">
+                                    {{act.id}}
+                                </a>
+                                <span ng-if='vm.activity.related_activities.length == 0'>No data available</span>
                             </div>
                         </div>
                     </div>
@@ -247,50 +340,125 @@
                     <div class="panel no-margin-bottom">
                         <div class="row">
                             <div class="col-sm-4">
-                                Provider organisation
+                                Finance type
                             </div>
                             <div class="col-sm-8">
-                                {{vm.activity.iati_identifier}}
+                                <span ng-if='vm.activity.default_finance_type.name.length'>{{vm.activity.default_finance_type.name}}</span>
+                                <span ng-if='!vm.activity.default_finance_type.name.length'>No data available</span>
                             </div>
                         </div>
                     </div>
                     <div class="panel no-margin-bottom">
                         <div class="row">
                             <div class="col-sm-4">
-                                Receiver organisation
+                                Estimated budget
                             </div>
                             <div class="col-sm-8">
-                                {{vm.activity.iati_identifier}}
+                                <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span>
+                                <span ng-if='!vm.activity.total_budget.length'>No data available</span>
                             </div>
                         </div>
                     </div>
                     <div class="panel no-margin-bottom">
                         <div class="row">
                             <div class="col-sm-4">
-                                Value
+                                Capital spent
                             </div>
                             <div class="col-sm-8">
-                                {{vm.activity.iati_identifier}}
+                                <span ng-if='vm.activity.activity_scope.name.length'>{{vm.activity.capital_spend.percentage}}</span>
+                                <span ng-if='!vm.activity.activity_scope.name.length'>No data available</span>
                             </div>
                         </div>
                     </div>
                     <div class="panel no-margin-bottom">
                         <div class="row">
                             <div class="col-sm-4">
-                                Transaction date
+                                Flow type
                             </div>
                             <div class="col-sm-8">
-                                {{vm.activity.iati_identifier}}
+                                <span ng-if='vm.activity.default_flow_type.name.length'>{{vm.activity.default_flow_type.name}}</span>
+                                <span ng-if='!vm.activity.default_flow_type.name.length'>No data available</span>
                             </div>
                         </div>
                     </div>
                     <div class="panel no-margin-bottom">
                         <div class="row">
                             <div class="col-sm-4">
-                                Transaction type
+                                Tied status
                             </div>
                             <div class="col-sm-8">
-                                {{vm.activity.iati_identifier}}
+                                <span ng-if='vm.activity.default_tied_status.name.length'>{{vm.activity.default_tied_status.name}}</span>
+                                <span ng-if='!vm.activity.default_tied_status.name.length'>No data available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Collaboration type
+                            </div>
+                            <div class="col-sm-8">
+                                <span ng-if='vm.activity.collaboration_type.name.length'>{{vm.activity.collaboration_type.name}}</span>
+                                <span ng-if='!vm.activity.collaboration_type.name.length'>No data available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Aid type
+                            </div>
+                            <div class="col-sm-8">
+                                <span ng-if='vm.activity.default_aid_type.name.length'>{{vm.activity.default_aid_type.name}}</span>
+                                <span ng-if='!vm.activity.default_aid_type.name.length'>No data available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Websites
+                            </div>
+                            <div class="col-sm-8">
+                                <a ng-repeat="website in vm.activity.websites">
+                                    {{website.name}}
+                                </a>
+                                <span ng-if='vm.activity.websites.length == 0'>No data available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Linked data URI
+                            </div>
+                            <div class="col-sm-8">
+                                <span ng-if='vm.activity.linked_data_uri.length'>{{vm.activity.linked_data_uri}}</span>
+                                <span ng-if='!vm.activity.linked_data_uri.length'>No data available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Hierarchy
+                            </div>
+                            <div class="col-sm-8">
+                                <span ng-if='vm.activity.hierarchy'>{{vm.activity.hierarchy}}</span>
+                                <span ng-if='!vm.activity.hierarchy'>No data available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Results
+                            </div>
+                            <div class="col-sm-8">
+                                <a ng-repeat="result in vm.activity.results">
+                                    {{result.name}}
+                                </a>
+                                <span ng-if='vm.activity.results.length == 0'>No data available</span>
                             </div>
                         </div>
                     </div>
