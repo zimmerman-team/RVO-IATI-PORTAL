@@ -13,43 +13,43 @@ come into play. Have fun!
 ******************************************************************/
 
 
-.pagination {
-	li {
-		a {
-			transition:all 0.2s;
-			&:hover,&:focus,&:active {
-				background-color: $groen;
-				color:#fff;
-			}
-		}
-	    &.active {
-			a {
-				background-color: $groen;
-				&:hover,&:focus,&:active {
-					background-color: $groen;
-					}
-				}
-			}
-	    &:first-of-type, &:last-of-type {
-			a {
-				&:hover {
-					background-color: transparent;
-					color: $groen;
-				}
-			}
-		}
-	}
-}
+// .pagination {
+// 	li {
+// 		a {
+// 			transition:all 0.2s;
+// 			&:hover,&:focus,&:active {
+// 				background-color: $groen;
+// 				color:#fff;
+// 			}
+// 		}
+// 	    &.active {
+// 			a {
+// 				background-color: $groen;
+// 				&:hover,&:focus,&:active {
+// 					background-color: $groen;
+// 					}
+// 				}
+// 			}
+// 	    &:first-of-type, &:last-of-type {
+// 			a {
+// 				&:hover {
+// 					background-color: transparent;
+// 					color: $groen;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
-.filter-panel {
-	.btn-save {
-		transition:all 0.2s;
-        background: $blauw;
-		&:hover {
-			background: darken($blauw,10%);
-		}
-	}
-}
+// .filter-panel {
+// 	.btn-save {
+// 		transition:all 0.2s;
+//         background: $blauw;
+// 		&:hover {
+// 			background: darken($blauw,10%);
+// 		}
+// 	}
+// }
 
 .actions {
 	.filters {
@@ -194,33 +194,6 @@ come into play. Have fun!
   }
 }
 
-.geomap-mask {
-  // -webkit-clip-path: url(#clipping);
-  // -moz-clip-path: url(#clipping);
-  // -ms-clip-path: url(#clipping);
-  // clip-path: url(#clipping);
-  // height:600px;
-  // width: 600px;
-  // display: inline-block;
-  // overflow: hidden;
-  // background-color: rgba(41,171,226,0.85);
-
-  // -moz-clip-path: circle(300px at center);
-  // -webkit-clip-path: circle(300px at center);
-  // -ms-clip-path: circle(300px at center);
-  // clip-path: circle(300px at center);
-
-  // border-radius: 300px;
-  // -moz-border-radius: 300px;
-  // -khtml-border-radius: 300px;
-  // -webkit-border-radius: 300px;
-  // overflow: hidden;
-
-  // margin:0 auto;
-  // width: 600px;
-
-}
-
 .navbar .btn.btn-default, .navbar .btn-group .btn {
 	margin-right: 10px;
 }
@@ -244,8 +217,6 @@ come into play. Have fun!
 }
 
 .search-suggest-box{
-  left: 16px; 
-  width: 120%; 
 }
 
 //navbar alignment, want menu wat breed
@@ -261,9 +232,9 @@ come into play. Have fun!
 	&.fixed {
 		top:0;
 	}
-  .container {
-    width: 720px;
-  }
+  // .container {
+  //   width: 720px;
+  // }
 }
 
 //homepage blokken

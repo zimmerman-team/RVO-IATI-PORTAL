@@ -20,8 +20,10 @@
 
     <div ng-if='vm.totalCountries == 0' class="row">
         <div class="col-sm-12">
-            <h2>Nothing found</h2>
-            <p>Please select some different filters.</p>
+            <div class="extra-padding">
+                <h2>Nothing found</h2>
+                <p>Please select some different filters.</p>
+            </div>
         </div>
     </div>
 </div>
@@ -45,7 +47,7 @@
             </div>
         </div>
     </div>
-    <div class="activity-list-item col-sm-12" 
+    <div class="countries activity-list-item col-sm-12" 
         ng-show="vm.countries.length != 0"
         ng-repeat="item in vm.countries">
         <div class="panel country">

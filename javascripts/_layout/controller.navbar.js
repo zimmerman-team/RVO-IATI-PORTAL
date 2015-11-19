@@ -41,12 +41,12 @@
         var height = $(window).scrollTop();
         var $fixedbar = $('.filters-fixed');
 
-        if(height  > 60 ) {
+        if(height  > 170 ) {
             $fixedbar.addClass('fixed');
             $('.pad-helper').addClass('faux-pad');
             $("#toTop").fadeIn();
         }
-        if (height < 60 ) {
+        if (height < 170 ) {
            $fixedbar.removeClass('fixed');
            $('.pad-helper').removeClass('faux-pad');
            $("#toTop").fadeOut();

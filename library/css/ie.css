@@ -170,11 +170,6 @@ them in here, they won't work.
   display: inline;
 }
 
-/* line 34, ../scss/breakpoints/_481up.scss */
-.filters-fixed .container {
-  width: 481px;
-}
-
 /******************************************************************
 Site Name:
 Author:
@@ -188,39 +183,6 @@ and other resources. You'll also notice the grid starts to
 come into play. Have fun!
 
 ******************************************************************/
-/* line 18, ../scss/breakpoints/_768up.scss */
-.pagination li a {
-  transition: all 0.2s;
-}
-/* line 20, ../scss/breakpoints/_768up.scss */
-.pagination li a:hover, .pagination li a:focus, .pagination li a:active {
-  background-color: #b2d7ee;
-  color: #fff;
-}
-/* line 26, ../scss/breakpoints/_768up.scss */
-.pagination li.active a {
-  background-color: #b2d7ee;
-}
-/* line 28, ../scss/breakpoints/_768up.scss */
-.pagination li.active a:hover, .pagination li.active a:focus, .pagination li.active a:active {
-  background-color: #b2d7ee;
-}
-/* line 35, ../scss/breakpoints/_768up.scss */
-.pagination li:first-of-type a:hover, .pagination li:last-of-type a:hover {
-  background-color: transparent;
-  color: #b2d7ee;
-}
-
-/* line 45, ../scss/breakpoints/_768up.scss */
-.filter-panel .btn-save {
-  transition: all 0.2s;
-  background: #29abe2;
-}
-/* line 48, ../scss/breakpoints/_768up.scss */
-.filter-panel .btn-save:hover {
-  background: #1a8dbe;
-}
-
 /* line 57, ../scss/breakpoints/_768up.scss */
 .actions .filters span .fa-circle {
   transition: all 0.2s;
@@ -319,50 +281,40 @@ come into play. Have fun!
   margin-top: .5em;
 }
 
-/* line 224, ../scss/breakpoints/_768up.scss */
+/* line 197, ../scss/breakpoints/_768up.scss */
 .navbar .btn.btn-default, .navbar .btn-group .btn {
   margin-right: 10px;
 }
 
-/* line 232, ../scss/breakpoints/_768up.scss */
+/* line 205, ../scss/breakpoints/_768up.scss */
 .navbar .nav.navbar-nav.navbar-right .active a {
   color: #fff;
 }
-/* line 236, ../scss/breakpoints/_768up.scss */
+/* line 209, ../scss/breakpoints/_768up.scss */
 .navbar .nav.navbar-nav.navbar-right a {
   color: #808080;
 }
-/* line 238, ../scss/breakpoints/_768up.scss */
+/* line 211, ../scss/breakpoints/_768up.scss */
 .navbar .nav.navbar-nav.navbar-right a:hover {
   color: #fff;
 }
 
-/* line 246, ../scss/breakpoints/_768up.scss */
-.search-suggest-box {
-  left: 16px;
-  width: 120%;
-}
-
-/* line 252, ../scss/breakpoints/_768up.scss */
+/* line 223, ../scss/breakpoints/_768up.scss */
 .navbar-header {
   margin: 0 auto;
 }
 
-/* line 256, ../scss/breakpoints/_768up.scss */
+/* line 227, ../scss/breakpoints/_768up.scss */
 .navbar-collapse {
   padding: 0;
 }
 
-/* line 261, ../scss/breakpoints/_768up.scss */
+/* line 232, ../scss/breakpoints/_768up.scss */
 .filters-fixed.fixed {
   top: 0;
 }
-/* line 264, ../scss/breakpoints/_768up.scss */
-.filters-fixed .container {
-  width: 720px;
-}
 
-/* line 271, ../scss/breakpoints/_768up.scss */
+/* line 242, ../scss/breakpoints/_768up.scss */
 .homepage-blocks .col-md-2 {
   width: 20%;
 }
@@ -380,10 +332,6 @@ be seen on the Desktop.
 /* line 29, ../scss/breakpoints/_1030up.scss */
 .filters-fixed.fixed {
   top: 0;
-}
-/* line 32, ../scss/breakpoints/_1030up.scss */
-.filters-fixed .container {
-  width: 940px;
 }
 
 /*#openaid-main {

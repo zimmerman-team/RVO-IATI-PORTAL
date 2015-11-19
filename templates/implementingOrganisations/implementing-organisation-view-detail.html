@@ -3,89 +3,95 @@
     <filter-bar 
         views="[]"
         current-page="themas"></filter-bar>
-        
-    <div class="row">
-        <div class="col-md-12">
-            <div class="hp-block wit">
-                <h1>{{vm.organisation.name}}</h1>
-            </div>
-        </div>
+
+    <div class="container extra">
+        <sub-navbar 
+            tabs='vm.tabs' 
+            selected-tab='vm.selectedTab'>
+        </sub-navbar>
     </div>
 
-    <sub-navbar 
-        tabs='vm.tabs' 
-        selected-tab='vm.selectedTab'>
-    </sub-navbar>
+    <div class="content-offset" ng-show="vm.selectedTab == 'samenvatting'">
 
-    <div ng-show="vm.selectedTab == 'samenvatting'">
+        <div class="container extra">
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-12">
-
-                    <div class="hp-block wit">
-                        <h3>Transactions</h3>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="panel blue no-margin-bottom">
+                        <h1 class="no-margin-bottom"><i class="icon presentation"></i> {{vm.organisation.name}}</h1>
+                    </div>
+                    <div class="panel white no-margin-bottom no-padding-bottom">
+                        <h2><i class="icon euro"></i>Financial</h2>
+                    </div>
+                    <table class="finance">
+                        <thead>
+                            <tr>
+                                <th>Transaction type</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Total programme expenditure
+                                </td>
+                                <td>
+                                    {{budget.budget__value | shortcurrency :'€'}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Total programme budget
+                                </td>
+                                <td>
+                                    {{budget.budget__value | shortcurrency :'€'}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="graph">
                         <financials-line-chart 
                             has-to-contain="participating_organisations__organisation__code__in">
                         </financials-line-chart>
                     </div>
                 </div>
-
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-12">
                 <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-sm-12 activity-list-item">
-                            <div class="hp-block wit financial">
-                                <p><b>Expenditure per year</b></p>
-                                <table class="table table-striped">
-                                    <tbody>
-                                        <tr ng-repeat="disbursement in vm.disbursements_by_year">
-                                            <td>{{disbursement.transaction_date_year}}</td>
-                                            <td>{{disbursement.total_disbursements | shortcurrency :'€'}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="panel lightblue">
+                        <h3>Export & share</h3>
+                        <hr>
+                        <p>Select the format and download the data for this project</p>
+                    </div>
+                    <div class="panel lightblue">
+                        <h3>Related videos</h3>
+                        <hr>
+                        <div class="video">
+                            <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="video">
+                            <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 activity-list-item">
-                    <div class="hp-block wit financial">
-                        <p><b>Budget</b></p>
-                        <table class="table table-striped" ng-if="budget_by_year.budget__period_start_year != 0" >
-                            <tbody>
-                                <tr ng-repeat="budget in vm.budget_by_year">
-                                    <td>Total</td>
-                                    <td>{{budget.budget__value | shortcurrency :'€'}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="panel lightblue">
+                        <h3>Related documents</h3>
+                        <hr>
+                            <p ng-show="vm.activity.documents.length == 0">
+                                No documents available.
+                            </p>
+                            <p ng-repeat="document in vm.activity.documents">
+                                <a target="_blank" href="{{document.url}}">
+                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title}}
+                                </a>
+                            </p>
                     </div>
-                </div>
-
-                <div class="col-md-4 activity-list-item">
-                    <div class="hp-block wit financial">
-                        <p><b>Commitment per year</b></p>
-                        <table class="table table-striped">
-                            <tbody>
-                                <tr ng-repeat="commitment in vm.commitments_by_year">
-                                    <td>{{commitment.transaction_date_year}}</td>
-                                    <td>{{commitment.total_commitments | shortcurrency :'€'}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="panel lightblue">
+                        <h3>Embed code</h3>
+                        <hr>
+                        <p>Copy and paste on your site</p>
                     </div>
-
                 </div>
             </div>
         </div>
-
     </div>
-    <!-- einde samenvatting -->
 
     <div ng-show="vm.selectedTab == 'activities'">
         <activity-list 

@@ -8,7 +8,7 @@
         </sub-navbar>
 
     
-        <div ng-show="vm.selectedTab == 'summary'">
+        <div class="content-offset" ng-show="vm.selectedTab == 'summary'">
     
             <div class="row">
                 <div class="col-md-8">
@@ -140,10 +140,159 @@
         <!-- detailed report page -->
         <div class="row" ng-if="vm.selectedTab == 'detailedreport'">
             <div class="col-md-8">
-               
+
+               <div class="panel blue">
+                    <h1 class="no-margin-bottom"><i class="icon presentation"></i>{{vm.activity.titles[0].title}}</h1>
+                    <hr>
+                    <span class="margin-right-3">Last updated: {{vm.activity.last_updated_datetime | date : 'd MMM yyyy'}}</span><span>Project status: {{vm.activity.activity_status.name}}</span>
+                </div>
+
+                <div class="panel white no-margin-bottom no-padding-bottom">
+                    <h2><i class="icon euro"></i>Full report</h2>
+                </div>
+                <div class="panel xlightblue no-margin-bottom">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            IATI Identifier
+                        </div>
+                        <div class="col-sm-9">
+                            {{vm.activity.iati_identifier}}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel blue no-margin-bottom">
+                    Description
+                </div>
+                <div class="panel xlightblue">
+                    <p>{{vm.activity.descriptions[0].description}}</p>
+                </div>
+
+                <div class="wrap-alternate">
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                Activity status
+                            </div>
+                            <div class="col-sm-9">
+                                {{vm.activity.iati_identifier}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                Activity date
+                            </div>
+                            <div class="col-sm-9">
+                                {{vm.activity.iati_identifier}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                Participating organisation
+                            </div>
+                            <div class="col-sm-9">
+                                {{vm.activity.iati_identifier}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                Recipient country
+                            </div>
+                            <div class="col-sm-9">
+                                {{vm.activity.iati_identifier}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                Sector
+                            </div>
+                            <div class="col-sm-9">
+                                {{vm.activity.iati_identifier}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                Default finance type
+                            </div>
+                            <div class="col-sm-9">
+                                {{vm.activity.iati_identifier}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel blue no-margin-bottom">
+                    Transaction
+                </div>
+                <div class="wrap-alternate">
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                Provider organisation
+                            </div>
+                            <div class="col-sm-9">
+                                {{vm.activity.iati_identifier}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                Receiver organisation
+                            </div>
+                            <div class="col-sm-9">
+                                {{vm.activity.iati_identifier}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                Value
+                            </div>
+                            <div class="col-sm-9">
+                                {{vm.activity.iati_identifier}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                Transaction date
+                            </div>
+                            <div class="col-sm-9">
+                                {{vm.activity.iati_identifier}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel no-margin-bottom">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                Transaction type
+                            </div>
+                            <div class="col-sm-9">
+                                {{vm.activity.iati_identifier}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="col-md-4">
-               
+               <div class="panel lightblue">
+                    <h3>Export & share</h3>
+                    <hr>
+                    <p>Select the format and download the data for this project</p>
+                </div>
             </div>
         </div>
 

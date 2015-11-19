@@ -20,14 +20,16 @@
 
     <div ng-if='vm.totalActivities == 0' class="row">
         <div class="col-sm-12">
-            <h2>Nothing found</h2>
-            <p>Please select some different filters.</p>
+            <div class="extra-padding">
+                <h2>Nothing found</h2>
+                <p>Please select some different filters.</p>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="row" infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1'>
-    <div class="activity-list-item col-sm-12" 
+    <div class="projects activity-list-item col-sm-12" 
         ng-show="vm.activities.length != 0"
         ng-repeat="item in vm.activities">
         <div class="panel">
