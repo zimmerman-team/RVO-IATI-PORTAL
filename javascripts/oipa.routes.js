@@ -140,16 +140,34 @@
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisation-view-detail.html'
         })
+
+
         .state({
-            name:        'sector-list',
-            url:         '/sectors/lijst/',
+            name:        'programmes',
+            url:         '/programmes/',
+            controller:  'ProgrammeExploreController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/programmes/programmes-view-list.html'
+        })
+        .state({
+            name:        'programme',
+            url:         '/programmes/:programme_id/',
+            controller:  'ProgramController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/programmes/programme-view-detail.html'
+        })
+
+
+        .state({
+            name:        'sectors',
+            url:         '/sectors/',
             controller:  'SectorsExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-list.html'
         })
         .state({
-            name:        'sectors',
-            url:         '/sectors/',
+            name:        'sectors-vis',
+            url:         '/sectors/vis/',
             controller:  'SectorsVisualisationController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-visualisation.html'
