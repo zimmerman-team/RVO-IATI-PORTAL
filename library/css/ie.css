@@ -66,29 +66,69 @@ FONT FACE
   Be sure to remove the comment brackets.
 */
 @font-face {
-  font-family: 'iconscustom';
-  src: url("../fonts/icons-custom-webfont.eot");
-  src: url("../fonts/icons-custom-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/icons-custom-webfont.woff2") format("woff2"), url("../fonts/icons-custom-webfont.woff") format("woff"), url("../fonts/icons-custom-webfont.ttf") format("truetype"), url("../fonts/icons-custom-webfont.svg#iconscustom") format("svg");
+  font-family: "AGNL-Icon-Font";
+  src: url(../fonts/AGNL-Icon-Font.eot);
+  src: url(../fonts/AGNL-Icon-Font.eot?#iefix) format("embedded-opentype"), url(../fonts/AGNL-Icon-Font.woff) format("woff"), url(../fonts/AGNL-Icon-Font.ttf) format("truetype"), url(../fonts/AGNL-Icon-Font.svg#AGNL-Icon-Font) format("svg");
   font-weight: normal;
   font-style: normal;
 }
-@font-face {
-  font-family: 'AGNL-Icon-Font';
-  src: url("../fonts/AGNL-Icon-Font.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
+/*
+  -------------------------------------------------------------------
+  RijksoverheidSansHeading-Bold 2.0
+  -------------------------------------------------------------------
+*/
 @font-face {
   font-family: "RijksOverheidSans";
-  src: url("../fonts/rijksoverheidsansheading-bold_2_0.eot");
-  src: url("../fonts/rijksoverheidsansheading-bold_2_0.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidsansheading-bold_2_0.woff") format("woff"), url("../fonts/rijksoverheidsansheading-bold_2_0.ttf") format("truetype"), url("../fonts/rijksoverheidsansheading-bold_2_0.svg#RijksOverheidSansBold") format("svg");
+  src: url(../fonts/rijksoverheidsansheading-bold_2_0.eot);
+  src: url(../fonts/rijksoverheidsansheading-bold_2_0.eot?#iefix) format("embedded-opentype"), url(../fonts/rijksoverheidsansheading-bold_2_0.woff) format("woff"), url(../fonts/rijksoverheidsansheading-bold_2_0.ttf) format("truetype"), url(../fonts/rijksoverheidsansheading-bold_2_0.svg#RijksOverheidSansBold) format("svg");
   font-weight: bold;
   font-style: normal;
 }
+/*
+  -------------------------------------------------------------------
+  RijksoverheidSansHeading-Regular 2.0
+  -------------------------------------------------------------------
+*/
 @font-face {
   font-family: "RijksOverheidSans";
-  src: url("../fonts/rijksoverheidsansheading-regular_2_0.eot");
-  src: url("../fonts/rijksoverheidsansheading-regular_2_0.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidsansheading-regular_2_0.woff") format("woff"), url("../fonts/rijksoverheidsansheading-regular_2_0.ttf") format("truetype"), url("../fonts/rijksoverheidsansheading-regular_2_0.svg#RijksOverheidSansRegular") format("svg");
+  src: url(../fonts/rijksoverheidsansheading-regular_2_0.eot);
+  src: url(../fonts/rijksoverheidsansheading-regular_2_0.eot?#iefix) format("embedded-opentype"), url(../fonts/rijksoverheidsansheading-regular_2_0.woff) format("woff"), url(../fonts/rijksoverheidsansheading-regular_2_0.ttf) format("truetype"), url(../fonts/rijksoverheidsansheading-regular_2_0.svg#RijksOverheidSansRegular) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/*
+  -------------------------------------------------------------------
+  RijksoverheidSansText-Regular
+  -------------------------------------------------------------------
+*/
+@font-face {
+  font-family: "RijksoverheidSansText-Regular";
+  src: url("../fonts/rijksoverheidsanstext-regular.eot");
+  src: url("../fonts/rijksoverheidsanstext-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidsanstext-regular.woff") format("woff"), url("../fonts/rijksoverheidsanstext-regular.ttf") format("truetype"), url("../fonts/rijksoverheidsanstext-regular.svg#RijksoverheidSansText-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/*
+  -------------------------------------------------------------------
+  RijksoverheidSerif-Regular
+  -------------------------------------------------------------------
+*/
+@font-face {
+  font-family: "RijksoverheidSerif-Regular";
+  src: url("../fonts/rijksoverheidserif-regular.eot");
+  src: url("../fonts/rijksoverheidserif-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidserif-regular.woff") format("woff"), url("../fonts/rijksoverheidserif-regular.ttf") format("truetype"), url("../fonts/rijksoverheidserif-regular.svg#RijksoverheidSerif-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/*
+  -------------------------------------------------------------------
+  RijksoverheidSerif-Italic
+  -------------------------------------------------------------------
+*/
+@font-face {
+  font-family: "RijksoverheidSerif-Italic";
+  src: url("../fonts/rijksoverheidserif-italic.eot");
+  src: url("../fonts/rijksoverheidserif-italic.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidserif-italic.woff") format("woff"), url("../fonts/rijksoverheidserif-italic.ttf") format("truetype"), url("../fonts/rijksoverheidserif-italic.svg#RijksoverheidSerif-Italic") format("svg");
   font-weight: normal;
   font-style: normal;
 }

@@ -11,11 +11,13 @@ and will be used across all viewports.
 
 ******************************************************************/
 body {
-  font-size:16px;
+  font-size:14px;
   color:$rvo-zwart;
 }
 h1,h2,h3,h4,h5,h6 {
   color: $rvo-donkerblauw;
+  font-family: $heading;
+  font-weight: 400;
 }
 
 .page-wrap {
@@ -122,7 +124,7 @@ body{
   background-color: #f2f8fc;
   background-size: cover;
   color: $textstd;
-  font-family: $titillium;
+  font-family: $sans-serif;
 }
 
 .description{
@@ -382,7 +384,7 @@ NAVBAR
 }
 
 .nvd3 text{
-  font-family: $titillium;
+  font-family: $sans-serif;
 }
 
 .navbar-brand{
@@ -1142,7 +1144,8 @@ tr {
       border-radius:0;
       h1 {
         margin-top:0;
-        font-size: 30px;
+        font-size: 24px;
+        margin-bottom: 8px;
       }
       p {
         margin-bottom: 0;
@@ -1216,7 +1219,7 @@ tr {
     border:0;
     margin-top:0 !important;
     padding:15px 30px;
-    font-size: 20px;
+    font-size: 18px;
     color:$white;
     background:none;
     margin:0;

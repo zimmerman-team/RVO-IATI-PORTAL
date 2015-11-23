@@ -237,6 +237,31 @@ body#tinymce.wp-editor {
     Be sure to remove the comment brackets.
   */
   /*
+    -------------------------------------------------------------------
+    RijksoverheidSansHeading-Bold 2.0
+    -------------------------------------------------------------------
+  */
+  /*
+    -------------------------------------------------------------------
+    RijksoverheidSansHeading-Regular 2.0
+    -------------------------------------------------------------------
+  */
+  /*
+    -------------------------------------------------------------------
+    RijksoverheidSansText-Regular
+    -------------------------------------------------------------------
+  */
+  /*
+    -------------------------------------------------------------------
+    RijksoverheidSerif-Regular
+    -------------------------------------------------------------------
+  */
+  /*
+    -------------------------------------------------------------------
+    RijksoverheidSerif-Italic
+    -------------------------------------------------------------------
+  */
+  /*
   The following is based of Typebase:
   https://github.com/devinhunt/typebase.css
   I've edited it a bit, but it's a nice starting point.
@@ -333,7 +358,7 @@ body#tinymce.wp-editor {
   /* NOTE: value of "padding-box" is only supported in Gecko. So
   probably best not to use it. I mean, were you going to anyway? */
   width: 731px;
-  font-family: "RijksOverheidSans", sans-serif;
+  font-family: "RijksoverheidSans", sans-serif;
   font-size: 100%;
   line-height: 1.5;
   color: #5c6b80;
@@ -652,18 +677,9 @@ body#tinymce.wp-editor span.amp {
 @font-face {
   /* line 17, ../scss/editor-style.scss */
   body#tinymce.wp-editor {
-    font-family: 'iconscustom';
-    src: url("../fonts/icons-custom-webfont.eot");
-    src: url("../fonts/icons-custom-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/icons-custom-webfont.woff2") format("woff2"), url("../fonts/icons-custom-webfont.woff") format("woff"), url("../fonts/icons-custom-webfont.ttf") format("truetype"), url("../fonts/icons-custom-webfont.svg#iconscustom") format("svg");
-    font-weight: normal;
-    font-style: normal;
-  }
-}
-@font-face {
-  /* line 17, ../scss/editor-style.scss */
-  body#tinymce.wp-editor {
-    font-family: 'AGNL-Icon-Font';
-    src: url("../fonts/AGNL-Icon-Font.woff") format("woff");
+    font-family: "AGNL-Icon-Font";
+    src: url(../fonts/AGNL-Icon-Font.eot);
+    src: url(../fonts/AGNL-Icon-Font.eot?#iefix) format("embedded-opentype"), url(../fonts/AGNL-Icon-Font.woff) format("woff"), url(../fonts/AGNL-Icon-Font.ttf) format("truetype"), url(../fonts/AGNL-Icon-Font.svg#AGNL-Icon-Font) format("svg");
     font-weight: normal;
     font-style: normal;
   }
@@ -672,8 +688,8 @@ body#tinymce.wp-editor span.amp {
   /* line 17, ../scss/editor-style.scss */
   body#tinymce.wp-editor {
     font-family: "RijksOverheidSans";
-    src: url("../fonts/rijksoverheidsansheading-bold_2_0.eot");
-    src: url("../fonts/rijksoverheidsansheading-bold_2_0.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidsansheading-bold_2_0.woff") format("woff"), url("../fonts/rijksoverheidsansheading-bold_2_0.ttf") format("truetype"), url("../fonts/rijksoverheidsansheading-bold_2_0.svg#RijksOverheidSansBold") format("svg");
+    src: url(../fonts/rijksoverheidsansheading-bold_2_0.eot);
+    src: url(../fonts/rijksoverheidsansheading-bold_2_0.eot?#iefix) format("embedded-opentype"), url(../fonts/rijksoverheidsansheading-bold_2_0.woff) format("woff"), url(../fonts/rijksoverheidsansheading-bold_2_0.ttf) format("truetype"), url(../fonts/rijksoverheidsansheading-bold_2_0.svg#RijksOverheidSansBold) format("svg");
     font-weight: bold;
     font-style: normal;
   }
@@ -682,8 +698,38 @@ body#tinymce.wp-editor span.amp {
   /* line 17, ../scss/editor-style.scss */
   body#tinymce.wp-editor {
     font-family: "RijksOverheidSans";
-    src: url("../fonts/rijksoverheidsansheading-regular_2_0.eot");
-    src: url("../fonts/rijksoverheidsansheading-regular_2_0.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidsansheading-regular_2_0.woff") format("woff"), url("../fonts/rijksoverheidsansheading-regular_2_0.ttf") format("truetype"), url("../fonts/rijksoverheidsansheading-regular_2_0.svg#RijksOverheidSansRegular") format("svg");
+    src: url(../fonts/rijksoverheidsansheading-regular_2_0.eot);
+    src: url(../fonts/rijksoverheidsansheading-regular_2_0.eot?#iefix) format("embedded-opentype"), url(../fonts/rijksoverheidsansheading-regular_2_0.woff) format("woff"), url(../fonts/rijksoverheidsansheading-regular_2_0.ttf) format("truetype"), url(../fonts/rijksoverheidsansheading-regular_2_0.svg#RijksOverheidSansRegular) format("svg");
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+@font-face {
+  /* line 17, ../scss/editor-style.scss */
+  body#tinymce.wp-editor {
+    font-family: "RijksoverheidSansText-Regular";
+    src: url("../fonts/rijksoverheidsanstext-regular.eot");
+    src: url("../fonts/rijksoverheidsanstext-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidsanstext-regular.woff") format("woff"), url("../fonts/rijksoverheidsanstext-regular.ttf") format("truetype"), url("../fonts/rijksoverheidsanstext-regular.svg#RijksoverheidSansText-Regular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+@font-face {
+  /* line 17, ../scss/editor-style.scss */
+  body#tinymce.wp-editor {
+    font-family: "RijksoverheidSerif-Regular";
+    src: url("../fonts/rijksoverheidserif-regular.eot");
+    src: url("../fonts/rijksoverheidserif-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidserif-regular.woff") format("woff"), url("../fonts/rijksoverheidserif-regular.ttf") format("truetype"), url("../fonts/rijksoverheidserif-regular.svg#RijksoverheidSerif-Regular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+@font-face {
+  /* line 17, ../scss/editor-style.scss */
+  body#tinymce.wp-editor {
+    font-family: "RijksoverheidSerif-Italic";
+    src: url("../fonts/rijksoverheidserif-italic.eot");
+    src: url("../fonts/rijksoverheidserif-italic.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidserif-italic.woff") format("woff"), url("../fonts/rijksoverheidserif-italic.ttf") format("truetype"), url("../fonts/rijksoverheidserif-italic.svg#RijksoverheidSerif-Italic") format("svg");
     font-weight: normal;
     font-style: normal;
   }
