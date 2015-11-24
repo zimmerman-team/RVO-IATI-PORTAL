@@ -8,38 +8,35 @@
         </sub-navbar>
 
     
-        <div class="content-offset" ng-show="vm.selectedTab == 'summary'">
+        <div class="content-offset detailview" ng-show="vm.selectedTab == 'summary'">
     
             <div class="row">
                 <div class="col-md-8">
                     <div class="panel blue no-margin-bottom">
-                        <h1 class="no-margin-bottom"><i class="icon presentation"></i>{{vm.activity.titles[0].title}}</h1>
-                        <hr>
-                        <span class="margin-right-3">Last updated: {{vm.activity.last_updated_datetime | date : 'd MMM yyyy'}}</span><span>Project status: {{vm.activity.activity_status.name}}</span>
+                        <h1 class="no-margin-bottom"><i class="icon presentation"></i>{{vm.activity.titles[0].title}}</h1>         
                     </div>
                     <div class="featured-image">
                         <img src="{{vm.templateBaseUrl}}/images/Develop2Build header.jpg">
                     </div>
                     <div class="panel white">
-                        <h2><i class="icon clock"></i>Summary</h2>
+                        <h2><i class="icon clock"></i>Description</h2>
                         <p>{{vm.activity.descriptions[0].description}}</p>              
                     </div>
                     <div class="panel white no-margin-bottom no-padding-bottom">
-                        <h2><i class="icon globe"></i>Geographical</h2>
+                        <h2><i class="icon globe"></i>Location</h2>
                     </div>
                     <div class="map">
                         <activity-geomap map-height="350px" activity="vm.activity"></activity-geomap>
                     </div>
                     <div class="panel lightblue">
-                        <p><b>Region:</b> <a ng-repeat="region in vm.activity.regions" ui-sref="region({ region_id: region.code })">{{region.name}}</a><span ng-if='vm.activity.regions.length == 0'>No data available</span></p>
-                        <p><b>Country:</b> <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">{{country.name}}</a><span ng-if='vm.activity.countries.length == 0'>No data available</span> </p>
+                        <p><b>Country:</b> <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">{{country.name}}</a><span ng-if='vm.activity.countries.length == 0'>No data available yet</span> </p>
                     </div>
                     <div class="panel white no-margin-bottom no-padding-bottom">
                         <h2><i class="icon euro"></i>Financial</h2>
                     </div>
                     <div class="panel lightblue">
-                        <p><b>Finance type:</b> <span ng-if='vm.activity.default_finance_type.name.length'>{{vm.activity.default_finance_type.name}}</span><span ng-if='!vm.activity.default_finance_type.name.length'>No data available</span></p>
-                        <p><b>Project budget:</b> <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span><span ng-if='!vm.activity.total_budget.length'>No data available</span></p>
+                        <p><b>Finance type:</b> <span ng-if='vm.activity.default_finance_type.name.length'>{{vm.activity.default_finance_type.name}}</span><span ng-if='!vm.activity.default_finance_type.name.length'>No data available yet</span></p>
+                        <p><b>Project budget:</b> <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span><span ng-if='!vm.activity.total_budget.length'>No data available yet</span></p>
                     </div>
                     <table class="finance">
                         <thead>
@@ -74,49 +71,78 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="panel lightblue">
+                    <div class="panel with-table lightblue">
                         <h3>Information</h3>
                         <hr>
                         <table class="no-format">
                             <tr>
-                                <td>IATI Identifier: </td>
+                                <td width="130">Project number: </td>
                                 <td>{{vm.activity.iati_identifier}}</td>
                             </tr>
                             <tr>
+                                <td>Last updated:</td>
+                                <td>{{vm.activity.last_updated_datetime | date : 'd MMM yyyy'}}</td>
+                            </tr>
+                            <tr>
+                                <td>Project status: </td>
+                                <td>{{vm.activity.activity_status.name}}</td>
+                            </tr>
+                            <tr>
                                 <td>Start date:</td>
-                                <td>{{vm.activity.start_actual.length ? vm.activity.start_actual : 'No data available' | date : 'd MMM yyyy'}}</td>
+                                <td>{{vm.activity.start_actual.length ? vm.activity.start_actual : 'No data available yet' | date : 'd MMM yyyy'}}</td>
                             </tr>
                             <tr>
                                 <td>End date:</td>
-                                <td>{{vm.activity.end_actual.length ? vm.activity.end_actual : 'No data available' | date : 'd MMM yyyy'}}</td>
+                                <td>{{vm.activity.end_actual.length ? vm.activity.end_actual : 'No data available yet' | date : 'd MMM yyyy'}}</td>
+                            </tr>
+                            <tr>
+                                <td>Contact:</td>
+                                <td><a href="mailto:iati@rvo.nl">iati@rvo.nl</a></td>
                             </tr>
                         </table>
                     </div>
-                    <div class="panel lightblue share">
-                        <h3>Export & share</h3>
+                    <div class="panel with-table lightblue">
+                        <h3>Project details</h3>
                         <hr>
-                        <p class="no-margin-bottom">Download the project data</p>
-                        <p>
-                            <a ng-click="vm.download('json')"><i class="icon download"></i>JSON</a>
-                        </p>
-                        <p class="no-margin-bottom">Share this project</p>
-                        <p class="two-columns">
-                            <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="icon twitter"></i>Twitter</a>
-                            <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="icon facebook"></i>Facebook</a>
-                            <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="icon linkedin"></i>LinkedIn</a>
-                            <a href=""><i class="icon email"></i>Email</a>
-                        </p>
-                    </div>
-                    <div class="panel lightblue">
-                        <h3>Sector tags</h3>
-                        <hr>
-                        <p><a ui-sref="sector({'sector_id': sector.code})" ng-repeat="(key, sector) in vm.activity.sectors">{{ sector.name }}, </a><span ng-show='!vm.activity.sectors.length'>No data available</span></p>
-                    </div>
-                    <div class="panel lightblue">
-                        <h3>Project partners</h3>
-                        <hr>
-                        <p><b>Reporting organisation:</b> {{vm.activity.reporting_organisation.name}}</p>
-                        <p><b>Participating organisations:</b> <span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></p>
+
+                        <table class="no-format">
+                            <tr>
+                                <td width="130">Sectors: </td>
+                                <td><a ui-sref="sector({'sector_id': sector.code})" ng-repeat="(key, sector) in vm.activity.sectors">{{ sector.name }}, </a><span ng-show='!vm.activity.sectors.length'>No data available yet</span></td>
+                            </tr>
+                            <tr>
+                                <td>Programme:</td>
+                                <td>XX</td>
+                            </tr>
+                            <tr>
+                                <td>Total budget: </td>
+                                <td>{{vm.activity.activity_status.name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Budget spent:</td>
+                                <td><span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span><span ng-if='!vm.activity.total_budget.length'>No data available yet</span></td>
+                            </tr>
+                            <tr>
+                                <td>Funding partners:</td>
+                                <td><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></td>
+                            </tr>
+                            <tr>
+                                <td>Project partners:</td>
+                                <td><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></td>
+                            </tr>
+                            <tr>
+                                <td>Status:</td>
+                                <td>{{vm.activity.activity_status.name}}</td>
+                            </tr>
+                            <tr>
+                                <td>(Un)tied:</td>
+                                <td><span ng-if='vm.activity.default_tied_status.name.length'>{{vm.activity.default_tied_status.name}}</span><span ng-if='!vm.activity.default_tied_status.name.length'>No data available yet</span></td>
+                            </tr>
+                            <tr>
+                                <td>Policy:</td>
+                                <td>XX</td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="panel lightblue">
                         <h3>Project updates</h3>
@@ -138,38 +164,389 @@
                                 </a>
                             </p>
                     </div>
+                    <div class="panel lightblue with-table share">
+                        <h3>Export & share</h3>
+                        <hr>
+                        <table class="no-format">
+                            <tr>
+                                <td width="130">Download:</td>
+                                <td><a ng-click="vm.download('json')"><i class="icon download"></i>JSON</a></td>
+                            </tr>
+                            <tr>
+                                <td>Share:</td>
+                                <td>
+                                    <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="icon twitter"></i></a>
+                                    <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="icon facebook"></i></a>
+                                    <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="icon linkedin"></i></a>
+                                    <a href=""><i class="icon email"></i></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                     <div class="panel lightblue">
                         <h3>Embed code</h3>
                         <hr>
-                        <p>Copy and paste on your site</p>
+                        <p>Copy and paste the following code on your site</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- detailed report page -->
-        <div class="row" ng-if="vm.selectedTab == 'detailedreport'">
+        <div class="row detailview" ng-if="vm.selectedTab == 'detailedreport'">
+
             <div class="col-md-8">
 
-               <div class="panel blue">
+                <div class="panel blue">
                     <h1 class="no-margin-bottom"><i class="icon presentation"></i>{{vm.activity.titles[0].title}}</h1>
-                    <hr>
-                    <span class="margin-right-3">Last updated: {{vm.activity.last_updated_datetime | date : 'd MMM yyyy'}}</span><span>Project status: {{vm.activity.activity_status.name}}</span>
                 </div>
 
                 <div class="panel white no-margin-bottom no-padding-bottom">
                     <h2><i class="icon euro"></i>Full report</h2>
                 </div>
-                <div class="panel xlightblue no-margin-bottom">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            IATI Identifier
-                        </div>
-                        <div class="col-sm-8">
-                            {{vm.activity.iati_identifier}}
-                        </div>
+
+                <div class="panel lightblue with-table">
+
+                    <h3>Dates & description</h3>
+                    <hr>
+
+                    <table class="no-format">
+                        <tr>
+                            <td width="200">RVO Project: </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Title:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Description:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Description name:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Status:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Start date planned:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Start date actual:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>End date planned:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>End date actual:</td>
+                            <td>XX</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="panel lightblue with-table">
+
+                    <h3>Related activities</h3>
+                    <hr>
+
+                    <table class="no-format">
+                        <tr>
+                            <td width="200">Related activity:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Related activity:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Related activity:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Related IATI activity:</td>
+                            <td>XX</td>
+                        </tr>
+                    </table>
+                </div>
+
+
+                        <!-- <tr>
+                            <td>Default tied:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Default finance name:</td>
+                            <td>XX</td>
+                        </tr> -->
+
+                <div class="panel lightblue with-table">
+
+                    <h3>Related organisations</h3>
+                    <hr>
+
+                    <table class="no-format">
+
+                        <tr>
+                            <td width="200">Participating org. role:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Participating org.:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Participating org. ref:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Participating org. type:</td>
+                            <td>XX</td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                <div class="panel lightblue with-table">
+
+                    <h3>Related countries</h3>
+                    <hr>
+
+                    <table class="no-format">
+                        <tr>
+                            <td width="200">Country (%):</td>
+                            <td>XX (%%)</td>
+                        </tr>
+                        <tr>
+                            <td>Region:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Latitude:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Longitude:</td>
+                            <td>XX</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <div class="panel lightblue with-table">
+
+                    <h3>Related sectors</h3>
+                    <hr>
+
+                    <table class="no-format">
+                        <tr>
+                            <td width="200">Sector (%):</td>
+                            <td>XX (%%)</td>
+                        </tr>
+                        <tr>
+                            <td>Policy marker:</td>
+                            <td>XX</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="panel lightblue with-table">
+
+                    <h3>Budget</h3>
+                    <hr>
+
+                    <table class="no-format">    
+                        <tr>
+                            <td width="200">Budget:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Value date:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Budget value:</td>
+                            <td>XX</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="panel lightblue with-table">
+
+                    <h3>Transactions</h3>
+                    <hr>
+
+                    <table class="no-format">
+                        <tr>
+                            <td width="200">Transaction type:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Provider org.:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Provider org. ref.:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Provider activity id:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Receiver org.:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Receiver org. ref.:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Receiver activity id:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Transaction value:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Transaction date:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Transaction value date:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Result type:</td>
+                            <td>XX</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="panel lightblue with-table">
+
+                    <h3>Results</h3>
+
+                    <hr>
+
+                    <table class="no-format">
+                        <tr>
+                            <td width="200">Result title:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Result description:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Indicator name:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Result indicator:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Result target:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Result period start:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Result period end:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Result baseline:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Result actual:</td>
+                            <td>XX</td>
+                        </tr>
+                    </table>
+                </div>
+
+
+                        <!-- <tr>
+                            <td>IATI Project #:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Description type:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Status code:</td>
+                            <td>XX</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Default tied:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Default finance:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Participating org.:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Country code:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Region code:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Sector code:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Policy marker:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Budget type:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Transaction code:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Result code:</td>
+                            <td>XX</td>
+                        </tr>
+                        <tr>
+                            <td>Indicator code:</td>
+                            <td>XX</td>
+                        </tr>
+                    </table> -->
+
+                <!-- <div class="row">
+                    <div class="col-sm-4">
+                        IATI Identifier
+                    </div>
+                    <div class="col-sm-8">
+                        {{vm.activity.iati_identifier}}
                     </div>
                 </div>
+                </div>
+
+
                 <div class="panel blue no-margin-bottom">
                     Description
                 </div>
@@ -185,7 +562,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <span ng-if='vm.activity.activity_scope.name.length'>{{vm.activity.activity_scope.name}}</span>
-                                <span ng-if='!vm.activity.activity_scope.name.length'>No data available</span>
+                                <span ng-if='!vm.activity.activity_scope.name.length'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -195,7 +572,7 @@
                                 Start date planned
                             </div>
                             <div class="col-sm-8">
-                                {{vm.activity.start_planned.length ? vm.activity.start_planned : 'No data available' | date : 'dd MMM yyyy'}}
+                                {{vm.activity.start_planned.length ? vm.activity.start_planned : 'No data available yet' | date : 'dd MMM yyyy'}}
                             </div>
                         </div>
                     </div>
@@ -205,7 +582,7 @@
                                 Start date actual
                             </div>
                             <div class="col-sm-8">
-                                {{vm.activity.start_actual.length ? vm.activity.start_actual : 'No data available' | date : 'dd MMM yyyy'}}
+                                {{vm.activity.start_actual.length ? vm.activity.start_actual : 'No data available yet' | date : 'dd MMM yyyy'}}
                             </div>
                         </div>
                     </div>
@@ -215,7 +592,7 @@
                                 End date planned
                             </div>
                             <div class="col-sm-8">
-                                {{vm.activity.end_planned.length ? vm.activity.end_planned : 'No data available' | date : 'dd MMM yyyy'}}
+                                {{vm.activity.end_planned.length ? vm.activity.end_planned : 'No data available yet' | date : 'dd MMM yyyy'}}
                             </div>
                         </div>
                     </div>
@@ -225,7 +602,7 @@
                                 End date actual
                             </div>
                             <div class="col-sm-8">
-                                {{vm.activity.end_actual.length ? vm.activity.end_actual : 'No data available' | date : 'dd MMM yyyy'}}
+                                {{vm.activity.end_actual.length ? vm.activity.end_actual : 'No data available yet' | date : 'dd MMM yyyy'}}
                             </div>
                         </div>
                     </div>
@@ -255,7 +632,7 @@
                                 Country
                             </div>
                             <div class="col-sm-8">
-                                <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">{{country.name}}</a><span ng-if='vm.activity.countries.length == 0'>No data available</span>
+                                <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">{{country.name}}</a><span ng-if='vm.activity.countries.length == 0'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -268,7 +645,7 @@
                                 <a ng-repeat="region in vm.activity.regions" ui-sref="region({ region_id: region.code })">
                                     {{region.name}}
                                 </a>
-                                <span ng-if='vm.activity.regions.length == 0'>No data available</span>
+                                <span ng-if='vm.activity.regions.length == 0'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -281,7 +658,7 @@
                                 <span ng-repeat="location in vm.activity.locations" >
                                     {{location.name}},
                                 </span>
-                                <span ng-if='vm.activity.locations.length == 0'>No data available</span>
+                                <span ng-if='vm.activity.locations.length == 0'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -291,7 +668,7 @@
                                 Sectors
                             </div>
                             <div class="col-sm-8">
-                                <a ui-sref="sector({'sector_id': sector.code})" ng-repeat="(key, sector) in vm.activity.sectors">{{ sector.name }}, </a><span ng-show='!vm.activity.sectors.length'>No data available</span>
+                                <a ui-sref="sector({'sector_id': sector.code})" ng-repeat="(key, sector) in vm.activity.sectors">{{ sector.name }}, </a><span ng-show='!vm.activity.sectors.length'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -314,7 +691,7 @@
                                 <a ng-repeat="other_identifier in vm.activity.other_identifier">
                                     {{other_identifier.name}}
                                 </a>
-                                <span ng-if='vm.activity.related_activities.length == 0'>No data available</span>
+                                <span ng-if='vm.activity.related_activities.length == 0'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -327,7 +704,7 @@
                                 <a ng-repeat="act in vm.activity.related_activities">
                                     {{act.id}}
                                 </a>
-                                <span ng-if='vm.activity.related_activities.length == 0'>No data available</span>
+                                <span ng-if='vm.activity.related_activities.length == 0'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -344,7 +721,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <span ng-if='vm.activity.default_finance_type.name.length'>{{vm.activity.default_finance_type.name}}</span>
-                                <span ng-if='!vm.activity.default_finance_type.name.length'>No data available</span>
+                                <span ng-if='!vm.activity.default_finance_type.name.length'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -355,7 +732,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span>
-                                <span ng-if='!vm.activity.total_budget.length'>No data available</span>
+                                <span ng-if='!vm.activity.total_budget.length'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -366,7 +743,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <span ng-if='vm.activity.activity_scope.name.length'>{{vm.activity.capital_spend.percentage}}</span>
-                                <span ng-if='!vm.activity.activity_scope.name.length'>No data available</span>
+                                <span ng-if='!vm.activity.activity_scope.name.length'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -377,7 +754,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <span ng-if='vm.activity.default_flow_type.name.length'>{{vm.activity.default_flow_type.name}}</span>
-                                <span ng-if='!vm.activity.default_flow_type.name.length'>No data available</span>
+                                <span ng-if='!vm.activity.default_flow_type.name.length'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -388,7 +765,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <span ng-if='vm.activity.default_tied_status.name.length'>{{vm.activity.default_tied_status.name}}</span>
-                                <span ng-if='!vm.activity.default_tied_status.name.length'>No data available</span>
+                                <span ng-if='!vm.activity.default_tied_status.name.length'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -399,7 +776,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <span ng-if='vm.activity.collaboration_type.name.length'>{{vm.activity.collaboration_type.name}}</span>
-                                <span ng-if='!vm.activity.collaboration_type.name.length'>No data available</span>
+                                <span ng-if='!vm.activity.collaboration_type.name.length'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -410,7 +787,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <span ng-if='vm.activity.default_aid_type.name.length'>{{vm.activity.default_aid_type.name}}</span>
-                                <span ng-if='!vm.activity.default_aid_type.name.length'>No data available</span>
+                                <span ng-if='!vm.activity.default_aid_type.name.length'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -423,7 +800,7 @@
                                 <a ng-repeat="website in vm.activity.websites">
                                     {{website.name}}
                                 </a>
-                                <span ng-if='vm.activity.websites.length == 0'>No data available</span>
+                                <span ng-if='vm.activity.websites.length == 0'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -434,7 +811,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <span ng-if='vm.activity.linked_data_uri.length'>{{vm.activity.linked_data_uri}}</span>
-                                <span ng-if='!vm.activity.linked_data_uri.length'>No data available</span>
+                                <span ng-if='!vm.activity.linked_data_uri.length'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -445,7 +822,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <span ng-if='vm.activity.hierarchy'>{{vm.activity.hierarchy}}</span>
-                                <span ng-if='!vm.activity.hierarchy'>No data available</span>
+                                <span ng-if='!vm.activity.hierarchy'>No data available yet</span>
                             </div>
                         </div>
                     </div>
@@ -458,29 +835,35 @@
                                 <a ng-repeat="result in vm.activity.results">
                                     {{result.name}}
                                 </a>
-                                <span ng-if='vm.activity.results.length == 0'>No data available</span>
+                                <span ng-if='vm.activity.results.length == 0'>No data available yet</span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
             <div class="col-md-4">
-                <div class="panel lightblue share">
+
+                <div class="panel lightblue with-table share">
                     <h3>Export & share</h3>
                     <hr>
-                    <p class="no-margin-bottom">Download the project data</p>
-                    <p>
-                        <a ng-click="vm.download('json')"><i class="icon download"></i>JSON</a>
-                    </p>
-                    <p class="no-margin-bottom">Share this project</p>
-                    <p class="two-columns">
-                        <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="icon twitter"></i>Twitter</a>
-                        <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="icon facebook"></i>Facebook</a>
-                        <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="icon linkedin"></i>LinkedIn</a>
-                        <a href=""><i class="icon email"></i>Email</a>
-                    </p>
+                    <table class="no-format">
+                        <tr>
+                            <td width="130">Download:</td>
+                            <td><a ng-click="vm.download('json')"><i class="icon download"></i>JSON</a></td>
+                        </tr>
+                        <tr>
+                            <td>Share:</td>
+                            <td>
+                                <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="icon twitter"></i></a>
+                                <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="icon facebook"></i></a>
+                                <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="icon linkedin"></i></a>
+                                <a href=""><i class="icon email"></i></a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
+
             </div>
         </div>
 

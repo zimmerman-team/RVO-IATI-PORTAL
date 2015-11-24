@@ -168,11 +168,11 @@
       for (var i = 0; i < vm.countryMarkerData.length;i++){
        
           var partnerType = 'Other';
-
           var message = '<h4><span class="flag-icon flag-icon-'+vm.countryMarkerData[i].country_id.toLowerCase()+'"></span>'+vm.countryMarkerData[i].name+'</h4>'+
                 '<hr>'+
                 '<p><i class="icon lightbulb"></i><b>Projects:</b> '+vm.countryMarkerData[i]['activity_count']+'</p>'+
                 '<p><i class="icon euro"></i><b>Total expenditure:</b> '+ $filter('shortcurrency')(vm.countryMarkerData[i]['total_disbursements'],'€') +'</p>'+
+                '<p><i class="icon medal"></i><b>Sectors:</b> '+ vm.countryMarkerData[i]['sector_count'] +'</p>'+
                 '<hr>'+
                 '<a href="'+homeUrl+'/countries/'+vm.countryMarkerData[i].country_id+'/"><i class="icon graph"></i>Go to country overview</a>';
 

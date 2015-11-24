@@ -1,3 +1,17 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="list front-callout">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel">
+            With {{vm.totalActivities}} projects, XX programmes within XX sectors in XX countries.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">  
     <div class="row">
         <div class="col-md-12">
@@ -28,63 +42,23 @@
     </div>
 </div>
 
-<div class="row" infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1'>
-    <div class="projects activity-list-item col-sm-12" 
-        ng-show="vm.activities.length != 0"
-        ng-repeat="item in vm.activities">
-        <div class="panel">
-            <h2><a ui-sref="activiteit({ activity_id: item.id })">{{ item.titles[0].title }}</a></h2>
-            <p>{{item.descriptions[0].description | cut :true:300:' ...'}}</p>
-            <hr />
-            <div class="row">
-                <div class="col-md-3">
-                    <p>
-                        <b>Total budget: </b>
-                        <span ng-if='item.total_budget.length'>{{item.total_budget | shortcurrency :'€'}}</span>
-                        <span ng-if='!item.total_budget.length'>No data available</span>
-                    </p>
-                    <p>
-                        <b>Project status</b>
-                        {{item.activity_status.name}}
-                    </p> 
-                </div>
-                <div class="col-md-3">
-                    <p>
-                        <b>Region:</b>
-                        <a ui-sref="region({'region_id': region.code})" ng-repeat="region in item.regions">
-                            {{ region.name }}
-                        </a>
-                        <span ng-show='!item.regions.length'>No data available</span>
-                    </p>
-                    <p>
-                        <b>Country:</b>
-                        <a ui-sref="country({'country_id': country.code})" ng-repeat="country in item.countries">
-                            {{ country.name }}
-                        </a>
-                        <span ng-show='!item.countries.length'>No data available</span>
-                    </p>
-                </div>
-                <div class="col-md-3">
-                    <p>
-                        <b>Reporting organisation:</b>
-                        {{item.reporting_organisation.name}}
-                    </p> 
-                    <p>
-                        <b>Last updated:</b>
-                        {{item.last_updated_datetime | date : 'yyyy-MM-dd'}}
-                    </p> 
-                </div>
-                <div class="col-md-3">
-                    <p>
-                        <b>Starting date:</b>
-                        {{item.start_actual.length ? item.start_actual : 'No data available'}}
-                    </p>
-                    <p>
-                        <b>Ending date:</b>
-                        {{item.end_actual.length ? item.end_actual : 'No data available'}}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' class="table list-overview">
+    <thead>
+        <tr>
+            <th width="500">Project title</th>
+            <th>Project status</th>
+            <th>Active in country</th>
+            <th>Total budget</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+            ng-show="vm.activities.length != 0"
+            ng-repeat="item in vm.activities">
+            <td><a ui-sref="activiteit({ activity_id: item.id })">{{ item.titles[0].title }}</a></td>
+            <td>{{item.activity_status.name}}</td>
+            <td>{{ country.name }}</td>
+            <td>{{item.total_budget | shortcurrency :'€'}}</td>
+        </tr>
+    </tbody>
+</table>
