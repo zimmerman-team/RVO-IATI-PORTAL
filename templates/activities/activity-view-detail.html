@@ -114,6 +114,17 @@
                                 <td><span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span><span ng-if='!vm.activity.total_budget.length'>No data available yet</span></td>
                             </tr>
                             <tr>
+                                <td>Budget depletion:</td>
+                                <td>
+                                    <div class="progress small">
+                                      <div class="progress-bar" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%;">
+                                        77% spent
+                                        <div class="gradient"></div>
+                                      </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>Funding partners:</td>
                                 <td><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></td>
                             </tr>

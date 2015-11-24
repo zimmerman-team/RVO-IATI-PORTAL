@@ -56,8 +56,8 @@
             ng-show="vm.countries.length != 0"
             ng-repeat="item in vm.countries">
             <td><a ui-sref="country({ country_id: item.country_id })"><span class="flag-icon flag-icon-{{item.country_id | lowercase }} "></span>{{ item.name }}</a></td>
-            <td>{{item.activity_count}}</td>
-            <td></td>
+            <td>{{item.activity_count}} projects</td>
+            <td>xx programmes</td>
             <td>{{item.total_disbursements  | shortcurrency :'€'}}</td>
         </tr>
     </tbody>
