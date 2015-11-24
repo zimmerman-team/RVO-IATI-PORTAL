@@ -13,7 +13,7 @@
 
     <div class="content-offset" ng-show="vm.selectedTab == 'samenvatting'">
 
-        <div class="container extra">
+        <div class="container detailview extra">
 
             <div class="row">
                 <div class="col-md-8">
@@ -23,54 +23,43 @@
                     <div class="panel white no-margin-bottom no-padding-bottom">
                         <h2><i class="icon euro"></i>Financial</h2>
                     </div>
-                    <table class="finance">
-                        <thead>
-                            <tr>
-                                <th>Transaction type</th>
-                                <th>Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Total country expenditure
-                                </td>
-                                <td>
-                                    {{budget.budget__value | shortcurrency :'€'}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Total country budget
-                                </td>
-                                <td>
-                                    {{budget.budget__value | shortcurrency :'€'}}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="panel lightblue with-table no-header">
+                        <table class="no-format">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Total sector expenditure
+                                    </td>
+                                    <td>
+                                        {{budget.budget__value | shortcurrency :'€'}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Total sector budget
+                                    </td>
+                                    <td>
+                                        {{budget.budget__value | shortcurrency :'€'}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Budget depletion
+                                    </td>
+                                    <td>
+                                        Figuurtje hier
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="graph">
-                        <financials-line-chart 
+                        <!-- <financials-line-chart 
                             has-to-contain="sectors__in">
-                        </financials-line-chart>
+                        </financials-line-chart> -->
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="panel lightblue share">
-                        <h3>Export & share</h3>
-                        <hr>
-                        <p class="no-margin-bottom">Download the project data</p>
-                        <p>
-                            <a ng-click="vm.download('json')"><i class="icon download"></i>JSON</a>
-                        </p>
-                        <p class="no-margin-bottom">Share this project</p>
-                        <p class="two-columns">
-                            <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="icon twitter"></i>Twitter</a>
-                            <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="icon facebook"></i>Facebook</a>
-                            <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="icon linkedin"></i>LinkedIn</a>
-                            <a href=""><i class="icon email"></i>Email</a>
-                        </p>
-                    </div>
                     <div class="panel lightblue">
                         <h3>Related videos</h3>
                         <hr>
@@ -93,6 +82,25 @@
                                 </a>
                             </p>
                     </div>
+                    <div class="panel lightblue with-table share">
+                        <h3>Export & share</h3>
+                        <hr>
+                        <table class="no-format">
+                            <tr>
+                                <td width="130">Download:</td>
+                                <td><a ng-click="vm.download('json')"><i class="fa fa-download"></i>JSON</a></td>
+                            </tr>
+                            <tr>
+                                <td>Share:</td>
+                                <td>
+                                    <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="fa fa-twitter-square"></i></a>
+                                    <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="fa fa-facebook-square"></i></a>
+                                    <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="fa fa-linkedin-square"></i></a>
+                                    <a href=""><i class="fa fa-envelope-square"></i></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                     <div class="panel lightblue">
                         <h3>Embed code</h3>
                         <hr>
@@ -104,38 +112,54 @@
     </div>
 
     <div ng-show="vm.selectedTab == 'activities'">
-        <activity-list 
-            has-to-contain="sectors__in"  
-            count="vm.tabs[1].count"
-            shown="vm.selectedTab == 'activities'"></activity-list>
+        <div class="container detailview extra">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel blue no-margin-bottom">
+                        <h1 class="no-margin-bottom"><i class="icon presentation"></i> {{vm.sector.name}}</h1>
+                    </div>
+                    <activity-list 
+                        has-to-contain="sectors__in"  
+                        count="vm.tabs[1].count"
+                        shown="vm.selectedTab == 'activities'"></activity-list>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div ng-show="vm.selectedTab == 'countries'">
-        <country-list 
-            has-to-contain="sectors__in" 
-            count="vm.tabs[2].count"
-            shown="vm.selectedTab == 'countries'"></country-list>
-    </div>
+        <div class="container detailview extra">
 
-    <div ng-show="vm.selectedTab == 'regions'">
-        <region-list 
-            has-to-contain="sectors__in" 
-            count="vm.tabs[3].count"
-            shown="vm.selectedTab == 'regions'"></region-list>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel blue no-margin-bottom">
+                        <h1 class="no-margin-bottom"><i class="icon presentation"></i> {{vm.sector.name}}</h1>
+                    </div>
+                    <country-list 
+                        has-to-contain="sectors__in" 
+                        count="vm.tabs[2].count"
+                        shown="vm.selectedTab == 'countries'"></country-list>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div ng-show="vm.selectedTab == 'implementing-organisations'">
-        <implementing-organisations-list 
-            has-to-contain="sectors__in" 
-            count="vm.tabs[4].count"
-            shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
-    </div>
+        <div class="container detailview extra">
 
-    <div ng-show="vm.selectedTab == 'sectors' && vm.sector_digit != 5">
-        <sector-list 
-            has-to-contain="sectors__in" 
-            count="vm.tabs[5].count"
-            shown="vm.selectedTab == 'sectors'"></sector-list>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel blue no-margin-bottom">
+                        <h1 class="no-margin-bottom"><i class="icon presentation"></i> {{vm.sector.name}}</h1>
+                    </div>
+                    <implementing-organisations-list 
+                        has-to-contain="sectors__in" 
+                        count="vm.tabs[4].count"
+                        shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

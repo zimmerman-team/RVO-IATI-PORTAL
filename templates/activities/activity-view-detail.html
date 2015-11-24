@@ -32,43 +32,34 @@
                         <p><b>Country:</b> <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">{{country.name}}</a><span ng-if='vm.activity.countries.length == 0'>No data available yet</span> </p>
                     </div>
                     <div class="panel white no-margin-bottom no-padding-bottom">
-                        <h2><i class="icon euro"></i>Financial</h2>
-                    </div>
-                    <div class="panel lightblue">
-                        <p><b>Finance type:</b> <span ng-if='vm.activity.default_finance_type.name.length'>{{vm.activity.default_finance_type.name}}</span><span ng-if='!vm.activity.default_finance_type.name.length'>No data available yet</span></p>
-                        <p><b>Project budget:</b> <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span><span ng-if='!vm.activity.total_budget.length'>No data available yet</span></p>
+                        <h2><i class="icon euro"></i>Goals & results</h2>
                     </div>
                     <table class="finance">
                         <thead>
                             <tr>
-                                <th>Transaction type</th>
-                                <th>Value</th>
-                                <th>Date</th>
+                                <th>Goal</th>
+                                <th>Unit of result</th>
+                                <th>Planned result</th>
+                                <th>Obtained result</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="transaction in vm.activity.transactions">
                                 <td>
-                                    {{transaction.transaction_type}}
-                                </td>
-                                <!-- <td>
-                                    {{transaction.provider_organisation_name}}
+                                    result title
                                 </td>
                                 <td>
-                                    {{transaction.receiver_organisation_name}}
-                                </td> -->
-                                <td>
-                                    {{transaction.value | openaidcurrency :'€':0:".":"."}}
+                                    result indicator title
                                 </td>
                                 <td>
-                                    {{transaction.transaction_date}}
+                                    result target
+                                </td>
+                                <td>
+                                    result actual
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="graph">
-                        <nvd3 options="vm.transactionChartOptions" data="vm.transactionData" class="with-3d-shadow with-transitions"></nvd3>
-                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="panel with-table lightblue">
@@ -170,15 +161,15 @@
                         <table class="no-format">
                             <tr>
                                 <td width="130">Download:</td>
-                                <td><a ng-click="vm.download('json')"><i class="icon download"></i>JSON</a></td>
+                                <td><a ng-click="vm.download('json')"><i class="fa fa-download"></i>JSON</a></td>
                             </tr>
                             <tr>
                                 <td>Share:</td>
                                 <td>
-                                    <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="icon twitter"></i></a>
-                                    <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="icon facebook"></i></a>
-                                    <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="icon linkedin"></i></a>
-                                    <a href=""><i class="icon email"></i></a>
+                                    <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="fa fa-twitter-square"></i></a>
+                                    <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="fa fa-facebook-square"></i></a>
+                                    <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="fa fa-linkedin-square"></i></a>
+                                    <a href=""><i class="fa fa-envelope-square"></i></a>
                                 </td>
                             </tr>
                         </table>
@@ -850,15 +841,15 @@
                     <table class="no-format">
                         <tr>
                             <td width="130">Download:</td>
-                            <td><a ng-click="vm.download('json')"><i class="icon download"></i>JSON</a></td>
+                            <td><a ng-click="vm.download('json')"><i class="fa fa-download"></i>JSON</a></td>
                         </tr>
                         <tr>
                             <td>Share:</td>
                             <td>
-                                <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="icon twitter"></i></a>
-                                <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="icon facebook"></i></a>
-                                <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="icon linkedin"></i></a>
-                                <a href=""><i class="icon email"></i></a>
+                                <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="fa fa-twitter-square"></i></a>
+                                <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="fa fa-facebook-square"></i></a>
+                                <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="fa fa-linkedin-square"></i></a>
+                                <a href=""><i class="fa fa-envelope-square"></i></a>
                             </td>
                         </tr>
                     </table>

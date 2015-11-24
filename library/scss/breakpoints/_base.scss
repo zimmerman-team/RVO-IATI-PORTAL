@@ -799,6 +799,7 @@ FILTER BAR
     }
   }
   .results {
+    margin-left: 15px;
     &:before {
       font-family: 'AGNL-Icon-Font';
       content:'\221a';
@@ -1391,6 +1392,11 @@ ACTIVITY DETAIL
 // }
 
 //tabellen / matrix met lijsten countries etc.
+table {
+  td {
+    vertical-align: top;
+  }
+}
 .table.list-overview {
   td,th {
     padding: 10px 30px;
@@ -1470,6 +1476,10 @@ ACTIVITY DETAIL
       margin-right: 0;
     }
   }
+  .fa {
+    margin-right: 3px;
+  }
+
 }
 
 
@@ -2031,6 +2041,9 @@ table.no-format {
     table {
       tr:nth-of-type(2n) {
         background:none;
+        .fa {
+          font-size: 18px;
+        }
       }
     }
   }
