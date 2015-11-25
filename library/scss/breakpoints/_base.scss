@@ -696,11 +696,14 @@ FILTER BAR
   background-color: $rvo-blauw;
   position: absolute;
   width: 100%;
-  padding:15px;
   left:0;
   box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.4);
   font-size:13px;
   color:$white;
+  padding:0 15px 15px 15px;
+  .extra-padding {
+    padding-top:15px;
+  }
   .search-box {
     padding-left:0;
     margin-top: 0;
@@ -750,17 +753,17 @@ FILTER BAR
     display: block !important; /* yes, important */
   }
   .slideDown {
-    transition: .5s all ease-in-out;
+    transition: all .5s ease-in-out;
     .filter-panel {
-      transition: .5s all ease-in-out;
-      max-height: 600px;
+      transition: max-height .5s ease-in-out, opacity .2s ease-in-out;
+      max-height: 500px;
       overflow: hidden;
       opacity: 1;
     }
   }
   .slideDown.ng-hide {
     .filter-panel {
-      transition: .5s all ease-in-out;
+      transition: max-height .5s ease-in-out, opacity .2s ease-in-out .3s;
       max-height:0;
       opacity: 0;
     }
