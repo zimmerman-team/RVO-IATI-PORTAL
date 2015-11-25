@@ -581,6 +581,9 @@ FILTER BAR
   color:$rvo-blauw;
   top:0;
   transition:top .2s;
+  .filter-selected {
+    margin-bottom: 10px;
+  }
   .filter-main-name {
     text-transform: uppercase;
     font-size: 15px;
