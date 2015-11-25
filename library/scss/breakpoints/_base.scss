@@ -1984,6 +1984,7 @@ ACTIVITY LIST
   background: -o-linear-gradient(right, $rvo-lichtblauw, $rvo-blauw, $rvo-donkerblauw );
   background: -moz-linear-gradient(right, $rvo-lichtblauw, $rvo-blauw, $rvo-donkerblauw );
   background: linear-gradient(to right, $rvo-lichtblauw, $rvo-blauw, $rvo-donkerblauw );
+  border-radius:2px;
   &.small {
     height: 18px;
     .progress-bar {
@@ -2064,6 +2065,9 @@ table.no-format {
     table {
       tr:nth-of-type(2n) {
         background:none;
+        td {
+          padding-top:0;
+        }
         .fa {
           font-size: 18px;
         }
