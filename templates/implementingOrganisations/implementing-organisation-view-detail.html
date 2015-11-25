@@ -5,6 +5,13 @@
         current-page="themas"></filter-bar>
 
     <div class="container extra">
+
+        <div class="white no-margin-bottom">
+            <h1 class="no-margin-bottom"><i class="icon presentation"></i> {{vm.organisation.name}}</h1>
+        </div>
+
+        <hr class="darkblue no-margin-bottom">
+
         <sub-navbar 
             tabs='vm.tabs' 
             selected-tab='vm.selectedTab'>
@@ -17,12 +24,7 @@
 
             <div class="row">
                 <div class="col-md-8">
-                    <div class="panel blue no-margin-bottom">
-                        <h1 class="no-margin-bottom"><i class="icon presentation"></i> {{vm.organisation.name}}</h1>
-                         <hr>
-                        xxx projects in xxx sectors and xxx countries
-                    </div>
-                    <div class="panel white no-margin-bottom no-padding-bottom">
+                    <div class="white no-margin-bottom no-padding-bottom">
                         <h2><i class="icon euro"></i>Financial</h2>
                     </div>
                     <div class="panel lightblue with-table no-header">
@@ -112,11 +114,6 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="panel blue no-margin-bottom">
-                        <h1 class="no-margin-bottom"><i class="icon presentation"></i> {{vm.organisation.name}}</h1>
-                         <hr>
-                        xxx projects in xxx sectors and xxx countries
-                    </div>
                     <activity-list 
                         has-to-contain='participating_organisations__organisation__code__in' 
                         count='vm.tabs[1].count'
@@ -131,11 +128,6 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="panel blue no-margin-bottom">
-                        <h1 class="no-margin-bottom"><i class="icon presentation"></i> {{vm.organisation.name}}</h1>
-                         <hr>
-                        xxx projects in xxx sectors and xxx countries
-                    </div>
                     <sector-list 
                         has-to-contain='participating_organisations__organisation__code__in' 
                         count='vm.tabs[2].count'
@@ -150,11 +142,6 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="panel blue no-margin-bottom">
-                        <h1 class="no-margin-bottom"><i class="icon presentation"></i> {{vm.organisation.name}}</h1>
-                         <hr>
-                        xxx projects in xxx sectors and xxx countries
-                    </div>
                     <country-list 
                         has-to-contain='participating_organisations__organisation__code__in' 
                         count='vm.tabs[3].count'

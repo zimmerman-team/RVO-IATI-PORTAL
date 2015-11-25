@@ -2,27 +2,29 @@
 
     <div class="container extra">
 
+        <div class="detailview white no-margin-bottom no-padding-bottom">
+            <h1 class="no-margin-bottom"><i class="icon presentation"></i>{{vm.activity.titles[0].title}}</h1>         
+        </div>
+
+        <hr class="darkblue no-margin-bottom">
+
         <sub-navbar 
             tabs='vm.tabs' 
             selected-tab='vm.selectedTab'>
         </sub-navbar>
 
-    
         <div class="content-offset detailview" ng-show="vm.selectedTab == 'summary'">
     
             <div class="row">
                 <div class="col-md-8">
-                    <div class="panel blue no-margin-bottom">
-                        <h1 class="no-margin-bottom"><i class="icon presentation"></i>{{vm.activity.titles[0].title}}</h1>         
-                    </div>
                     <div class="featured-image">
                         <img src="{{vm.templateBaseUrl}}/images/Develop2Build header.jpg">
                     </div>
-                    <div class="panel white">
+                    <div class="white">
                         <h2><i class="icon clock"></i>Description</h2>
                         <p>{{vm.activity.descriptions[0].description}}</p>              
                     </div>
-                    <div class="panel white no-margin-bottom no-padding-bottom">
+                    <div class="white no-margin-bottom no-padding-bottom">
                         <h2><i class="icon globe"></i>Location</h2>
                     </div>
                     <div class="map">
@@ -31,7 +33,7 @@
                     <div class="panel lightblue">
                         <p><b>Country:</b> <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">{{country.name}}</a><span ng-if='vm.activity.countries.length == 0'>No data available yet</span> </p>
                     </div>
-                    <div class="panel white no-margin-bottom no-padding-bottom">
+                    <div class="white no-margin-bottom no-padding-bottom">
                         <h2><i class="icon euro"></i>Goals & results</h2>
                     </div>
                     <table class="finance">
@@ -198,14 +200,6 @@
         <div class="row detailview" ng-if="vm.selectedTab == 'detailedreport'">
 
             <div class="col-md-8">
-
-                <div class="panel blue">
-                    <h1 class="no-margin-bottom"><i class="icon presentation"></i>{{vm.activity.titles[0].title}}</h1>
-                </div>
-
-                <div class="panel white no-margin-bottom no-padding-bottom">
-                    <h2><i class="icon euro"></i>Full report</h2>
-                </div>
 
                 <div class="panel lightblue with-table">
 

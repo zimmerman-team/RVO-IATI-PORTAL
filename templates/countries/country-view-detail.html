@@ -5,10 +5,20 @@
         current-page="themas"></filter-bar>
 
     <div class="container extra">
-        <sub-navbar 
-            tabs='vm.tabs' 
-            selected-tab='vm.selectedTab'>
-        </sub-navbar>
+        
+    
+
+    <div class="white no-margin-bottom">
+        <span class="flag-icon flag-icon-{{vm.country.code | lowercase }} big"></span><h1 class="title no-margin-bottom">{{vm.country.name}}</h1>
+    </div>
+
+    <hr class="darkblue no-margin-bottom">
+
+    <sub-navbar 
+        tabs='vm.tabs' 
+        selected-tab='vm.selectedTab'>
+    </sub-navbar>
+
     </div>
 
     <div class="content-offset" ng-show="vm.selectedTab == 'samenvatting'">
@@ -17,21 +27,16 @@
 
             <div class="row">
                 <div class="col-md-8">
-                    <div class="panel blue no-margin-bottom">
-                        <span class="flag-icon flag-icon-{{vm.country.code | lowercase }} big"></span><h1 class="title no-margin-bottom">{{vm.country.name}}</h1>
-                        <hr>
-                        xxx projects in xxx sectors 
-                    </div>
                     <div class="featured-image">
                         <img src="{{vm.templateBaseUrl}}/images/Develop2Build header.jpg">
                     </div>
-                    <div class="panel white no-margin-bottom no-padding-bottom">
+                    <div class="white no-margin-bottom no-padding-bottom">
                         <h2><i class="icon globe"></i>Related project map</h2>
                     </div>
                     <div class="map country">
                         <temp-locations-geo-map exact-location="vm.country" map-height="350px"></temp-locations-geo-map>
                     </div>
-                    <div class="panel white no-margin-bottom no-padding-bottom">
+                    <div class="white no-margin-bottom no-padding-bottom">
                         <h2><i class="icon euro"></i>Financial</h2>
                     </div>
                     <div class="panel lightblue with-table no-header">
@@ -135,11 +140,6 @@
         <div class="container extra detailview">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="panel blue no-margin-bottom">
-                        <span class="flag-icon flag-icon-{{vm.country.code | lowercase }} big"></span><h1 class="title no-margin-bottom">{{vm.country.name}}</h1>
-                        <hr>
-                        xxx projects in xxx sectors 
-                    </div>
 
                     <activity-list 
                         has-to-contain="countries__in" 
@@ -155,11 +155,6 @@
         <div class="container extra detailview">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="panel blue no-margin-bottom">
-                        <span class="flag-icon flag-icon-{{vm.country.code | lowercase }} big"></span><h1 class="title no-margin-bottom">{{vm.country.name}}</h1>
-                        <hr>
-                        xxx projects in xxx sectors 
-                    </div>
 
                     <sector-list 
                         has-to-contain="countries__in" 
@@ -174,11 +169,6 @@
         <div class="container extra detailview">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="panel blue no-margin-bottom">
-                        <span class="flag-icon flag-icon-{{vm.country.code | lowercase }} big"></span><h1 class="title no-margin-bottom">{{vm.country.name}}</h1>
-                        <hr>
-                        xxx projects in xxx sectors 
-                    </div>
 
                     <implementing-organisations-list 
                         has-to-contain="countries__in"
