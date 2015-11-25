@@ -1,33 +1,36 @@
 <script type="text/ng-template" id="tree">
-    <tr ng-if="item.children" class="panel parent collapsed">
-            <td>
-                <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span>
-            </td>
-            <td>
-                <a ui-sref="sector({ sector_id: item.sector_id })">{{ item.name }}</a>
-            </td>
-            <td>
-                {{item.total_disbursements  | shortcurrency :'€'}}
-            </td>
-            <td>
-                {{item.activity_count || 0}}
-            </td>
-    </tr>
-
-    <div ng-if="!item.children" class="panel">
-        <div class="row ">
-            <div class="col-xs-11 col-xs-offset-1">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h3 class="no-margin"><a ui-sref="sector({ sector_id: item.sector_id })">{{ item.name }}</a></h3>
-                    </div>
-                    <div class="col-sm-3">
-                        <h3 class="no-margin">{{item.total_disbursements  | shortcurrency :'€'}}</h3>
-                    </div>
-                    <div class="col-sm-3">
-                        <h3 class="no-margin">{{item.activity_count || 0}} projects</h3>
-                    </div>
+    <div ng-if="item.children" class="row parent collapsed">
+            <div class="col-xs-6">
+                <div class="wrap">
+                    <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span><a ui-sref="sector({ sector_id: item.sector_id })">{{ item.name }}</a>
                 </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="wrap">
+                    {{item.activity_count || 0}} projects
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="wrap">
+                    {{item.total_disbursements  | shortcurrency :'€'}}
+                </div>
+            </div>
+    </div>
+
+    <div ng-if="!item.children" class="row">
+        <div class="col-xs-6">
+            <div class="wrap">
+                <span class="expandme empty"></span><a ui-sref="sector({ sector_id: item.sector_id })">{{ item.name }}</a>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="wrap">
+                {{item.activity_count || 0}} projects
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="wrap">
+                {{item.total_disbursements  | shortcurrency :'€'}}
             </div>
         </div>
     </div>
@@ -36,6 +39,35 @@
         <div collapse="vm.isCollapsed" ng-repeat="item in item.children" ng-include="'tree'"></div>
     </div>    
 </script>
+
+MAP HERE
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="list front-callout">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel">
+            With XX programmes, XX projects within {{vm.totalSectors}} sectors in XX countries.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row cirkle-vis">
+  <div class="col-sm-6">
+    Figure
+    <h3>Project distribution
+  </div>
+  <div class="col-sm-6">
+      Figure
+    <h3>Budget distibution
+  </div>
+</div>
+
+<hr class="darkblue">
 
 
 <div class="container list-view-wrapper">
@@ -69,22 +101,17 @@
     </div>
 </div>
 
-<table class="table list-overview" ng-show="vm.sectors.length != 0">
-    <thead>
-        <tr>
-            <th><!--placeholder for exoander icon--></th>
-            <th>Sector</th>
-            <th>Total budget</th>
-            <th>Total projects</th>
-        </tr>
-    </thead>
+<div class="fake-table" ng-show="vm.sectors.length != 0">
 
-    <tbody>
+        <div class="row head">
+            <div class="col-xs-6"><div class="wrap">Sector</div></div>
+            <div class="col-xs-3"><div class="wrap">Total projects</div></div>
+            <div class="col-xs-3"><div class="wrap">Total budget</div></div>
+        </div>
 
-        <div class="sectors activity-list-item" 
+        <div class="body" 
             ng-repeat="item in vm.sectors"
             ng-include="'tree'">
         </div>
 
-    </tbody>
-</table>
+</div>
