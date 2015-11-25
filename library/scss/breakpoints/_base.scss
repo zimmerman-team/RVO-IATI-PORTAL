@@ -621,7 +621,7 @@ FILTER BAR
       }
     }
     &:after {
-      display: none;
+      opacity: 0;
       content: " ";
       width: 0; 
       height: 0; 
@@ -632,6 +632,7 @@ FILTER BAR
       bottom:-8px;
       left:50%;
       margin-left: -4px;
+      transition: all .2s ease-in-out .1s;
     }
     &.active {
       &:before {
@@ -639,7 +640,7 @@ FILTER BAR
         transform:rotate(90deg);
       }
       &:after {
-        display: block;
+        opacity: 1;
       }
     }
     &:hover {
@@ -1509,6 +1510,29 @@ table {
       padding-left:20px;
     }
   }
+  .parent {
+    &.collapsed {
+      + .children {
+        opacity: 0;
+        max-height: 0;
+        visibility: hidden;
+        transition:all .5s ease-in-out;
+        overflow: hidden;
+        @extend .clearfix;
+      }
+    }
+    &.expanded {
+      + .children {
+        opacity: 1;
+        max-height:2000px;
+        visibility: visible;
+        transition:all .5s ease-in-out;
+        overflow: hidden;
+        @extend .clearfix;
+      }
+    }
+  }
+
 }
 
 .detailview {
@@ -1518,7 +1542,6 @@ table {
     }
   }
 }
-
 
 //countries
 .flag-icon {
