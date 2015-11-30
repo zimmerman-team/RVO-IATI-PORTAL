@@ -382,31 +382,51 @@
                     <table class="no-format">
                         <tr>
                             <td width="200">Transaction type:</td>
-                            <td>{{transaction.transaction_type.name}}</td>
+                            <td>
+                                {{transaction.transaction_type.name}}
+                            </td>
                         </tr>
                         <tr>
                             <td>Provider org.:</td>
-                            <td>{{transaction.provider_organisation.narratives[0].text}}</td>
+                            <td>
+                                {{transaction.provider_organisation.narratives[0].text}}
+                                <span ng-if="!transaction.provider_organisation">No data available yet</span>
+                            </td>
                         </tr>
                         <tr>
                             <td>Provider org. ref.:</td>
-                            <td>{{transaction.provider_organisation.ref}}</td>
+                            <td>
+                                {{transaction.provider_organisation.ref}}
+                                <span ng-if="!transaction.provider_organisation.ref">No data available yet</span>
+                            </td>
                         </tr>
                         <tr>
                             <td>Provider activity id:</td>
-                            <td>{{transaction.provider_organisation.receiver_activity_id}}</td>
+                            <td>
+                                {{transaction.provider_organisation.receiver_activity_id}}
+                                <span ng-if="!transaction.provider_organisation.receiver_activity_id">No data available yet</span>
+                            </td>
                         </tr>
                         <tr>
                             <td>Receiver org.:</td>
-                            <td>{{transaction.receiver_organisation.narratives[0].text}}</td>
+                            <td>
+                                {{transaction.receiver_organisation.narratives[0].text}}
+                                <span ng-if="!transaction.receiver_organisation">No data available yet</span>
+                            </td>
                         </tr>
                         <tr>
                             <td>Receiver org. ref.:</td>
-                            <td>{{transaction.receiver_organisation.ref}}</td>
+                            <td>
+                                {{transaction.receiver_organisation.ref}}
+                                <span ng-if="!transaction.receiver_organisation.ref">No data available yet</span>
+                            </td>
                         </tr>
                         <tr>
                             <td>Receiver activity id:</td>
-                            <td>{{transaction.receiver_organisation.receiver_activity_id}}</td>
+                            <td>
+                                {{transaction.receiver_organisation.receiver_activity_id}}
+                                <span ng-if="!transaction.receiver_organisation.receiver_activity_id">No data available yet</span>
+                            </td>
                         </tr>
                         <tr>
                             <td>Transaction value:</td>
