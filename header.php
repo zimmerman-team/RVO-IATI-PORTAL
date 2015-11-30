@@ -40,7 +40,7 @@
 		<script>
 			var home_url = '<?php echo home_url(); ?>';
 			var template_url = '<?php echo get_template_directory_uri(); ?>';
-			var oipa_url = 'http://dev.oipa.nl/api';
+			var oipa_url = 'http://rvo.oipa.nl/api';
 			var reporting_organisation_id = 'NL-KVK-27378529';
 			<?php $customFields = get_post_custom(); ?>
 			var customFields = <?php echo json_encode($customFields); ?>;

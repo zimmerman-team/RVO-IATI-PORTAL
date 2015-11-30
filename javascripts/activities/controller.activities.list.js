@@ -19,7 +19,7 @@
     vm.filterSelection = FilterSelection;
     vm.activities = [];
     vm.order_by = 'start_actual';
-    vm.page_size = 5;
+    vm.pageSize = 15;
     vm.page = 1;
     vm.totalActivities = 0;
     vm.hasToContain = $scope.hasToContain;
@@ -64,11 +64,12 @@
 
       vm.page = 1;
 
-      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.page_size, vm.order_by, vm.page).then(succesFn, errorFn);
+      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.activities = data.data.results;
         vm.totalActivities = data.data.count;
+        console.log(vm.totalActivities);
         $scope.count = vm.totalActivities;        
       }
 
@@ -78,14 +79,16 @@
     }
 
     vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalActivities < (vm.page * vm.page_size))) return;
+      console.log(vm.totalActivities);
+      console.log(vm.page * vm.pageSize);
+      if (!vm.hasContains() || vm.busy || (vm.totalActivities < (vm.page * vm.pageSize))) return;
 
       vm.busy = true;
       vm.page += 1;
-      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.page_size, vm.order_by, vm.page).then(succesFn, errorFn);
+      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        vm.activities.concat(data.data.results);
+        vm.activities = vm.activities.concat(data.data.results);
         vm.busy = false;   
       }
 

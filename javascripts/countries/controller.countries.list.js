@@ -70,7 +70,6 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
-      console.log('TO DO: double check; is budget, incoming funds?')
       Aggregations.aggregation('recipient_country', 'incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){

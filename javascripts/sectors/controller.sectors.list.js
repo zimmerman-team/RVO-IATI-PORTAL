@@ -20,13 +20,12 @@
     vm.sectors = [];
     vm.totalSectors = 0;
     vm.order_by = 'name';
-    vm.offset = 0;
+    vm.page = 1;
+    vm.pageSize = 9999;
     vm.hasToContain = $scope.hasToContain;
     vm.busy = false;
     vm.extraSelectionString = '';
-
     vm.isCollapsed = false;
-
 
     function activate() {
       // use predefined filters or the filter selection
@@ -68,8 +67,8 @@
     vm.update = function(){
       if (!vm.hasContains()) return false;
 
-      vm.offset = 0;
-      Aggregations.aggregation('sector', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 9999, 0, 'activity_count').then(succesFn, errorFn);
+      vm.page = 0;
+      Aggregations.aggregation('sector', 'incoming_fund,count', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
 
       function replaceDac5(arr){
         for (var i = 0;i < arr.length;i++){
@@ -134,6 +133,7 @@
 
       // TODO: called twice, fix
       function succesFn(data, status, headers, config){
+        console.log('once');
           vm.remoteSectors = data.data.results;
           vm.sectorMapping = angular.copy(sectorMapping)
           vm.sectors = applySectorHierarchy(vm.sectorMapping);
@@ -160,11 +160,11 @@
     }
 
     vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalSectors < (vm.offset + 15))) return;
+      if (!vm.hasContains() || vm.busy || (vm.totalSectors < (vm.page * vm.pageSize))) return;
 
       vm.busy = true;
-      vm.offset = vm.offset + 15;
-      Aggregations.aggregation('sector', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.offset, 'activity_count').then(succesFn, errorFn);
+      vm.page += 1;
+      Aggregations.aggregation('sector', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.page, 'activity_count').then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         for (var i = 0; i < data.data.results.length; i++) {

@@ -9,18 +9,19 @@
     .module('oipa.countries')
     .controller('CountryController', CountryController);
 
-  CountryController.$inject = ['$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations'];
+  CountryController.$inject = ['$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'countryPageUrls'];
 
   /**
   * @namespace CountryController
   */
-  function CountryController($scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations) {
+  function CountryController($scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations, countryPageUrls) {
     var vm = this;
     vm.country = null;
     vm.country_id = $stateParams.country_id;
     vm.partnerType = '';
     vm.filterSelection = FilterSelection;
     vm.selectedTab = 'samenvatting';
+    vm.countryPageUrl = countryPageUrls[vm.country_id].url;
 
     vm.tabs = [
       {'id': 'samenvatting', 'name': 'Summary', 'count': -1},

@@ -10,12 +10,12 @@
     .module('oipa.locations')
     .controller('LocationsGeoMapController', LocationsGeoMapController);
 
-  LocationsGeoMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$sce', '$filter'];
+  LocationsGeoMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$sce', '$filter', 'countryLocations'];
 
   /**
   * @namespace LocationsGeoMapController
   */
-  function LocationsGeoMapController($scope, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection, $sce, $filter) {
+  function LocationsGeoMapController($scope, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection, $sce, $filter, countryLocations) {
     var vm = this;
 
     vm.geoView = "countries";
@@ -91,7 +91,7 @@
 
     vm.updateMap = function(){
 
-        Aggregations.aggregation('recipient_country', 'disbursement', vm.selectionString, 'name', 1000, 1).then(countrySuccessFn, errorFn);
+        Aggregations.aggregation('recipient_country', 'incoming_fund', vm.selectionString, 'name', 1000, 1).then(countrySuccessFn, errorFn);
         
         function countrySuccessFn(data, status, headers, config) {
             vm.countryMarkerData = data.data.results;
@@ -135,8 +135,8 @@
               '<a href="'+homeUrl+'/countries/'+vm.countryMarkerData[i].recipient_country.code+'/"><i class="icon graph"></i>Go to country overview</a>';
 
         if(vm.markers[vm.countryMarkerData[i].recipient_country.code] === undefined){
-          if(vm.countryMarkerData[i].location != null){
-            var coordinates = vm.countryMarkerData[i].location.coordinates;
+          if(countryLocations[vm.countryMarkerData[i].recipient_country.code] != undefined){
+            var coordinates = countryLocations[vm.countryMarkerData[i].recipient_country.code].location.coordinates;
             vm.markers[vm.countryMarkerData[i].recipient_country.code] = {
               lat: parseInt(coordinates[1]),
               lng: parseInt(coordinates[0]),
@@ -144,12 +144,9 @@
             }
           }
         }
-        vm.markers[vm.countryMarkerData[i].recipient_country.code].message = message;
-        
+        vm.markers[vm.countryMarkerData[i].recipient_country.code].message = message;   
       }
-      console.log(markerData);
     }
-    
 
     activate();
   }

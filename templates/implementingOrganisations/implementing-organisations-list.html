@@ -18,10 +18,12 @@ MAP HERE
   <div class="col-sm-6">
     <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
     <h3>Project distribution</h3>
+    <oipa-pie-chart group-by="recipient_country" aggregation-key="count" top-level="true"></oipa-pie-chart>
   </div>
   <div class="col-sm-6">
     <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
     <h3>Budget distibution</h3>
+    <oipa-pie-chart group-by="recipient_country" aggregation-key="count" top-level="true"></oipa-pie-chart>
   </div>
 </div>
 
@@ -62,17 +64,17 @@ MAP HERE
             <th>Organisation</th>
             <th>Number of projects</th>
             <th>Number of programmes</th>
-            <th>Ogranisation type</th>
+            <th>Organisation type</th>
         </tr>
     </thead>
     <tbody>
         <tr
             ng-show="vm.organisations.length != 0"
             ng-repeat="item in vm.organisations">
-            <td><a ui-sref="organisation({ organisation_id: item.receiver_organisation_id })">{{ item.name }}</a></td>
-            <td>{{item.activity_count}}</td>
+            <td><a ui-sref="organisation({ organisation_id: item.name })">{{ item.name }}</a></td>
+            <td>{{item.count}}</td>
             <td></td>
-            <td>Gov/non-gov</td>
+            <td>TO DO: Gov/non-gov</td>
         </tr>
     </tbody>
 </table>
