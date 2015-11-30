@@ -6,7 +6,7 @@
   'use strict';
 
   angular
-    .module('oipa.activities')
+    .module('oipa.programmes')
     .controller('ProgrammeListController', ProgrammeListController);
 
   ProgrammeListController.$inject = ['$scope', 'Activities', 'FilterSelection'];
@@ -20,7 +20,7 @@
     vm.activities = [];
     vm.order_by = 'start_actual';
     vm.page_size = 5;
-    vm.offset = 0;
+    vm.page = 1;
     vm.totalActivities = 0;
     vm.hasToContain = $scope.hasToContain;
     vm.busy = false;
@@ -62,13 +62,13 @@
     vm.update = function(){
       if (!vm.hasContains()) return false;
 
-      vm.offset = 0;
+      vm.page = 1;
 
-      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.page_size, vm.order_by, vm.offset).then(succesFn, errorFn);
+      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.page_size, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        vm.activities = data.data.objects;
-        vm.totalActivities = data.data.meta.total_count;
+        vm.activities = data.data.results;
+        vm.totalActivities = data.data.count;
         $scope.count = vm.totalActivities;        
       }
 
@@ -78,16 +78,14 @@
     }
 
     vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalActivities < (vm.offset + 5))) return;
+      if (!vm.hasContains() || vm.busy || (vm.totalActivities < (vm.page * vm.page_size))) return;
 
       vm.busy = true;
-      vm.offset = vm.offset + 5;
-      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.page_size, vm.order_by, vm.offset).then(succesFn, errorFn);
+      vm.page += 1;
+      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.page_size, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        for (var i = 0; i < data.data.objects.length; i++) {
-          vm.activities.push(data.data.objects[i]);
-        }
+        vm.activities.concat(data.data.results);
         vm.busy = false;   
       }
 

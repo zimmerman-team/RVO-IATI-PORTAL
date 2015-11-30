@@ -9,16 +9,15 @@
 		.module('oipa.filters')
 		.factory('FilterSelection', FilterSelection);
 
-	FilterSelection.$inject = ['$http', 'reportingOrganisationId', 'Countries', 'Regions', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
+	FilterSelection.$inject = ['$http', 'reportingOrganisationId', 'Countries', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
 
 	/**
 	* @namespace Filters
 	* @returns {Factory}
 	*/
-	function FilterSelection($http, reportingOrganisationId, Countries, Regions, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search) {
+	function FilterSelection($http, reportingOrganisationId, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search) {
 		var m = this;
 	    m.selectedCountries = Countries.selectedCountries;
-	    m.selectedRegions = Regions.selectedRegions;
 	    m.selectedSectors = Sectors.selectedSectors;
 	    m.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
 	    m.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
@@ -39,7 +38,6 @@
       		
 	      var selectList = [
 	        m.selectArrayToString('countries', 'country_id', m.selectedCountries),
-	        m.selectArrayToString('regions', 'region_id', m.selectedRegions),
 	        m.selectArrayToString('sectors', 'sector_id', m.selectedSectors),
 	        m.selectArrayToString('participating_organisations__organisation__code', 'organisation_id', m.selectedImplementingOrganisations),
 	        m.selectArrayToString('activity_status', 'code', m.selectedActivityStatuses),
@@ -82,7 +80,6 @@
 	    m.reset = function(){
 
 	      m.removeAll(m.selectedCountries);
-	      m.removeAll(m.selectedRegions);
 	      m.removeAll(m.selectedSectors);
 	      m.removeAll(m.selectedImplementingOrganisations);
 	      m.removeAll(m.selectedActivityStatuses);

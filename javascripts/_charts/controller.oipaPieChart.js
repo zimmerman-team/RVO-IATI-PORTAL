@@ -81,7 +81,7 @@
     }
 
     function activate() {
-    
+      console.log('TO DO: per program pie chart');
       
       $scope.$watch('aggregationFilters', function (aggregationFilters) {
 

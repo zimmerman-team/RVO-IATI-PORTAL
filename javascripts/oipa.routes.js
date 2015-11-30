@@ -59,7 +59,7 @@
         })
         .state({
             name:        'locations-map',
-            url:         '/locations/list/',
+            url:         '/countries/list/',
             controller:  'LocationsMapListController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/locations/locations-view-map-list.html',
@@ -69,7 +69,7 @@
         })
         .state({
             name:        'locations-polygonmap',
-            url:         '/locations/map/',
+            url:         '/countries/map/',
             controller:  'LocationsPolygonGeoMapController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/locations/locations-view-map-polygons.html',
@@ -86,37 +86,6 @@
             ncyBreadcrumb: {
                 parent: 'countries',
                 label: '{{vm.country.name}}'
-            }
-        })
-        .state({
-            name:        'region',
-            url:         '/regions/:region_id/',
-            controller:  'RegionController',
-            controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/regions/region-view-detail.html',
-            ncyBreadcrumb: {
-                parent: 'regio\'s',
-                label: '{{vm.region.name}}'
-            }
-        })
-        .state({
-            name:        'regions-list',
-            url:         '/regions/list/',
-            controller:  'RegionListController',
-            controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/regions/region-view-list.html',
-            ncyBreadcrumb: {
-                label: 'Regio\'s'
-            }
-        })
-        .state({
-            name:        'regions-vis',
-            url:         '/regions/',
-            controller:  'RegionsVisualisationController',
-            controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/regions/region-view-visualisation.html',
-            ncyBreadcrumb: {
-                label: 'Regio\'s'
             }
         })
         .state({
@@ -145,14 +114,14 @@
         .state({
             name:        'programmes',
             url:         '/programmes/',
-            controller:  'ProgrammeExploreController',
+            controller:  'ProgrammesExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/programmes/programmes-view-list.html'
         })
         .state({
             name:        'programme',
             url:         '/programmes/:programme_id/',
-            controller:  'ProgramController',
+            controller:  'ProgrammeController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/programmes/programme-view-detail.html'
         })

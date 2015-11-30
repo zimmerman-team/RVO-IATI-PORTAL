@@ -32,7 +32,6 @@
 
     vm.buttonTexts = {
       'recipient_countries': {'text': 'Recipient country', hoverShow: false},
-      'recipient_regions': {'text': 'Recipient region', hoverShow: false},
       'recipient_budget': {'text': 'Budget', hoverShow: false},
       'recipient_sectors': {'text': 'Sector', hoverShow: false},
       'transaction_year': {'text': 'Transaction date', 'hoverShow': false},

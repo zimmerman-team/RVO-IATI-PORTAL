@@ -154,10 +154,6 @@
           vm.updateCountryMarkers();
       }
 
-      function regionSuccessFn(data, status, headers, config){
-          vm.regionMarkerData = data.data.results;
-          vm.updateRegionMarkers();
-      }
 
       function errorFn(data, status, headers, config) {
           console.log("getting countries failed");

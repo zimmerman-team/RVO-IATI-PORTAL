@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="list front-callout">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel">
+            With {{vm.totalActivities}} projects, XX programmes within XX sectors in XX countries.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">  
+    <div class="row">
+        <div class="col-md-12">
+            <div class="sort">
+                <span class="sort-by">Sort by: </span>
+                    <div class="custom-select ff-hack">
+                        <select
+                          ng-model="vm.order_by"
+                          ng-change="vm.toggleOrder()">
+                          <option value="start_actual">Starting date (increasing)</option>
+                          <option value="-start_actual">Starting date (decreasing)</option>
+                          <option value="total_budget">Budget (increasing)</option>
+                          <option value="-total_budget">Budget (decreasing)</option>
+                        </select>
+                    </div>
+                <span class="results">Results: <span class="total">{{vm.totalActivities}}</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if='vm.totalActivities == 0' class="row">
+        <div class="col-sm-12">
+            <div class="extra-padding">
+                <h2>Nothing found</h2>
+                <p>Please select some different filters.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' class="table list-overview">
+    <thead>
+        <tr>
+            <th width="500">Project title</th>
+            <th>Project status</th>
+            <th>Active in country</th>
+            <th>Total budget</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+            ng-show="vm.activities.length != 0"
+            ng-repeat="item in vm.activities">
+            <td><a ui-sref="programme({ programme_id: item.id })">{{ item.title.narratives[0].text }}</a></td>
+            <td>{{item.activity_status.name}}</td>
+            <td>
+              <a ng-repeat="recipient_country in vm.activity.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">  {{recipient_country.country.name}}{{$last ? '' : ', '}}
+              </a>
+            </td>
+            <td>{{item.activity_aggregation.budget_value | shortcurrency :'€'}}</td>
+        </tr>
+    </tbody>
+</table>
