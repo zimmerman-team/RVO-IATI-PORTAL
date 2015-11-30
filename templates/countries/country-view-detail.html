@@ -6,18 +6,16 @@
 
     <div class="container extra">
         
-    
+        <div class="white no-margin-bottom">
+            <span class="flag-icon flag-icon-{{vm.country.code | lowercase }} big"></span><h1 class="title no-margin-bottom">{{vm.country.name}}</h1>
+        </div>
 
-    <div class="white no-margin-bottom">
-        <span class="flag-icon flag-icon-{{vm.country.code | lowercase }} big"></span><h1 class="title no-margin-bottom">{{vm.country.name}}</h1>
-    </div>
+        <hr class="darkblue no-margin-bottom">
 
-    <hr class="darkblue no-margin-bottom">
-
-    <sub-navbar 
-        tabs='vm.tabs' 
-        selected-tab='vm.selectedTab'>
-    </sub-navbar>
+        <sub-navbar 
+            tabs='vm.tabs' 
+            selected-tab='vm.selectedTab'>
+        </sub-navbar>
 
     </div>
 
@@ -79,7 +77,7 @@
                     </div> -->
                 </div>
                 <div class="col-md-4">
-                    <div class="panel lightblue">
+                    <div class="panel lightblue with-pie">
                         <h3>Projects per sector</h3>
                         <hr>
                         <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>

@@ -169,6 +169,9 @@ tr {
 .no-margin-bottom {
   margin-bottom: 0 !important;
 }
+.no-margin-top {
+  margin-top: 0 !important;
+}
 
 [ui-view].ng-enter{
   transition: 0.75s;
@@ -1275,6 +1278,8 @@ FILTER BAR
   color: $rvo-zwart;
   background-color: #fff;
   border:0;
+  margin-top:-40px;
+  margin-left:-20px;
   h3 {
     font-size: 16px;
     font-weight: 700;
@@ -2204,6 +2209,12 @@ table.no-format {
         }
       }
     }
+  }
+}
+
+.panel.with-pie {
+  svg {
+    margin:-25px 0;
   }
 }
 

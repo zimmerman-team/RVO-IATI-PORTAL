@@ -13,12 +13,16 @@
             selected-tab='vm.selectedTab'>
         </sub-navbar>
 
-        <div class="content-offset detailview" ng-show="vm.selectedTab == 'summary'">
-    
+    </div>
+
+    <div class="content-offset" ng-show="vm.selectedTab == 'summary'">
+
+        <div class="container extra detailview">
+
             <div class="row">
                 <div class="col-md-8">
                     <div class="white">
-                        <h2>Description</h2>
+                        <h2 class="no-margin-top">Description</h2>
                         <p>{{vm.activity.description[0].narratives[0].text}}</p>              
                     </div>
                     <div class="white">
@@ -29,7 +33,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="panel lightblue">
+                    <div class="panel lightblue with-pie">
                         <h3>Projects per country</h3>
                         <hr>
                         <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
@@ -87,64 +91,64 @@
                 </div>
             </div>
         </div>
-
-        <div ng-show="vm.selectedTab == 'activities'">
-            <div class="container detailview extra">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <activity-list 
-                            has-to-contain="programmes__in"  
-                            count="vm.tabs[1].count"
-                            shown="vm.selectedTab == 'activities'"></activity-list>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div ng-show="vm.selectedTab == 'countries'">
-            <div class="container detailview extra">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <country-list 
-                            has-to-contain="programmes__in" 
-                            count="vm.tabs[2].count"
-                            shown="vm.selectedTab == 'countries'"></country-list>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div ng-show="vm.selectedTab == 'sectors'">
-            <div class="container extra detailview">
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <sector-list 
-                            has-to-contain="programmes__in" 
-                            count="vm.tabs[3].count"
-                            shown="vm.selectedTab == 'sectors'"></sector-list>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div ng-show="vm.selectedTab == 'implementing-organisations'">
-            <div class="container detailview extra">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <implementing-organisations-list 
-                            has-to-contain="programmes__in" 
-                            count="vm.tabs[4].count"
-                            shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
+
+    <div ng-show="vm.selectedTab == 'activities'">
+        <div class="container detailview extra">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <activity-list 
+                        has-to-contain="programmes__in"  
+                        count="vm.tabs[1].count"
+                        shown="vm.selectedTab == 'activities'"></activity-list>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="vm.selectedTab == 'countries'">
+        <div class="container detailview extra">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <country-list 
+                        has-to-contain="programmes__in" 
+                        count="vm.tabs[2].count"
+                        shown="vm.selectedTab == 'countries'"></country-list>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="vm.selectedTab == 'sectors'">
+        <div class="container extra detailview">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <sector-list 
+                        has-to-contain="programmes__in" 
+                        count="vm.tabs[3].count"
+                        shown="vm.selectedTab == 'sectors'"></sector-list>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="vm.selectedTab == 'implementing-organisations'">
+        <div class="container detailview extra">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <implementing-organisations-list 
+                        has-to-contain="programmes__in" 
+                        count="vm.tabs[4].count"
+                        shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
