@@ -70,20 +70,26 @@
                 </div>
                 <div class="col-md-4">
                     <div class="panel lightblue">
+                        <h3>Programmes linked to</h3>
+                        <hr>
+                        <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
+                    </div>
+                    <div class="panel lightblue">
                         <h3>Related videos</h3>
                         <hr>
-                        <div class="video">
+                        <p>Not yet available</p>
+                        <!-- <div class="video">
                             <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
                         </div>
                         <div class="video">
                             <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="panel lightblue">
                         <h3>Related documents</h3>
                         <hr>
                             <p ng-show="vm.activity.documents.length == 0">
-                                No documents available.
+                                No documents available
                             </p>
                             <p ng-repeat="document in vm.activity.documents">
                                 <a target="_blank" href="{{document.url}}">

@@ -7,7 +7,7 @@
     <div class="container extra">
 
         <div class="white no-margin-bottom">
-            <h1 class="no-margin-bottom"><i class="icon presentation"></i> {{vm.organisation.name}}</h1>
+            <h1 class="no-margin-bottom">{{vm.organisation.name}}</h1>
         </div>
 
         <hr class="darkblue no-margin-bottom">
@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="white no-margin-bottom no-padding-bottom">
-                        <h2><i class="icon euro"></i>Financial</h2>
+                        <h2>Financial</h2>
                     </div>
                     <div class="panel lightblue with-table no-header">
                         <table class="no-format">
@@ -48,6 +48,14 @@
                     </div> -->
                 </div>
                 <div class="col-md-4">
+                    <div class="panel lightblue">
+                        <h3>Projects per sector</h3>
+                        <hr>
+                        <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
+                        <h3>Projects per programme</h3>
+                        <hr>
+                        <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
+                    </div>
                     <div class="panel lightblue with-table">
                         <h3>Partner information</h3>
                         <hr>
@@ -61,18 +69,19 @@
                     <div class="panel lightblue">
                         <h3>Related videos</h3>
                         <hr>
-                        <div class="video">
+                        <p>Not yet available</p>
+                        <!-- <div class="video">
                             <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
                         </div>
                         <div class="video">
                             <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="panel lightblue">
                         <h3>Related documents</h3>
                         <hr>
                             <p ng-show="vm.activity.documents.length == 0">
-                                No documents available.
+                                No documents available
                             </p>
                             <p ng-repeat="document in vm.activity.documents">
                                 <a target="_blank" href="{{document.url}}">

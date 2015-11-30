@@ -23,11 +23,11 @@
     vm.chartOptions = {
       chart: {
         type: 'pieChart',
-        height: 350,
+        height: 300,
         margin : {
-            top: 0,
+            top: -45,
             right: 0,
-            bottom: 0,
+            bottom: -30,
             left: 0
         },
         x: function(d){ return d[0]; },
@@ -43,15 +43,9 @@
         labelSunbeamLayout: true,
         donut: true,
         donutRatio: 0.35,
-        legend: {
-          margin: {
-            top: 5,
-            right: 35,
-            bottom: 5,
-            left: 0
-          }
-        },
+        padding: 0,
         showLegend: false,
+        growOnHover: false,
         xAxis: {
             axisLabel: vm.xAxis,
             tickFormat: function(d) {

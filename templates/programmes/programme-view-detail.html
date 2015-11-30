@@ -3,7 +3,7 @@
     <div class="container extra">
 
         <div class="detailview white no-margin-bottom no-padding-bottom">
-            <h1 class="no-margin-bottom"><i class="icon presentation"></i>{{vm.activity.title.narratives[0].text}}</h1>         
+            <h1 class="no-margin-bottom">{{vm.activity.title.narratives[0].text}}</h1>         
         </div>
 
         <hr class="darkblue no-margin-bottom">
@@ -18,17 +18,22 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="white">
-                        <h2><i class="icon clock"></i>Description</h2>
+                        <h2>Description</h2>
                         <p>{{vm.activity.description[0].narratives[0].text}}</p>              
                     </div>
-                    <div class="white no-margin-bottom no-padding-bottom">
-                        <h2><i class="icon globe"></i>Related project map</h2>
+                    <div class="white">
+                        <h2>Related project map</h2>
                     </div>
                     <div class="map">
                         <activity-geomap map-height="350px" activity="vm.activity"></activity-geomap>
                     </div>
                 </div>
                 <div class="col-md-4">
+                    <div class="panel lightblue">
+                        <h3>Projects per country</h3>
+                        <hr>
+                        <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
+                    </div>
                     <div class="panel lightblue">
                         <h3>More information</h3>
                         <hr>
@@ -37,12 +42,13 @@
                     <div class="panel lightblue">
                         <h3>Programme updates</h3>
                         <hr>
-                        <div class="video">
+                        <p>Not yet available</p>
+                        <!-- <div class="video">
                             <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
                         </div>
                         <div class="video">
                             <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
-                        </div>
+                        </div> -->
                         <h4>Related documents</h4>
                         <hr>
                             <p ng-show="vm.activity.documents.length == 0">

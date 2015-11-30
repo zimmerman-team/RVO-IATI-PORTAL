@@ -31,13 +31,13 @@
                         <img src="{{vm.templateBaseUrl}}/images/Develop2Build header.jpg">
                     </div>
                     <div class="white no-margin-bottom no-padding-bottom">
-                        <h2><i class="icon globe"></i>Related project map</h2>
+                        <h2>Related project map</h2>
                     </div>
                     <div class="map country">
                         <temp-locations-geo-map exact-location="vm.country" map-height="350px"></temp-locations-geo-map>
                     </div>
                     <div class="white no-margin-bottom no-padding-bottom">
-                        <h2><i class="icon euro"></i>Financial</h2>
+                        <h2>Financial</h2>
                     </div>
                     <div class="panel lightblue with-table no-header">
                         <table class="no-format">
@@ -80,26 +80,34 @@
                 </div>
                 <div class="col-md-4">
                     <div class="panel lightblue">
+                        <h3>Projects per sector</h3>
+                        <hr>
+                        <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
+                        <h3>Projects per programme</h3>
+                        <hr>
+                        <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
+                    </div>
+                     <div class="panel lightblue">
                         <h3>More information</h3>
                         <hr>
                         <p><a href="" target="_blank"><i class="icon link"></i>Visit country site on RVO.nl</a>
                     </div>
-
                     <div class="panel lightblue">
                         <h3>Related videos</h3>
                         <hr>
-                        <div class="video">
+                        <p>Not yet available</p>
+                       <!--  <div class="video">
                             <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
                         </div>
                         <div class="video">
                             <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="panel lightblue">
                         <h3>Related documents</h3>
                         <hr>
                             <p ng-show="vm.activity.documents.length == 0">
-                                No documents available.
+                                No documents available
                             </p>
                             <p ng-repeat="document in vm.activity.documents">
                                 <a target="_blank" href="{{document.url}}">

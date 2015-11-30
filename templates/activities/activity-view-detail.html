@@ -3,7 +3,7 @@
     <div class="container extra">
 
         <div class="detailview white no-margin-bottom no-padding-bottom">
-            <h1 class="no-margin-bottom"><i class="icon presentation"></i>{{vm.activity.title.narratives[0].text}}</h1>         
+            <h1 class="no-margin-bottom">{{vm.activity.title.narratives[0].text}}</h1>         
         </div>
 
         <hr class="darkblue no-margin-bottom">
@@ -21,11 +21,11 @@
                         <img src="{{vm.templateBaseUrl}}/images/Develop2Build header.jpg">
                     </div>
                     <div class="white">
-                        <h2><i class="icon clock"></i>Description</h2>
+                        <h2>Description</h2>
                         <p>{{vm.activity.description[0].narratives[0].text}}</p>              
                     </div>
                     <div class="white no-margin-bottom no-padding-bottom">
-                        <h2><i class="icon globe"></i>Location</h2>
+                        <h2>Location</h2>
                     </div>
                     <div class="map">
                         <activity-geomap map-height="350px" activity="vm.activity"></activity-geomap>
@@ -34,7 +34,7 @@
                         <p><b>Country:</b> <a ng-repeat="recipient_country in vm.activity.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">{{recipient_country.country.name}}{{$last ? '' : ', '}}</a><span ng-if='vm.activity.recipient_countries.length == 0'>No data available yet</span> </p>
                     </div>
                     <div class="white no-margin-bottom no-padding-bottom">
-                        <h2><i class="icon euro"></i>Goals & results</h2>
+                        <h2>Goals & results</h2>
                     </div>
                     <table class="finance">
                         <thead>
