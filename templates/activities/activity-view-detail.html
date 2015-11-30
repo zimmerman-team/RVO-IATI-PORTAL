@@ -46,7 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="transaction in vm.activity.transactionData">
+                            <tr ng-repeat="transaction in vm.transactionData">
                                 <td>
                                     result title
                                 </td>
@@ -146,7 +146,7 @@
                             </tr>
                             <tr>
                                 <td>Policy:</td>
-                                <td>XX</td>
+                                <td>No data available yet</td>
                             </tr>
                         </table>
                     </div>
@@ -374,8 +374,8 @@
                         </tr>
                     </table>
                 </div>
-
-                <div class="panel lightblue with-table">
+                {{vm.transactionData}}
+                <div class="panel lightblue with-table" ng-repeat="transaction in vm.transactionData">
 
                     <h3>Transactions</h3>
                     <hr>

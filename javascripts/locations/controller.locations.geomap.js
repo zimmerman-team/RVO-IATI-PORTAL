@@ -129,7 +129,7 @@
         var message = '<h4><span class="flag-icon flag-icon-'+vm.countryMarkerData[i].recipient_country.code.toLowerCase()+'"></span>'+vm.countryMarkerData[i].recipient_country.name+'</h4>'+
               '<hr>'+
               '<p><i class="icon lightbulb"></i><b>Projects:</b> '+vm.countryMarkerData[i]['count']+'</p>'+
-              '<p><i class="icon euro"></i><b>Total expenditure:</b> '+ $filter('shortcurrency')(vm.countryMarkerData[i]['incoming_fund'],'€') +'</p>'+
+              '<p><i class="icon euro"></i><b>Total budget:</b> '+ $filter('shortcurrency')(vm.countryMarkerData[i]['incoming_fund'],'€') +'</p>'+
               // '<p><i class="icon medal"></i><b>Sectors:</b> '+ vm.countryMarkerData[i]['sector_count'] +'</p>'+
               '<hr>'+
               '<a href="'+homeUrl+'/countries/'+vm.countryMarkerData[i].recipient_country.code+'/"><i class="icon graph"></i>Go to country overview</a>';

@@ -58,7 +58,7 @@
             <td><a ui-sref="activiteit({ activity_id: item.id })">{{ item.title.narratives[0].text }}</a></td>
             <td>{{item.activity_status.name}}</td>
             <td><a ng-repeat="recipient_country in vm.activity.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">{{recipient_country.country.name}}{{$last ? '' : ', '}}</a></td>
-            <td>{{item.activity_aggregation.budget_value | shortcurrency :'€'}}</td>
+            <td>{{item.activity_aggregation.incoming_funds_value | shortcurrency :'€'}}</td>
         </tr>
     </tbody>
 </table>

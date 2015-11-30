@@ -69,7 +69,6 @@
       function succesFn(data, status, headers, config){
         vm.activities = data.data.results;
         vm.totalActivities = data.data.count;
-        console.log(vm.totalActivities);
         $scope.count = vm.totalActivities;        
       }
 
@@ -79,8 +78,6 @@
     }
 
     vm.nextPage = function(){
-      console.log(vm.totalActivities);
-      console.log(vm.page * vm.pageSize);
       if (!vm.hasContains() || vm.busy || (vm.totalActivities < (vm.page * vm.pageSize))) return;
 
       vm.busy = true;

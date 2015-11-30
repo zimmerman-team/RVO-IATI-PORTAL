@@ -67,7 +67,7 @@
     vm.update = function(){
       if (!vm.hasContains()) return false;
 
-      vm.page = 0;
+      vm.page = 1;
       Aggregations.aggregation('sector', 'incoming_fund,count', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
 
       function replaceDac5(arr){
@@ -82,27 +82,26 @@
             if (match) {
               arr[i] = match;
             } else {
-              arr[i].total_disbursements = null;
+              arr[i].incoming_fund = null;
             }
           }
         }
       }
 
-      function updateDisbursements(sector) { 
+      function updateTransactions(sector) { 
         if(!sector.hasOwnProperty('children')) {
-          return [sector.total_disbursements, sector.activity_count];
+          return [sector.incoming_fund, sector.count];
         }
-        var total_disbursement = 0;
-        var activity_count = 0;
+        var incoming_fund = 0;
+        var count = 0;
         for (var i = 0; i < sector.children.length; i++) {
-          var values = updateDisbursements(sector.children[i])
-          if (values[0]) total_disbursement += values[0];
-          if (values[1]) activity_count += values[1];
-          // total_disbursement += updateDisbursements(sector.children[i]) 
+          var values = updateTransactions(sector.children[i])
+          if (values[0]) incoming_fund += values[0];
+          if (values[1]) count += values[1];
         }
-        sector.total_disbursements = total_disbursement;
-        sector.activity_count = activity_count;
-        return [total_disbursement, activity_count]
+        sector.incoming_fund = incoming_fund;
+        sector.count = count;
+        return [incoming_fund, count]
       }
 
       function sortSectorChildren(sector, i, reverse) {
@@ -119,7 +118,7 @@
         // replace lowest level DAC5 in sectormapping with sectors
         replaceDac5(sectors.children);
 
-        _.each(sectors.children, updateDisbursements)
+        _.each(sectors.children, updateTransactions)
 
         if (vm.order_by.charAt(0) === "-") { //reverse
           vm.order_by_final = vm.order_by.substring(1);
@@ -131,9 +130,7 @@
         return sectors;
       }
 
-      // TODO: called twice, fix
       function succesFn(data, status, headers, config){
-        console.log('once');
           vm.remoteSectors = data.data.results;
           vm.sectorMapping = angular.copy(sectorMapping)
           vm.sectors = applySectorHierarchy(vm.sectorMapping);
@@ -150,32 +147,11 @@
       var parent = $($event.target).closest('.parent') 
       var children = parent.next();
 
-      //children.toggle()
       parent.toggleClass('expanded').toggleClass('collapsed')
-
     }
 
     vm.toggleOrder = function(){
       vm.update(vm.filterSelection.selectionString);
-    }
-
-    vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalSectors < (vm.page * vm.pageSize))) return;
-
-      vm.busy = true;
-      vm.page += 1;
-      Aggregations.aggregation('sector', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.page, 'activity_count').then(succesFn, errorFn);
-
-      function succesFn(data, status, headers, config){
-        for (var i = 0; i < data.data.results.length; i++) {
-          vm.sectors.push(data.data.results[i]);
-        }
-        vm.busy = false;
-      }
-
-      function errorFn(data, status, headers, config){
-        console.warn('error getting data on lazy loading');
-      }
     }
 
     activate();
