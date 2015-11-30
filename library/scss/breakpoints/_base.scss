@@ -1249,6 +1249,7 @@ FILTER BAR
 .front-callout {
   background:$rvo-blauw;
   text-align: center;
+  font-weight: 700;
   &.list {
     margin-bottom: 10px;
   }
@@ -1272,6 +1273,12 @@ FILTER BAR
   svg {
     -webkit-filter: drop-shadow( 1px 1px 2px rgba(0,0,0,.3) );
     filter: drop-shadow( 1px 1px 2px rgba(0,0,0,.3) );
+  }
+}
+.cirkle-vis {
+  margin-top:-20px;
+  h4 {
+    margin-top:-15px;
   }
 }
 
