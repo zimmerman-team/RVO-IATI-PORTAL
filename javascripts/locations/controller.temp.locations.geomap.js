@@ -16,22 +16,9 @@
   */
   function TempLocationsGeoMapController($scope, leafletData, Aggregations, Activities, templateBaseUrl, homeUrl, FilterSelection, $filter) {
     var vm = this;
-    vm.geoView = "countries";
     vm.mapHeight = $scope.mapHeight;
     vm.mapDropdown = $scope.mapDropdown;
     vm.templateBaseUrl = templateBaseUrl;
-    vm.countryRelation = [
-      {'id':1, 'name': 'Aid relation'}, 
-      {'id':2, 'name': 'Transition relation'}, 
-      {'id':3, 'name': 'EXIT relation'}, 
-      {'id':4, 'name': 'Trade relation'}, 
-      {'id':5, 'name': 'Other'}];
-    vm.selectedCountryRelation = [
-      {'id':1, 'name': 'Aid relation'}, 
-      {'id':2, 'name': 'Transition relation'}, 
-      {'id':3, 'name': 'EXIT relation'}, 
-      {'id':4, 'name': 'Trade relation'}, 
-      {'id':5, 'name': 'Other'}];
 
     vm.defaults = {
       maxZoom: 10,
@@ -50,7 +37,7 @@
           layerOptions: {
               subdomains: ['a', 'b', 'c'],
               attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-              continuousWorld: true
+              continuousWorld: false
           }
         }
       },
@@ -69,54 +56,14 @@
         zoom: 3
     };
 
-    vm.markers = {
-        m1: {
-            lat: 42.20133,
-            lng: 2.19110,
-            layer: 'cars',
-            message: "I'm a moving car"
-        },
-        m2: {
-            lat: 42.21133,
-            lng: 2.18110,
-            layer: 'cars',
-            message: "I'm a car"
-        },
-        m3: {
-            lat: 42.19133,
-            lng: 2.18110,
-            layer: 'cars',
-            message: 'A bike!!'
-        },
-        m4: {
-            lat: 42.3,
-            lng: 2.16110,
-            layer: 'cars'
-        },
-        m5: {
-            lat: 42.1,
-            lng: 2.16910,
-            layer: 'cars'
-        },
-        m6: {
-            lat: 42.15,
-            lng: 2.17110,
-            layer: 'cars'
-        }
-    };
-    vm.markerIcons = {
-      Delete: { html: '<div class="removed-marker" style="display: none"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
-      Other: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Other2"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
-      Regiocirkel: { html: '<div class="region-marker-circle"></div>' ,type: 'div',iconSize: [200, 200],iconAnchor: [100, 100],markerColor: 'blue',iconColor: 'white',}
-    };
+    vm.markers = {};
+    vm.markerIcon = { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Other2"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',};
 
     vm.filterSelection = FilterSelection;
     vm.selectionString = '';
 
     vm.countryMarkerData = [];
-    vm.regionMarkerData = [];
     
-    vm.geoView = 'countries';
     vm.resultCounter = 0;
 
     vm.geoLocation = null;
@@ -172,30 +119,24 @@
     };
 
 
-    vm.changeSelectedCountryRelations = function(){
-      vm.updateMap();
-    }
-
-    vm.changeView = function(){
-      $scope.geoView = vm.geoView;
-      vm.updateMap();
-    }
-
     vm.updateMap = function(){
 
       Activities.locations(vm.selectionString).then(function(data,status,headers,config){
 
         vm.deleteAllMarkers();
         var newMarkers = {};
+        var results = data.data.results;
 
-        for(var i = 0;i < data.data.objects.length;i++){
-          for(var y = 0;y < data.data.objects[i].locations.length;y++){
+        for (var r in results){
+          for (var l in r.locations){
 
-            var message = '<h4>'+data.data.objects[i].titles[0].title+'</h4><hr><a target="_blank" href="'+homeUrl+'/projects/'+data.data.objects[i].id+'/"><i class="icon graph"></i>Go to project overview</a>';
+            console.log(l);
 
-            newMarkers[i + '_' + y] = {
-              lat: parseInt(data.data.objects[i].locations[y].latitude),
-              lng: parseInt(data.data.objects[i].locations[y].longitude),
+            var message = '<h4>'+results[r].title.narratives[0].text+'</h4><hr><a target="_blank" href="'+homeUrl+'/projects/'+results[r].id+'/"><i class="icon graph"></i>Go to project overview</a>';
+
+            newMarkers[r + '_' + l] = {
+              lat: parseInt(r.locations[l].point.pos.latitude),
+              lng: parseInt(r.locations[l].point.pos.longitude),
               layer: 'locations',
               message: message
             };
@@ -208,27 +149,19 @@
         console.log(data);
       });
 
+      function countrySuccessFn(data, status, headers, config) {
+          vm.countryMarkerData = data.data.results;
+          vm.updateCountryMarkers();
+      }
 
-    
+      function regionSuccessFn(data, status, headers, config){
+          vm.regionMarkerData = data.data.results;
+          vm.updateRegionMarkers();
+      }
 
-
-
-        // Aggregations.aggregation('recipient-country', 'disbursement', vm.selectionString, 'name', 1000, 0, 'activity_count').then(countrySuccessFn, errorFn);
-        // Aggregations.aggregation('recipient-region', 'disbursement', vm.selectionString, 'name', 1000, 0, 'activity_count').then(regionSuccessFn, errorFn);
-
-        function countrySuccessFn(data, status, headers, config) {
-            vm.countryMarkerData = data.data.results;
-            vm.updateCountryMarkers();
-        }
-
-        function regionSuccessFn(data, status, headers, config){
-            vm.regionMarkerData = data.data.results;
-            vm.updateRegionMarkers();
-        }
-
-        function errorFn(data, status, headers, config) {
-            console.log("getting countries failed");
-        }
+      function errorFn(data, status, headers, config) {
+          console.log("getting countries failed");
+      }
     }
 
     vm.deleteAllMarkers = function(){
@@ -239,82 +172,35 @@
     }
 
     vm.updateCountryMarkers = function(markerData) {
-
-        if(vm.geoView != 'countries'){
-          return false;
-        }
-
+      console.log('TO DO (if needed): update or delete updateCountryMarkers');
+ 
         vm.deleteAllMarkers();
-
-        var selectedCountryRelationMap = {};
-        for(var i = 0;i < vm.selectedCountryRelation.length;i++){
-            selectedCountryRelationMap[vm.selectedCountryRelation[i]['name'].replace(/\s/g, '')] = true;
-        }
 
         for (var i = 0; i < vm.countryMarkerData.length;i++){
          
-            var partnerType = 'Other';
+            var message = '<span class="flag-icon flag-icon-'+vm.countryMarkerData[i].country_id.toLowerCase()+'"></span>'+
+                  '<h4>'+vm.countryMarkerData[i].name+'</h4>'+
+                  '<p><b>Activities:</b> '+vm.countryMarkerData[i]['activity_count']+'</p>'+
+                  '<p><b>Total expenditure:</b> '+ $filter('shortcurrency')(vm.countryMarkerData[i]['total_disbursements'],'€') +'</p>'+
+                  '<a class="btn btn-default" href="'+homeUrl+'/landen/'+vm.countryMarkerData[i].country_id+'/">Go to country overview</a>';
 
-            if (selectedCountryRelationMap[partnerType] !== undefined){
-              var message = '<span class="flag-icon flag-icon-'+vm.countryMarkerData[i].country_id.toLowerCase()+'"></span>'+
-                    '<h4>'+vm.countryMarkerData[i].name+'</h4>'+
-                    '<p><b>Activities:</b> '+vm.countryMarkerData[i]['activity_count']+'</p>'+
-                    '<p><b>Total expenditure:</b> '+ $filter('shortcurrency')(vm.countryMarkerData[i]['total_disbursements'],'€') +'</p>'+
-                    '<p><b>Relationship type:</b> '+partnerType+'</p>'+
-                    '<a class="btn btn-default" href="'+homeUrl+'/landen/'+vm.countryMarkerData[i].country_id+'/">Go to country overview</a>';
-
-              if(vm.markers[vm.countryMarkerData[i].country_id] === undefined){
-                if(vm.countryMarkerData[i].location != null){
-                  var location = vm.countryMarkerData[i].location.substr(6, (vm.countryMarkerData[i].location.length - 7));
-                  location = location.split(' ');
-                  var flag = vm.countryMarkerData[i].country_id;
-                  var flag_lc = flag.toLowerCase();
-                  vm.markers[vm.countryMarkerData[i].country_id] = {
-                    lat: parseInt(location[1]),
-                    lng: parseInt(location[0]),
-                    icon: vm.markerIcons[partnerType],
-                  }
+            if(vm.markers[vm.countryMarkerData[i].country_id] === undefined){
+              if(vm.countryMarkerData[i].location != null){
+                var location = vm.countryMarkerData[i].location.substr(6, (vm.countryMarkerData[i].location.length - 7));
+                location = location.split(' ');
+                var flag = vm.countryMarkerData[i].country_id;
+                var flag_lc = flag.toLowerCase();
+                vm.markers[vm.countryMarkerData[i].country_id] = {
+                  lat: parseInt(location[1]),
+                  lng: parseInt(location[0]),
+                  icon: vm.markerIcon,
                 }
               }
-              vm.markers[vm.countryMarkerData[i].country_id].message = message;
             }
-        }
-    }
-
-    vm.updateRegionMarkers = function(markerData) {
-
-        if(vm.geoView != 'regions'){
-          return false;
-        }
-
-        vm.deleteAllMarkers();
-
-        for (var i = 0; i < vm.regionMarkerData.length;i++){
-
-          if(vm.regionMarkerData[i].location != null){
-
-            var message = '<span class="flag-icon flag-icon-'+vm.regionMarkerData[i].region_id+'"></span>'+
-                '<h4>'+vm.regionMarkerData[i].name+'</h4>'+
-                '<p><b>Activities:</b> '+vm.regionMarkerData[i]['activity_count']+'</p>'+
-                '<p><b>Total expenditure:</b> '+ $filter('shortcurrency')(vm.regionMarkerData[i]['total_disbursements'],'€') + '</p>'+
-                '<a class="btn btn-default" href="'+homeUrl+'/regions/'+vm.regionMarkerData[i].region_id+'/">Ga naar regio overzicht</a>';
-
-            if(vm.markers[vm.regionMarkerData[i].region_id] == undefined){
-              var location = vm.regionMarkerData[i].location.substr(6, (vm.regionMarkerData[i].location.length - 7));
-              location = location.split(' ');
-              vm.markers[vm.regionMarkerData[i].region_id] = {
-                lat: parseInt(location[1]),
-                lng: parseInt(location[0]),
-                icon: vm.markerIcons['Regiocirkel'],
-              }
-            }
-
-            vm.markers[vm.regionMarkerData[i].region_id].message = message;
-
-            
+            vm.markers[vm.countryMarkerData[i].country_id].message = message;
           }
-        }
-    }
+      }
+    
 
     activate();
   }

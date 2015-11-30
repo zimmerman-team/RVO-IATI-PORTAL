@@ -20,12 +20,11 @@
     vm.recipientCountries = [];
     vm.countries = Countries;
     vm.selectedCountries = Countries.selectedCountries;
-    vm.currentPage = 1;
-    vm.q = '';
-    vm.offset = 0;
-    vm.limit = 4;
-    vm.totalCount = 0;
     vm.filterSelection = FilterSelection;
+    vm.q = '';
+    vm.currentPage = 1;
+    vm.page_size = 4;
+    vm.totalCount = 0;
 
     /**
     * @name activate
@@ -56,7 +55,6 @@
 
     vm.pageChanged = function(newPageNumber){
       vm.currentPage = newPageNumber;
-      vm.offset = (newPageNumber * vm.limit) - vm.limit;
       vm.update();
     }
 
@@ -64,18 +62,17 @@
       // for each active country, get the results
       var filterString = FilterSelection.selectionString.split('&');
       for(var i = 0;i < filterString.length;i++){
-        if (filterString[i].indexOf('countries__in') > -1){
+        if (filterString[i].indexOf('recipient_country') > -1){
           delete filterString[i];
         }
       }
       filterString = filterString.join('&');
       
       if(vm.q != ''){
-        filterString += '&name_query=' + vm.q;
+        filterString += '&q=' + vm.q;
       }
 
-      Aggregations.aggregation('recipient-country', 'iati-identifier', filterString, 'name', vm.limit, vm.offset, 'activity_count').then(successFn, errorFn);
-
+      Aggregations.aggregation('recipient_country', 'count', filterString, 'name', vm.page_size, vm.currentPage).then(successFn, errorFn);
 
       /**
       * @name collectionsSuccessFn

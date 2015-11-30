@@ -3,7 +3,7 @@
     <div class="container extra">
 
         <div class="detailview white no-margin-bottom no-padding-bottom">
-            <h1 class="no-margin-bottom"><i class="icon presentation"></i>{{vm.activity.titles[0].title}}</h1>         
+            <h1 class="no-margin-bottom"><i class="icon presentation"></i>{{vm.activity.title.narratives[0].text}}</h1>         
         </div>
 
         <hr class="darkblue no-margin-bottom">
@@ -22,7 +22,7 @@
                     </div>
                     <div class="white">
                         <h2><i class="icon clock"></i>Description</h2>
-                        <p>{{vm.activity.descriptions[0].description}}</p>              
+                        <p>{{vm.activity.description[0].narratives[0].text}}</p>              
                     </div>
                     <div class="white no-margin-bottom no-padding-bottom">
                         <h2><i class="icon globe"></i>Location</h2>
@@ -31,7 +31,7 @@
                         <activity-geomap map-height="350px" activity="vm.activity"></activity-geomap>
                     </div>
                     <div class="panel lightblue">
-                        <p><b>Country:</b> <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">{{country.name}}</a><span ng-if='vm.activity.countries.length == 0'>No data available yet</span> </p>
+                        <p><b>Country:</b> <a ng-repeat="recipient_country in vm.activity.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">{{recipient_country.country.name}}{{$last ? '' : ', '}}</a><span ng-if='vm.activity.recipient_countries.length == 0'>No data available yet</span> </p>
                     </div>
                     <div class="white no-margin-bottom no-padding-bottom">
                         <h2><i class="icon euro"></i>Goals & results</h2>
@@ -46,7 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="transaction in vm.activity.transactions">
+                            <tr ng-repeat="transaction in vm.activity.transactionData">
                                 <td>
                                     result title
                                 </td>
@@ -101,7 +101,9 @@
                         <table class="no-format">
                             <tr>
                                 <td width="130">Sectors: </td>
-                                <td><a ui-sref="sector({'sector_id': sector.code})" ng-repeat="(key, sector) in vm.activity.sectors">{{ sector.name }}, </a><span ng-show='!vm.activity.sectors.length'>No data available yet</span></td>
+                                <td><a ui-sref="sector({ sector_id: vm.activity.sectors[0].sector.code })">
+                                    {{vm.activity.sectors[0].sector.name}}
+                                </a><span ng-show='!vm.activity.sectors.length'>No data available yet</span></td>
                             </tr>
                             <tr>
                                 <td>Programme:</td>
@@ -128,11 +130,11 @@
                             </tr>
                             <tr>
                                 <td>Funding partners:</td>
-                                <td><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></td>
+                                <td><span ng-if="org.role.code == 1" ng-repeat='org in vm.activity.participating_organisations'>{{org.narratives[0].text}}{{$last ? '' : ', '}}</span></td>
                             </tr>
                             <tr>
                                 <td>Project partners:</td>
-                                <td><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></td>
+                                <td><span ng-if="org.role.code == 4" ng-repeat='org in vm.activity.participating_organisations'>{{org.narratives[0].text}}{{$last ? '' : ', '}}</span></td>
                             </tr>
                             <tr>
                                 <td>Status:</td>

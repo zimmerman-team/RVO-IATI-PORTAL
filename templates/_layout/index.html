@@ -76,12 +76,15 @@
   <div class="row visualize">
       <div class="col-sm-4 text-center">
         <h4>Budget per programme</h4>
+        <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
       </div>
       <div class="col-sm-4 text-center">
         <h4>Budget per country</h4>
+        <oipa-pie-chart group-by="recipient_country" aggregation-key="count" top-level="true"></oipa-pie-chart>
       </div>
       <div class="col-sm-4 text-center">
         <h4>Budget per sector</h4>
+        <oipa-pie-chart group-by="sector" aggregation-key="count" top-level="true"></oipa-pie-chart>
       </div>
   </div>
 </div>

@@ -195,12 +195,10 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'module.countries', get_stylesheet_directory_uri() . '/javascripts/countries/module.countries.js', array('oipa'), '', true );
 		wp_register_script( 'controller.countries', get_stylesheet_directory_uri() . '/javascripts/countries/controller.countries.js', array('oipa'), '', true );
 		wp_register_script( 'controller.countries.list', get_stylesheet_directory_uri() . '/javascripts/countries/controller.countries.list.js', array('oipa'), '', true );
-		wp_register_script( 'controller.countries.explore', get_stylesheet_directory_uri() . '/javascripts/countries/controller.countries.explore.js', array('oipa'), '', true );
 		wp_register_script( 'controller.countries.map', get_stylesheet_directory_uri() . '/javascripts/countries/controller.countries.map.js', array('oipa'), '', true );
 		wp_register_script( 'controller.country', get_stylesheet_directory_uri() . '/javascripts/countries/controller.country.js', array('oipa'), '', true );
 		wp_register_script( 'directive.countries', get_stylesheet_directory_uri() . '/javascripts/countries/directive.countries.js', array('oipa'), '', true );
 		wp_register_script( 'directive.countries.list', get_stylesheet_directory_uri() . '/javascripts/countries/directive.countries.list.js', array('oipa'), '', true );
-		wp_register_script( 'directive.countries.explore', get_stylesheet_directory_uri() . '/javascripts/countries/directive.countries.explore.js', array('oipa'), '', true );
 		wp_register_script( 'directive.countries.map', get_stylesheet_directory_uri() . '/javascripts/countries/directive.countries.map.js', array('oipa'), '', true );
 		wp_register_script( 'service.countries', get_stylesheet_directory_uri() . '/javascripts/countries/service.countries.js', array('oipa'), '', true );
 
@@ -325,6 +323,10 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'directive.oipaTotalFiguresChart', get_stylesheet_directory_uri() . '/javascripts/_charts/directive.oipaTotalFiguresChart.js', array(), '', true );
 		wp_register_script( 'controller.oipaTotalFiguresChart', get_stylesheet_directory_uri() . '/javascripts/_charts/controller.oipaTotalFiguresChart.js', array(), '', true );
 
+		wp_register_script( 'controller.oipaPieChart', get_stylesheet_directory_uri() . '/javascripts/_charts/controller.oipaPieChart.js', array('oipa'), '', true );
+		wp_register_script( 'directive.oipaPieChart', get_stylesheet_directory_uri() . '/javascripts/_charts/directive.oipaPieChart.js', array('oipa'), '', true );
+		
+
 		wp_register_script( 'directive.financialsLineChart', get_stylesheet_directory_uri() . '/javascripts/_charts/directive.financialsLineChart.js', array(), '', true );
 		wp_register_script( 'controller.financialsLineChart', get_stylesheet_directory_uri() . '/javascripts/_charts/controller.financialsLineChart.js', array(), '', true );
 
@@ -414,12 +416,10 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'mapping.countries.partnerlanden' );
 		wp_enqueue_script( 'module.countries' );
 		wp_enqueue_script( 'controller.countries' );
-		wp_enqueue_script( 'controller.countries.explore' );
 		wp_enqueue_script( 'controller.countries.map' );
 		wp_enqueue_script( 'controller.countries.list' );
 		wp_enqueue_script( 'controller.country' );
 		wp_enqueue_script( 'directive.countries' );
-		wp_enqueue_script( 'directive.countries.explore' );
 		wp_enqueue_script( 'directive.countries.map' );
 		wp_enqueue_script( 'directive.countries.list' );
 		wp_enqueue_script( 'service.countries' );
@@ -524,6 +524,8 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'directive.oipaTotalFiguresChart' );
 		wp_enqueue_script( 'controller.oipaTotalFiguresChart' );
 		wp_enqueue_script( 'directive.chartWrapper' );
+		wp_enqueue_script( 'controller.oipaPieChart' );
+		wp_enqueue_script( 'directive.oipaPieChart' );
 
 		wp_enqueue_script( 'module.geovis' );
 		wp_enqueue_script( 'directive.geovis' );

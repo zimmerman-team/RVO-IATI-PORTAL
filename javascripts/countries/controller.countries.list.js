@@ -20,11 +20,11 @@
     vm.countries = [];
     vm.totalCountries = 0;
     vm.order_by = 'name';
-    vm.offset = 0;
     vm.hasToContain = $scope.hasToContain;
+    vm.page = 1;
     vm.busy = false;
+    vm.perPage = 15;
     vm.extraSelectionString = '';
-
 
     function activate() {
       // use predefined filters or the filter selection
@@ -69,8 +69,9 @@
     vm.update = function(){
       if (!vm.hasContains()) return false;
 
-      vm.offset = 0;
-      Aggregations.aggregation('recipient-country', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.offset, 'activity_count').then(succesFn, errorFn);
+      vm.page = 1;
+      console.log('TO DO: double check; is budget, incoming funds?')
+      Aggregations.aggregation('recipient_country', 'incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.countries = data.data.results;
@@ -84,16 +85,14 @@
     }
 
     vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalCountries < (vm.offset + 15))) return;
+      if (!vm.hasContains() || vm.busy || (vm.totalCountries < (vm.page * vm.perPage))) return;
 
       vm.busy = true;
-      vm.offset = vm.offset + 15;
-      Aggregations.aggregation('recipient-country', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.offset, 'activity_count').then(succesFn, errorFn);
+      vm.page += 1;
+      Aggregations.aggregation('recipient_country', 'incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        for (var i = 0; i < data.data.results.length; i++) {
-          vm.countries.push(data.data.results[i]);
-        }
+        vm.countries = vm.countries.concat(data.data.results);
         vm.busy = false;
       }
 

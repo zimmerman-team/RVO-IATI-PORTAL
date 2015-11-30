@@ -1,7 +1,3 @@
-/**
-* Posts
-* @namespace oipa.activities
-*/
 (function () {
     'use strict';
 
@@ -11,16 +7,13 @@
 
     Activities.$inject = ['$http', 'oipaUrl', 'reportingOrganisationId'];
 
-    /**
-    * @namespace Activities
-    * @returns {Factory}
-    */
     function Activities($http, oipaUrl, reportingOrganisationId) {
         var m = this;
 
         var Activities = {
             all: all,
             get: get,
+            getTransactions: getTransactions,
             list: list,
             locations: locations
         };
@@ -29,65 +22,57 @@
 
         ////////////////////
 
-        /**
-         * @name all
-         * @desc Try to get all countries
-         * @returns {Promise}
-         * @memberOf oipa.countries.services.Countries
-         */ 
         function all() {
-            var url = oipaUrl + '/activities?format=json&page_size=10&fields=iati-identifier,name'
+            var url = oipaUrl + '/activities/?format=json&page_size=10&fields=iati_identifier,title'
             if(reportingOrganisationId){
-                url += '&reporting_organisation__in=' + reportingOrganisationId
+                url += '&reporting_organisation=' + reportingOrganisationId
             }
             return $http.get(url, { cache: true });
         }
 
-        function list(filters, limit, order_by, offset){
-            var url = oipaUrl + '/activity-list/?format=json'
-            url += '&select_fields=titles,last_updated_datetime,countries,regions,iati_identifier,id,descriptions,start_actual,end_actual,activity_status,total_budget,sectors,reporting_organisation,participating_organisations'
+
+        function list(filters, page_size, order_by, page){
+            var url = oipaUrl + '/activities/?format=json'
+            url += '&fields=title,activity_status,recipient_countries,activity_aggregation'
 
             if(reportingOrganisationId){
-                url += '&reporting_organisation__in=' + reportingOrganisationId
+                url += '&reporting_organisation=' + reportingOrganisationId
             }
             if(filters !== undefined){
                 url += filters;
             }
             if(order_by !== undefined){
-                url += '&order_by=' + order_by;
+                url += '&ordering=' + order_by;
             }
-            if(offset !== undefined){
-                url += '&offset=' + offset;
+            if(page !== undefined){
+                url += '&page=' + page;
             }
-            if(limit !== undefined){
-                url += '&limit=' + limit;
+            if(page_size !== undefined){
+                url += '&page_size=' + page_size;
             }
 
             return $http.get(url, { cache: true });
         }
 
-        function locations(filters, limit, order_by, offset){
+        function get(code) {
+            return $http.get(oipaUrl + '/activities/' + code + '/?format=json', { cache: true });
+        }
+
+        function getTransactions(code) {
+            return $http.get(oipaUrl + '/activities/' + code + '/transactions/?format=json', { cache: true });
+        }
+
+        function locations(filters, limit){
             var url = oipaUrl + '/activities/?format=json'
-            url += '&select_fields=id,titles,locations&offset=0&limit=1000'
+            url += '&fields=id,title,locations&page=1&page_size=1000'
 
             if(reportingOrganisationId){
-                url += '&reporting_organisation__in=' + reportingOrganisationId
+                url += '&reporting_organisation=' + reportingOrganisationId
             }
             if(filters !== undefined){
                 url += filters;
             }
             return $http.get(url, { cache: true });
-        }
-
-        /**
-         * @name get
-         * @desc Get the Collections of a given user
-         * @param {string} filter_type The type to get filter options for
-         * @returns {Promise}
-         * @memberOf oipa.filters.services.Filters
-         */
-        function get(code) {
-            return $http.get(oipaUrl + '/activities/' + code + '/?format=json', { cache: true });
         }
     }
 })();

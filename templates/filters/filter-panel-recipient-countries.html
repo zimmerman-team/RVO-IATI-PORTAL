@@ -30,19 +30,18 @@
 
 					    <tr 
 					    	dir-paginate="item in vm.recipientCountries | itemsPerPage: 4" 
-					    	total-items="vm.totalCount" 
-					    	current-page="pagination.current"  
+					    	total-items="vm.totalCount"  
 					    	pagination-id="recipientCountries">
 					    	<td>
 					    		<div class="checkbox">
 						    		<label class="switch">
 						    			<input type="checkbox" checklist-model="vm.selectedCountries" checklist-value="item"><i></i>
-						    			<span>{{ item.name }}</span>
+						    			<span>{{ item.recipient_country.name }}</span>
 						    		</label>
 						    	</div>
 					    	</td>
 					    	<td>
-					    		{{ item.activity_count }}
+					    		{{ item.count }}
 					    	</td>
 					    </tr>
 
