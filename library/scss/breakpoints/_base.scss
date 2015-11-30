@@ -1257,31 +1257,35 @@ FILTER BAR
     }
   }
 }
-
+.visualize {
+  h4 {
+    margin-top: 0;
+  }
+}
 
 //chart dingen
 .nvtooltip {
-  border-radius: 8px;
+  border-radius: 0px;
   box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.35);
-  padding:5px 10px;
-  color: #fff;
-  background-color: rgba(64, 64, 64, 0.95);
+  color: $rvo-zwart;
+  background-color: #fff;
+  border:0;
   h3 {
-    font-size: 1em;
-    background: none;
+    font-size: 16px;
     font-weight: 700;
-    border:0;
+    border-bottom:1px dotted $rvo-donkerblauw;
+    padding:10px;
     text-align: left;
-    padding: 0;
     max-width: 250px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color:$white;
+    color:$rvo-donkerblauw;
+    background:none !important;
   }
   p {
     text-align: left;
-    padding:0;
+    padding:10px;
   }
 }
 

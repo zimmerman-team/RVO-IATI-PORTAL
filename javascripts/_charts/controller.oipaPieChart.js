@@ -23,7 +23,7 @@
     vm.chartOptions = {
       chart: {
         type: 'pieChart',
-        height: 300,
+        height: 350,
         margin : {
             top: 0,
             right: 0,
@@ -37,10 +37,12 @@
         useInteractiveGuideline: true,
         clipVoronoi: false,
         showControls: false,
-        showLabels: true,
+        showLabels: false,
         duration: 500,
         labelTreshhold: 0.01,
         labelSunbeamLayout: true,
+        donut: true,
+        donutRatio: 0.35,
         legend: {
           margin: {
             top: 5,
