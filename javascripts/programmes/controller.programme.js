@@ -19,12 +19,15 @@
     vm.activity = null;
     vm.programmeId = $stateParams.programme_id;
     vm.templateBaseUrl = templateBaseUrl;
-
+    vm.filterSelection = FilterSelection;
     vm.selectedTab = 'summary';
 
     vm.tabs = [
       {'id': 'summary', 'name': 'Summary', 'count': -1},
-      {'id': 'detailedreport', 'name': 'Detailed report', 'count': -1},
+      {'id': 'activities', 'name': 'Projects', 'count': -1},
+      {'id': 'countries', 'name': 'Countries', 'count': -1},
+      {'id': 'sectors', 'name': 'Sectors', 'count': -1},
+      {'id': 'implementing-organisations', 'name': 'Organisations', 'count': -1},
     ]
 
     activate();

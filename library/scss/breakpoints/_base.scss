@@ -603,16 +603,20 @@ FILTER BAR
     margin-right: 10px;
     display: inline-block;
     &:before {
-      font-family: 'AGNL-Icon-Font';
+      font-family: 'FontAwesome';
       margin-right: 2px;
-      content:'\e60d';
+      content:'\f0fe';
       color:$rvo-groen;
-      transition: all .2s ease-in-out;
+      transition: all .4s ease-in-out;
     }
     &.reset {
       &:before {
+        font-family: 'AGNL-Icon-Font';
         content:'\e605';
         color:darken(red,10%);
+        font-size: 14px;
+        display: block;
+        float: left;
       }
       &:hover {
         &:before {
@@ -637,7 +641,8 @@ FILTER BAR
     &.active {
       &:before {
         color:$rvo-blauw;
-        transform:rotate(90deg);
+        transform:rotate(180deg);
+        content:'\f146';
       }
       &:after {
         opacity: 1;
