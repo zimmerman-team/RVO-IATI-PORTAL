@@ -23,17 +23,17 @@
     vm.chartOptions = {
       chart: {
         type: 'pieChart',
-        height: 300,
+        height: 250,
         margin : {
-            top: -45,
+            top: -20,
             right: 0,
-            bottom: -30,
+            bottom: -10,
             left: 0
         },
         x: function(d){ return d[0]; },
         y: function(d){ return d[1]; },
         color: d3.scale.category10().range(),
-        transitionDuration: 300,
+        transitionDuration: 200,
         useInteractiveGuideline: true,
         clipVoronoi: false,
         showControls: false,
@@ -42,7 +42,7 @@
         labelTreshhold: 0.01,
         labelSunbeamLayout: true,
         donut: true,
-        donutRatio: 0.35,
+        donutRatio: 0.5,
         padding: 0,
         showLegend: false,
         growOnHover: false,
@@ -62,7 +62,6 @@
         },
       },
     };
-
 
     vm.loadData = function(){
       Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters).then(succesFn, errorFn);
