@@ -59,7 +59,7 @@
         }
 
         function getTransactions(code) {
-            return $http.get(oipaUrl + '/activities/' + code + '/transactions/?format=json', { cache: true });
+            return $http.get(oipaUrl + '/activities/' + code + '/transactions/?format=json&page_size=999', { cache: true });
         }
 
         function locations(filters, limit){

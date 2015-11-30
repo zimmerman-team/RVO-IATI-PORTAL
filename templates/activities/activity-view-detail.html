@@ -374,7 +374,6 @@
                         </tr>
                     </table>
                 </div>
-                {{vm.transactionData}}
                 <div class="panel lightblue with-table" ng-repeat="transaction in vm.transactionData">
 
                     <h3>Transactions</h3>
@@ -383,47 +382,43 @@
                     <table class="no-format">
                         <tr>
                             <td width="200">Transaction type:</td>
-                            <td>XX</td>
+                            <td>{{transaction.transaction_type.name}}</td>
                         </tr>
                         <tr>
                             <td>Provider org.:</td>
-                            <td>XX</td>
+                            <td>{{transaction.provider_organisation.narratives[0].text}}</td>
                         </tr>
                         <tr>
                             <td>Provider org. ref.:</td>
-                            <td>XX</td>
+                            <td>{{transaction.provider_organisation.ref}}</td>
                         </tr>
                         <tr>
                             <td>Provider activity id:</td>
-                            <td>XX</td>
+                            <td>{{transaction.provider_organisation.receiver_activity_id}}</td>
                         </tr>
                         <tr>
                             <td>Receiver org.:</td>
-                            <td>XX</td>
+                            <td>{{transaction.receiver_organisation.narratives[0].text}}</td>
                         </tr>
                         <tr>
                             <td>Receiver org. ref.:</td>
-                            <td>XX</td>
+                            <td>{{transaction.receiver_organisation.ref}}</td>
                         </tr>
                         <tr>
                             <td>Receiver activity id:</td>
-                            <td>XX</td>
+                            <td>{{transaction.receiver_organisation.receiver_activity_id}}</td>
                         </tr>
                         <tr>
                             <td>Transaction value:</td>
-                            <td>XX</td>
+                            <td>{{transaction.value | shortcurrency :'€'}}</td>
                         </tr>
                         <tr>
                             <td>Transaction date:</td>
-                            <td>XX</td>
+                            <td>{{transaction.transaction_date | date : 'dd-MM-yyyy'}}</td>
                         </tr>
                         <tr>
                             <td>Transaction value date:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Result type:</td>
-                            <td>XX</td>
+                            <td>{{transaction.value_date | date : 'dd-MM-yyyy'}}</td>
                         </tr>
                     </table>
                 </div>
