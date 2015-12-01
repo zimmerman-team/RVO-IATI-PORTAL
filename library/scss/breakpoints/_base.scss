@@ -790,6 +790,7 @@ FILTER BAR
   padding:5px 0;
   font-size: 13px;
   color:$white;
+  cursor: pointer;
   .selected-items {
     text-transform: uppercase;
     font-weight: 700;
@@ -808,10 +809,11 @@ FILTER BAR
       font-family: 'AGNL-Icon-Font';
       margin-right:2px;
       content:"\e62c";
+      float: left;
     }
     &:hover {
       transform:scale(1.02);
-      color:$rvo-lichtblauw;
+      color:darken(red,5%);
     }
   }
 }
@@ -1271,6 +1273,9 @@ FILTER BAR
     }
   }
 }
+.visualize {
+  padding-top:15px;
+}
 .visualize,.cirkle-vis {
   h4,h3 {
     margin-top: 0;
@@ -1282,12 +1287,26 @@ FILTER BAR
 }
 .cirkle-vis {
   //margin-top:-10px;
+  .panel {
+    padding-top:15px !important;
+  }
   h4 {
     margin-top:-15px;
   }
 }
 
 //chart dingen
+.chart-wrap {
+  position:relative;
+  .svg-loader {
+    position:absolute;
+    margin:0;
+    left:50%;
+    margin-left:-25px;
+    top:50%;
+    margin-top:-25px;
+  }
+}
 .checkboxes {
   .checkbox {
     float: left;
@@ -1314,6 +1333,42 @@ FILTER BAR
         }
       }
     }
+  }
+}
+
+//view switcher
+.switch-view {
+  .panel {
+    padding:10px 30px !important;
+    cursor: pointer;
+    &.current {
+      cursor: default;
+    }
+    &.lightblue {
+      color:$rvo-donkerblauw;
+    }
+    &.xlightblue {
+      transition: all .2s ease-in-out;
+      color:$rvo-blauw;
+      background:lighten($rvo-xlichtblauw,1%);
+      &:hover {
+        background:$rvo-footerblauw;
+        color:$rvo-donkerblauw;
+      }
+    }
+  }
+  .col-xs-6 {
+    &:nth-of-type(1) {
+      padding-right:0;
+    }
+    &:nth-of-type(2) {
+      padding-left:0;
+    }
+  }
+  .icon {
+    float: left;
+    font-size: 16px;
+    margin-right: 5px;
   }
 }
 
@@ -1476,7 +1531,7 @@ table {
   }
   tbody tr {
     &:nth-of-type(2n-1) {
-      background:lighten($rvo-lichtblauw,12%);
+      background:$rvo-footerblauw;
     }
   }
   &.expandable {
@@ -1527,7 +1582,7 @@ table {
     text-overflow: ellipsis;
   }
   .body:nth-of-type(2n) {
-    background:lighten($rvo-lichtblauw,12%);
+    background:$rvo-footerblauw;
   }
   .children {
     .expandme {
@@ -1749,7 +1804,7 @@ Sunburst vis
 *********************/
 
 .sector-vis-sunburst{
-  background:rgba(#fff,.3);
+  background:$rvo-footerblauw;
   margin-bottom: 15px;
 
 
@@ -1889,22 +1944,25 @@ SLIDER
     font-weight: 300;
     opacity: 1;
     font-size: 14px;
+    margin-left:-38px !important;
+    font-size: 12px;
     .tooltip-inner {
-      background: rgba(0,0,0, 0.3);
+      background: $rvo-donkerblauw;
+      box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.3);
       &:before {
         content: '\20AC\2008' ;
       }
     }
     &.top {
-      top:-48px !important;
+      margin-top:-45px !important;
       .tooltip-arrow {
-        border-top-color: rgba(0,0,0, 0.3);
+        border-top-color: $rvo-donkerblauw;
       }
     }
     &.bottom {
-      top:12px !important;
+     margin-top:-10px !important;
       .tooltip-arrow {
-        border-bottom-color: rgba(0,0,0, 0.3);
+        border-bottom-color: $rvo-donkerblauw;
       }
     }
   }
@@ -1936,7 +1994,7 @@ ACTIVITY LIST
   .panel {
     padding:10px 30px;
     border:0;
-    background:lighten($rvo-lichtblauw,12%);
+    background:$rvo-footerblauw;
     border-radius:0;
     //color:$white;
     margin-bottom: 10px;
@@ -2069,7 +2127,7 @@ ACTIVITY LIST
     }
   }
   &.lightblue {
-    background:lighten($rvo-lichtblauw,12%);
+    background:$rvo-footerblauw;
     padding:10px 15px;
     //color:$rvo-blauw;
     h1,h2,h3,h4,h5,h6 {
@@ -2212,7 +2270,7 @@ table.no-format {
 
 .panel.with-pie {
   svg {
-    margin:-25px 0;
+   // margin:-25px 0;
   }
 }
 
@@ -2234,11 +2292,20 @@ table.finance {
     background:$rvo-xlichtblauw;
     border-bottom:1px solid $white;
     &:nth-of-type(2n) {
-      background:lighten($rvo-lichtblauw,12%);
+      background:$rvo-footerblauw;
     }
     // td {
     //   color:$rvo-blauw;
     // }
+  }
+  &.no-blue {
+    thead {
+      color:$rvo-zwart;
+      border-top:1px solid $white;
+      tr {
+        background:none;
+      }
+    }
   }
 }
 
@@ -2258,13 +2325,24 @@ FOOTER
 *********************/
 
 footer {
-  padding:15px 30px;
+  padding:30px;
   border-top: 13px solid #b2d7ee;
-  background:$rvo-xlichtblauw;
+  background:$rvo-footerblauw;
   color:$rvo-donkerblauw;
   font-size: 14px;
+  h2 {
+    font-size: 23px;
+    margin-bottom: 8px;
+    margin-top: 0;
+  }
   a {
     color:$rvo-donkerblauw;
+    &:hover {
+      color:$rvo-blauw;
+    }
+  }
+  ul {
+    margin:0;
   }
   li {
     margin-bottom: 7px;
@@ -2273,6 +2351,17 @@ footer {
       content: '\f105';
       margin-right: 5px;
     }
+  }
+  .social {
+    font-size: 22px;
+    a {
+      margin:0 2px;
+      display: inline-block;
+    }
+  }
+  .icon {
+    font-size: 12px;
+    margin-left:3px;
   }
 }
 #footer-ribbon {

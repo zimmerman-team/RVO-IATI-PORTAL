@@ -26,7 +26,7 @@
         if (['activities', 'activities-list', 'activiteit'].indexOf(name) >= 0) { vm.stateName = 'activities'; }
         else if (['locations', 'locations-map', 'locations', 'country'].indexOf(name) >= 0) { vm.stateName = 'locations'; }
         else if (['programmes', 'programme'].indexOf(name) >= 0) { vm.stateName = 'programmes'; }
-        else if (['sectors', 'sector-list', 'sector'].indexOf(name) >= 0) { vm.stateName = 'sectors'; }
+        else if (['sectors', 'sectors-vis', 'sector-list', 'sector'].indexOf(name) >= 0) { vm.stateName = 'sectors'; }
         else if (['organisations', 'organisation'].indexOf(name) >= 0) { vm.stateName = 'organisations'; }
         else if (['search'].indexOf(name) >= 0) { vm.stateName = 'search'; }
         else if (['about'].indexOf(name) >= 0) { vm.stateName = 'about'; }
