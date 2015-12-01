@@ -202,7 +202,7 @@
         <!-- detailed report page -->
         <div class="row detailview" ng-if="vm.selectedTab == 'detailedreport'">
 
-            <div class="col-md-8">
+            <div class="col-md-12">
 
                 <div class="panel lightblue with-table">
 
@@ -356,72 +356,59 @@
                 </div>
 
            
-                <div class="panel lightblue with-table" ng-repeat="transaction in vm.transactionData">
+                <div class="panel lightblue with-table">
 
                     <h3>Transactions</h3>
-                    <hr>
 
-                    <table class="no-format">
-                        <tr>
-                            <td width="200">Transaction type:</td>
-                            <td>
-                                {{transaction.transaction_type.name}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Provider org.:</td>
-                            <td>
-                                {{transaction.provider_organisation.narratives[0].text}}
-                                <span ng-if="!transaction.provider_organisation">No data available yet</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Provider org. ref.:</td>
-                            <td>
-                                {{transaction.provider_organisation.ref}}
-                                <span ng-if="!transaction.provider_organisation.ref">No data available yet</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Provider activity id:</td>
-                            <td>
-                                {{transaction.provider_organisation.receiver_activity_id}}
-                                <span ng-if="!transaction.provider_organisation.receiver_activity_id">No data available yet</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Receiver org.:</td>
-                            <td>
-                                {{transaction.receiver_organisation.narratives[0].text}}
-                                <span ng-if="!transaction.receiver_organisation">No data available yet</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Receiver org. ref.:</td>
-                            <td>
-                                {{transaction.receiver_organisation.ref}}
-                                <span ng-if="!transaction.receiver_organisation.ref">No data available yet</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Receiver activity id:</td>
-                            <td>
-                                {{transaction.receiver_organisation.receiver_activity_id}}
-                                <span ng-if="!transaction.receiver_organisation.receiver_activity_id">No data available yet</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Transaction value:</td>
-                            <td>{{transaction.value | shortcurrency :'€'}}</td>
-                        </tr>
-                        <tr>
-                            <td>Transaction date:</td>
-                            <td>{{transaction.transaction_date | date : 'dd-MM-yyyy'}}</td>
-                        </tr>
-                        <tr>
-                            <td>Transaction value date:</td>
-                            <td>{{transaction.value_date | date : 'dd-MM-yyyy'}}</td>
-                        </tr>
+                    <table class="finance">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Provider</th>
+                                <th>Provider ref.</th>
+                                <th>Provider act. id</th>
+                                <th>Receiver</th>
+                                <th>Receiver ref.</th>
+                                <th>Receiver act. id</th>
+                                <th>Value</th>
+                                <th>Date</th>
+                                <th>Value date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="transaction in vm.transactionData">
+                                <td>
+                                    {{transaction.transaction_type.name}}
+                                </td>
+                                <td>
+                                    {{transaction.provider_organisation.narratives[0].text}}
+                                    <span ng-if="!transaction.provider_organisation">-</span>
+                                </td>
+                                <td>
+                                    {{transaction.provider_organisation.ref}}
+                                    <span ng-if="!transaction.provider_organisation.ref">-</span>
+                                </td>
+                                <td>
+                                    {{transaction.provider_organisation.receiver_activity_id}}
+                                    <span ng-if="!transaction.provider_organisation.receiver_activity_id">-</span>
+                                </td>
+                                <td>
+                                    {{transaction.receiver_organisation.narratives[0].text}}
+                                    <span ng-if="!transaction.receiver_organisation">-</span>
+                                </td>
+                                <td>
+                                    {{transaction.receiver_organisation.ref}}
+                                    <span ng-if="!transaction.receiver_organisation.ref">-</span>
+                                </td>
+                                <td>
+                                    {{transaction.receiver_organisation.receiver_activity_id}}
+                                    <span ng-if="!transaction.receiver_organisation.receiver_activity_id">-</span>
+                                </td>
+                                <td>{{transaction.value | shortcurrency :'€'}}</td>
+                                <td>{{transaction.transaction_date | date : 'dd-MM-yyyy'}}</td>
+                                <td>{{transaction.value_date | date : 'dd-MM-yyyy'}}</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
 
@@ -837,7 +824,7 @@
                 </div> -->
 
             </div>
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
 
                 <div class="panel lightblue with-table share">
                     <h3>Export & share</h3>
@@ -860,7 +847,7 @@
                 </div>
 
             </div>
-        </div>
+        </div> -->
 
     </div>
 </div>

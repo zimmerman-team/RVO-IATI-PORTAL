@@ -127,7 +127,7 @@ hr{
 
 tr {
   td {
-    line-height: 1em;
+    line-height: 16px;
   }
 }
 
@@ -171,6 +171,9 @@ tr {
 }
 .no-margin-top {
   margin-top: 0 !important;
+}
+.no-padding-top {
+  padding-top:0 !important;
 }
 
 [ui-view].ng-enter{
@@ -1276,7 +1279,7 @@ FILTER BAR
   }
 }
 .cirkle-vis {
-  margin-top:-20px;
+  margin-top:-10px;
   h4 {
     margin-top:-15px;
   }
@@ -2128,10 +2131,10 @@ hr {
   margin-bottom: 0;
   height:24px;
   position:relative;
-  background: -webkit-linear-gradient(left, $rvo-lichtblauw, $rvo-blauw, $rvo-donkerblauw );
-  background: -o-linear-gradient(right, $rvo-lichtblauw, $rvo-blauw, $rvo-donkerblauw );
-  background: -moz-linear-gradient(right, $rvo-lichtblauw, $rvo-blauw, $rvo-donkerblauw );
-  background: linear-gradient(to right, $rvo-lichtblauw, $rvo-blauw, $rvo-donkerblauw );
+  background: -webkit-linear-gradient(left, lighten($rvo-groen,20%), $rvo-groen, darken($rvo-groen,20%) );
+  background: -o-linear-gradient(right, lighten($rvo-groen,20%), $rvo-groen, darken($rvo-groen,20%) );
+  background: -moz-linear-gradient(right, lighten($rvo-groen,20%), $rvo-groen, darken($rvo-groen,20%) );
+  background: linear-gradient(to right, lighten($rvo-groen,20%), $rvo-groen, darken($rvo-groen,20%) );
   border-radius:2px;
   &.small {
     height: 18px;
@@ -2141,7 +2144,7 @@ hr {
   }
   .progress-bar {
     line-height: 25px;
-    box-shadow: 0px 0px 0px 2000px $rvo-zwart;
+    box-shadow: 0px 0px 0px 2000px lighten($rvo-zwart,60%);
     background-image: none !important;
     background-color: transparent !important;
   }
