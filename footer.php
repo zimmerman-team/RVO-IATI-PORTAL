@@ -26,19 +26,19 @@
     <div class="col-sm-6 col-md-3">
       <h2>About RVO.nl</h2>
       <ul class="">
-        <li class=""><a href="/home/about-rvonl/what-is-rvonl" class="pointer">What is RVO.nl?</a></li>
-        <li class=""><a href="/home/about-rvonl/what-is-rvonl/contact-rvonl" class="pointer">Contact</a></li>
-        <li class=""><a href="/home/about-rvonl/what-is-rvonl/disclaimer" class="pointer">Disclaimer</a></li>
+        <li class=""><a href="http://english.rvo.nl/home/about-rvonl/what-is-rvonl" class="pointer">What is RVO.nl?</a></li>
+        <li class=""><a href="http://english.rvo.nl/home/about-rvonl/what-is-rvonl/contact-rvonl" class="pointer">Contact</a></li>
+        <li class=""><a href="http://english.rvo.nl/home/about-rvonl/what-is-rvonl/disclaimer" class="pointer">Disclaimer</a></li>
       </ul>
     </div>  
     <div class="col-sm-6 col-md-3">
       <h2>Topics</h2>
       <ul class="">
-        <li class=""><a href="/topics/international" class="pointer">International enterprise</a>  </li>
-        <li class=""><a href="/topics/agriculture" class="pointer">Agrarian enterprise</a>  </li>
-        <li class=""><a href="/topics/sustainable-entrepreneurship" class="pointer">Sustainable enterprise</a>  </li>
-        <li class=""><a href="/topics/innovation" class="pointer">Innovative enterprise</a>  </li>
-        <li class=""><a href="/topics" class="more"><b>All topics</b></a></li>
+        <li class=""><a href="http://english.rvo.nl/topics/international" class="pointer">International enterprise</a>  </li>
+        <li class=""><a href="http://english.rvo.nl/topics/agriculture" class="pointer">Agrarian enterprise</a>  </li>
+        <li class=""><a href="http://english.rvo.nl/topics/sustainable-entrepreneurship" class="pointer">Sustainable enterprise</a>  </li>
+        <li class=""><a href="http://english.rvo.nl/topics/innovation" class="pointer">Innovative enterprise</a>  </li>
+        <li class=""><a href="http://english.rvo.nl/topics" class="more"><b>All topics</b></a></li>
       </ul>  
     </div>  
     <div class="col-sm-6 col-md-3">
@@ -52,7 +52,7 @@
     <div class="col-sm-6 col-md-3">
       <h2>Stay informed</h2>
       <ul class="">
-        <li><a href="http://www.rvo.nl/aanmelden">Subscribe to our newsletter</a></li>
+        <li><a href="http://english.rvo.nl/subscribe">Subscribe to our newsletter</a></li>
       </ul>
     </div>  
   </div> 

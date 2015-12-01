@@ -12,23 +12,6 @@
   </div>
 </div>
 
-<div class="row cirkle-vis">
-    <div class="col-xs-12">
-        <div class="panel lightblue clearfix no-padding-top no-margin-bottom">
-            <div class="row">
-                <div class="col-sm-3 col-sm-offset-3 chart">
-                    <oipa-pie-chart group-by="organisation" aggregation-key="count"></oipa-pie-chart>
-                    <h4>Project distribution</h4>
-                </div>
-                <div class="col-sm-3 chart">
-                    <oipa-pie-chart group-by="organisation" aggregation-key="count"></oipa-pie-chart>
-                    <h4>Budget distibution</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="container list-view-wrapper">
     <div class="row">
         <div class="col-md-12">
@@ -62,7 +45,6 @@
     <thead>
         <tr>
             <th>Organisation</th>
-            <th>Number of projects</th>
             <th>Number of programmes</th>
             <th>Organisation type</th>
         </tr>
@@ -71,7 +53,6 @@
         <tr
             ng-repeat="item in vm.organisations">
             <td><a ui-sref="organisation({ organisation_id: item.name })">{{ item.name }}</a></td>
-            <td>{{item.count}}</td>
             <td></td>
             <td>TO DO: Gov/non-gov</td>
         </tr>

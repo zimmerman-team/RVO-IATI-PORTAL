@@ -27,7 +27,7 @@ var sectorLayoutTest = null;
       {'id': 'samenvatting', 'name': 'Summary', 'count': -1},
       {'id': 'activities', 'name': 'Projects', 'count': -1},
       {'id': 'countries', 'name': 'Countries', 'count': -1},
-      {'id': 'implementing-organisations', 'name': 'Organisations', 'count': -1},
+      {'id': 'implementing-organisations', 'name': 'Project partners', 'count': -1},
     ]
 
     // to do , make this smarter
