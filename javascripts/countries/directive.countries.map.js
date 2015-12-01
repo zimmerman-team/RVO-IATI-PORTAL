@@ -7,14 +7,14 @@
 
   angular
     .module('oipa.countries')
-    .directive('countriesMap', countriesMap);
+    .directive('countriesGeoMap', countriesGeoMap);
 
-  countriesMap.$inject = ['templateBaseUrl'];
+  countriesGeoMap.$inject = ['templateBaseUrl'];
 
   /**
   * @namespace Collection
   */
-  function countriesMap(templateBaseUrl) {
+  function countriesGeoMap(templateBaseUrl) {
 
     /**
     * @name directive
@@ -25,7 +25,9 @@
       controller: 'CountriesMapController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {},
+      scope: {
+        mapHeight: '@',
+      },
       templateUrl: templateBaseUrl + '/templates/countries/countries-map.html'
     };
 

@@ -32,7 +32,9 @@
                         <h2>Related project map</h2>
                     </div>
                     <div class="map country">
-                        <temp-locations-geo-map exact-location="vm.country" map-height="350px"></temp-locations-geo-map>
+                        <locations-geo-map exact-location="vm.country" map-height="350px"></locations-geo-map>
+
+
                     </div>
                     <div class="white no-margin-bottom no-padding-bottom">
                         <h2>Financial</h2>
@@ -45,7 +47,7 @@
                                         Total county expenditure
                                     </td>
                                     <td>
-                                        {{budget.budget__value | shortcurrency :'€'}}
+                                        {{vm.disbursements | shortcurrency :'€'}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -53,7 +55,7 @@
                                         Total county budget
                                     </td>
                                     <td>
-                                        {{budget.budget__value | shortcurrency :'€'}}
+                                        {{vm.budget | shortcurrency :'€'}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -62,8 +64,8 @@
                                     </td>
                                     <td>
                                         <div class="progress">
-                                          <div class="progress-bar" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%;">
-                                            77% spent
+                                          <div class="progress-bar" role="progressbar" aria-valuenow="vm.budgetLeft" aria-valuemin="0" aria-valuemax="100" ng-style="vm.progressStyle">
+                                            {{vm.budgetLeft}}% spent
                                             <div class="gradient"></div>
                                           </div>
                                         </div>
@@ -80,15 +82,15 @@
                     <div class="panel lightblue with-pie">
                         <h3>Projects per sector</h3>
                         <hr>
-                        <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
+                        <oipa-pie-chart group-by="sector" aggregation-key="count"></oipa-pie-chart>
                         <h3>Projects per programme</h3>
                         <hr>
-                        <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
+                        <oipa-pie-chart group-by="programme" aggregation-key="count"></oipa-pie-chart>
                     </div>
                      <div class="panel lightblue">
                         <h3>More information</h3>
                         <hr>
-                        <p><a href="" target="_blank"><i class="icon link"></i>Visit country site on RVO.nl</a>
+                        <p><a ng-href="{{vm.countryPageUrl}}" target="_blank"><i class="icon link"></i>Visit country site on RVO.nl</a>
                     </div>
                     <div class="panel lightblue">
                         <h3>Related videos</h3>
@@ -148,7 +150,7 @@
                 <div class="col-md-12">
 
                     <activity-list 
-                        has-to-contain="countries__in" 
+                        has-to-contain="recipient_country" 
                         count="vm.tabs[1].count"
                         shown="vm.selectedTab == 'activities'"></activity-list>
 
@@ -163,7 +165,7 @@
                 <div class="col-md-12">
 
                     <sector-list 
-                        has-to-contain="countries__in" 
+                        has-to-contain="recipient_country" 
                         count="vm.tabs[2].count"
                         shown="vm.selectedTab == 'sectors'"></sector-list>
                 </div>
@@ -177,7 +179,7 @@
                 <div class="col-md-12">
 
                     <implementing-organisations-list 
-                        has-to-contain="countries__in"
+                        has-to-contain="recipient_country"
                         count="vm.tabs[3].count"
                         shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
                 </div>

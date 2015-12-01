@@ -46,6 +46,10 @@
         padding: 0,
         showLegend: false,
         growOnHover: false,
+        tooltipContent: function(key, date, e, graph){
+          console.log(e);
+          return 'Pita?';
+        },
         xAxis: {
             axisLabel: vm.xAxis,
             tickFormat: function(d) {
@@ -97,6 +101,61 @@
 
     vm.reformatData = function(data){
       var values = [];
+
+      if(vm.groupBy == 'sector'){
+
+        var newData = [];
+
+        var sectors = {
+          "11": "Education",
+          "12": "Health",
+          "13": "Population policies / programmes and reproductive health",
+          "14": "Water and sanitation",
+          "15": "Government and civil society",
+          "16": "Other social infrastructure and services",
+          "21": "Transport and storage",
+          "22": "communication",
+          "23": "Energy generation and supply",
+          "24": "Banking and financial services",
+          "25": "business and other services",
+          "31": "Agriculture / forestry / fishing",
+          "32": "industry / mineral resources / construction",
+          "33": "trade related / tourism",
+          "41": "General environmental protection",
+          "43": "Other multisector",
+          "51": "General budget support",
+          "52": "Developmental food aid/Food security assistance",
+          "53": "Other commodity assistance",
+          "60": "Action relating to debt",
+          "72": "Emergency Response",
+          "73": "Reconstruction relief and rehabilitation",
+          "74": "Disaster prevention and preparedness",
+          "91": "Administrative costs of donors",
+          "92": "Support to Non- governmental organisations",
+          "93": "Refugees in donor countries",
+          "99": "Unallocated / Unspecified",
+        }
+
+        var filledSectors = {};
+
+        for(var i = 0;i < data.length;i++){
+          var dac2 = data[i].sector.code.substring(0,2);
+          if(filledSectors[dac2] == undefined){
+            filledSectors[dac2] = {};
+            filledSectors[dac2].sector = {'code':dac2,  'name': sectors[dac2] };
+            filledSectors[dac2][vm.aggregationKey] = data[i][vm.aggregationKey];
+          } else {
+            filledSectors[dac2][vm.aggregationKey] += data[i][vm.aggregationKey];
+          }
+        }
+
+        data = [];
+        for(var code in filledSectors){
+          data.push(filledSectors[code]);
+        }
+
+
+      }
 
       for (var i = 0; i < data.length;i++){
         values.push([data[i][vm.groupBy].name, data[i][vm.aggregationKey]]);

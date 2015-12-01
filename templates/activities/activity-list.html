@@ -21,6 +21,8 @@
                         <select
                           ng-model="vm.order_by"
                           ng-change="vm.toggleOrder()">
+                          <option value="title">Title (A-Z)</option>
+                          <option value="-title">Title (Z-A)</option>
                           <option value="start_actual">Starting date (increasing)</option>
                           <option value="-start_actual">Starting date (decreasing)</option>
                           <option value="total_budget">Budget (increasing)</option>
@@ -55,10 +57,22 @@
         <tr
             ng-show="vm.activities.length != 0"
             ng-repeat="item in vm.activities">
-            <td><a ui-sref="activiteit({ activity_id: item.id })">{{ item.title.narratives[0].text }}</a></td>
-            <td>{{item.activity_status.name}}</td>
-            <td><a ng-repeat="recipient_country in vm.activity.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">{{recipient_country.country.name}}{{$last ? '' : ', '}}</a></td>
-            <td>{{item.activity_aggregation.incoming_funds_value | shortcurrency :'€'}}</td>
+            <td>
+              <a ui-sref="activiteit({ activity_id: item.id })">
+                {{ item.title.narratives[0].text }}
+              </a>
+            </td>
+            <td>
+              {{item.activity_status.name}}
+            </td>
+            <td>
+              <a ng-repeat="recipient_country in item.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">
+                {{recipient_country.country.name}}{{$last ? '' : ', '}}
+              </a>
+            </td>
+            <td>
+              {{item.activity_aggregation.incoming_funds_value | shortcurrency :'€'}}
+            </td>
         </tr>
     </tbody>
 </table>

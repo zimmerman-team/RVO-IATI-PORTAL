@@ -18,7 +18,7 @@
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
-    vm.order_by = 'start_actual';
+    vm.order_by = 'title';
     vm.pageSize = 15;
     vm.page = 1;
     vm.totalActivities = 0;
@@ -68,6 +68,7 @@
 
       function succesFn(data, status, headers, config){
         vm.activities = data.data.results;
+        console.log(vm.activities);
         vm.totalActivities = data.data.count;
         $scope.count = vm.totalActivities;        
       }

@@ -53,7 +53,7 @@
 <div class="row hidden-xs">
     <div class="col-sm-12 map">
         <div class="geomap-mask">  
-            <locations-geo-map map-height='450px' map-legend='false' map-dropdown='false'></locations-geo-map>
+            <countries-geo-map map-height='450px' map-legend='false'></countries-geo-map>
         </div>
     </div>
 </div>
@@ -64,7 +64,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="panel">
-            Insight into XX development aid projcts committed by the Netherlands Enterprise Agency, in XX countries, with a total budget of XX. <br>
+            Insight into XX development aid projects committed by the Netherlands Enterprise Agency, in XX countries, with a total budget of XX. <br>
             Projects unders construction as of commissioned since January 2015.
           </div>
         </div>
@@ -76,15 +76,15 @@
 <div class="container">
   <div class="row visualize">
       <div class="col-sm-4 text-center">
-        <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
+        <oipa-pie-chart group-by="activity_status" aggregation-key="incoming_fund"></oipa-pie-chart>
         <h4>Budget per programme</h4>
       </div>
       <div class="col-sm-4 text-center">
-        <oipa-pie-chart group-by="recipient_country" aggregation-key="count" top-level="true"></oipa-pie-chart>
+        <oipa-pie-chart group-by="recipient_country" aggregation-key="incoming_fund" top-level="true"></oipa-pie-chart>
         <h4>Budget per country</h4>
       </div>
       <div class="col-sm-4 text-center">
-        <oipa-pie-chart group-by="sector" aggregation-key="count" top-level="true"></oipa-pie-chart>
+        <oipa-pie-chart group-by="sector" aggregation-key="incoming_fund" top-level="true"></oipa-pie-chart>
         <h4>Budget per sector</h4>
       </div>
   </div>

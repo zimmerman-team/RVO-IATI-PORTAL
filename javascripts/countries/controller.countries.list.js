@@ -70,7 +70,7 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
-      Aggregations.aggregation('recipient_country', 'incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
+      Aggregations.aggregation('recipient_country', 'count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.countries = data.data.results;
@@ -88,7 +88,7 @@
 
       vm.busy = true;
       vm.page += 1;
-      Aggregations.aggregation('recipient_country', 'incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
+      Aggregations.aggregation('recipient_country', 'count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.countries = vm.countries.concat(data.data.results);

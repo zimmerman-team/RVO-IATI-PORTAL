@@ -37,22 +37,23 @@
 		m.updateSelectionString = function(){
       		
 	      var selectList = [
-	        m.selectArrayToString('countries', 'country_id', m.selectedCountries),
-	        m.selectArrayToString('sectors', 'sector_id', m.selectedSectors),
+	        m.selectArrayToString('recipient_country', 'country_id', m.selectedCountries),
+	        m.selectArrayToString('sector', 'sector_id', m.selectedSectors),
 	        m.selectArrayToString('participating_organisations__organisation__code', 'organisation_id', m.selectedImplementingOrganisations),
 	        m.selectArrayToString('activity_status', 'code', m.selectedActivityStatuses),
 	      ];
 
+	      console.log('TO DO: ');
 	      if(m.selectedBudget.on){
-	        selectList.push('&total_budget__gt='+m.selectedBudget.value[0]+'&total_budget__lt='+m.selectedBudget.value[1]);
+	        selectList.push('&activity_aggregation__incoming_fund__gte='+m.selectedBudget.value[0]+'&activity_aggregation__incoming_fund__lte='+m.selectedBudget.value[1]);
 	      }
 
 	      if(m.selectedTransactionYear.on){
-	        selectList.push('&transactions__transaction_date__gte='+m.selectedTransactionYear.value+'-01-01&transactions__transaction_date__lte='+m.selectedTransactionYear.value+'-12-31');
+	        selectList.push('&transaction_date_year='+m.selectedTransactionYear.value);
 	      }
 
 	      if(Search.searchString != ''){
-	        selectList.push('&query='+Search.searchString);
+	        selectList.push('&q='+Search.searchString);
 	      }
 
 	      FilterSelection.selectionString = selectList.join('');
@@ -64,7 +65,7 @@
 	      var list = [];
 
 	      if(arr.length > 0){
-	        headerName = '&' + header + '__in=';
+	        headerName = '&' + header + '=';
 	        for(var i = 0; i < arr.length; i++){
 	            list.push(arr[i][id_slug]);
 	        }

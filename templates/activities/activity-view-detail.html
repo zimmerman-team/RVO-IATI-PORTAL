@@ -82,11 +82,12 @@
                             </tr>
                             <tr>
                                 <td>Start date:</td>
-                                <td>{{vm.activity.start_actual.length ? vm.activity.start_actual : 'No data available yet' | date : 'd MMM yyyy'}}</td>
+                                <td>{{vm.start_actual}}
+                                    {{vm.start_planned ? vm.start_actual.iso_date : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
                             </tr>
                             <tr>
                                 <td>End date:</td>
-                                <td>{{vm.activity.end_actual.length ? vm.activity.end_actual : 'No data available yet' | date : 'd MMM yyyy'}}</td>
+                                <td>{{vm.end_actual ? vm.end_actual.iso_date : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
                             </tr>
                             <tr>
                                 <td>Contact:</td>
@@ -211,39 +212,39 @@
                     <table class="no-format">
                         <tr>
                             <td width="200">RVO Project: </td>
-                            <td></td>
+                            <td>{{vm.activity.iati_identifier}}</td>
                         </tr>
                         <tr>
                             <td>Title:</td>
-                            <td>XX</td>
+                            <td>{{vm.activity.title.narratives[0].text}}</td>
                         </tr>
                         <tr>
                             <td>Description:</td>
-                            <td></td>
+                            <td>{{vm.activity.description[0].narratives[0].text}}</td>
                         </tr>
                         <tr>
                             <td>Description name:</td>
-                            <td></td>
+                            <td>{{vm.activity.description[0].type.name}}</td>
                         </tr>
                         <tr>
                             <td>Status:</td>
-                            <td></td>
+                            <td>{{vm.activity.activity_status.name}}</td>
                         </tr>
                         <tr>
                             <td>Start date planned:</td>
-                            <td></td>
+                            <td>{{vm.activity.start_date_planned ? vm.activity.start_date_planned : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
                         </tr>
                         <tr>
                             <td>Start date actual:</td>
-                            <td></td>
+                            <td>{{vm.activity.start_date_actual ? vm.activity.start_date_actual : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
                         </tr>
                         <tr>
                             <td>End date planned:</td>
-                            <td>XX</td>
+                            <td>{{vm.activity.end_date_planned ? vm.activity.end_date_planned : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
                         </tr>
                         <tr>
                             <td>End date actual:</td>
-                            <td>XX</td>
+                            <td>{{vm.activity.end_date_actual ? vm.activity.end_date_actual : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
                         </tr>
                     </table>
                 </div>
@@ -354,26 +355,7 @@
                     </table>
                 </div>
 
-                <div class="panel lightblue with-table">
-
-                    <h3>Budget</h3>
-                    <hr>
-
-                    <table class="no-format">    
-                        <tr>
-                            <td width="200">Budget:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Value date:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Budget value:</td>
-                            <td>XX</td>
-                        </tr>
-                    </table>
-                </div>
+           
                 <div class="panel lightblue with-table" ng-repeat="transaction in vm.transactionData">
 
                     <h3>Transactions</h3>

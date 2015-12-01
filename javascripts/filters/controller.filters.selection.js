@@ -47,8 +47,6 @@
       FilterSelection.save();
     }
 
-    
-
     vm.removeSearch = function(){
       Search.searchString = '';
       FilterSelection.save();
