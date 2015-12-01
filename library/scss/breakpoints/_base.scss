@@ -2262,6 +2262,15 @@ table.finance {
     //   color:$rvo-blauw;
     // }
   }
+  &.no-blue {
+    thead {
+      color:$rvo-zwart;
+      border-top:1px solid $white;
+      tr {
+        background:none;
+      }
+    }
+  }
 }
 
 .video {
