@@ -790,6 +790,7 @@ FILTER BAR
   padding:5px 0;
   font-size: 13px;
   color:$white;
+  cursor: pointer;
   .selected-items {
     text-transform: uppercase;
     font-weight: 700;
@@ -808,10 +809,11 @@ FILTER BAR
       font-family: 'AGNL-Icon-Font';
       margin-right:2px;
       content:"\e62c";
+      float: left;
     }
     &:hover {
       transform:scale(1.02);
-      color:$rvo-lichtblauw;
+      color:darken(red,5%);
     }
   }
 }
@@ -1271,6 +1273,9 @@ FILTER BAR
     }
   }
 }
+.visualize {
+  padding-top:15px;
+}
 .visualize,.cirkle-vis {
   h4,h3 {
     margin-top: 0;
@@ -1282,6 +1287,9 @@ FILTER BAR
 }
 .cirkle-vis {
   //margin-top:-10px;
+  .panel {
+    padding-top:15px !important;
+  }
   h4 {
     margin-top:-15px;
   }
@@ -1889,22 +1897,25 @@ SLIDER
     font-weight: 300;
     opacity: 1;
     font-size: 14px;
+    margin-left:-38px !important;
+    font-size: 12px;
     .tooltip-inner {
-      background: rgba(0,0,0, 0.3);
+      background: $rvo-donkerblauw;
+      box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.3);
       &:before {
         content: '\20AC\2008' ;
       }
     }
     &.top {
-      top:-48px !important;
+      margin-top:-45px !important;
       .tooltip-arrow {
-        border-top-color: rgba(0,0,0, 0.3);
+        border-top-color: $rvo-donkerblauw;
       }
     }
     &.bottom {
-      top:12px !important;
+     margin-top:-10px !important;
       .tooltip-arrow {
-        border-bottom-color: rgba(0,0,0, 0.3);
+        border-bottom-color: $rvo-donkerblauw;
       }
     }
   }
@@ -2212,7 +2223,7 @@ table.no-format {
 
 .panel.with-pie {
   svg {
-    margin:-25px 0;
+   // margin:-25px 0;
   }
 }
 
