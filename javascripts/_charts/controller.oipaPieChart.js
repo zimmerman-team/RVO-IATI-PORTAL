@@ -5,14 +5,16 @@
     .module('oipa.charts')
     .controller('OipaPieChartController', OipaPieChartController);
 
-  OipaPieChartController.$inject = ['$scope', 'Aggregations','$filter'];
+  OipaPieChartController.$inject = ['$scope', 'Aggregations','$filter','templateBaseUrl'];
 
   /**
   * @namespace ActivitiesController
   */
-  function OipaPieChartController($scope, Aggregations, $filter) {
+  function OipaPieChartController($scope, Aggregations, $filter,templateBaseUrl) {
     
     var vm = this;
+    vm.templateBaseUrl = templateBaseUrl;
+    vm.chartLoaded = '';
     vm.groupBy = $scope.groupBy;
     vm.aggregationKey = $scope.aggregationKey;
     vm.aggregationFilters = $scope.aggregationFilters;
@@ -46,7 +48,7 @@
         padding: 0,
         showLegend: false,
         growOnHover: false,
-        noData: 'Loading...',
+        noData: '',
         tooltipContent: function(key, date, e, graph){
           console.log(e);
           var content = '<h4><span class="flag-icon flag-icon-"></span>'+e.label+'</h4>'+
@@ -80,6 +82,7 @@
 
       function succesFn(data, status, headers, config){
         vm.chartData = vm.reformatData(data.data.results);
+        vm.chartLoaded = true;
       }
 
       function errorFn(data, status, headers, config){

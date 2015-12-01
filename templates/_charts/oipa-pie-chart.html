@@ -1,3 +1,8 @@
-<nvd3 
-options="vm.chartOptions" 
-data="vm.chartData"></nvd3>
+<div class="chart-wrap">
+	<nvd3 
+		options="vm.chartOptions" 
+		data="vm.chartData"></nvd3>
+	<div ng-hide="vm.chartLoaded" class="svg-loader">
+		<img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
+	</div>
+</div>

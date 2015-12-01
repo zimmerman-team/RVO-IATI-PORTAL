@@ -1296,6 +1296,17 @@ FILTER BAR
 }
 
 //chart dingen
+.chart-wrap {
+  position:relative;
+  .svg-loader {
+    position:absolute;
+    margin:0;
+    left:50%;
+    margin-left:-25px;
+    top:50%;
+    margin-top:-25px;
+  }
+}
 .checkboxes {
   .checkbox {
     float: left;
