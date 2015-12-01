@@ -1,12 +1,6 @@
 MAP HERE
 
-<div class="row" 
-    ng-show="
-      vm.currentPage != 'search' &&
-      vm.currentPage != 'programme' &&
-      vm.currentPage != 'country' &&
-      vm.currentPage != 'sector' &&
-      vm.currentPage != 'organisation'">
+<div class="row" ng-if="vm.currentPage === 'organisations'">
   <div class="col-sm-12">
     <div class="list front-callout">
       <div class="row">
@@ -24,11 +18,11 @@ MAP HERE
     <div class="col-xs-12">
         <div class="panel lightblue clearfix no-padding-top no-margin-bottom">
             <div class="row">
-                <div class="col-sm-3 col-sm-offset-3">
+                <div class="col-sm-3 col-sm-offset-3 chart">
                     <oipa-pie-chart group-by="organisation" aggregation-key="count"></oipa-pie-chart>
                     <h4>Project distribution</h4>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 chart">
                     <oipa-pie-chart group-by="organisation" aggregation-key="count"></oipa-pie-chart>
                     <h4>Budget distibution</h4>
                 </div>
