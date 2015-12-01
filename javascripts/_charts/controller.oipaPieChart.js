@@ -46,10 +46,10 @@
         padding: 0,
         showLegend: false,
         growOnHover: false,
-        tooltipContent: function(key, date, e, graph){
-          console.log(e);
-          return 'Pita?';
-        },
+        // tooltipContent: function(key, date, e, graph){
+        //   console.log(e);
+        //   return 'Pita?';
+        // },
         xAxis: {
             axisLabel: vm.xAxis,
             tickFormat: function(d) {
