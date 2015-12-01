@@ -1,13 +1,27 @@
 <div id="main-content" >
 
 	<filter-bar 
-	views="[{'id':'sectors', 'name': 'Visualisation'}, {'id':'sector-list', 'name': 'List'}]"
-	current-page="themas"></filter-bar>
+		views="[{'id':'sectors', 'name': 'Visualisation'}, {'id':'sector-list', 'name': 'List'}]"
+		current-page="themas"></filter-bar>
 
     <!-- <top-navbar 
         search-value="vm.searchValue"
         submit-search="vm.submitSearch"></top-navbar>
     -->
+
+    <div class="row switch-view">
+    	<div class="col-xs-6 text-center">
+    		<div class="panel lightblue no-margin-bottom">
+    			Map & list view
+    		</div>
+    	</div>
+    	<div class="col-xs-6 text-center">
+    		<div class="panel xlightblue no-margin-bottom" ui-sref="sectors-vis">
+    			Visualisation
+    		</div>
+    	</div>
+    </div>
+
     <countries-geo-map map-height='350px' map-legend='false' map-dropdown='false'></countries-geo-map>
 
     <sector-list search-value="vm.sectorSearchValue"></sector-list>

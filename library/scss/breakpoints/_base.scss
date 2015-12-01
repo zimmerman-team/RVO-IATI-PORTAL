@@ -1336,6 +1336,20 @@ FILTER BAR
   }
 }
 
+//view switcher
+.switch-view {
+  .panel {
+    cursor: pointer;
+    &.xlightblue {
+      transition: all .2s ease-in-out;
+      background:lighten($rvo-xlichtblauw,1%);
+      &:hover {
+        background:$rvo-footerblauw;
+      }
+    }
+  }
+}
+
 /*********************
 Activiteitenkaart
 *********************/
@@ -1495,7 +1509,7 @@ table {
   }
   tbody tr {
     &:nth-of-type(2n-1) {
-      background:lighten($rvo-lichtblauw,12%);
+      background:$rvo-footerblauw;
     }
   }
   &.expandable {
@@ -1546,7 +1560,7 @@ table {
     text-overflow: ellipsis;
   }
   .body:nth-of-type(2n) {
-    background:lighten($rvo-lichtblauw,12%);
+    background:$rvo-footerblauw;
   }
   .children {
     .expandme {
@@ -1768,7 +1782,7 @@ Sunburst vis
 *********************/
 
 .sector-vis-sunburst{
-  background:rgba(#fff,.3);
+  background:$rvo-footerblauw;
   margin-bottom: 15px;
 
 
@@ -1958,7 +1972,7 @@ ACTIVITY LIST
   .panel {
     padding:10px 30px;
     border:0;
-    background:lighten($rvo-lichtblauw,12%);
+    background:$rvo-footerblauw;
     border-radius:0;
     //color:$white;
     margin-bottom: 10px;
@@ -2091,7 +2105,7 @@ ACTIVITY LIST
     }
   }
   &.lightblue {
-    background:lighten($rvo-lichtblauw,12%);
+    background:$rvo-footerblauw;
     padding:10px 15px;
     //color:$rvo-blauw;
     h1,h2,h3,h4,h5,h6 {
@@ -2256,7 +2270,7 @@ table.finance {
     background:$rvo-xlichtblauw;
     border-bottom:1px solid $white;
     &:nth-of-type(2n) {
-      background:lighten($rvo-lichtblauw,12%);
+      background:$rvo-footerblauw;
     }
     // td {
     //   color:$rvo-blauw;
