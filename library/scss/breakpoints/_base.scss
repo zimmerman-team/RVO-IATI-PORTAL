@@ -2289,13 +2289,24 @@ FOOTER
 *********************/
 
 footer {
-  padding:15px 30px;
+  padding:30px;
   border-top: 13px solid #b2d7ee;
-  background:$rvo-xlichtblauw;
+  background:$rvo-footerblauw;
   color:$rvo-donkerblauw;
   font-size: 14px;
+  h2 {
+    font-size: 23px;
+    margin-bottom: 8px;
+    margin-top: 0;
+  }
   a {
     color:$rvo-donkerblauw;
+    &:hover {
+      color:$rvo-blauw;
+    }
+  }
+  ul {
+    margin:0;
   }
   li {
     margin-bottom: 7px;
@@ -2303,6 +2314,13 @@ footer {
       font-family: 'FontAwesome';
       content: '\f105';
       margin-right: 5px;
+    }
+  }
+  .social {
+    font-size: 22px;
+    a {
+      margin:0 2px;
+      display: inline-block;
     }
   }
 }

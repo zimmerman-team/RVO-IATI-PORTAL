@@ -52,10 +52,18 @@
     <div class="col-sm-6 col-md-3">
       <h2>Stay informed</h2>
       <ul class="">
-        <li>Subscribe to our newsletter</li>
+        <li><a href="http://www.rvo.nl/aanmelden">Subscribe to our newsletter</a></li>
       </ul>
     </div>  
-  </div>   
+  </div> 
+  <div class="row">
+    <div class="col-sm-12 text-center social">
+      <a href="http://twitter.com/RVO_Nederland" title="Twitter"><i class="fa fa-twitter-square"></i></a>
+      <a href="http://www.facebook.com/rijksdienstvoorondernemendnederland" title="Facebook"><i class="fa fa-facebook-square"></i></a>  
+      <a href="http://www.linkedin.com/company/rijksdienstvoorondernemendnederland" title="Linkedin"><i class="fa fa-linkedin-square"></i></a>
+      <a href="http://www.rvo.nl/rss" title="RSS"><i class="fa fa-rss-square"></i></a>
+    </div>
+  </div>  
 </footer>
 
 

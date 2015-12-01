@@ -36,7 +36,7 @@
         y: function(d){ return d[1]; },
         color: d3.scale.category10().range(),
         transitionDuration: 200,
-        useInteractiveGuideline: true,
+        useInteractiveGuideline: false,
         clipVoronoi: false,
         showControls: false,
         showLabels: false,
