@@ -1339,14 +1339,28 @@ FILTER BAR
 //view switcher
 .switch-view {
   .panel {
+    padding:10px 30px !important;
     cursor: pointer;
+    &.current {
+      cursor: default;
+    }
+    &.lightblue {
+      color:$rvo-donkerblauw;
+    }
     &.xlightblue {
       transition: all .2s ease-in-out;
+      color:$rvo-blauw;
       background:lighten($rvo-xlichtblauw,1%);
       &:hover {
         background:$rvo-footerblauw;
+        color:$rvo-donkerblauw;
       }
     }
+  }
+  .icon {
+    float: left;
+    font-size: 16px;
+    margin-right: 5px;
   }
 }
 
