@@ -69,14 +69,14 @@ function bones_scripts_and_styles() {
   		wp_register_style( 'titilium', 'https://fonts.googleapis.com/css?family=Droid+Sans:400,700', array(), '' );
 		wp_register_style( 'bubbleChart-css', get_stylesheet_directory_uri() . '/css/bubbleChart.css', array(), '' );
 		wp_register_style( 'bootstrap-css', get_stylesheet_directory_uri() . '/bower_components/bootstrap/dist/css/bootstrap.css', array(), '' );
-		wp_register_style( 'leaflet-css', get_stylesheet_directory_uri() . '/bower_components/leafletjs/dist/leaflet.css', array(), '' );
-		wp_register_style( 'angular-slider', get_stylesheet_directory_uri() . '/bower_components/bootstrap-slider/dist/css/bootstrap-slider.css', array(), '' );
+		wp_register_style( 'leaflet-css', get_stylesheet_directory_uri() . '/bower_components/leaflet/dist/leaflet.css', array(), '' );
+		wp_register_style( 'angular-slider', get_stylesheet_directory_uri() . '/bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css', array(), '' );
 		wp_register_style( 'nvd3.css', get_stylesheet_directory_uri() . '/bower_components/nvd3/build/nv.d3.min.css', array(), '' );
 		wp_register_style( 'bones-stylesheet', get_stylesheet_directory_uri() . '/library/css/style.css', array(), '', 'all' );
 		wp_register_style( 'bones-ie-only', get_stylesheet_directory_uri() . '/library/css/ie.css', array(), '' );
 
-		wp_register_style( 'clustermarker', get_stylesheet_directory_uri() . '/bower_components/Leaflet.markercluster-master/dist/MarkerCluster.css', array(), '' );
-		wp_register_style( 'clustermarkerdefault', get_stylesheet_directory_uri() . '/bower_components/Leaflet.markercluster-master/dist/MarkerCluster.Default.css', array(), '' );
+		wp_register_style( 'clustermarker', get_stylesheet_directory_uri() . '/bower_components/leaflet.markercluster/dist/MarkerCluster.css', array(), '' );
+		wp_register_style( 'clustermarkerdefault', get_stylesheet_directory_uri() . '/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css', array(), '' );
 
 		
 
@@ -112,9 +112,9 @@ function bones_scripts_and_styles() {
 
 
 		wp_register_script( 'bootstrap', get_stylesheet_directory_uri() . '/bower_components/bootstrap/dist/js/bootstrap.min.js', array('jquery'), '', true );
-		wp_register_script( 'leaflet.js', get_stylesheet_directory_uri() . '/bower_components/leafletjs/dist/leaflet.js', array('jquery'), '', true );
+		wp_register_script( 'leaflet.js', get_stylesheet_directory_uri() . '/bower_components/leaflet/dist/leaflet.js', array('jquery'), '', true );
 		
-		wp_register_script( 'clustermarker.js', get_stylesheet_directory_uri() . '/bower_components/Leaflet.markercluster-master/dist/leaflet.markercluster.js', array(), '', true );
+		wp_register_script( 'clustermarker.js', get_stylesheet_directory_uri() . '/bower_components/leaflet.markercluster/dist/leaflet.markercluster.js', array(), '', true );
 
 		wp_register_script( 'd3.js', get_stylesheet_directory_uri() . '/library/js/d3.min.js', array(), '', true );
 		wp_register_script( 'nvd3.js', get_stylesheet_directory_uri() . '/bower_components/nvd3/build/nv.d3.min.js', array(), '', true );
@@ -132,7 +132,7 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'angular-nvd3', get_stylesheet_directory_uri() . '/bower_components/angular-nvd3/dist/angular-nvd3.min.js', array('angular'), '', true);
 		wp_register_script( 'angular-leaflet-directive', get_stylesheet_directory_uri() . '/bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.min.js', array('angular'), '', true);
 		
-		wp_register_script( 'bootstrap-slider', get_stylesheet_directory_uri() . '/bower_components/bootstrap-slider/dist/bootstrap-slider.min.js', array('jquery'), '' );
+		wp_register_script( 'bootstrap-slider', get_stylesheet_directory_uri() . '/bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js', array('jquery'), '' );
 		wp_register_script( 'angular-slider', get_stylesheet_directory_uri() . '/bower_components/angular-bootstrap-slider/slider.js', array('angular', 'bootstrap-slider', 'jquery'), '' );
 		wp_register_script( 'angular-breadcrumb', get_stylesheet_directory_uri() . '/bower_components/angular-breadcrumb/dist/angular-breadcrumb.min.js', array('angular'), '' );
 		
