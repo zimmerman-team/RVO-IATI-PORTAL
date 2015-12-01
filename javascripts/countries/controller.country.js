@@ -64,11 +64,11 @@
       console.log("getting country failed");
     }
 
-    function setBudgetLeft(){
+    vm.setBudgetLeft = function(){
       vm.budgetLeft = Math.round(vm.disbursements / vm.budget * 100);
-      vm.progressStyle = {'width': vm.depleted + '%'}
+      vm.progressStyle = {'width': vm.budgetLeft + '%'}
       console.log(vm.budgetLeft);
-      consle.log(vm.progressStyle);
+      console.log(vm.progressStyle);
     }
 
     vm.update = function(selectionString){

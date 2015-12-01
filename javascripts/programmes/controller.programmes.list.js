@@ -19,7 +19,7 @@
     vm.filterSelection = FilterSelection;
     vm.activities = [];
     vm.order_by = 'start_actual';
-    vm.page_size = 5;
+    vm.page_size = 15;
     vm.page = 1;
     vm.totalActivities = 0;
     vm.hasToContain = $scope.hasToContain;
