@@ -38,15 +38,15 @@
         <li class=""><a href="/topics/agriculture" class="pointer">Agrarian enterprise</a>  </li>
         <li class=""><a href="/topics/sustainable-entrepreneurship" class="pointer">Sustainable enterprise</a>  </li>
         <li class=""><a href="/topics/innovation" class="pointer">Innovative enterprise</a>  </li>
-        <li class=""><a href="/topics" class="more">All topics</a></li>
+        <li class=""><a href="/topics" class="more"><b>All topics</b></a></li>
       </ul>  
     </div>  
     <div class="col-sm-6 col-md-3">
       <h2>Related links</h2>
       <ul class="">
-        <li class=""><a href="http://www.nfia.nl/" class="pointer">Foreign investment</a>  </li>
-        <li class=""><a href="http://www.answersforbusiness.nl/" class="pointer">Answers for Business</a>  </li>
-        <li class=""><a href="http://www.hollandtrade.com/" class="pointer">Hollandtrade.com</a>  </li>
+        <li class=""><a href="http://www.nfia.nl/" class="pointer">Foreign investment <i class="icon link"></i></a>  </li>
+        <li class=""><a href="http://www.answersforbusiness.nl/" class="pointer">Answers for Business <i class="icon link"></i></a>  </li>
+        <li class=""><a href="http://www.hollandtrade.com/" class="pointer">Hollandtrade.com <i class="icon link"></i></a>  </li>
       </ul>
     </div>
     <div class="col-sm-6 col-md-3">
