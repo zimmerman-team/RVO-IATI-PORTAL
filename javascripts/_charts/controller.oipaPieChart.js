@@ -34,19 +34,19 @@
         y: function(d){ return d[1]; },
         color: d3.scale.category10().range(),
         transitionDuration: 200,
-        useInteractiveGuideline: true,
+        useInteractiveGuideline: false,
         clipVoronoi: false,
         showControls: false,
         showLabels: false,
         duration: 500,
         labelTreshhold: 0.01,
-        labelSunbeamLayout: true,
         donut: true,
         donutRatio: 0.5,
         padding: 0,
         showLegend: false,
         growOnHover: false,
         noData: 'Loading data...',
+        tooltips: true,
         tooltipContent: function(key, date, e, graph){
           console.log(e);
           var content = '<h4><span class="flag-icon flag-icon-"></span>'+e.label+'</h4>'+
