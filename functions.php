@@ -67,8 +67,7 @@ if ( ! isset( $content_width ) ) {
 /************* THUMBNAIL SIZE OPTIONS *************/
 
 // Thumbnail sizes
-add_image_size( 'bones-thumb-600', 600, 150, true );
-add_image_size( 'bones-thumb-300', 300, 100, true );
+add_image_size( 'custom-size', 745, 300, true );
 
 
 add_filter( 'image_size_names_choose', 'bones_custom_image_sizes' );

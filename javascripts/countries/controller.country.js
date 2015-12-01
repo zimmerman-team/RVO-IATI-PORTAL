@@ -25,6 +25,7 @@
     vm.budget = null;
     vm.budgetLeft = 0;
     vm.progressStyle = {};
+    vm.templateBaseUrl = templateBaseUrl;
 
     vm.tabs = [
       {'id': 'samenvatting', 'name': 'Summary', 'count': -1},
