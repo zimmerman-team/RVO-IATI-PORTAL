@@ -1,6 +1,12 @@
 MAP HERE
 
-<div class="row">
+<div class="row" 
+    ng-show="
+      vm.currentPage != 'search' &&
+      vm.currentPage != 'programme' &&
+      vm.currentPage != 'country' &&
+      vm.currentPage != 'sector' &&
+      vm.currentPage != 'organisation'">
   <div class="col-sm-12">
     <div class="list front-callout">
       <div class="row">
@@ -52,7 +58,7 @@ MAP HERE
 
     <div ng-if='vm.totalOrganisations == 0' class="row">
         <div class="col-sm-12">
-            <div class="extra-padding">
+            <div class="no-results">
                 <h2>Nothing found</h2>
                 <p>Please select some different filters.</p>
             </div>
@@ -60,7 +66,7 @@ MAP HERE
     </div>
 </div>
 
-<table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' class="table list-overview">
+<table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' class="table list-overview" ng-show="vm.organisations.length != 0">
     <thead>
         <tr>
             <th>Organisation</th>
@@ -71,7 +77,6 @@ MAP HERE
     </thead>
     <tbody>
         <tr
-            ng-show="vm.organisations.length != 0"
             ng-repeat="item in vm.organisations">
             <td><a ui-sref="organisation({ organisation_id: item.name })">{{ item.name }}</a></td>
             <td>{{item.count}}</td>

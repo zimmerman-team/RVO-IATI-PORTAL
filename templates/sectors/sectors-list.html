@@ -40,7 +40,13 @@
     </div>    
 </script>
 
-<div class="row">
+<div class="row" 
+    ng-show="
+      vm.currentPage != 'search' &&
+      vm.currentPage != 'programme' &&
+      vm.currentPage != 'country' &&
+      vm.currentPage != 'sector' &&
+      vm.currentPage != 'organisation'">
     <div class="col-sm-12">
         <div class="list front-callout">
             <div class="row">
@@ -94,7 +100,7 @@
 
     <div ng-if='vm.totalSectors == 0' class="row">
         <div class="col-sm-12">
-            <div class="extra-padding">
+            <div class="no-results">
                 <h2>Nothing found</h2>
                 <p>Please select some different filters.</p>
             </div>

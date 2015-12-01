@@ -46,6 +46,7 @@
         padding: 0,
         showLegend: false,
         growOnHover: false,
+        noData: 'Loading data...',
         tooltipContent: function(key, date, e, graph){
           console.log(e);
           var content = '<h4><span class="flag-icon flag-icon-"></span>'+e.label+'</h4>'+
