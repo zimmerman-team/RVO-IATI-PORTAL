@@ -5,12 +5,12 @@
     .module('oipa.charts')
     .controller('OipaPieChartController', OipaPieChartController);
 
-  OipaPieChartController.$inject = ['$scope', 'Aggregations'];
+  OipaPieChartController.$inject = ['$scope', 'Aggregations','$filter'];
 
   /**
   * @namespace ActivitiesController
   */
-  function OipaPieChartController($scope, Aggregations) {
+  function OipaPieChartController($scope, Aggregations, $filter) {
     
     var vm = this;
     vm.groupBy = $scope.groupBy;
@@ -48,7 +48,14 @@
         growOnHover: false,
         tooltipContent: function(key, date, e, graph){
           console.log(e);
-          return 'Pita?';
+          var content = '<h4><span class="flag-icon flag-icon-"></span>'+e.label+'</h4>'+
+                        '<hr>'+
+                        '<p><i class="icon lightbulb"></i><b>Projects:</b> '+e.value+'</p>'+
+                        '<p><i class="icon euro"></i><b>Total budget:</b> '+ $filter('shortcurrency')(e.value,'€') +'</p>';
+                        // '<p><i class="icon medal"></i><b>Sectors:</b> '+ vm.countryMarkerData[i]['sector_count'] +'</p>'+
+                        //'<hr>'+
+                        //'<a href=""><i class="icon graph"></i>Go to detail page</a>'
+          return content;
         },
         xAxis: {
             axisLabel: vm.xAxis,

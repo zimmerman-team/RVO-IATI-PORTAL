@@ -1286,33 +1286,6 @@ FILTER BAR
 }
 
 //chart dingen
-.nvtooltip {
-  border-radius: 0px;
-  box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.35);
-  color: $rvo-zwart;
-  background-color: #fff;
-  border:0;
-  margin-top:-40px;
-  margin-left:-20px;
-  h3 {
-    font-size: 16px;
-    font-weight: 700;
-    border-bottom:1px dotted $rvo-donkerblauw;
-    padding:10px;
-    text-align: left;
-    max-width: 250px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color:$rvo-donkerblauw;
-    background:none !important;
-  }
-  p {
-    text-align: left;
-    padding:10px;
-  }
-}
-
 .checkboxes {
   .checkbox {
     float: left;
@@ -2332,6 +2305,10 @@ footer {
   }
 }
 
+.leaflet-control-layers  {
+  display: none;
+}
+
 .geomap-mask {
 }
 
@@ -2569,7 +2546,7 @@ footer {
   }
   p {
     margin:0 0 2px;
-    font-size: 1em;
+    font-size: 12px;
     color:$rvo-donkerblauw;
   }
   h4 {
@@ -2586,6 +2563,43 @@ footer {
   }
   .btn {
     margin-top:10px;
+  }
+  .icon {
+    margin-right: 3px;
+  }
+}
+
+//donut pie chart tooltips
+.nvtooltip {
+  padding:10px;
+  width: 280px;
+  border-radius: 0px;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+  color: $rvo-zwart;
+  background-color: #fff;
+  border:0;
+  margin-top:-40px;
+  margin-left:-20px;
+  text-align:left;
+  h4 {
+    margin-top:0;
+    color:$rvo-donkerblauw;
+    text-align:left;
+    width: 100%;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+  }
+  p {
+    margin:0 0 2px;
+    font-size: 12px;
+    color:$rvo-donkerblauw;
+    text-align:left;
+    padding:0;
+  }
+  hr {
+    margin:10px -10px;
+    border-top:1px dotted $rvo-donkerblauw;
   }
   .icon {
     margin-right: 3px;
