@@ -44,8 +44,8 @@
 <table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' class="table list-overview" ng-show="vm.organisations.length != 0">
     <thead>
         <tr>
-            <th>Organisation</th>
-            <th>Number of programmes</th>
+            <th>Project partners</th>
+            <th>Number of projects</th>
             <th>Organisation type</th>
         </tr>
     </thead>
@@ -53,7 +53,7 @@
         <tr
             ng-repeat="item in vm.organisations">
             <td><a ui-sref="organisation({ organisation_id: item.name })">{{ item.name }}</a></td>
-            <td></td>
+            <td>{{item.count}}</td>
             <td>TO DO: Gov/non-gov</td>
         </tr>
     </tbody>

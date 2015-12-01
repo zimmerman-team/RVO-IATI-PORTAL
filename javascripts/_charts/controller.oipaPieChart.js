@@ -42,7 +42,6 @@
         showLabels: false,
         duration: 500,
         labelTreshhold: 0.01,
-        labelSunbeamLayout: true,
         donut: true,
         donutRatio: 0.5,
         padding: 0,

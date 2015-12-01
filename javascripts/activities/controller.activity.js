@@ -32,7 +32,7 @@
       {'id': 'detailedreport', 'name': 'Detailed report', 'count': -1},
     ]
 
-    activate();
+    
 
     function activate() {      
       console.log('TO DO: results, waiting for parser implementation');
@@ -56,12 +56,105 @@
 
       function procesTransactions(data, status, headers, config){
         vm.transactionData = data.data.results;
+        vm.reformatTransactionData(data.data.results);
       }
 
       function errorFn(data, status, headers, config) {
         console.log("getting activity failed");
       }
     }
+
+    vm.transactionChartData = [];
+    vm.transactionChartOptions = {
+      chart: {
+        type: 'lineChart',
+        height: 450,
+        margin : {
+            top: 20,
+            right: 20,
+            bottom: 60,
+            left: 85
+        },
+        x: function(d){ return d[0]; },
+        y: function(d){ return d[1]; },
+        color: d3.scale.category10().range(),
+        transitionDuration: 300,
+        useInteractiveGuideline: true,
+        clipVoronoi: false,
+        interpolate: 'step',
+        xAxis: {
+            axisLabel: '',
+            tickFormat: function(d) {
+              return d3.time.format('%Y-%m-%d')(new Date(d))
+            },
+            showMaxMin: false,
+            staggerLabels: true
+        },
+        yAxis: {
+            axisLabel: '',
+            tickFormat: function(d){
+              return $filter('shortcurrency')(d,'€');
+            },
+            axisLabelDistance: 20
+        }
+      }
+    };
+
+    vm.reformatTransactionData = function(transactions){
+      console.log(transactions);
+      var data = [
+        {
+            values: [],
+            key: 'Budget', 
+            color: '#2077B4'  
+        },
+        {
+            values: [],
+            key: 'Disbursement',
+            color: '#FF7F0E'
+        },
+      ];
+
+      for (var i =0; i < transactions.length;i++){
+
+        var date = transactions[i].transaction_date;
+        var value = transactions[i].value;
+
+        if(transactions[i].transaction_type.code == 2){
+          data[0]['values'].push([(new Date(date).getTime()), parseInt(value)]);
+        } else if(transactions[i].transaction_type.code == 3){
+          data[1]['values'].push([(new Date(date).getTime()), parseInt(value)]);
+        }
+      }
+
+      function sortFunction(a, b) {
+          if (a[0] === b[0]) {
+              return 0;
+          }
+          else {
+              return (a[0] < b[0]) ? -1 : 1;
+          }
+      }
+
+      
+
+      data[0]['values'].sort(sortFunction);
+      data[1]['values'].sort(sortFunction);
+
+      for (var i = 1; i < data[0]['values'].length;i++){
+        data[0]['values'][i][1] += data[0].values[(i-1)][1];
+      }
+
+      for (var i = 1; i < data[1]['values'].length;i++){
+        data[1]['values'][i][1] += data[1].values[(i-1)][1];
+      }
+
+      console.log(data);
+
+      vm.transactionChartData = data;
+    }
+
+    activate();
 
   }
 })();
