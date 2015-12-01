@@ -824,6 +824,7 @@ FILTER BAR
   text-transform: uppercase;
   font-weight: 700;
   padding:0 15px;
+  margin-top: 10px;
   .sort-item {
     margin-right: 15px;
     cursor:pointer;
@@ -1254,7 +1255,7 @@ FILTER BAR
   text-align: center;
   font-weight: 700;
   &.list {
-    margin-bottom: 10px;
+    //margin-bottom: 10px;
   }
   .panel {
     border:0;
@@ -1279,7 +1280,7 @@ FILTER BAR
   }
 }
 .cirkle-vis {
-  margin-top:-10px;
+  //margin-top:-10px;
   h4 {
     margin-top:-15px;
   }
