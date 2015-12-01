@@ -13,17 +13,21 @@
 </div>
 
 <div class="row cirkle-vis">
-  <div class="col-sm-3 col-sm-offset-3">
-    <oipa-pie-chart group-by="recipient_country" aggregation-key="count"></oipa-pie-chart>
-    <h4>Project distribution</h4>
-  </div>
-  <div class="col-sm-3">
-    <oipa-pie-chart group-by="recipient_country" aggregation-key="incoming_fund"></oipa-pie-chart>
-    <h4>Budget distibution</h4>
-  </div>
+    <div class="col-xs-12">
+        <div class="panel lightblue clearfix no-padding-top">
+            <div class="row">
+                <div class="col-sm-3 col-sm-offset-3">
+                    <oipa-pie-chart group-by="recipient_country" aggregation-key="count"></oipa-pie-chart>
+                    <h4>Project distribution</h4>
+                </div>
+                <div class="col-sm-3">
+                    <oipa-pie-chart group-by="recipient_country" aggregation-key="incoming_fund"></oipa-pie-chart>
+                    <h4>Budget distibution</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<hr class="darkblue">
 
 <div class="container list-view-wrapper">
      <div class="row">
