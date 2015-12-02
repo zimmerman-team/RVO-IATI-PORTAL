@@ -473,18 +473,12 @@ NAVBAR
       @extend .icon;
     }
   } 
-  .implementing-organisations {
+  .implementing-organisations, .organisations {
     a {
       @extend .icon.buildings;
       @extend .icon;
     }
-  }
-  .organisations {
-    a {
-      @extend .icon.buildings;
-      @extend .icon;
-    }
-  }               
+  }            
 
 }
 
