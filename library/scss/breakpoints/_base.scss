@@ -202,7 +202,6 @@ tr {
   float: none;
   margin-bottom: 15px;
   position:relative;
-  padding:0 15px;
   form {
     height: 34px;
   }
@@ -231,7 +230,7 @@ tr {
     padding:0;
     display: inline-block;
     position:absolute;
-    right: 15px;
+    right: 0;
     top:0;
     transition: all .2s ease-in-out;
     &:hover {
@@ -475,6 +474,12 @@ NAVBAR
     }
   } 
   .implementing-organisations {
+    a {
+      @extend .icon.buildings;
+      @extend .icon;
+    }
+  }
+  .organisations {
     a {
       @extend .icon.buildings;
       @extend .icon;
