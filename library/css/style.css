@@ -4824,7 +4824,7 @@ TOOL BAR
 ACTIVITY DETAIL
 *********************/
 /* line 1519, ../scss/breakpoints/_base.scss */
-table td {
+table td, table th {
   vertical-align: top;
 }
 
@@ -5499,40 +5499,49 @@ table.finance {
 table.finance thead {
   color: #fff;
   border: 0;
+  font-size: 16px;
 }
-/* line 2306, ../scss/breakpoints/_base.scss */
+/* line 2307, ../scss/breakpoints/_base.scss */
 table.finance thead tr {
   background: #007bc7;
 }
 /* line 2310, ../scss/breakpoints/_base.scss */
+table.finance thead th {
+  vertical-align: top;
+}
+/* line 2314, ../scss/breakpoints/_base.scss */
 table.finance th, table.finance td {
   padding: 10px 15px;
 }
-/* line 2313, ../scss/breakpoints/_base.scss */
+/* line 2317, ../scss/breakpoints/_base.scss */
 table.finance tr {
   background: #f2f8fc;
   border-bottom: 1px solid #fff;
 }
-/* line 2316, ../scss/breakpoints/_base.scss */
+/* line 2320, ../scss/breakpoints/_base.scss */
 table.finance tr:nth-of-type(2n) {
   background: #e5f1f9;
 }
-/* line 2324, ../scss/breakpoints/_base.scss */
+/* line 2328, ../scss/breakpoints/_base.scss */
 table.finance.no-blue thead {
   color: #3e3e3e;
   border-top: 1px solid #fff;
 }
-/* line 2327, ../scss/breakpoints/_base.scss */
+/* line 2331, ../scss/breakpoints/_base.scss */
 table.finance.no-blue thead tr {
   background: none;
 }
-
 /* line 2335, ../scss/breakpoints/_base.scss */
+table.finance.no-blue th, table.finance.no-blue td {
+  border-right: 1px solid #fff;
+}
+
+/* line 2342, ../scss/breakpoints/_base.scss */
 .video iframe {
   width: 100%;
   height: auto;
 }
-/* line 2339, ../scss/breakpoints/_base.scss */
+/* line 2346, ../scss/breakpoints/_base.scss */
 .video:last-of-type {
   margin-bottom: 15px;
 }
@@ -5540,7 +5549,7 @@ table.finance.no-blue thead tr {
 /*********************
 FOOTER
 *********************/
-/* line 2349, ../scss/breakpoints/_base.scss */
+/* line 2356, ../scss/breakpoints/_base.scss */
 footer {
   padding: 30px;
   border-top: 13px solid #b2d7ee;
@@ -5548,50 +5557,50 @@ footer {
   color: #114476;
   font-size: 14px;
 }
-/* line 2355, ../scss/breakpoints/_base.scss */
+/* line 2362, ../scss/breakpoints/_base.scss */
 footer h2 {
   font-size: 23px;
   margin-bottom: 8px;
   margin-top: 0;
 }
-/* line 2360, ../scss/breakpoints/_base.scss */
+/* line 2367, ../scss/breakpoints/_base.scss */
 footer a {
   color: #114476;
 }
-/* line 2362, ../scss/breakpoints/_base.scss */
+/* line 2369, ../scss/breakpoints/_base.scss */
 footer a:hover {
   color: #007bc7;
 }
-/* line 2366, ../scss/breakpoints/_base.scss */
+/* line 2373, ../scss/breakpoints/_base.scss */
 footer ul {
   margin: 0;
 }
-/* line 2369, ../scss/breakpoints/_base.scss */
+/* line 2376, ../scss/breakpoints/_base.scss */
 footer li {
   margin-bottom: 7px;
 }
-/* line 2371, ../scss/breakpoints/_base.scss */
+/* line 2378, ../scss/breakpoints/_base.scss */
 footer li:before {
   font-family: 'FontAwesome';
   content: '\f105';
   margin-right: 5px;
 }
-/* line 2377, ../scss/breakpoints/_base.scss */
+/* line 2384, ../scss/breakpoints/_base.scss */
 footer .social {
   font-size: 22px;
 }
-/* line 2379, ../scss/breakpoints/_base.scss */
+/* line 2386, ../scss/breakpoints/_base.scss */
 footer .social a {
   margin: 0 2px;
   display: inline-block;
 }
-/* line 2384, ../scss/breakpoints/_base.scss */
+/* line 2391, ../scss/breakpoints/_base.scss */
 footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subnav .samenvatting a, .subnav .samenvatting footer a, footer .subnav .detailedreport a, .subnav .detailedreport footer a, footer .subnav .activities a, .subnav .activities footer a, footer .subnav .sectors a, .subnav .sectors footer a, footer .subnav .regions a, .subnav .regions footer a, footer .subnav .countries a, .subnav .countries footer a, footer .subnav .programmes a, .subnav .programmes footer a, footer .subnav .implementing-organisations a, .subnav .implementing-organisations footer a, footer .subnav .organisations a, .subnav .organisations footer a {
   font-size: 12px;
   margin-left: 3px;
 }
 
-/* line 2389, ../scss/breakpoints/_base.scss */
+/* line 2396, ../scss/breakpoints/_base.scss */
 #footer-ribbon {
   clear: both;
   width: 44px;
@@ -5602,7 +5611,7 @@ footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subn
   margin-top: 30px;
 }
 
-/* line 2400, ../scss/breakpoints/_base.scss */
+/* line 2407, ../scss/breakpoints/_base.scss */
 .ic {
   display: inline-block;
   font-family: 'iconscustom';
@@ -5614,33 +5623,33 @@ footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subn
   -moz-osx-font-smoothing: grayscale;
   transform: translate(0, 0);
 }
-/* line 2410, ../scss/breakpoints/_base.scss */
+/* line 2417, ../scss/breakpoints/_base.scss */
 .ic.ic-globe:before {
   content: "A";
 }
-/* line 2413, ../scss/breakpoints/_base.scss */
+/* line 2420, ../scss/breakpoints/_base.scss */
 .ic.ic-map:before {
   content: "@";
 }
 
-/* line 2419, ../scss/breakpoints/_base.scss */
+/* line 2426, ../scss/breakpoints/_base.scss */
 .map-holder {
   background-color: rgba(41, 171, 226, 0.3);
   position: relative;
   padding: 15px;
   margin-bottom: 15px;
 }
-/* line 2424, ../scss/breakpoints/_base.scss */
+/* line 2431, ../scss/breakpoints/_base.scss */
 .map-holder h3 {
   margin-top: 0;
 }
 
-/* line 2429, ../scss/breakpoints/_base.scss */
+/* line 2436, ../scss/breakpoints/_base.scss */
 .leaflet-control-layers {
   display: none;
 }
 
-/* line 2436, ../scss/breakpoints/_base.scss */
+/* line 2443, ../scss/breakpoints/_base.scss */
 .map-switch {
   position: absolute;
   top: 3px;
@@ -5648,18 +5657,18 @@ footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subn
   width: 220px;
   z-index: 99;
 }
-/* line 2442, ../scss/breakpoints/_base.scss */
+/* line 2449, ../scss/breakpoints/_base.scss */
 .map-switch .custom-select {
   border-color: #ccc;
 }
-/* line 2446, ../scss/breakpoints/_base.scss */
+/* line 2453, ../scss/breakpoints/_base.scss */
 .map-switch select {
   font-size: 16px;
   font-weight: 600;
   padding-left: 10px;
 }
 
-/* line 2489, ../scss/breakpoints/_base.scss */
+/* line 2496, ../scss/breakpoints/_base.scss */
 .marker-circle {
   border-radius: 22px;
   font-size: 15px;
@@ -5667,57 +5676,57 @@ footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subn
   height: 22px;
 }
 
-/* line 2498, ../scss/breakpoints/_base.scss */
+/* line 2505, ../scss/breakpoints/_base.scss */
 .legend .kleur-2 .fa.kleur {
   color: #cf2026;
 }
 
-/* line 2501, ../scss/breakpoints/_base.scss */
+/* line 2508, ../scss/breakpoints/_base.scss */
 .legend .kleur-3 .fa.kleur {
   color: #4b672f;
 }
 
-/* line 2504, ../scss/breakpoints/_base.scss */
+/* line 2511, ../scss/breakpoints/_base.scss */
 .legend .kleur-4 .fa.kleur {
   color: #f4a01d;
 }
 
-/* line 2507, ../scss/breakpoints/_base.scss */
+/* line 2514, ../scss/breakpoints/_base.scss */
 .legend .kleur-5 .fa.kleur {
   color: #927fba;
 }
 
-/* line 2511, ../scss/breakpoints/_base.scss */
+/* line 2518, ../scss/breakpoints/_base.scss */
 .marker-circle-Transitionrelation {
   background-color: rgba(207, 32, 38, 0.8);
 }
 
-/* line 2515, ../scss/breakpoints/_base.scss */
+/* line 2522, ../scss/breakpoints/_base.scss */
 .marker-circle-EXITrelation {
   background-color: rgba(75, 103, 47, 0.8);
 }
 
-/* line 2519, ../scss/breakpoints/_base.scss */
+/* line 2526, ../scss/breakpoints/_base.scss */
 .marker-circle-Aidrelation {
   background-color: rgba(63, 169, 245, 0.8);
 }
 
-/* line 2523, ../scss/breakpoints/_base.scss */
+/* line 2530, ../scss/breakpoints/_base.scss */
 .marker-circle-Traderelation {
   background-color: rgba(244, 160, 29, 0.8);
 }
 
-/* line 2527, ../scss/breakpoints/_base.scss */
+/* line 2534, ../scss/breakpoints/_base.scss */
 .marker-circle-Other {
   background-color: rgba(146, 127, 186, 0.8);
 }
 
-/* line 2530, ../scss/breakpoints/_base.scss */
+/* line 2537, ../scss/breakpoints/_base.scss */
 .marker-circle-Other2 {
   background-color: #007bc7;
 }
 
-/* line 2534, ../scss/breakpoints/_base.scss */
+/* line 2541, ../scss/breakpoints/_base.scss */
 .tab {
   font-size: 24px;
   text-align: center;
@@ -5726,16 +5735,16 @@ footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subn
   cursor: pointer;
   transition: all .2s;
 }
-/* line 2541, ../scss/breakpoints/_base.scss */
+/* line 2548, ../scss/breakpoints/_base.scss */
 .tab.active, .tab:hover {
   background: rgba(41, 171, 226, 0.3);
 }
-/* line 2544, ../scss/breakpoints/_base.scss */
+/* line 2551, ../scss/breakpoints/_base.scss */
 .tab.active {
   cursor: auto;
 }
 
-/* line 2549, ../scss/breakpoints/_base.scss */
+/* line 2556, ../scss/breakpoints/_base.scss */
 .info {
   text-align: left;
   float: right;
@@ -5744,85 +5753,85 @@ footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subn
   padding: 10px;
   margin-bottom: 15px;
 }
-/* line 2556, ../scss/breakpoints/_base.scss */
+/* line 2563, ../scss/breakpoints/_base.scss */
 .info p {
   margin-bottom: 0;
 }
-/* line 2559, ../scss/breakpoints/_base.scss */
+/* line 2566, ../scss/breakpoints/_base.scss */
 .info .flag-icon {
   font-size: 2.5em;
   border-radius: 4px;
 }
-/* line 2563, ../scss/breakpoints/_base.scss */
+/* line 2570, ../scss/breakpoints/_base.scss */
 .info .btn {
   margin-top: 10px;
 }
 
-/* line 2568, ../scss/breakpoints/_base.scss */
+/* line 2575, ../scss/breakpoints/_base.scss */
 .legend {
   text-align: center;
   margin-top: 10px;
 }
-/* line 2571, ../scss/breakpoints/_base.scss */
+/* line 2578, ../scss/breakpoints/_base.scss */
 .legend .check {
   position: relative;
   display: inline-block;
 }
-/* line 2575, ../scss/breakpoints/_base.scss */
+/* line 2582, ../scss/breakpoints/_base.scss */
 .legend label {
   font-weight: normal;
   cursor: pointer;
 }
-/* line 2579, ../scss/breakpoints/_base.scss */
+/* line 2586, ../scss/breakpoints/_base.scss */
 .legend .labels {
   margin-left: 38px;
 }
-/* line 2582, ../scss/breakpoints/_base.scss */
+/* line 2589, ../scss/breakpoints/_base.scss */
 .legend h3 {
   font-size: 1.2em;
 }
-/* line 2585, ../scss/breakpoints/_base.scss */
+/* line 2592, ../scss/breakpoints/_base.scss */
 .legend .check {
   margin-right: 20px;
 }
-/* line 2587, ../scss/breakpoints/_base.scss */
+/* line 2594, ../scss/breakpoints/_base.scss */
 .legend .check:last-of-type {
   margin-right: 0;
 }
-/* line 2591, ../scss/breakpoints/_base.scss */
+/* line 2598, ../scss/breakpoints/_base.scss */
 .legend .faker {
   position: absolute;
   top: 4px;
 }
-/* line 2595, ../scss/breakpoints/_base.scss */
+/* line 2602, ../scss/breakpoints/_base.scss */
 .legend .fa.kleur {
   color: #29abe2;
 }
 
-/* line 2601, ../scss/breakpoints/_base.scss */
+/* line 2608, ../scss/breakpoints/_base.scss */
 .overlay {
   background: white;
   z-index: 99999;
   padding: 10px 10px;
   text-align: center;
 }
-/* line 2606, ../scss/breakpoints/_base.scss */
+/* line 2613, ../scss/breakpoints/_base.scss */
 .overlay table {
   margin: 0 auto;
 }
-/* line 2608, ../scss/breakpoints/_base.scss */
+/* line 2615, ../scss/breakpoints/_base.scss */
 .overlay table th {
   padding: 0 15px;
   font-size: 18px;
   font-weight: 600;
 }
-/* line 2613, ../scss/breakpoints/_base.scss */
+/* line 2620, ../scss/breakpoints/_base.scss */
 .overlay table td {
   padding: 5px 15px 0 15px;
   font-size: 18px;
 }
 
-/* line 2620, ../scss/breakpoints/_base.scss */
+/* line 2627, ../scss/breakpoints/_base.scss */
 .region-marker-circle {
   width: 200px;
   height: 200px;
@@ -5831,37 +5840,37 @@ footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subn
   background: rgba(40, 40, 40, 0.5);
 }
 
-/* line 2628, ../scss/breakpoints/_base.scss */
+/* line 2635, ../scss/breakpoints/_base.scss */
 .region-marker-circle:hover {
   background: rgba(0, 123, 199, 0.5);
 }
 
-/* line 2633, ../scss/breakpoints/_base.scss */
+/* line 2640, ../scss/breakpoints/_base.scss */
 .map .leaflet-div-icon {
   background: none;
   border: 0;
 }
-/* line 2637, ../scss/breakpoints/_base.scss */
+/* line 2644, ../scss/breakpoints/_base.scss */
 .map .leaflet-popup-content-wrapper {
   width: 280px;
   padding: 0;
   background-color: #fff;
   border-radius: 0;
 }
-/* line 2643, ../scss/breakpoints/_base.scss */
+/* line 2650, ../scss/breakpoints/_base.scss */
 .map .leaflet-popup-content {
   margin: 0;
   padding: 10px;
 }
-/* line 2649, ../scss/breakpoints/_base.scss */
+/* line 2656, ../scss/breakpoints/_base.scss */
 .map .leaflet-container a:hover {
   color: #114476;
 }
-/* line 2654, ../scss/breakpoints/_base.scss */
+/* line 2661, ../scss/breakpoints/_base.scss */
 .map .leaflet-top, .map .leaflet-bottom {
   z-index: 9;
 }
-/* line 2657, ../scss/breakpoints/_base.scss */
+/* line 2664, ../scss/breakpoints/_base.scss */
 .map a.leaflet-popup-close-button {
   display: block;
   height: 30px;
@@ -5873,37 +5882,37 @@ footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subn
   text-indent: 5px;
   font-weight: 700;
 }
-/* line 2668, ../scss/breakpoints/_base.scss */
+/* line 2675, ../scss/breakpoints/_base.scss */
 .map p {
   margin: 0 0 2px;
   font-size: 12px;
   color: #114476;
 }
-/* line 2673, ../scss/breakpoints/_base.scss */
+/* line 2680, ../scss/breakpoints/_base.scss */
 .map h4 {
   margin-top: 0;
   color: #114476;
 }
-/* line 2677, ../scss/breakpoints/_base.scss */
+/* line 2684, ../scss/breakpoints/_base.scss */
 .map hr {
   margin: 10px -10px;
   border-top: 1px dotted #114476;
 }
-/* line 2681, ../scss/breakpoints/_base.scss */
+/* line 2688, ../scss/breakpoints/_base.scss */
 .map .flag-icon {
   border-radius: 4px;
   margin-right: 5px;
 }
-/* line 2685, ../scss/breakpoints/_base.scss */
+/* line 2692, ../scss/breakpoints/_base.scss */
 .map .btn {
   margin-top: 10px;
 }
-/* line 2688, ../scss/breakpoints/_base.scss */
+/* line 2695, ../scss/breakpoints/_base.scss */
 .map .icon, .map .subnav .summary a, .subnav .summary .map a, .map .subnav .samenvatting a, .subnav .samenvatting .map a, .map .subnav .detailedreport a, .subnav .detailedreport .map a, .map .subnav .activities a, .subnav .activities .map a, .map .subnav .sectors a, .subnav .sectors .map a, .map .subnav .regions a, .subnav .regions .map a, .map .subnav .countries a, .subnav .countries .map a, .map .subnav .programmes a, .subnav .programmes .map a, .map .subnav .implementing-organisations a, .subnav .implementing-organisations .map a, .map .subnav .organisations a, .subnav .organisations .map a {
   margin-right: 3px;
 }
 
-/* line 2694, ../scss/breakpoints/_base.scss */
+/* line 2701, ../scss/breakpoints/_base.scss */
 .nvtooltip {
   padding: 10px;
   width: 280px;
@@ -5916,7 +5925,7 @@ footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subn
   margin-left: -20px;
   text-align: left;
 }
-/* line 2705, ../scss/breakpoints/_base.scss */
+/* line 2712, ../scss/breakpoints/_base.scss */
 .nvtooltip h4 {
   margin-top: 0;
   color: #114476;
@@ -5926,7 +5935,7 @@ footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subn
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-/* line 2714, ../scss/breakpoints/_base.scss */
+/* line 2721, ../scss/breakpoints/_base.scss */
 .nvtooltip p {
   margin: 0 0 2px;
   font-size: 12px;
@@ -5934,22 +5943,22 @@ footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subn
   text-align: left;
   padding: 0;
 }
-/* line 2721, ../scss/breakpoints/_base.scss */
+/* line 2728, ../scss/breakpoints/_base.scss */
 .nvtooltip hr {
   margin: 10px -10px;
   border-top: 1px dotted #114476;
 }
-/* line 2725, ../scss/breakpoints/_base.scss */
+/* line 2732, ../scss/breakpoints/_base.scss */
 .nvtooltip .icon, .nvtooltip .subnav .summary a, .subnav .summary .nvtooltip a, .nvtooltip .subnav .samenvatting a, .subnav .samenvatting .nvtooltip a, .nvtooltip .subnav .detailedreport a, .subnav .detailedreport .nvtooltip a, .nvtooltip .subnav .activities a, .subnav .activities .nvtooltip a, .nvtooltip .subnav .sectors a, .subnav .sectors .nvtooltip a, .nvtooltip .subnav .regions a, .subnav .regions .nvtooltip a, .nvtooltip .subnav .countries a, .subnav .countries .nvtooltip a, .nvtooltip .subnav .programmes a, .subnav .programmes .nvtooltip a, .nvtooltip .subnav .implementing-organisations a, .subnav .implementing-organisations .nvtooltip a, .nvtooltip .subnav .organisations a, .subnav .organisations .nvtooltip a {
   margin-right: 3px;
 }
 
-/* line 2730, ../scss/breakpoints/_base.scss */
+/* line 2737, ../scss/breakpoints/_base.scss */
 .no-margin {
   margin-bottom: 0 !important;
 }
 
-/* line 2734, ../scss/breakpoints/_base.scss */
+/* line 2741, ../scss/breakpoints/_base.scss */
 #toTop {
   display: none;
   position: fixed;
@@ -5961,62 +5970,62 @@ footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subn
 }
 
 @media (max-width: 1000px) {
-  /* line 2747, ../scss/breakpoints/_base.scss */
+  /* line 2754, ../scss/breakpoints/_base.scss */
   .navbar-header {
     float: none;
   }
 
-  /* line 2750, ../scss/breakpoints/_base.scss */
+  /* line 2757, ../scss/breakpoints/_base.scss */
   .navbar-left, .navbar-right {
     float: none !important;
   }
 
-  /* line 2753, ../scss/breakpoints/_base.scss */
+  /* line 2760, ../scss/breakpoints/_base.scss */
   .navbar-toggle {
     display: block;
   }
 
-  /* line 2756, ../scss/breakpoints/_base.scss */
+  /* line 2763, ../scss/breakpoints/_base.scss */
   .navbar-collapse {
     border-top: 1px solid transparent;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
-  /* line 2760, ../scss/breakpoints/_base.scss */
+  /* line 2767, ../scss/breakpoints/_base.scss */
   .navbar-fixed-top {
     top: 0;
     border-width: 0 0 1px;
   }
 
-  /* line 2764, ../scss/breakpoints/_base.scss */
+  /* line 2771, ../scss/breakpoints/_base.scss */
   .navbar-collapse.collapse {
     display: none !important;
   }
 
-  /* line 2767, ../scss/breakpoints/_base.scss */
+  /* line 2774, ../scss/breakpoints/_base.scss */
   .navbar-nav {
     float: none !important;
     margin-top: 7.5px;
   }
 
-  /* line 2771, ../scss/breakpoints/_base.scss */
+  /* line 2778, ../scss/breakpoints/_base.scss */
   .navbar-nav > li {
     float: none;
   }
 
-  /* line 2774, ../scss/breakpoints/_base.scss */
+  /* line 2781, ../scss/breakpoints/_base.scss */
   .navbar-nav > li > a {
     padding-top: 10px;
     padding-bottom: 10px;
   }
 
-  /* line 2778, ../scss/breakpoints/_base.scss */
+  /* line 2785, ../scss/breakpoints/_base.scss */
   .collapse.in {
     display: block !important;
   }
 }
 /* RVO navigatie opgeschoond*/
-/* line 2789, ../scss/breakpoints/_base.scss */
+/* line 2796, ../scss/breakpoints/_base.scss */
 #primary-navigation {
   background: #007bc7;
   font-weight: bold;
@@ -6027,21 +6036,21 @@ footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subn
   text-align: center;
   position: relative;
 }
-/* line 2798, ../scss/breakpoints/_base.scss */
+/* line 2805, ../scss/breakpoints/_base.scss */
 #primary-navigation #main-menu-links {
   list-style: none;
   margin: 0;
   padding: 0 30px;
   overflow: hidden;
 }
-/* line 2803, ../scss/breakpoints/_base.scss */
+/* line 2810, ../scss/breakpoints/_base.scss */
 #primary-navigation #main-menu-links li {
   background: none;
   float: left;
   margin: 0;
   padding: 0;
 }
-/* line 2809, ../scss/breakpoints/_base.scss */
+/* line 2816, ../scss/breakpoints/_base.scss */
 #primary-navigation #main-menu-links a {
   display: block;
   padding: 6px 10px 4px;
@@ -6050,102 +6059,102 @@ footer .icon, footer .subnav .summary a, .subnav .summary footer a, footer .subn
   color: white;
   height: 29px;
 }
-/* line 2816, ../scss/breakpoints/_base.scss */
+/* line 2823, ../scss/breakpoints/_base.scss */
 #primary-navigation #main-menu-links a:hover, #primary-navigation #main-menu-links a.active {
   background-color: #b2d7ee;
   color: #3e3e3e;
   text-decoration: none;
 }
 
-/* line 2826, ../scss/breakpoints/_base.scss */
+/* line 2833, ../scss/breakpoints/_base.scss */
 .icon, .subnav .summary a, .subnav .samenvatting a, .subnav .detailedreport a, .subnav .activities a, .subnav .sectors a, .subnav .regions a, .subnav .countries a, .subnav .programmes a, .subnav .implementing-organisations a, .subnav .organisations a {
   display: inline-block;
 }
-/* line 2828, ../scss/breakpoints/_base.scss */
+/* line 2835, ../scss/breakpoints/_base.scss */
 .icon:before, .subnav .summary a:before, .subnav .samenvatting a:before, .subnav .detailedreport a:before, .subnav .activities a:before, .subnav .sectors a:before, .subnav .regions a:before, .subnav .countries a:before, .subnav .programmes a:before, .subnav .implementing-organisations a:before, .subnav .organisations a:before {
   font-family: 'AGNL-Icon-Font';
   font-style: normal;
 }
-/* line 2835, ../scss/breakpoints/_base.scss */
+/* line 2842, ../scss/breakpoints/_base.scss */
 .icon.right, .subnav .summary a.right, .subnav .samenvatting a.right, .subnav .detailedreport a.right, .subnav .activities a.right, .subnav .sectors a.right, .subnav .regions a.right, .subnav .countries a.right, .subnav .programmes a.right, .subnav .implementing-organisations a.right, .subnav .organisations a.right {
   margin-left: 7px;
   margin-right: 0;
   font-size: 16px;
 }
-/* line 2841, ../scss/breakpoints/_base.scss */
+/* line 2848, ../scss/breakpoints/_base.scss */
 .icon.lightbulb:before, .subnav .summary a.lightbulb:before, .subnav .samenvatting a.lightbulb:before, .subnav .detailedreport a.lightbulb:before, .subnav .activities a:before, .subnav .sectors a.lightbulb:before, .subnav .regions a.lightbulb:before, .subnav .countries a.lightbulb:before, .subnav .programmes a.lightbulb:before, .subnav .implementing-organisations a.lightbulb:before, .subnav .organisations a.lightbulb:before {
   content: '\e010';
 }
-/* line 2846, ../scss/breakpoints/_base.scss */
+/* line 2853, ../scss/breakpoints/_base.scss */
 .icon.satelite:before, .subnav .summary a.satelite:before, .subnav .samenvatting a.satelite:before, .subnav .detailedreport a.satelite:before, .subnav .activities a.satelite:before, .subnav .sectors a.satelite:before, .subnav .regions a.satelite:before, .subnav .countries a.satelite:before, .subnav .programmes a.satelite:before, .subnav .implementing-organisations a.satelite:before, .subnav .organisations a.satelite:before {
   content: '\e015';
 }
-/* line 2851, ../scss/breakpoints/_base.scss */
+/* line 2858, ../scss/breakpoints/_base.scss */
 .icon.globe:before, .subnav .summary a.globe:before, .subnav .samenvatting a.globe:before, .subnav .detailedreport a.globe:before, .subnav .activities a.globe:before, .subnav .sectors a.globe:before, .subnav .regions a.globe:before, .subnav .countries a:before, .subnav .programmes a.globe:before, .subnav .implementing-organisations a.globe:before, .subnav .organisations a.globe:before {
   content: '\e00e';
 }
-/* line 2856, ../scss/breakpoints/_base.scss */
+/* line 2863, ../scss/breakpoints/_base.scss */
 .icon.handshake:before, .subnav .summary a.handshake:before, .subnav .samenvatting a.handshake:before, .subnav .detailedreport a.handshake:before, .subnav .activities a.handshake:before, .subnav .sectors a.handshake:before, .subnav .regions a.handshake:before, .subnav .countries a.handshake:before, .subnav .programmes a:before, .subnav .implementing-organisations a.handshake:before, .subnav .organisations a.handshake:before {
   content: '\e614';
 }
-/* line 2861, ../scss/breakpoints/_base.scss */
+/* line 2868, ../scss/breakpoints/_base.scss */
 .icon.presentation:before, .subnav .summary a:before, .subnav .samenvatting a:before, .subnav .detailedreport a.presentation:before, .subnav .activities a.presentation:before, .subnav .sectors a.presentation:before, .subnav .regions a.presentation:before, .subnav .countries a.presentation:before, .subnav .programmes a.presentation:before, .subnav .implementing-organisations a.presentation:before, .subnav .organisations a.presentation:before {
   content: '\e606';
 }
-/* line 2866, ../scss/breakpoints/_base.scss */
+/* line 2873, ../scss/breakpoints/_base.scss */
 .icon.clock:before, .subnav .summary a.clock:before, .subnav .samenvatting a.clock:before, .subnav .detailedreport a.clock:before, .subnav .activities a.clock:before, .subnav .sectors a.clock:before, .subnav .regions a.clock:before, .subnav .countries a.clock:before, .subnav .programmes a.clock:before, .subnav .implementing-organisations a.clock:before, .subnav .organisations a.clock:before {
   content: '\e604';
 }
-/* line 2871, ../scss/breakpoints/_base.scss */
+/* line 2878, ../scss/breakpoints/_base.scss */
 .icon.euro:before, .subnav .summary a.euro:before, .subnav .samenvatting a.euro:before, .subnav .detailedreport a.euro:before, .subnav .activities a.euro:before, .subnav .sectors a.euro:before, .subnav .regions a.euro:before, .subnav .countries a.euro:before, .subnav .programmes a.euro:before, .subnav .implementing-organisations a.euro:before, .subnav .organisations a.euro:before {
   content: '\e00d';
 }
-/* line 2876, ../scss/breakpoints/_base.scss */
+/* line 2883, ../scss/breakpoints/_base.scss */
 .icon.search:before, .subnav .summary a.search:before, .subnav .samenvatting a.search:before, .subnav .detailedreport a.search:before, .subnav .activities a.search:before, .subnav .sectors a.search:before, .subnav .regions a.search:before, .subnav .countries a.search:before, .subnav .programmes a.search:before, .subnav .implementing-organisations a.search:before, .subnav .organisations a.search:before {
   content: '\007a';
 }
-/* line 2881, ../scss/breakpoints/_base.scss */
+/* line 2888, ../scss/breakpoints/_base.scss */
 .icon.download:before, .subnav .summary a.download:before, .subnav .samenvatting a.download:before, .subnav .detailedreport a.download:before, .subnav .activities a.download:before, .subnav .sectors a.download:before, .subnav .regions a.download:before, .subnav .countries a.download:before, .subnav .programmes a.download:before, .subnav .implementing-organisations a.download:before, .subnav .organisations a.download:before {
   content: '\e00f';
 }
-/* line 2886, ../scss/breakpoints/_base.scss */
+/* line 2893, ../scss/breakpoints/_base.scss */
 .icon.twitter:before, .subnav .summary a.twitter:before, .subnav .samenvatting a.twitter:before, .subnav .detailedreport a.twitter:before, .subnav .activities a.twitter:before, .subnav .sectors a.twitter:before, .subnav .regions a.twitter:before, .subnav .countries a.twitter:before, .subnav .programmes a.twitter:before, .subnav .implementing-organisations a.twitter:before, .subnav .organisations a.twitter:before {
   content: '\e01a';
 }
-/* line 2891, ../scss/breakpoints/_base.scss */
+/* line 2898, ../scss/breakpoints/_base.scss */
 .icon.facebook:before, .subnav .summary a.facebook:before, .subnav .samenvatting a.facebook:before, .subnav .detailedreport a.facebook:before, .subnav .activities a.facebook:before, .subnav .sectors a.facebook:before, .subnav .regions a.facebook:before, .subnav .countries a.facebook:before, .subnav .programmes a.facebook:before, .subnav .implementing-organisations a.facebook:before, .subnav .organisations a.facebook:before {
   content: '\e011';
 }
-/* line 2896, ../scss/breakpoints/_base.scss */
+/* line 2903, ../scss/breakpoints/_base.scss */
 .icon.linkedin:before, .subnav .summary a.linkedin:before, .subnav .samenvatting a.linkedin:before, .subnav .detailedreport a.linkedin:before, .subnav .activities a.linkedin:before, .subnav .sectors a.linkedin:before, .subnav .regions a.linkedin:before, .subnav .countries a.linkedin:before, .subnav .programmes a.linkedin:before, .subnav .implementing-organisations a.linkedin:before, .subnav .organisations a.linkedin:before {
   content: '\e014';
 }
-/* line 2901, ../scss/breakpoints/_base.scss */
+/* line 2908, ../scss/breakpoints/_base.scss */
 .icon.email:before, .subnav .summary a.email:before, .subnav .samenvatting a.email:before, .subnav .detailedreport a.email:before, .subnav .activities a.email:before, .subnav .sectors a.email:before, .subnav .regions a.email:before, .subnav .countries a.email:before, .subnav .programmes a.email:before, .subnav .implementing-organisations a.email:before, .subnav .organisations a.email:before {
   font-family: 'FontAwesome';
   content: '\f0e0';
 }
-/* line 2907, ../scss/breakpoints/_base.scss */
+/* line 2914, ../scss/breakpoints/_base.scss */
 .icon.graph:before, .subnav .summary a.graph:before, .subnav .samenvatting a.graph:before, .subnav .detailedreport a:before, .subnav .activities a.graph:before, .subnav .sectors a.graph:before, .subnav .regions a.graph:before, .subnav .countries a.graph:before, .subnav .programmes a.graph:before, .subnav .implementing-organisations a.graph:before, .subnav .organisations a.graph:before {
   content: '\e61e';
 }
-/* line 2912, ../scss/breakpoints/_base.scss */
+/* line 2919, ../scss/breakpoints/_base.scss */
 .icon.medal:before, .subnav .summary a.medal:before, .subnav .samenvatting a.medal:before, .subnav .detailedreport a.medal:before, .subnav .activities a.medal:before, .subnav .sectors a:before, .subnav .regions a.medal:before, .subnav .countries a.medal:before, .subnav .programmes a.medal:before, .subnav .implementing-organisations a.medal:before, .subnav .organisations a.medal:before {
   content: '\e60f';
 }
-/* line 2917, ../scss/breakpoints/_base.scss */
+/* line 2924, ../scss/breakpoints/_base.scss */
 .icon.buildings:before, .subnav .summary a.buildings:before, .subnav .samenvatting a.buildings:before, .subnav .detailedreport a.buildings:before, .subnav .activities a.buildings:before, .subnav .sectors a.buildings:before, .subnav .regions a.buildings:before, .subnav .countries a.buildings:before, .subnav .programmes a.buildings:before, .subnav .implementing-organisations a:before, .subnav .organisations a:before {
   content: '\e61a';
 }
-/* line 2922, ../scss/breakpoints/_base.scss */
+/* line 2929, ../scss/breakpoints/_base.scss */
 .icon.pin:before, .subnav .summary a.pin:before, .subnav .samenvatting a.pin:before, .subnav .detailedreport a.pin:before, .subnav .activities a.pin:before, .subnav .sectors a.pin:before, .subnav .regions a:before, .subnav .countries a.pin:before, .subnav .programmes a.pin:before, .subnav .implementing-organisations a.pin:before, .subnav .organisations a.pin:before {
   content: '\e60b';
 }
-/* line 2927, ../scss/breakpoints/_base.scss */
+/* line 2934, ../scss/breakpoints/_base.scss */
 .icon.refresh:before, .subnav .summary a.refresh:before, .subnav .samenvatting a.refresh:before, .subnav .detailedreport a.refresh:before, .subnav .activities a.refresh:before, .subnav .sectors a.refresh:before, .subnav .regions a.refresh:before, .subnav .countries a.refresh:before, .subnav .programmes a.refresh:before, .subnav .implementing-organisations a.refresh:before, .subnav .organisations a.refresh:before {
   content: '\e605';
 }
-/* line 2932, ../scss/breakpoints/_base.scss */
+/* line 2939, ../scss/breakpoints/_base.scss */
 .icon.link:before, .subnav .summary a.link:before, .subnav .samenvatting a.link:before, .subnav .detailedreport a.link:before, .subnav .activities a.link:before, .subnav .sectors a.link:before, .subnav .regions a.link:before, .subnav .countries a.link:before, .subnav .programmes a.link:before, .subnav .implementing-organisations a.link:before, .subnav .organisations a.link:before {
   content: '\0021';
 }
