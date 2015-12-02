@@ -1,0 +1,46 @@
+<div class="filter-panel">
+    <div class="extra-padding">
+        <div class="row" ng-show="vm.programmes.length == 0">
+            <div class="svg-loader">
+                <img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
+            </div>
+        </div>
+        <div class="row" ng-show="vm.programmes.length != 0">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td class="th-first">Select one or more programmes</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr 
+                            dir-paginate="item in vm.programmes | itemsPerPage: 4"  
+                            total-items="vm.totalCount"
+                            pagination-id="programmes">
+                            <td>
+                                <div class="checkbox">
+                                    <label class="switch">
+                                        <input type="checkbox" checklist-model="vm.selectedProgrammes" checklist-value="item"><i></i>
+                                        <span>{{ item.activity_id }}</span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                {{ item.count }}
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-12 text-center">
+                <button class="btn btn-default btn-save btn-openaid" ng-click="vm.save()">Save</button>
+                <dir-pagination-controls 
+                    pagination-id="programmes" 
+                    on-page-change="vm.pageChanged(newPageNumber)"></dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,16 +4,17 @@
 			<div class="col-sm-12">
 				<div class="filter-box">
 					<span class="selected-items">Your selection: </span>
-					<a class="selected filter-selected-button selectedCountries" ng-repeat="item in vm.selectedCountries" ng-click="vm.removeFilter(vm.selectedCountries, item.code)">
-						{{item.name}}
+
+					<a class="selected filter-selected-button selectedProgrammes" ng-repeat="item in vm.selectedProgrammes" ng-click="vm.removeFilter(vm.selectedProgrammes, item.code)">
+						{{item.activity_id}}
 					</a>
 
-					<a class="selected filter-selected-button selectedRegions" ng-repeat="item in vm.selectedRegions" ng-click="vm.removeFilter(vm.selectedRegions, item.code)">
-						{{item.name}}
+					<a class="selected filter-selected-button selectedCountries" ng-repeat="item in vm.selectedCountries" ng-click="vm.removeFilter(vm.selectedCountries, item.code)">
+						{{item.recipient_country.name}}
 					</a>
 
 					<a class="selected filter-selected-button selectedSectors" ng-repeat="item in vm.selectedSectors" ng-click="vm.removeFilter(vm.selectedSectors, item.code)">
-						{{item.name}}
+						{{item.sector.name}}
 					</a>
 
 					<a class="selected filter-selected-button selectedImplementingOrganisations" ng-repeat="item in vm.selectedImplementingOrganisations" ng-click="vm.removeFilter(vm.selectedImplementingOrganisations, item.code)">
@@ -21,7 +22,7 @@
 					</a>
 
 					<a class="selected filter-selected-button selectedActivityStatuses" ng-repeat="item in vm.selectedActivityStatuses" ng-click="vm.removeFilter(vm.selectedActivityStatuses, item.code)">
-						{{item.name}}
+						{{item.activity_status.name}}
 					</a>
 
 					<a 
@@ -47,7 +48,7 @@
 
 					<div style="margin-bottom:4px;" ng-show="!(
 					vm.selectedCountries.length + 
-					vm.selectedRegions.length + 
+					vm.selectedProgrammes.length + 
 					vm.selectedSectors.length + 
 					vm.selectedImplementingOrganisations.length + 
 					vm.selectedActivityStatuses.length +

@@ -17,11 +17,11 @@
         <div class="panel lightblue clearfix no-padding-top no-margin-bottom">
             <div class="row">
                 <div class="col-sm-3 col-sm-offset-3 chart">
-                    <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
+                    <oipa-pie-chart group-by="related_activity" aggregation-key="count"></oipa-pie-chart>
                     <h4>Project distribution</h4>
                 </div>
                 <div class="col-sm-3 chart">
-                    <oipa-pie-chart group-by="activity_status" aggregation-key="count"></oipa-pie-chart>
+                    <oipa-pie-chart group-by="related_activity" aggregation-key="incoming_fund"></oipa-pie-chart>
                     <h4>Budget distibution</h4>
                 </div>
             </div>
@@ -64,8 +64,8 @@
         <tr>
             <th width="500">Programme title</th>
             <th>Number of projects</th>
-            <th>Number of countries</th>
-            <th>Number of sectors</th>
+            <!-- <th>Number of countries</th> -->
+            <!-- <th>Number of sectors</th> -->
             <th>Total budget</th>
         </tr>
     </thead>
@@ -73,10 +73,10 @@
         <tr
             ng-repeat="item in vm.activities">
             <td><a ui-sref="programme({ programme_id: item.id })">{{ item.title.narratives[0].text }}</a></td>
-            <td>XX projects</td>
-            <td>XX countries</td>
-            <td>XX sectors</td>
-            <td>{{item.activity_aggregation.budget_value | shortcurrency :'€'}}</td>
+            <td>{{item.count ? item.count : '0'}} projects</td>
+            <!-- <td>XX countries</td> -->
+            <!-- <td>XX sectors</td> -->
+            <td>{{item.budget ? item.budget : 0 | shortcurrency :'€'}}</td>
         </tr>
     </tbody>
 </table>

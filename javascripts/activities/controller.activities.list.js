@@ -34,7 +34,7 @@
 
       $scope.$watch("searchValue", function (searchValue) {
         if (searchValue == undefined) return false; 
-        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&query='+searchValue;
+        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q='+searchValue;
         vm.update();
       }, true);
 
@@ -65,11 +65,10 @@
 
       vm.page = 1;
 
-      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
+      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=2', vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.activities = data.data.results;
-        console.log(vm.activities);
         vm.totalActivities = data.data.count;
         $scope.count = vm.totalActivities;        
       }
@@ -84,7 +83,7 @@
 
       vm.busy = true;
       vm.page += 1;
-      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
+      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=2', vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.activities = vm.activities.concat(data.data.results);

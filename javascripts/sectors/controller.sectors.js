@@ -68,7 +68,7 @@
       }
       filterString = filterString.join('&');
       
-      Aggregations.aggregation('sector', 'count', filterString, 'name', vm.pageSize, vm.currentPage).then(successFn, errorFn);
+      Aggregations.aggregation('sector', 'count', filterString, 'sector', vm.pageSize, vm.currentPage).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.totalCount = data.data.count;

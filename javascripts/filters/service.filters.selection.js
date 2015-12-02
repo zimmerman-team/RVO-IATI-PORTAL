@@ -9,14 +9,15 @@
 		.module('oipa.filters')
 		.factory('FilterSelection', FilterSelection);
 
-	FilterSelection.$inject = ['$http', 'reportingOrganisationId', 'Countries', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
+	FilterSelection.$inject = ['$http', 'reportingOrganisationId', 'Programmes', 'Countries', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
 
 	/**
 	* @namespace Filters
 	* @returns {Factory}
 	*/
-	function FilterSelection($http, reportingOrganisationId, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search) {
+	function FilterSelection($http, reportingOrganisationId, Programmes, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search) {
 		var m = this;
+		m.selectedProgrammes = Programmes.selectedProgrammes;
 	    m.selectedCountries = Countries.selectedCountries;
 	    m.selectedSectors = Sectors.selectedSectors;
 	    m.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
@@ -36,14 +37,22 @@
 
 		m.updateSelectionString = function(){
       		
-	      var selectList = [
-	        m.selectArrayToString('recipient_country', 'country_id', m.selectedCountries),
-	        m.selectArrayToString('sector', 'sector_id', m.selectedSectors),
+		   var selectList = [
+	        m.selectArrayToString('recipient_country', 'code', m.selectedCountries),
+	        m.selectArrayToString('sector', 'code', m.selectedSectors),
 	        m.selectArrayToString('participating_organisations__organisation__code', 'organisation_id', m.selectedImplementingOrganisations),
 	        m.selectArrayToString('activity_status', 'code', m.selectedActivityStatuses),
 	      ];
 
-	      console.log('TO DO: ');
+	      if(m.selectedProgrammes){
+	      	var list = [];
+	      	for(var i = 0; i < m.selectedProgrammes.length; i++){
+	            list.push(m.selectedProgrammes[i]['activity_id']);
+	        }
+
+	      	selectList.push('&related_activity_id=' + list.join(','));
+	      }
+
 	      if(m.selectedBudget.on){
 	        selectList.push('&activity_aggregation__incoming_fund__gte='+m.selectedBudget.value[0]+'&activity_aggregation__incoming_fund__lte='+m.selectedBudget.value[1]);
 	      }
@@ -65,9 +74,10 @@
 	      var list = [];
 
 	      if(arr.length > 0){
+
 	        headerName = '&' + header + '=';
 	        for(var i = 0; i < arr.length; i++){
-	            list.push(arr[i][id_slug]);
+	            list.push(arr[i][header][id_slug]);
 	        }
 	      }
 
@@ -84,6 +94,7 @@
 	      m.removeAll(m.selectedSectors);
 	      m.removeAll(m.selectedImplementingOrganisations);
 	      m.removeAll(m.selectedActivityStatuses);
+	      m.removeAll(m.selectedProgrammes);
 
 	      Search.searchString = '';
 	      Budget.toReset = true;

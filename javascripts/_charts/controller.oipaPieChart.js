@@ -90,7 +90,6 @@
     }
 
     function activate() {
-      console.log('TO DO: per program pie chart');
       
       $scope.$watch('aggregationFilters', function (aggregationFilters) {
 
@@ -165,6 +164,12 @@
         }
 
 
+      }
+
+      if(vm.groupBy == 'related_activity'){
+        for (var i = 0; i < data.length;i++){
+          data[i][vm.groupBy] = {'name': data[i]['activity_id']}
+        }
       }
 
       for (var i = 0; i < data.length;i++){

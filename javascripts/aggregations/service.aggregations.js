@@ -32,8 +32,7 @@
             if(filters !== undefined){
                 url += filters;
             }
-            console.log('TO DO: remove name in below if, temp untill aggregation endpoint fixed')
-            if(order_by !== undefined && order_by != 'name'){
+            if(order_by !== undefined){
                 url += '&order_by=' + order_by;
             }
             if(page_size !== undefined){

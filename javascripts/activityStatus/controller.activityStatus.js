@@ -36,7 +36,7 @@
       }
       filterString = filterString.join('&');
 
-      Aggregations.aggregation('activity_status', 'count', filterString, 'name', 999, 1).then(successFn, errorFn);
+      Aggregations.aggregation('activity_status', 'count', filterString, 'activity_status', 999, 1).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.totalCount = data.data.count;

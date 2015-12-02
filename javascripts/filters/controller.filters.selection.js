@@ -9,12 +9,13 @@
     .module('oipa.filters')
     .controller('FiltersSelectionController', FiltersSelectionController);
 
-  FiltersSelectionController.$inject = ['$scope', 'FilterSelection', 'Countries', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
+  FiltersSelectionController.$inject = ['$scope', 'FilterSelection', 'Programmes', 'Countries', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
 
-  function FiltersSelectionController($scope, FilterSelection, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search) {
+  function FiltersSelectionController($scope, FilterSelection, Programmes, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search) {
     var vm = this;
     vm.selectedCountries = Countries.selectedCountries;
     vm.selectedSectors = Sectors.selectedSectors;
+    vm.selectedProgrammes = Programmes.selectedProgrammes;
     vm.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
     vm.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
     vm.selectedBudget = Budget.budget;

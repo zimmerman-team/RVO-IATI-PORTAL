@@ -65,7 +65,7 @@
       filterString = filterString.join('&');
       
       if(vm.q != ''){
-        filterString += '&name_query=' + vm.q;
+        filterString += '&q_fields=participating_organisation&q=' + vm.q;
       }
 
       Aggregations.aggregation('participating-org', 'iati-identifier', filterString, 'name', vm.limit, vm.offset, 'activity_count').then(successFn, errorFn);

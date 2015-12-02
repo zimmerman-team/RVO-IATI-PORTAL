@@ -72,7 +72,7 @@
         filterString += '&q=' + vm.q;
       }
 
-      Aggregations.aggregation('recipient_country', 'count', filterString, 'name', vm.page_size, vm.currentPage).then(successFn, errorFn);
+      Aggregations.aggregation('recipient_country', 'count', filterString, 'recipient_country', vm.page_size, vm.currentPage).then(successFn, errorFn);
 
       /**
       * @name collectionsSuccessFn

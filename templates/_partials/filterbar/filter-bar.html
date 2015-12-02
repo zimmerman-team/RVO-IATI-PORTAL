@@ -13,6 +13,13 @@
           <span class="filter-main-name">Filters:</span> 
             <span 
                 class="filter-pop"
+                ng-click="vm.toggleOpenPanel('programmes')" 
+                ng-class="{'active': vm.isOpenedHeader('programmes')}"
+                ng-show="vm.isIncludedFilter('programmes')">
+              Programmes
+            </span>
+            <span 
+                class="filter-pop"
                 ng-click="vm.toggleOpenPanel('recipient_countries')" 
                 ng-class="{'active': vm.isOpenedHeader('recipient_countries')}"
                 ng-show="vm.isIncludedFilter('recipient_countries')">
@@ -64,14 +71,14 @@
               Time range
             </span>
 
-            <span
+            <!-- <span
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('recipient_implementing_organisations')" 
                 ng-class="{'active': vm.isOpenedHeader('recipient_implementing_organisations')}"
                 ng-show="vm.isIncludedFilter('recipient_implementing_organisations')">
               Implementing organisations
             </span>
-
+ -->
             <span 
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('search')" 
@@ -98,6 +105,7 @@
 <div class="row">
     <div class="col-xs-12">  
         <div class="rel filter-panel-wrap">
+            <filter-panel-programmes ng-show="vm.isOpenedHeader('programmes')" class="slideDown"></filter-panel-programmes>
             <filter-panel-recipient-countries ng-show="vm.isOpenedHeader('recipient_countries')" class="slideDown"></filter-panel-recipient-countries>
             <filter-panel-budget ng-show="vm.isOpenedHeader('budget')" class="slideDown"></filter-panel-budget>
             <filter-panel-sectors ng-show="vm.isOpenedHeader('sectors')" class="slideDown"></filter-panel-sectors>

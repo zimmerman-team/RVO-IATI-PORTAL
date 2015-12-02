@@ -9,12 +9,12 @@
     .module('oipa.programmes')
     .controller('ProgrammeListController', ProgrammeListController);
 
-  ProgrammeListController.$inject = ['$scope', 'Activities', 'FilterSelection', '$state'];
+  ProgrammeListController.$inject = ['$scope', 'Activities', 'FilterSelection', '$state', 'Aggregations'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function ProgrammeListController($scope, Activities, FilterSelection, $state) {
+  function ProgrammeListController($scope, Activities, FilterSelection, $state, Aggregations) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
@@ -34,7 +34,7 @@
 
       $scope.$watch("searchValue", function (searchValue) {
         if (searchValue == undefined) return false; 
-        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&query='+searchValue;
+        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_fields=title&q='+searchValue;
         vm.update();
       }, true);
 
@@ -65,12 +65,34 @@
 
       vm.page = 1;
 
-      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.page_size, vm.order_by, vm.page).then(succesFn, errorFn);
+      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=1', vm.page_size, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
+
         vm.activities = data.data.results;
         vm.totalActivities = data.data.count;
-        $scope.count = vm.totalActivities;        
+        $scope.count = vm.totalActivities;
+
+        Aggregations.aggregation('related_activity', 'count,incoming_fund', vm.filterSelection.selectionString).then(aggregationSuccessFn, errorFn);
+
+      }
+
+      function aggregationSuccessFn(data, status, headers, config){
+
+        // make dict
+        var results = data.data.results;
+        var dict = {}
+        for(var i = 0;i < results.length;i++){
+          dict[results[i].activity_id] = results[i];
+        }
+        console.log(dict);
+
+        for(var i = 0;i < vm.activities.length;i++){
+          if(dict[vm.activities[i].id] != undefined){
+            vm.activities[i].count = dict[vm.activities[i].id].count;
+            vm.activities[i].budget = dict[vm.activities[i].id].incoming_fund;
+          }
+        }
       }
 
       function errorFn(data, status, headers, config){

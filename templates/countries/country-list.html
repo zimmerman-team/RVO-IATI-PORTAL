@@ -64,7 +64,7 @@
         <tr>
             <th>Country</th>
             <th>Number of projects</th>
-            <th>Number of programmes</th>
+            <!-- <th>Number of programmes</th> -->
             <th>Total budget</th>
         </tr>
     </thead>
@@ -73,7 +73,7 @@
             ng-repeat="item in vm.countries">
             <td><a ui-sref="country({ country_id: item.recipient_country.code })"><span class="flag-icon flag-icon-{{item.recipient_country.code | lowercase }} "></span>{{ item.recipient_country.name }}</a></td>
             <td>{{item.count}} projects</td>
-            <td>xx programmes</td>
+            <!-- <td>xx programmes</td> -->
             <td>{{item.incoming_fund  | shortcurrency :'€'}}</td>
         </tr>
     </tbody>

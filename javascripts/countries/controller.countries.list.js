@@ -19,7 +19,7 @@
     vm.filterSelection = FilterSelection;
     vm.countries = [];
     vm.totalCountries = 0;
-    vm.order_by = 'name';
+    vm.order_by = 'recipient_country';
     vm.hasToContain = $scope.hasToContain;
     vm.page = 1;
     vm.busy = false;
@@ -38,7 +38,7 @@
       $scope.$watch("searchValue", function (searchValue, oldSearchValue) {
         if(searchValue == undefined) return;
         if(searchValue !== oldSearchValue){
-          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
+          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_field=recipient_country&q='+searchValue;
           vm.update();
         }
       }, true);
@@ -58,6 +58,7 @@
     }
 
     vm.hasContains = function(){
+
       if(vm.hasToContain !== undefined){
         var totalString = vm.filterSelection.selectionString + vm.extraSelectionString;
         if(totalString.indexOf(vm.hasToContain) < 0){

@@ -56,7 +56,7 @@
 
       function successFn(data, status, headers, config) {
         vm.country = data.data;
-        Countries.selectedCountries.push({'country_id':vm.country.code,'name':vm.country.name});
+        Countries.selectedCountries.push({'count': 0, 'recipient_country': {'code':vm.country.code,'name':vm.country.name}});
         FilterSelection.save();
       }
     }
@@ -76,6 +76,7 @@
       if (selectionString.indexOf("recipient_country") < 0){ return false;}
       
       Aggregations.aggregation('recipient_country', 'disbursement', selectionString).then(function(data, status, headers, config){
+        console.log(data);
         vm.disbursements = data.data.results[0].disbursement;
         if(vm.budget){
           vm.setBudgetLeft();

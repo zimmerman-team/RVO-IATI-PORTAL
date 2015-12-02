@@ -7,12 +7,12 @@
             </div>
             <div class="col-xs-3">
                 <div class="wrap">
-                    {{item.activity_count || 0}} projects
+                    {{item.count || 0}} projects
                 </div>
             </div>
             <div class="col-xs-3">
                 <div class="wrap">
-                    {{item.total_disbursements  | shortcurrency :'€'}}
+                    {{item.incoming_fund  | shortcurrency :'€'}}
                 </div>
             </div>
     </div>
@@ -25,12 +25,12 @@
         </div>
         <div class="col-xs-3">
             <div class="wrap">
-                {{item.activity_count || 0}} projects
+                {{item.count || 0}} projects
             </div>
         </div>
         <div class="col-xs-3">
             <div class="wrap">
-                {{item.total_disbursements  | shortcurrency :'€'}}
+                {{item.incoming_fund  | shortcurrency :'€'}}
             </div>
         </div>
     </div>

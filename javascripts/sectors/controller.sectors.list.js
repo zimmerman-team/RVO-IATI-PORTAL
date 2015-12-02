@@ -19,7 +19,7 @@
     vm.filterSelection = FilterSelection;
     vm.sectors = [];
     vm.totalSectors = 0;
-    vm.order_by = 'name';
+    vm.order_by = 'sector_id';
     vm.page = 1;
     vm.pageSize = 9999;
     vm.hasToContain = $scope.hasToContain;
@@ -39,7 +39,7 @@
       $scope.$watch("searchValue", function (searchValue, oldSearchValue) {
         if(searchValue == undefined) return false;
         if(searchValue !== oldSearchValue){
-          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
+          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_fields=sector&q='+searchValue;
           vm.update();
         }
         
@@ -69,15 +69,16 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
-      Aggregations.aggregation('sector', 'incoming_fund,count', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
+      Aggregations.aggregation('sector', 'incoming_fund,count', vm.filterSelection.selectionString + vm.extraSelectionString, 'sector').then(succesFn, errorFn);
 
       function replaceDac5(arr){
         for (var i = 0;i < arr.length;i++){
           if(arr[i].hasOwnProperty('children')){
             replaceDac5(arr[i].children);
           } else {
+
             var match =_.find(vm.remoteSectors, function(sector) {
-              return sector.sector_id === arr[i].sector_id;
+              return sector.sector.code == arr[i].sector_id;
             })
 
             if (match) {
@@ -117,8 +118,7 @@
       function applySectorHierarchy(sectors) {
 
         // replace lowest level DAC5 in sectormapping with sectors
-        replaceDac5(sectors.children);
-
+        replaceDac5(sectors.children)
         _.each(sectors.children, updateTransactions)
 
         if (vm.order_by.charAt(0) === "-") { //reverse
@@ -132,11 +132,11 @@
       }
 
       function succesFn(data, status, headers, config){
-          vm.remoteSectors = data.data.results;
+          vm.remoteSectors = data.data.results
           vm.sectorMapping = angular.copy(sectorMapping)
-          vm.sectors = applySectorHierarchy(vm.sectorMapping);
-          vm.totalSectors = data.data.count;
-          $scope.count = vm.totalSectors;
+          vm.sectors = applySectorHierarchy(vm.sectorMapping)
+          vm.totalSectors = data.data.count
+          $scope.count = vm.totalSectors
       }
 
       function errorFn(data, status, headers, config){
