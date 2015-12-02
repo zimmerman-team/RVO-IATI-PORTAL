@@ -32,7 +32,7 @@
       {'id': 'activities', 'name': 'Projects', 'count': -1},
       {'id': 'programmes', 'name': 'Programmes', 'count': -1},
       {'id': 'sectors', 'name': 'Sectors', 'count': -1},
-      {'id': 'implementing-organisations', 'name': 'Organisations', 'count': -1},
+      {'id': 'implementing-organisations', 'name': 'Project partners', 'count': -1},
     ]
 
     /**

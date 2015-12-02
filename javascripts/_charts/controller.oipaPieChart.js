@@ -49,11 +49,16 @@
         growOnHover: false,
         noData: '',
         tooltipContent: function(key, date, e, graph){
-          console.log(e);
-          var content = '<h4><span class="flag-icon flag-icon-"></span>'+e.label+'</h4>'+
+          console.log(key);
+          var content = '<h4><span class="flag-icon flag-icon-"></span>'+key.data[0]+'</h4>'+
                         '<hr>'+
-                        '<p><i class="icon lightbulb"></i><b>Projects:</b> '+e.value+'</p>'+
-                        '<p><i class="icon euro"></i><b>Total budget:</b> '+ $filter('shortcurrency')(e.value,'€') +'</p>';
+                        '<p><i class="icon lightbulb"></i><b>Projects:</b> XX</p>'+
+                        '<p><i class="icon euro"></i><b>Total budget:</b>'+ $filter('shortcurrency')(key.data[1],'€') +'</p>';
+
+          // var content = '<h4><span class="flag-icon flag-icon-"></span>'+e.label+'</h4>'+
+          //               '<hr>'+
+          //               '<p><i class="icon lightbulb"></i><b>Projects:</b> '+e.value+'</p>'+
+          //               '<p><i class="icon euro"></i><b>Total budget:</b> '+ $filter('shortcurrency')(e.value,'€') +'</p>';
                         // '<p><i class="icon medal"></i><b>Sectors:</b> '+ vm.countryMarkerData[i]['sector_count'] +'</p>'+
                         //'<hr>'+
                         //'<a href=""><i class="icon graph"></i>Go to detail page</a>'
