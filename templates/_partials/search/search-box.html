@@ -14,37 +14,6 @@
     </form>
 
     <div ng-if="vm.showResults" class="search-suggest-box">
-        
-        <div class="header">
-            <div class="row">
-                <div class="col-md-9">
-                    <a ui-sref='search({"search": vm.searchString, "tab": "activities"})'>Projects ({{vm.searchData.activities.total}})</a>
-                </div>
-                <div class="col-md-3">
-                    <a ui-sref='search({"search": vm.searchString, "tab": "activities"})'>Show more</a>
-                </div>
-            </div>
-        </div>
-        <div class="results">
-            <div class="row" ng-repeat="activity in vm.searchData.activities.data">
-                <div class="col-md-9">
-                    <a ui-sref='activiteit({"activity_id": activity.id})'>{{activity.titles[0].title}}</a>
-                </div>
-                <div class="col-md-3">
-                    {{activity.iati_identifier}}
-                </div>
-            </div>
-             <div class="row" ng-show="!vm.searchData.countries.data.length">
-                <div class="col-md-9">
-                    0 results
-                </div>
-            </div>
-            <div class="row" ng-show="!vm.searchData.activities.loaded">
-                <div class="svg-loader">
-                    <img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
-                </div>
-            </div>
-        </div>
 
         <div class="header">
             <div class="row">
@@ -63,6 +32,37 @@
                 </div>
                 <div class="col-md-3">
                     {{programme.iati_identifier}}
+                </div>
+            </div>
+             <div class="row" ng-show="!vm.searchData.countries.data.length">
+                <div class="col-md-9">
+                    0 results
+                </div>
+            </div>
+            <div class="row" ng-show="!vm.searchData.activities.loaded">
+                <div class="svg-loader">
+                    <img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
+                </div>
+            </div>
+        </div>
+        
+        <div class="header">
+            <div class="row">
+                <div class="col-md-9">
+                    <a ui-sref='search({"search": vm.searchString, "tab": "activities"})'>Projects ({{vm.searchData.activities.total}})</a>
+                </div>
+                <div class="col-md-3">
+                    <a ui-sref='search({"search": vm.searchString, "tab": "activities"})'>Show more</a>
+                </div>
+            </div>
+        </div>
+        <div class="results">
+            <div class="row" ng-repeat="activity in vm.searchData.activities.data">
+                <div class="col-md-9">
+                    <a ui-sref='activiteit({"activity_id": activity.id})'>{{activity.titles[0].title}}</a>
+                </div>
+                <div class="col-md-3">
+                    {{activity.iati_identifier}}
                 </div>
             </div>
              <div class="row" ng-show="!vm.searchData.countries.data.length">

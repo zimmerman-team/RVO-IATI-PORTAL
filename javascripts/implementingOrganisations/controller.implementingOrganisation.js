@@ -24,8 +24,8 @@
 
     vm.tabs = [
       {'id': 'samenvatting', 'name': 'Summary', 'count': -1},
-      {'id': 'activities', 'name': 'Projects', 'count': -1},
       {'id': 'programmes', 'name': 'Programmes', 'count': -1},
+      {'id': 'activities', 'name': 'Projects', 'count': -1},
       {'id': 'sectors', 'name': 'Sectors', 'count': -1},
       {'id': 'countries', 'name': 'Countries', 'count': -1},
     ]

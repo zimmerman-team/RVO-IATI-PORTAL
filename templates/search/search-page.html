@@ -20,20 +20,20 @@
     </sub-navbar>
 </div>
 
-<div ng-show="vm.selectedTab == 'activities'">
-    <activity-list 
-        has-to-contain="query" 
-        count="vm.tabs[0].count"
-        shown="vm.selectedTab == 'activities'"
-        search-value="vm.searchValue"></activity-list>
-</div>
-
 <div ng-show="vm.selectedTab == 'programmes'">
     <programme-list 
         has-to-contain="query" 
-        count="vm.tabs[1].count"
+        count="vm.tabs[0].count"
         shown="vm.selectedTab == 'programmes'"
         search-value="vm.searchValue"></programme-list>
+</div>
+
+<div ng-show="vm.selectedTab == 'activities'">
+    <activity-list 
+        has-to-contain="query" 
+        count="vm.tabs[1].count"
+        shown="vm.selectedTab == 'activities'"
+        search-value="vm.searchValue"></activity-list>
 </div>
 
 <div ng-show="vm.selectedTab == 'countries'">

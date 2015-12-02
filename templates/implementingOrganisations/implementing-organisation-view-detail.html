@@ -118,20 +118,6 @@
         </div>
     </div>
 
-    <div ng-show="vm.selectedTab == 'activities'">
-        <div class="container detailview extra">
-
-            <div class="row">
-                <div class="col-md-12">
-                    <activity-list 
-                        has-to-contain='participating_organisations__organisation__code__in' 
-                        count='vm.tabs[1].count'
-                        shown="vm.selectedTab == 'activities'"></activity-list>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div ng-show="vm.selectedTab == 'programmes'">
         <div class="container extra detailview">
             <div class="row">
@@ -139,9 +125,23 @@
 
                     <programme-list 
                         has-to-contain="participating_organisations__organisation__code__in" 
-                        count="vm.tabs[2].count"
+                        count="vm.tabs[1].count"
                         shown="vm.selectedTab == 'programmes'"></programme-list>
 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="vm.selectedTab == 'activities'">
+        <div class="container detailview extra">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <activity-list 
+                        has-to-contain='participating_organisations__organisation__code__in' 
+                        count='vm.tabs[2].count'
+                        shown="vm.selectedTab == 'activities'"></activity-list>
                 </div>
             </div>
         </div>
