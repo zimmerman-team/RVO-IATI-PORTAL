@@ -20,8 +20,9 @@
 
     vm.openTab = function(id){
       $scope.selectedTab = id;
-      console.log('opentab');
-      window.dispatchEvent(new Event('resize'));
+      setTimeout(function(){
+        window.dispatchEvent(new Event('resize'));
+      }, 50);
     }
 
     vm.isOpenedTab = function(id){
