@@ -22,7 +22,7 @@
       $scope.selectedTab = id;
       setTimeout(function(){
         window.dispatchEvent(new Event('resize'));
-      }, 50);
+      }, 10);
     }
 
     vm.isOpenedTab = function(id){
