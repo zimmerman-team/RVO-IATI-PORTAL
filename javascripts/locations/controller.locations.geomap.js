@@ -53,7 +53,7 @@
     vm.center = {
         lat: 14.505,
         lng: 18.00,
-        zoom: 3
+        zoom: 5
     };
 
     vm.markers = {};

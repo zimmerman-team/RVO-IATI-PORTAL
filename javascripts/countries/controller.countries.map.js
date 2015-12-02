@@ -28,13 +28,12 @@
       minZoom: 2,
       attributionControl: false,
       scrollWheelZoom: false,
-      continuousWorld: false,
       zoomControlPosition: 'topright'
     };
     vm.center = {
         lat: 14.505,
         lng: 18.00,
-        zoom: 3
+        zoom: 2
     };
 
     vm.layers = {
@@ -46,7 +45,6 @@
           layerOptions: {
               subdomains: ['a', 'b', 'c'],
               attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-              continuousWorld: true
           }
         }
       },
