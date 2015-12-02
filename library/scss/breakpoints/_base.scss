@@ -468,6 +468,12 @@ NAVBAR
       @extend .icon;
     }
   } 
+  .programmes {
+    a {
+      @extend .icon.handshake;
+      @extend .icon;
+    }
+  } 
   .implementing-organisations {
     a {
       @extend .icon.buildings;
@@ -589,6 +595,9 @@ FILTER BAR
   transition:top .2s;
   .filter-selected {
     margin-bottom: 0;
+  }
+  .filter-selected-button {
+    cursor: pointer;
   }
   .filter-main-name {
     text-transform: uppercase;
@@ -790,7 +799,6 @@ FILTER BAR
   padding:5px 0;
   font-size: 13px;
   color:$white;
-  cursor: pointer;
   .selected-items {
     text-transform: uppercase;
     font-weight: 700;

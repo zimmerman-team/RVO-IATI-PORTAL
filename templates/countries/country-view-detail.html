@@ -157,6 +157,21 @@
         </div>
     </div>
 
+    <div ng-show="vm.selectedTab == 'programmes'">
+        <div class="container extra detailview">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <programme-list 
+                        has-to-contain="recipient_country" 
+                        count="vm.tabs[2].count"
+                        shown="vm.selectedTab == 'programmes'"></programme-list>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div ng-show="vm.selectedTab == 'sectors'">
         <div class="container extra detailview">
             <div class="row">
@@ -164,7 +179,7 @@
 
                     <sector-list 
                         has-to-contain="recipient_country" 
-                        count="vm.tabs[2].count"
+                        count="vm.tabs[3].count"
                         shown="vm.selectedTab == 'sectors'"></sector-list>
                 </div>
             </div>
@@ -178,7 +193,7 @@
 
                     <implementing-organisations-list 
                         has-to-contain="recipient_country"
-                        count="vm.tabs[3].count"
+                        count="vm.tabs[4].count"
                         shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
                 </div>
             </div>

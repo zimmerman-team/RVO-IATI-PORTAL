@@ -140,6 +140,21 @@
         </div>
     </div>
 
+    <div ng-show="vm.selectedTab == 'programmes'">
+        <div class="container extra detailview">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <programme-list 
+                        has-to-contain="sectors__in" 
+                        count="vm.tabs[2].count"
+                        shown="vm.selectedTab == 'programmes'"></programme-list>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div ng-show="vm.selectedTab == 'countries'">
         <div class="container detailview extra">
 
@@ -147,7 +162,7 @@
                 <div class="col-md-12">
                     <country-list 
                         has-to-contain="sectors__in" 
-                        count="vm.tabs[2].count"
+                        count="vm.tabs[3].count"
                         shown="vm.selectedTab == 'countries'"></country-list>
                 </div>
             </div>

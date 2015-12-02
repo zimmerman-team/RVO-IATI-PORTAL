@@ -46,7 +46,7 @@
 						Transaction date year: {{vm.selectedTransactionYear.value}}
 					</a>
 
-					<div style="margin-bottom:4px;" ng-show="!(
+					<span style="margin-bottom:4px;" ng-show="!(
 					vm.selectedCountries.length + 
 					vm.selectedProgrammes.length + 
 					vm.selectedSectors.length + 
@@ -54,7 +54,7 @@
 					vm.selectedActivityStatuses.length +
 					vm.search.searchString.length) && !vm.selectedBudget.on && !vm.selectedTransactionYear.on">
 						No filters selected
-					</div>
+					</span>
 				</div>
 			</div>
 		</div>

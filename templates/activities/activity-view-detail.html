@@ -77,19 +77,6 @@
                                 <td>{{vm.activity.last_updated_datetime | date : 'd MMM yyyy'}}</td>
                             </tr>
                             <tr>
-                                <td>Project status: </td>
-                                <td>{{vm.activity.activity_status.name}}</td>
-                            </tr>
-                            <tr>
-                                <td>Start date:</td>
-                                <td>{{vm.start_actual}}
-                                    {{vm.start_planned ? vm.start_actual.iso_date : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
-                            </tr>
-                            <tr>
-                                <td>End date:</td>
-                                <td>{{vm.end_actual ? vm.end_actual.iso_date : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
-                            </tr>
-                            <tr>
                                 <td>Contact:</td>
                                 <td><a href="mailto:iati@rvo.nl">iati@rvo.nl</a></td>
                             </tr>
@@ -100,6 +87,14 @@
                         <hr>
 
                         <table class="no-format">
+                            <tr>
+                                <td>Start date:</td>
+                                <td>{{vm.start_actual ? vm.start_actual.iso_date : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
+                            </tr>
+                            <tr>
+                                <td>End date:</td>
+                                <td>{{vm.end_actual ? vm.end_actual.iso_date : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
+                            </tr>
                             <tr>
                                 <td width="130">Sectors: </td>
                                 <td><a ui-sref="sector({ sector_id: vm.activity.sectors[0].sector.code })">
