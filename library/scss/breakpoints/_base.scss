@@ -1059,7 +1059,7 @@ FILTER BAR
     display: none;
   }
   i {
-    background-color: #fff;
+    background-color: #e4e4e4;
     display: inline-block;
     cursor: pointer;
     padding-right: 15px;
@@ -1346,22 +1346,33 @@ FILTER BAR
 
 //view switcher
 .switch-view {
+  //position:absolute;
+  z-index: 9;
+  border-bottom:13px solid $rvo-lichtblauw;
+  @extend .clearfix;
   .panel {
-    padding:10px 30px !important;
+    //margin-top:5px;
+    padding:8px 30px 3px 30px !important;
     cursor: pointer;
+    float: left;
+    font-weight: 700;
     &.current {
       cursor: default;
     }
+    &:first-of-type {
+      margin-right: 5px;
+    }
     &.lightblue {
-      color:$rvo-donkerblauw;
+      color:$rvo-zwart;
+      background:$rvo-lichtblauw;
     }
     &.xlightblue {
       transition: all .2s ease-in-out;
       color:$rvo-blauw;
-      background:lighten($rvo-xlichtblauw,1%);
+      background:rgba($rvo-lichtblauw,.4);
       &:hover {
-        background:$rvo-footerblauw;
-        color:$rvo-donkerblauw;
+        background:$rvo-lichtblauw;
+        color:$rvo-zwart;
       }
     }
   }
