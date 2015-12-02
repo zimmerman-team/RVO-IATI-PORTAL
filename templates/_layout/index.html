@@ -75,15 +75,15 @@
 <div class="container">
   <div class="row visualize">
       <div class="col-sm-4 text-center">
-        <oipa-pie-chart group-by="related_activity" aggregation-key="incoming_fund"></oipa-pie-chart>
+        <oipa-pie-chart group-by="related_activity" aggregation-key="incoming_fund" aggregations="count,incoming_fund"></oipa-pie-chart>
         <h4>Budget per programme</h4>
       </div>
       <div class="col-sm-4 text-center">
-        <oipa-pie-chart group-by="recipient_country" aggregation-key="incoming_fund" top-level="true"></oipa-pie-chart>
+        <oipa-pie-chart group-by="recipient_country" aggregation-key="incoming_fund" aggregations="count,incoming_fund"></oipa-pie-chart>
         <h4>Budget per country</h4>
       </div>
       <div class="col-sm-4 text-center">
-        <oipa-pie-chart group-by="sector" aggregation-key="incoming_fund" top-level="true"></oipa-pie-chart>
+        <oipa-pie-chart group-by="sector" aggregation-key="incoming_fund" aggregations="count,incoming_fund"></oipa-pie-chart>
         <h4>Budget per sector</h4>
       </div>
   </div>

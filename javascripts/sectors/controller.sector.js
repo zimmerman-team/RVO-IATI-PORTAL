@@ -96,18 +96,14 @@ var sectorLayoutTest = null;
 
     vm.update = function(selectionString){
 
-      if (selectionString.indexOf("sectors__in") < 0){ return false;}
+      if (selectionString.indexOf("sector") < 0){ return false;}
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('sector', 'disbursement', selectionString).then(function(data, status, headers, config){
         vm.disbursements_by_year = data.data.results;
       }, errorFn);
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('sector', 'incoming_fund', selectionString).then(function(data, status, headers, config){
         vm.commitments_by_year = data.data.results;
-      }, errorFn);
-
-      Aggregations.aggregation('reporting-org', 'budget__value', selectionString).then(function(data, status, headers, config){
-        vm.budget_by_year = data.data.results;
       }, errorFn);
 
     }

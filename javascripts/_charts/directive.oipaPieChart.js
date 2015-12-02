@@ -18,6 +18,7 @@
         hasToContain: '@',
         groupBy: '@',
         groupById: '=',
+        aggregations: '@',
         groupByName: '@',
         aggregationKey: '@',
         aggregationKeyId: '@',

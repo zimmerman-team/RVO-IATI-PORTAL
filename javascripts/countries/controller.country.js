@@ -81,7 +81,6 @@
       if (selectionString.indexOf("recipient_country") < 0){ return false;}
       
       Aggregations.aggregation('recipient_country', 'disbursement', selectionString).then(function(data, status, headers, config){
-        console.log(data);
         vm.disbursements = data.data.results[0].disbursement;
         if(vm.budget){
           vm.setBudgetLeft();

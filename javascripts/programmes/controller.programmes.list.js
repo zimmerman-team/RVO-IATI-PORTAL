@@ -85,7 +85,6 @@
         for(var i = 0;i < results.length;i++){
           dict[results[i].activity_id] = results[i];
         }
-        console.log(dict);
 
         for(var i = 0;i < vm.activities.length;i++){
           if(dict[vm.activities[i].id] != undefined){

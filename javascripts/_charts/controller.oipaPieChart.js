@@ -16,7 +16,9 @@
     vm.templateBaseUrl = templateBaseUrl;
     vm.chartLoaded = '';
     vm.groupBy = $scope.groupBy;
+    vm.aggregations = $scope.aggregations;
     vm.aggregationKey = $scope.aggregationKey;
+    console.log(vm.aggregations);
     vm.aggregationFilters = $scope.aggregationFilters;
     vm.hasToContain = $scope.hasToContain;
     vm.xAxis = $scope.chartXAxis;
@@ -50,30 +52,15 @@
         noData: '',
         tooltip: {
           contentGenerator: function(key, date, e, graph){
-            console.log(key);
-            var content = '<h4><span class="flag-icon flag-icon-"></span>'+key.data[0]+'</h4>'+
+            var name = key.data[0][vm.groupBy].name;
+
+            var content = '<h4><span class="flag-icon flag-icon-"></span>'+name+'</h4>'+
                           '<hr>'+
-                          '<p><i class="icon lightbulb"></i><b>Projects:</b> XX</p>'+
-                          '<p><i class="icon euro"></i><b>Total budget:</b>'+ $filter('shortcurrency')(key.data[1],'€') +'</p>';
+                          '<p><i class="icon lightbulb"></i><b>Projects:</b>'+key.data[0].count+'</p>'+
+                          '<p><i class="icon euro"></i><b>Total budget:</b>'+ $filter('shortcurrency')(key.data[0].incoming_fund,'€') +'</p>';
             return content;
           }
         },
-        // tooltipContent: function(key, date, e, graph){
-        //   console.log(key);
-        //   var content = '<h4><span class="flag-icon flag-icon-"></span>'+key.data[0]+'</h4>'+
-        //                 '<hr>'+
-        //                 '<p><i class="icon lightbulb"></i><b>Projects:</b> XX</p>'+
-        //                 '<p><i class="icon euro"></i><b>Total budget:</b>'+ $filter('shortcurrency')(key.data[1],'€') +'</p>';
-
-        //   // var content = '<h4><span class="flag-icon flag-icon-"></span>'+e.label+'</h4>'+
-        //   //               '<hr>'+
-        //   //               '<p><i class="icon lightbulb"></i><b>Projects:</b> '+e.value+'</p>'+
-        //   //               '<p><i class="icon euro"></i><b>Total budget:</b> '+ $filter('shortcurrency')(e.value,'€') +'</p>';
-        //                 // '<p><i class="icon medal"></i><b>Sectors:</b> '+ vm.countryMarkerData[i]['sector_count'] +'</p>'+
-        //                 //'<hr>'+
-        //                 //'<a href=""><i class="icon graph"></i>Go to detail page</a>'
-        //   return content;
-        //},
         xAxis: {
             axisLabel: vm.xAxis,
             tickFormat: function(d) {
@@ -92,7 +79,7 @@
     };
 
     vm.loadData = function(){
-      Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters).then(succesFn, errorFn);
+      Aggregations.aggregation(vm.groupBy, vm.aggregations, vm.aggregationFilters).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.chartData = vm.reformatData(data.data.results);
@@ -120,8 +107,6 @@
       }, true);
     }
     activate();
-
- 
 
     vm.reformatData = function(data){
       var values = [];
@@ -167,9 +152,11 @@
           if(filledSectors[dac2] == undefined){
             filledSectors[dac2] = {};
             filledSectors[dac2].sector = {'code':dac2,  'name': sectors[dac2] };
-            filledSectors[dac2][vm.aggregationKey] = data[i][vm.aggregationKey];
+            filledSectors[dac2]['incoming_fund'] = data[i]['incoming_fund'];
+            filledSectors[dac2]['count'] = data[i]['count'];
           } else {
-            filledSectors[dac2][vm.aggregationKey] += data[i][vm.aggregationKey];
+            filledSectors[dac2]['incoming_fund'] += data[i]['incoming_fund'];
+            filledSectors[dac2]['count'] += data[i]['count'];
           }
         }
 
@@ -177,8 +164,6 @@
         for(var code in filledSectors){
           data.push(filledSectors[code]);
         }
-
-
       }
 
       if(vm.groupBy == 'related_activity'){
@@ -188,7 +173,7 @@
       }
 
       for (var i = 0; i < data.length;i++){
-        values.push([data[i][vm.groupBy].name, data[i][vm.aggregationKey]]);
+        values.push([data[i], data[i][vm.aggregationKey]]);
       }
 
       return values;
