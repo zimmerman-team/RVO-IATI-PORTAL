@@ -71,14 +71,14 @@
       vm.showResults = true;
 
       // get results from activities
-      Activities.list('&query='+vm.searchString, 3, 'total_budget', 0).then(function(data, status, headers, config){
+      Activities.list('&q='+vm.searchString, 3, 'count', 1).then(function(data, status, headers, config){
         vm.searchData.activities.data = data.data.objects;
         vm.searchData.activities.total = data.data.meta.total_count;
         vm.searchData.activities.loaded = true;
       }, errorFn);
 
       // get results from countries aggregation
-      Aggregations.aggregation('recipient_country', 'count', '&name_query=' + vm.searchString).then(function(data, status, headers, config){
+      Aggregations.aggregation('recipient_country', 'count', '&q_fields=recipient_country&q=' + vm.searchString).then(function(data, status, headers, config){
         vm.searchData.countries.data = data.data.results.slice(0,3);
         vm.searchData.countries.total = data.data.count;
         vm.searchData.countries.loaded = true;
@@ -86,14 +86,14 @@
 
 
       // get results from sectors aggregation
-      Aggregations.aggregation('sector', 'count', '&name_query=' + vm.searchString).then(function(data, status, headers, config){
+      Aggregations.aggregation('sector', 'count', '&q_fields=sector&q=' + vm.searchString).then(function(data, status, headers, config){
         vm.searchData.sectors.data = data.data.results.slice(0,3);
         vm.searchData.sectors.total = data.data.count;
         vm.searchData.sectors.loaded = true;
       }, errorFn);
 
       // get results from organisations aggregation
-      Aggregations.aggregation('transaction__receiver-org', 'count', '&name_query=' + vm.searchString).then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction__receiver-org', 'count', '&q_fields=participating_org&q=' + vm.searchString).then(function(data, status, headers, config){
         vm.searchData.organisations.data = data.data.results.slice(0,3);
         vm.searchData.organisations.total = data.data.count;
         vm.searchData.organisations.loaded = true;
