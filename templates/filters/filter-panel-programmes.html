@@ -16,14 +16,14 @@
                     <tbody>
 
                         <tr 
-                            dir-paginate="item in vm.programmes | itemsPerPage: 4"  
+                            dir-paginate="item in vm.programmes_list | itemsPerPage: 4"  
                             total-items="vm.totalCount"
                             pagination-id="programmes">
                             <td>
                                 <div class="checkbox">
                                     <label class="switch">
                                         <input type="checkbox" checklist-model="vm.selectedProgrammes" checklist-value="item"><i></i>
-                                        <span>{{ item.activity_id }}</span>
+                                        <span>{{ item.name }}</span>
                                     </label>
                                 </div>
                             </td>

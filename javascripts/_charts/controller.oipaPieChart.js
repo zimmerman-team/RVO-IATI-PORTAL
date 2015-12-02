@@ -5,24 +5,21 @@
     .module('oipa.charts')
     .controller('OipaPieChartController', OipaPieChartController);
 
-  OipaPieChartController.$inject = ['$scope', 'Aggregations','$filter','templateBaseUrl'];
+  OipaPieChartController.$inject = ['$scope', 'FilterSelection', 'Aggregations','$filter','templateBaseUrl', 'programmesMapping'];
 
   /**
   * @namespace ActivitiesController
   */
-  function OipaPieChartController($scope, Aggregations, $filter,templateBaseUrl) {
+  function OipaPieChartController($scope, FilterSelection, Aggregations, $filter,templateBaseUrl, programmesMapping) {
     
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
     vm.chartLoaded = '';
     vm.groupBy = $scope.groupBy;
+    vm.filterSelection = FilterSelection;
     vm.aggregations = $scope.aggregations;
     vm.aggregationKey = $scope.aggregationKey;
-    console.log(vm.aggregations);
-    vm.aggregationFilters = $scope.aggregationFilters;
     vm.hasToContain = $scope.hasToContain;
-    vm.xAxis = $scope.chartXAxis;
-    vm.yAxis = $scope.chartYAxis;
     vm.chartData = [];
     vm.chartOptions = {
       chart: {
@@ -53,8 +50,11 @@
         tooltip: {
           contentGenerator: function(key, date, e, graph){
             var name = key.data[0][vm.groupBy].name;
-
-            var content = '<h4><span class="flag-icon flag-icon-"></span>'+name+'</h4>'+
+            var flag = '';
+            if (vm.groupBy == 'recipient_country'){
+              flag = '<span class="flag-icon flag-icon-'+key.data[0][vm.groupBy].code.toLowerCase()+'"></span> ';
+            }
+            var content = '<h4>'+flag+name+'</h4>'+
                           '<hr>'+
                           '<p><i class="icon lightbulb"></i><b>Projects:</b>'+key.data[0].count+'</p>'+
                           '<p><i class="icon euro"></i><b>Total budget:</b>'+ $filter('shortcurrency')(key.data[0].incoming_fund,'€') +'</p>';
@@ -78,8 +78,8 @@
       },
     };
 
-    vm.loadData = function(){
-      Aggregations.aggregation(vm.groupBy, vm.aggregations, vm.aggregationFilters).then(succesFn, errorFn);
+    vm.loadData = function(filterString){
+      Aggregations.aggregation(vm.groupBy, vm.aggregations, filterString).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.chartData = vm.reformatData(data.data.results);
@@ -92,20 +92,17 @@
     }
 
     function activate() {
-      
-      $scope.$watch('aggregationFilters', function (aggregationFilters) {
 
-        if(vm.hasToContain != undefined){
-          if(aggregationFilters.indexOf(vm.hasToContain) < 0){
-            return false;
-          }
+      $scope.$watch("vm.filterSelection.selectionString", function (selectionString, oldString) {
+        if (vm.hasToContain != undefined && selectionString.indexOf(vm.hasToContain) < 0){
+          return false;
         }
-        vm.groupBy = $scope.groupBy;
-        vm.groupById = $scope.groupById;
-        vm.aggregationFilters = aggregationFilters;
-        vm.loadData();
+
+        vm.loadData(selectionString);
+        
       }, true);
     }
+
     activate();
 
     vm.reformatData = function(data){
@@ -123,13 +120,13 @@
           "15": "Government and civil society",
           "16": "Other social infrastructure and services",
           "21": "Transport and storage",
-          "22": "communication",
+          "22": "Communication",
           "23": "Energy generation and supply",
           "24": "Banking and financial services",
-          "25": "business and other services",
+          "25": "Business and other services",
           "31": "Agriculture / forestry / fishing",
-          "32": "industry / mineral resources / construction",
-          "33": "trade related / tourism",
+          "32": "Industry / mineral resources / construction",
+          "33": "Trade related / tourism",
           "41": "General environmental protection",
           "43": "Other multisector",
           "51": "General budget support",
@@ -168,7 +165,7 @@
 
       if(vm.groupBy == 'related_activity'){
         for (var i = 0; i < data.length;i++){
-          data[i][vm.groupBy] = {'name': data[i]['activity_id']}
+          data[i][vm.groupBy] = {'code': data[i]['activity_id'], 'name': programmesMapping[data[i]['activity_id']] }
         }
       }
 

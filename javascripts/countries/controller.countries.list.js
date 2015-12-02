@@ -9,12 +9,12 @@
     .module('oipa.countries')
     .controller('CountriesListController', CountriesListController);
 
-  CountriesListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', '$state'];
+  CountriesListController.$inject = ['$scope', 'Aggregations', 'FilterSelection'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function CountriesListController($scope, Aggregations, FilterSelection, $state) {
+  function CountriesListController($scope, Aggregations, FilterSelection) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.countries = [];
@@ -25,7 +25,6 @@
     vm.busy = false;
     vm.perPage = 15;
     vm.extraSelectionString = '';
-    vm.currentPage = $state.current.name;
 
     function activate() {
       // use predefined filters or the filter selection

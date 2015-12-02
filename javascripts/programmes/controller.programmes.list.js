@@ -9,12 +9,12 @@
     .module('oipa.programmes')
     .controller('ProgrammeListController', ProgrammeListController);
 
-  ProgrammeListController.$inject = ['$scope', 'Activities', 'FilterSelection', '$state', 'Aggregations'];
+  ProgrammeListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'Aggregations'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function ProgrammeListController($scope, Activities, FilterSelection, $state, Aggregations) {
+  function ProgrammeListController($scope, Activities, FilterSelection, Aggregations) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
@@ -25,7 +25,6 @@
     vm.hasToContain = $scope.hasToContain;
     vm.busy = false;
     vm.extraSelectionString = '';
-    vm.currentPage = $state.current.name;
 
     function activate() {
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString) {

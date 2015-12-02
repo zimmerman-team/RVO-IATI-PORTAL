@@ -9,12 +9,12 @@
     .module('oipa.sectors')
     .controller('SectorListController', SectorListController);
 
-  SectorListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'sectorMapping', '$state'];
+  SectorListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'sectorMapping'];
 
   /**
   * @namespace SectorListController
   */
-  function SectorListController($scope, Aggregations, FilterSelection, sectorMapping, $state) {
+  function SectorListController($scope, Aggregations, FilterSelection, sectorMapping) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.sectors = [];
@@ -26,7 +26,6 @@
     vm.busy = false;
     vm.extraSelectionString = '';
     vm.isCollapsed = false;
-    vm.currentPage = $state.current.name;
 
     function activate() {
       // use predefined filters or the filter selection

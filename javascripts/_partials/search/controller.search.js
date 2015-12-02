@@ -71,9 +71,17 @@
       vm.showResults = true;
 
       // get results from activities
-      Activities.list('&q='+vm.searchString, 3, 'count', 1).then(function(data, status, headers, config){
-        vm.searchData.activities.data = data.data.objects;
-        vm.searchData.activities.total = data.data.meta.total_count;
+      Activities.list('&hierarchy=1&q_fields=title,description&q='+vm.searchString, 3, 'count', 1).then(function(data, status, headers, config){
+        vm.searchData.activities.data = data.data.showResults;
+        vm.searchData.activities.total = data.data.count;
+        vm.searchData.activities.loaded = true;
+      }, errorFn);
+
+
+      // get results from activities
+      Activities.list('&hierarchy=2&q_fields=title,description&q='+vm.searchString, 3, 'count', 1).then(function(data, status, headers, config){
+        vm.searchData.activities.data = data.data.showResults;
+        vm.searchData.activities.total = data.data.count;
         vm.searchData.activities.loaded = true;
       }, errorFn);
 

@@ -35,7 +35,7 @@
                                         Total sector expenditure
                                     </td>
                                     <td>
-                                        {{budget.budget__value | shortcurrency :'€'}}
+                                        {{vm.disbursements | shortcurrency :'€'}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -43,7 +43,7 @@
                                         Total sector budget
                                     </td>
                                     <td>
-                                        {{budget.budget__value | shortcurrency :'€'}}
+                                        {{vm.budget | shortcurrency :'€'}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -52,8 +52,8 @@
                                     </td>
                                     <td>
                                         <div class="progress">
-                                          <div class="progress-bar" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%;">
-                                            77% spent
+                                          <div class="progress-bar" role="progressbar" aria-valuenow="vm.budgetLeft" aria-valuemin="0" aria-valuemax="100" ng-style="vm.progressStyle">
+                                            {{vm.budgetLeft}}% spent
                                             <div class="gradient"></div>
                                           </div>
                                         </div>
@@ -78,12 +78,6 @@
                         <h3>Related videos</h3>
                         <hr>
                         <p>Not yet available</p>
-                        <!-- <div class="video">
-                            <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                        <div class="video">
-                            <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
-                        </div> -->
                     </div>
                     <div class="panel lightblue">
                         <h3>Related documents</h3>
@@ -125,12 +119,10 @@
         <div class="container extra detailview">
             <div class="row">
                 <div class="col-md-12">
-
                     <programme-list 
-                        has-to-contain="sectors__in" 
+                        has-to-contain="sector" 
                         count="vm.tabs[2].count"
                         shown="vm.selectedTab == 'programmes'"></programme-list>
-
                 </div>
             </div>
         </div>
@@ -142,7 +134,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <activity-list 
-                        has-to-contain="sectors__in"  
+                        has-to-contain="sector"  
                         count="vm.tabs[1].count"
                         shown="vm.selectedTab == 'activities'"></activity-list>
                 </div>
@@ -156,7 +148,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <country-list 
-                        has-to-contain="sectors__in" 
+                        has-to-contain="sector" 
                         count="vm.tabs[3].count"
                         shown="vm.selectedTab == 'countries'"></country-list>
                 </div>
@@ -170,7 +162,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <implementing-organisations-list 
-                        has-to-contain="sectors__in" 
+                        has-to-contain="sector" 
                         count="vm.tabs[4].count"
                         shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
                 </div>

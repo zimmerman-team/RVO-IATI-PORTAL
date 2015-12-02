@@ -9,16 +9,16 @@
     .module('oipa.programmes')
     .controller('ProgrammesController', ProgrammesController);
 
-  ProgrammesController.$inject = ['$scope', 'Aggregations', 'Activities', 'Programmes', 'FilterSelection', 'templateBaseUrl'];
+  ProgrammesController.$inject = ['$scope', 'Aggregations', 'Activities', 'Programmes', 'programmesMapping', 'FilterSelection', 'templateBaseUrl'];
 
   /**
   * @namespace SectorsController
   */
-  function ProgrammesController($scope, Aggregations, Activities, Programmes, FilterSelection, templateBaseUrl) {
+  function ProgrammesController($scope, Aggregations, Activities, Programmes, programmesMapping, FilterSelection, templateBaseUrl) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
-    vm.programmes = [];
-    vm.Programmes = Programmes;
+    vm.programmes_list = [];
+    vm.programmes = Programmes;
     vm.selectedProgrammes = Programmes.selectedProgrammes;
     vm.currentPage = 1;
     vm.pageSize = 4;
@@ -70,8 +70,13 @@
       Aggregations.aggregation('related_activity', 'count', filterString, 'activity_id', vm.pageSize, vm.currentPage).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
+
+        var results = data.data.results;
+        for(var i = 0;i < results.length;i++){
+          results[i].name = programmesMapping[results[i].activity_id];
+        }
         vm.totalCount = data.data.count;
-        vm.programmes = data.data.results;
+        vm.programmes_list = results;
       }
 
       function errorFn(data, status, headers, config) {

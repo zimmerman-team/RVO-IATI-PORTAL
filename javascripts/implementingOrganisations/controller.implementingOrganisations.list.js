@@ -9,12 +9,12 @@
     .module('oipa.implementingOrganisations')
     .controller('ImplementingOrganisationsListController', ImplementingOrganisationsListController);
 
-  ImplementingOrganisationsListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', '$state'];
+  ImplementingOrganisationsListController.$inject = ['$scope', 'Aggregations', 'FilterSelection'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function ImplementingOrganisationsListController($scope, Aggregations, FilterSelection, $state) {
+  function ImplementingOrganisationsListController($scope, Aggregations, FilterSelection) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.organisations = [];
@@ -25,7 +25,6 @@
     vm.busy = false;
     vm.extraSelectionString = '&';
     vm.hasToContain = $scope.hasToContain;
-    vm.currentPage = $state.current.name;
 
     function activate() {
       // use predefined filters or the filter selection

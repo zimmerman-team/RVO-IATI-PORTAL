@@ -1,17 +1,3 @@
-<div class="row" ng-if="vm.currentPage === 'activities'">
-  <div class="col-sm-12">
-    <div class="list front-callout">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="panel">
-            With {{vm.totalActivities}} projects and XX programmes in XX sectors and XX countries.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="container">  
     <div class="row">
         <div class="col-md-12">
@@ -25,8 +11,8 @@
                           <option value="-title">Title (Z-A)</option>
                           <option value="start_actual">Starting date (increasing)</option>
                           <option value="-start_actual">Starting date (decreasing)</option>
-                          <option value="total_budget">Budget (increasing)</option>
-                          <option value="-total_budget">Budget (decreasing)</option>
+                          <option value="incoming_fund">Budget (increasing)</option>
+                          <option value="-incoming_fund">Budget (decreasing)</option>
                         </select>
                     </div>
                 <span class="results">Results: <span class="total">{{vm.totalActivities}}</span></span>

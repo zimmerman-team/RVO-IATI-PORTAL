@@ -1,17 +1,3 @@
-<div class="row" ng-if="vm.currentPage === 'organisations'">
-  <div class="col-sm-12">
-    <div class="list front-callout">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="panel">
-            With XX projects within XX sectors and XX countries.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="container list-view-wrapper">
     <div class="row">
         <div class="col-md-12">
@@ -54,7 +40,7 @@
             ng-repeat="item in vm.organisations">
             <td><a ui-sref="organisation({ organisation_id: item.name })">{{ item.name }}</a></td>
             <td>{{item.count}}</td>
-            <td>TO DO: Gov/non-gov</td>
+            <td>TO DO: hide for 7 dec?</td>
         </tr>
     </tbody>
 </table>

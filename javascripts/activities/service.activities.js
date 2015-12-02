@@ -23,7 +23,7 @@
         ////////////////////
 
         function all() {
-            var url = oipaUrl + '/activities/?format=json&page_size=10&fields=iati_identifier,title'
+            var url = oipaUrl + '/activities/?format=json&page_size=1&fields=iati_identifier,title'
             if(reportingOrganisationId){
                 url += '&reporting_organisation=' + reportingOrganisationId
             }
@@ -44,7 +44,7 @@
             if(order_by !== undefined){
                 url += '&ordering=' + order_by;
             }
-            if(page !== undefined){
+            if(page !== undefined){ 
                 url += '&page=' + page;
             }
             if(page_size !== undefined){

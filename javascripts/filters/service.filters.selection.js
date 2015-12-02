@@ -44,7 +44,7 @@
 	        m.selectArrayToString('activity_status', 'code', m.selectedActivityStatuses),
 	      ];
 
-	      if(m.selectedProgrammes){
+	      if(m.selectedProgrammes.length){
 	      	var list = [];
 	      	for(var i = 0; i < m.selectedProgrammes.length; i++){
 	            list.push(m.selectedProgrammes[i]['activity_id']);

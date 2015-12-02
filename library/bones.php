@@ -64,7 +64,7 @@ function bones_scripts_and_styles() {
 
   global $wp_styles; // call global $wp_styles variable to add conditional wrapper around ie stylesheet the WordPress way
 
-  if (!is_admin()) {	
+  if (!is_admin()) {
 
   		wp_register_style( 'titilium', 'https://fonts.googleapis.com/css?family=Droid+Sans:400,700', array(), '' );
 		wp_register_style( 'bubbleChart-css', get_stylesheet_directory_uri() . '/css/bubbleChart.css', array(), '' );
@@ -77,18 +77,6 @@ function bones_scripts_and_styles() {
 
 		wp_register_style( 'clustermarker', get_stylesheet_directory_uri() . '/bower_components/leaflet.markercluster/dist/MarkerCluster.css', array(), '' );
 		wp_register_style( 'clustermarkerdefault', get_stylesheet_directory_uri() . '/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css', array(), '' );
-
-		
-
-		// wp_register_style( 'RijksOverheidSans', get_stylesheet_directory_uri() . '/library/fonts/rijksoverheidsansheading-regular_2_0.woff', array(), '' );
-		// wp_register_style( 'RijksOverheidSansBold', get_stylesheet_directory_uri() . '/library/fonts/rijksoverheidsansheading-bold_2_0.woff', array(), '' );
-		// wp_register_style( 'AGNL-Icon-Font', get_stylesheet_directory_uri() . '/library/fonts/AGNL-Icon-Font.woff', array(), '' );
-
-
-
-		// wp_enqueue_style( 'RijksOverheidSans');
-		// wp_enqueue_style( 'RijksOverheidSansBold');
-		// wp_enqueue_style( 'AGNL-Icon-Font');
 
 		wp_enqueue_style( 'titilium' );
 		wp_enqueue_style( 'nvd3.css' );
@@ -156,7 +144,9 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'controller.subnavbar', get_stylesheet_directory_uri() . '/javascripts/_partials/subnavbar/controller.subnavbar.js', array('oipa'), '', true );
 		wp_register_script( 'directive.subnavbar', get_stylesheet_directory_uri() . '/javascripts/_partials/subnavbar/directive.subnavbar.js', array('oipa'), '', true );
 
-
+		wp_register_script( 'controller.totalsbar', get_stylesheet_directory_uri() . '/javascripts/_partials/totals/controller.totals.js', array('oipa'), '', true );
+		wp_register_script( 'directive.totalsbar', get_stylesheet_directory_uri() . '/javascripts/_partials/totals/directive.totals.js', array('oipa'), '', true );
+		
 
 		wp_register_script( 'module.search', get_stylesheet_directory_uri() . '/javascripts/_partials/search/module.search.js', array('oipa'), '', true );
 		wp_register_script( 'directive.search', get_stylesheet_directory_uri() . '/javascripts/_partials/search/directive.searchbox.js', array('oipa'), '', true );
@@ -370,7 +360,9 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'directive.topnavbar' );
 		wp_enqueue_script( 'controller.subnavbar' );
 		wp_enqueue_script( 'directive.subnavbar' );
-		
+		wp_enqueue_script( 'controller.totalsbar' );
+		wp_enqueue_script( 'directive.totalsbar' );
+
 		wp_enqueue_script( 'controller.navbar' );
 		wp_enqueue_script( 'directive.navbar' );
 

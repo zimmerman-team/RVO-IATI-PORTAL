@@ -73,14 +73,12 @@
     vm.setBudgetLeft = function(){
       vm.budgetLeft = Math.round(vm.disbursements / vm.budget * 100);
       vm.progressStyle = {'width': vm.budgetLeft + '%'}
-      console.log(vm.budgetLeft);
-      console.log(vm.progressStyle);
     }
 
     vm.update = function(selectionString){
       if (selectionString.indexOf("recipient_country") < 0){ return false;}
       
-      Aggregations.aggregation('recipient_country', 'disbursement', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('recipient_country', 'incoming_fund', selectionString).then(function(data, status, headers, config){
         vm.disbursements = data.data.results[0].disbursement;
         if(vm.budget){
           vm.setBudgetLeft();

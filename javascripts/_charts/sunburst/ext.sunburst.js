@@ -204,7 +204,7 @@ ZzSunburst = (function() {
     // Also compute the full name and fill color for each node,
     // and stash the children so they can be restored as we descend.
     this.partition
-        .value(function(d) { return d.total_disbursements; })
+        .value(function(d) { return d.incoming_fund; })
         .nodes(root)
         .forEach(function(d) {
           d._children = d.children;

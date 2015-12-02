@@ -73,11 +73,11 @@ var sectorLayoutTest = null;
       var sectors = listChildren([],vm.sector);
 
       if(vm.sector_digit == 5){
-        Sectors.selectedSectors.push({"sector_id":vm.sector.sector_id,"name":vm.sector.name});
+        Sectors.selectedSectors.push({'sector': {"code":vm.sector.sector_id,"name":vm.sector.name}});
       }
 
       for (var i = 0;i < sectors.length;i++){
-        Sectors.selectedSectors.push({"sector_id":sectors[i].sector_id,"name":sectors[i].name});
+        Sectors.selectedSectors.push({'sector': {"code":sectors[i].sector_id,"name":sectors[i].name}});
       }
       FilterSelection.save();
 
@@ -94,16 +94,23 @@ var sectorLayoutTest = null;
       console.log("getting sectors failed");
     }
 
+    vm.setBudgetLeft = function(){
+      vm.budgetLeft = Math.round(vm.disbursements / vm.budget * 100);
+      vm.progressStyle = {'width': vm.budgetLeft + '%'}
+    }
+
     vm.update = function(selectionString){
 
       if (selectionString.indexOf("sector") < 0){ return false;}
 
       Aggregations.aggregation('sector', 'disbursement', selectionString).then(function(data, status, headers, config){
-        vm.disbursements_by_year = data.data.results;
+        vm.disbursements = data.data.results[0].disbursement;
+        vm.setBudgetLeft();
       }, errorFn);
 
       Aggregations.aggregation('sector', 'incoming_fund', selectionString).then(function(data, status, headers, config){
-        vm.commitments_by_year = data.data.results;
+        vm.budget = data.data.results[0].incoming_fund;
+        vm.setBudgetLeft();
       }, errorFn);
 
     }

@@ -1,27 +1,21 @@
-<div class="row" ng-if="vm.currentPage === 'locations-map'">
-  <div class="col-sm-12">
-    <div class="list front-callout">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="panel">
-            With XX programmes and XX projects in XX sectors and {{vm.totalCountries}} countries.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="row cirkle-vis" ng-hide="vm.currentPage === 'search'">
     <div class="col-xs-12">
         <div class="panel lightblue clearfix no-padding-top no-margin-bottom">
             <div class="row">
                 <div class="col-sm-3 col-sm-offset-3 chart">
-                    <oipa-pie-chart group-by="recipient_country" aggregation-key="count" aggregations="count,incoming_fund"></oipa-pie-chart>
+                    <oipa-pie-chart 
+                        group-by="recipient_country" 
+                        aggregation-key="count" 
+                        aggregations="count,incoming_fund"
+                        aggregation-filters="vm.filterSelection"></oipa-pie-chart>
                     <h4>Project distribution</h4>
                 </div>
                 <div class="col-sm-3 chart">
-                    <oipa-pie-chart group-by="recipient_country" aggregation-key="incoming_fund" aggregations="count,incoming_fund"></oipa-pie-chart>
+                    <oipa-pie-chart 
+                        group-by="recipient_country" 
+                        aggregation-key="incoming_fund" 
+                        aggregations="count,incoming_fund"
+                        aggregation-filters="vm.filterSelection"></oipa-pie-chart>
                     <h4>Budget distribution</h4>
                 </div>
             </div>
