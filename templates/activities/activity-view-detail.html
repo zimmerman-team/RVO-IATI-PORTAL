@@ -311,7 +311,7 @@
 
                     <h3>Related countries</h3>
 
-                    <table class="finance no-blue" ng-if="vm.activity.countries.length != 0">
+                    <table class="finance no-blue" ng-if="vm.activity.recipient_countries.length != 0">
                         <thead>
                             <tr>
                                 <th>Country</th>
@@ -321,9 +321,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="country in vm.activity.countries">
+                            <tr ng-repeat="country in vm.activity.recipient_countries">
                                 <td>
-                                    {{country.name}}
+                                    {{country.country.name}}
                                 </td>
                                 <td>
                                     {{country.region}}
@@ -341,7 +341,7 @@
                         </tbody>
                     </table>
 
-                    <div ng-if="vm.activity.countries.length == 0">
+                    <div ng-if="vm.activity.recipient_countries.length == 0">
                         <hr>
                         <p style="padding-left:15px;padding-bottom:10px;">No data available yet</p>
                     </div>
