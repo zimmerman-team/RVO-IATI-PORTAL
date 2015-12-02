@@ -10,18 +10,19 @@ var sectorLayoutTest = null;
     .module('oipa.sectors')
     .controller('SectorController', SectorController);
 
-  SectorController.$inject = ['$scope', 'Sectors', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'sectorMapping'];
+  SectorController.$inject = ['$scope', 'Sectors', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'sectorMapping', 'homeUrl', '$location'];
 
   /**
   * @namespace CountriesController
   */
-  function SectorController($scope, Sectors, templateBaseUrl, $stateParams, FilterSelection, Aggregations, sectorMapping) {
+  function SectorController($scope, Sectors, templateBaseUrl, $stateParams, FilterSelection, Aggregations, sectorMapping, homeUrl, $location) {
     var vm = this;
     vm.sector = null;
     vm.sector_id = parseInt($stateParams.sector_id);
     vm.sector_digit = 0;
     vm.filterSelection = FilterSelection;
     vm.selectedTab = 'samenvatting';
+    vm.pageUrlDecoded = $location.absUrl();
 
     vm.tabs = [
       {'id': 'samenvatting', 'name': 'Summary', 'count': -1},
@@ -85,6 +86,8 @@ var sectorLayoutTest = null;
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);
       }, true);
+      vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
+      vm.shareDescription = encodeURIComponent('View the aid projects of the RVO on ' + vm.pageUrlDecoded);
     }
 
     function errorFn(data, status, headers, config) {
@@ -107,6 +110,14 @@ var sectorLayoutTest = null;
         vm.budget_by_year = data.data.results;
       }, errorFn);
 
+    }
+
+    vm.download = function(format){
+      var url = homeUrl + '/export/?format=json&filters='+encodeURIComponent(FilterSelection.selectionString);
+      if(vm.currentPage == 'activity'){
+        url = homeUrl + '/export/?format=json&detail='+$scope.activityId+'&filters=';
+      }
+      window.open(url);
     }
 
     activate();

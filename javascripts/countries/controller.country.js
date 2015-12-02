@@ -9,12 +9,12 @@
     .module('oipa.countries')
     .controller('CountryController', CountryController);
 
-  CountryController.$inject = ['$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'countryPageUrls'];
+  CountryController.$inject = ['$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'countryPageUrls', 'homeUrl', '$location'];
 
   /**
   * @namespace CountryController
   */
-  function CountryController($scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations, countryPageUrls) {
+  function CountryController($scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations, countryPageUrls, homeUrl, $location) {
     var vm = this;
     vm.country = null;
     vm.country_id = $stateParams.country_id;
@@ -26,6 +26,7 @@
     vm.budgetLeft = 0;
     vm.progressStyle = {};
     vm.templateBaseUrl = templateBaseUrl;
+    vm.pageUrlDecoded = $location.absUrl();
 
     vm.tabs = [
       {'id': 'samenvatting', 'name': 'Summary', 'count': -1},
@@ -60,6 +61,9 @@
         Countries.selectedCountries.push({'count': 0, 'recipient_country': {'code':vm.country.code,'name':vm.country.name}});
         FilterSelection.save();
       }
+
+      vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
+      vm.shareDescription = encodeURIComponent('View the aid projects of the RVO on ' + vm.pageUrlDecoded);
     }
 
     function errorFn(data, status, headers, config) {
@@ -91,6 +95,14 @@
         }
       }, errorFn);
 
+    }
+
+    vm.download = function(format){
+      var url = homeUrl + '/export/?format=json&filters='+encodeURIComponent(FilterSelection.selectionString);
+      if(vm.currentPage == 'activity'){
+        url = homeUrl + '/export/?format=json&detail='+$scope.activityId+'&filters=';
+      }
+      window.open(url);
     }
 
     activate();

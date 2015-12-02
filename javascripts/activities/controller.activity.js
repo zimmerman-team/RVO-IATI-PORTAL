@@ -9,12 +9,12 @@
     .module('oipa.activities')
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl'];
+  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl', '$location'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl) {
+  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, $location) {
     var vm = this;
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
@@ -23,7 +23,7 @@
     vm.start_actual = null;
     vm.end_planned = null;
     vm.end_actual = null;
-
+    vm.pageUrlDecoded = $location.absUrl();
 
     vm.selectedTab = 'summary';
 
@@ -62,6 +62,9 @@
       function errorFn(data, status, headers, config) {
         console.log("getting activity failed");
       }
+
+      vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
+      vm.shareDescription = encodeURIComponent('View the aid projects of the RVO on ' + vm.pageUrlDecoded);
     }
 
     vm.transactionChartData = [];
@@ -99,6 +102,14 @@
         }
       }
     };
+
+    vm.download = function(format){
+      var url = homeUrl + '/export/?format=json&filters='+encodeURIComponent(FilterSelection.selectionString);
+      if(vm.currentPage == 'activity'){
+        url = homeUrl + '/export/?format=json&detail='+$scope.activityId+'&filters=';
+      }
+      window.open(url);
+    }
 
     vm.reformatTransactionData = function(transactions){
       console.log(transactions);
