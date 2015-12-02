@@ -49,6 +49,37 @@
         <div class="header">
             <div class="row">
                 <div class="col-md-9">
+                    <a ui-sref='search({"search": vm.searchString, "tab": "programmes"})'>Programmes ({{vm.searchData.programmes.total}})</a>
+                </div>
+                <div class="col-md-3">
+                    <a ui-sref='search({"search": vm.searchString, "tab": "programmes"})'>Show more</a>
+                </div>
+            </div>
+        </div>
+        <div class="results">
+            <div class="row" ng-repeat="programme in vm.searchData.programmes.data">
+                <div class="col-md-9">
+                    <a ui-sref='programme({"programme_id": programme.id})'>{{programme.titles[0].title}}</a>
+                </div>
+                <div class="col-md-3">
+                    {{programme.iati_identifier}}
+                </div>
+            </div>
+             <div class="row" ng-show="!vm.searchData.countries.data.length">
+                <div class="col-md-9">
+                    0 results
+                </div>
+            </div>
+            <div class="row" ng-show="!vm.searchData.activities.loaded">
+                <div class="svg-loader">
+                    <img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="header">
+            <div class="row">
+                <div class="col-md-9">
                     <a ui-sref='search({"search": vm.searchString, "tab": "countries"})'>Countries ({{vm.searchData.countries.total}})</a>
                 </div>
                 <div class="col-md-3">
@@ -77,39 +108,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="header">
-            <div class="row">
-                <div class="col-md-9">
-                    <a ui-sref='search({"search": vm.searchString, "tab": "regions"})'>Regions ({{vm.searchData.regions.total}})</a>
-                </div>
-                <div class="col-md-3">
-                    <a ui-sref='search({"search": vm.searchString, "tab": "regions"})'>Show more</a>
-                </div>
-            </div>
-        </div>
-        <div class="results">
-            <div class="row" ng-repeat="region in vm.searchData.regions.data">
-                <div class="col-md-9">
-                    <a ui-sref='region({"country_id": region.region_id})'>{{region.name}}</a>
-                </div>
-                <div class="col-md-3">
-                    {{region.activity_count}} projects
-                </div>
-            </div>
-
-            <div class="row" ng-show="!vm.searchData.regions.data.length">
-                <div class="col-md-9">
-                    0 results
-                </div>
-            </div>
-            <div class="row" ng-show="!vm.searchData.regions.loaded">
-                <div class="svg-loader">
-                    <img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
-                </div>
-            </div>
-        </div>
-
 
         <div class="header">
             <div class="row">
@@ -146,7 +144,7 @@
         <div class="header">
             <div class="row">
                 <div class="col-md-9">
-                    <a ui-sref='search({"search": vm.searchString, "tab": "organisations"})'>Organisations ({{vm.searchData.organisations.total}})</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "organisations"})'>Project partners ({{vm.searchData.organisations.total}})</a>
                 </div>
                 <div class="col-md-3">
                     <a ui-sref='search({"search": vm.searchString, "tab": "organisations"})'>Show more</a>
