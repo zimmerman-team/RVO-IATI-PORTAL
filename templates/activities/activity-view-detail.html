@@ -268,85 +268,115 @@
                     </table>
                 </div>
 
-
-                        <!-- <tr>
-                            <td>Default tied:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Default finance name:</td>
-                            <td>XX</td>
-                        </tr> -->
-
                 <div class="panel lightblue with-table">
 
                     <h3>Related organisations</h3>
-                    <hr>
 
-                    <table class="no-format">
-
-                        <tr>
-                            <td width="200">Participating org. role:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Participating org.:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Participating org. ref:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Participating org. type:</td>
-                            <td>XX</td>
-                        </tr>
-
+                    <table class="finance no-blue" ng-if="vm.activity.participating_organisations">
+                        <thead>
+                            <tr>
+                                <th>Participating org.</th>
+                                <th>Participating org. role</th>
+                                <th>Participating org. ref.</th>
+                                <th>Participating org. type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="org in vm.activity.participating_organisations">
+                                <td>
+                                    {{org.narratives[0].text}}
+                                </td>
+                                <td>
+                                    {{org.role.name}}
+                                    <span ng-if="!org.role.name">-</span>
+                                </td>
+                                <td>
+                                    {{org.ref}}
+                                    <span ng-if="!org.ref">-</span>
+                                </td>
+                                <td>
+                                    {{org.type.name}}
+                                    <span ng-if="!org.type.name">-</span>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
+                    <div ng-if="!vm.activity.participating_organisations">
+                        <hr>
+                        <p style="padding-left:15px;padding-bottom:10px;">No data available yet</p>
+                    </div>
                 </div>
 
                 <div class="panel lightblue with-table">
 
                     <h3>Related countries</h3>
-                    <hr>
 
-                    <table class="no-format">
-                        <tr>
-                            <td width="200">Country (%):</td>
-                            <td>XX (%%)</td>
-                        </tr>
-                        <tr>
-                            <td>Region:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Latitude:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Longitude:</td>
-                            <td>XX</td>
-                        </tr>
-
+                    <table class="finance no-blue" ng-if="vm.activity.countries.length != 0">
+                        <thead>
+                            <tr>
+                                <th>Country</th>
+                                <th>Region</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="country in vm.activity.countries">
+                                <td>
+                                    {{country.name}}
+                                </td>
+                                <td>
+                                    {{country.region}}
+                                    <span ng-if="!country.region">-</span>
+                                </td>
+                                <td>
+                                    {{country.lat}}
+                                    <span ng-if="!country.lat">-</span>
+                                </td>
+                                <td>
+                                    {{country.lon}}
+                                    <span ng-if="!country.lon">-</span>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
+
+                    <div ng-if="vm.activity.countries.length == 0">
+                        <hr>
+                        <p style="padding-left:15px;padding-bottom:10px;">No data available yet</p>
+                    </div>
 
                 </div>
 
                 <div class="panel lightblue with-table">
 
                     <h3>Related sectors</h3>
-                    <hr>
-
-                    <table class="no-format">
-                        <tr>
-                            <td width="200">Sector (%):</td>
-                            <td>XX (%%)</td>
-                        </tr>
-                        <tr>
-                            <td>Policy marker:</td>
-                            <td>XX</td>
-                        </tr>
+                    
+                    <table class="finance no-blue" ng-if="vm.activity.sectors.length != 0">
+                        <thead>
+                            <tr>
+                                <th>Sector</th>
+                                <th>Policy marker</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(key, sector) in vm.activity.sectors">
+                                <td>
+                                    {{sector.sector.name}}
+                                </td>
+                                <td>
+                                    {{sector.marker}}
+                                    <span ng-if="!sector.marker">-</span>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
+
+                    <div ng-if="vm.activity.sectors.length == 0">
+                        <hr>
+                        <p style="padding-left:15px;padding-bottom:10px;">No data available yet</p>
+                    </div>
+
                 </div>
 
            
@@ -354,7 +384,7 @@
 
                     <h3>Transactions</h3>
 
-                    <table class="finance no-blue">
+                    <table class="finance no-blue" ng-if="vm.transactionData.length != 0">
                         <thead>
                             <tr>
                                 <th>Type</th>
@@ -404,6 +434,12 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div ng-if="vm.transactionData.length == 0">
+                        <hr>
+                        <p style="padding-left:15px;">No data available yet</p>
+                        <hr>
+                    </div>
+
                      <table class="no-format">
                         <tr>
                             <td width="200">Budget spent:</td>
@@ -424,46 +460,64 @@
 
                     <h3>Results</h3>
 
-                    <hr>
-
-                    <table class="no-format">
-                        <tr>
-                            <td width="200">Result title:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Result description:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Indicator name:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Result indicator:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Result target:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Result period start:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Result period end:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Result baseline:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Result actual:</td>
-                            <td>XX</td>
-                        </tr>
+                    <table class="finance no-blue" ng-if="vm.activity.results.length != 0">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Indicator</th>
+                                <th>Indicator name</th>
+                                <th>Target</th>
+                                <th>Period start</th>
+                                <th>Period end</th>
+                                <th>Baseline</th>
+                                <th>Actual</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="result in vm.activity.results">
+                                <td>
+                                    {{result.name}}
+                                </td>
+                                <td>
+                                    {{result.description}}
+                                    <span ng-if="!result.description">-</span>
+                                </td>
+                                <td>
+                                    {{result.description}}
+                                    <span ng-if="!result.description">-</span>
+                                </td>
+                                <td>
+                                    {{result.description}}
+                                    <span ng-if="!result.description">-</span>
+                                </td>
+                                <td>
+                                    {{result.description}}
+                                    <span ng-if="!result.description">-</span>
+                                </td>
+                                <td>
+                                    {{result.description}}
+                                    <span ng-if="!result.description">-</span>
+                                </td>
+                                <td>
+                                    {{result.description}}
+                                    <span ng-if="!result.description">-</span>
+                                </td>
+                                <td>
+                                    {{result.description}}
+                                    <span ng-if="!result.description">-</span>
+                                </td>
+                                <td>
+                                    {{result.description}}
+                                    <span ng-if="!result.description">-</span>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
+                    <div ng-if="vm.activity.results.length == 0">
+                        <hr>
+                        <p style="padding-left:15px;padding-bottom:10px;">No data available yet</p>
+                    </div>
                 </div>
 
 
