@@ -32,10 +32,10 @@
                         <select
                           ng-model="vm.order_by"
                           ng-change="vm.toggleOrder()">
-                          <option value="name">Name (A - Z)</option>
-                          <option value="-name">Name (Z - A)</option>
-                          <option value="total_disbursements">Expenditure (increasing)</option>
-                          <option value="-total_disbursements">Expenditure (decreasing)</option>
+                          <option value="recipient_country">Name (A - Z)</option>
+                          <option value="-recipient_country">Name (Z - A)</option>
+                          <option value="incoming_fund">Budget (increasing)</option>
+                          <option value="-incoming_fund">Budget (decreasing)</option>
                         </select>
                     </div>
                 <span class="results">Results: <span class="total">{{vm.totalCountries}}</span></span>

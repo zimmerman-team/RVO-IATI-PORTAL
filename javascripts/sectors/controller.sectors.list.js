@@ -19,7 +19,7 @@
     vm.filterSelection = FilterSelection;
     vm.sectors = [];
     vm.totalSectors = 0;
-    vm.order_by = 'sector_id';
+    vm.order_by = 'name';
     vm.page = 1;
     vm.pageSize = 9999;
     vm.hasToContain = $scope.hasToContain;
