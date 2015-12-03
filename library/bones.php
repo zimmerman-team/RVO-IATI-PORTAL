@@ -200,6 +200,8 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'controller.locations.maplist', get_stylesheet_directory_uri() . '/javascripts/locations/controller.locations.maplist.js', array('oipa'), '', true );
 		wp_register_script( 'controller.locations.geomap', get_stylesheet_directory_uri() . '/javascripts/locations/controller.locations.geomap.js', array('oipa'), '', true );
 		wp_register_script( 'directive.locations.geomap', get_stylesheet_directory_uri() . '/javascripts/locations/directive.locations.geomap.js', array('oipa'), '', true );
+		wp_register_script( 'controller.temp.locations.geomap', get_stylesheet_directory_uri() . '/javascripts/locations/controller.temp.locations.geomap.js', array('oipa'), '', true );
+		wp_register_script( 'directive.temp.locations.geomap', get_stylesheet_directory_uri() . '/javascripts/locations/directive.temp.locations.geomap.js', array('oipa'), '', true );
 		
 		wp_register_script( 'module.activities', get_stylesheet_directory_uri() . '/javascripts/activities/module.activities.js', array('oipa'), '', true );
 		wp_register_script( 'controller.activities', get_stylesheet_directory_uri() . '/javascripts/activities/controller.activities.js', array('oipa'), '', true );
@@ -375,6 +377,8 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'controller.locations.maplist' );
 		wp_enqueue_script( 'controller.locations.geomap' );
 		wp_enqueue_script( 'directive.locations.geomap' );
+		wp_enqueue_script( 'controller.temp.locations.geomap' );
+		wp_enqueue_script( 'directive.temp.locations.geomap' );
 	
 		wp_enqueue_script( 'module.toolbar' );
 		wp_enqueue_script( 'directive.toolbar' );
