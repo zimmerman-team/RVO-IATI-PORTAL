@@ -1,8 +1,12 @@
 <script type="text/ng-template" id="tree">
-    <div ng-if="item.children" class="row parent collapsed">
+    <div ng-if="item.children && (item.count != 0)" class="row parent collapsed">
             <div class="col-xs-6">
                 <div class="wrap">
-                    <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span><a ui-sref="sector({ sector_id: item.sector_id })">{{ item.name }}</a>
+                    <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span>
+                    <a ui-sref="sector({ sector_id: item.sector_id })">
+                        <span ng-if="item.name">{{ item.name }}</span>
+                        <span ng-if="item.sector.name">{{ item.sector.name }}</span>
+                    </a>
                 </div>
             </div>
             <div class="col-xs-3">
@@ -17,10 +21,14 @@
             </div>
     </div>
 
-    <div ng-if="!item.children" class="row">
+    <div ng-if="!item.children && item.count" class="row">
         <div class="col-xs-6">
             <div class="wrap">
-                <span class="expandme empty"></span><a ui-sref="sector({ sector_id: item.sector_id })">{{ item.name }}</a>
+                <span class="expandme empty"></span>
+                <a ui-sref="sector({ sector_id: item.sector_id })">
+                    <span ng-if="item.name">{{ item.name }}</span>
+                    <span ng-if="item.sector.name">{{ item.sector.name }}</span>
+                </a>
             </div>
         </div>
         <div class="col-xs-3">
@@ -35,7 +43,7 @@
         </div>
     </div>
 
-    <div ng-if="item.children" class="children">
+    <div ng-if="item.children && (item.count != 0)" class="children">
         <div collapse="vm.isCollapsed" ng-repeat="item in item.children" ng-include="'tree'"></div>
     </div>    
 </script>
