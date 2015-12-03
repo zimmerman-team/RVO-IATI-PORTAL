@@ -27,6 +27,39 @@
                     <div class="white no-margin-bottom no-padding-bottom">
                         <h2>Financial</h2>
                     </div>
+
+                    <table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' class="table list-overview" ng-show="vm.activities.length != 0">
+                        <thead>
+                            <tr>
+                                <th width="500">Project title</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                ng-repeat="item in vm.part_org_activities">
+                                <td>
+
+                                  <a ui-sref="activiteit({ activity_id: item.id })">
+                                    {{ item.title.narratives[0].text }}
+                                  </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="panel lightblue with-table no-header">
+                        <table class="no-format">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Total partner budget
+                                    </td>
+                                    <td>
+                                        {{budget.budget__value | shortcurrency :'€'}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="panel lightblue with-table no-header">
                         <table class="no-format">
                             <tbody>

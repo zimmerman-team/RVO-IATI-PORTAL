@@ -42,6 +42,17 @@
       }, true);
 
       ImplementingOrganisations.get(vm.organisation_id).then(successFn, errorFn);
+      ImplementingOrganisations.getActivities(vm.organisation_id).then(successFnActivities, errorFnActivities);
+    
+
+      function successFnActivities(data, status, headers, config) {
+        vm.part_org_activities = data.data.results;
+      }
+
+      function errorFnActivities(data, status, headers, config) {
+        console.log("getting implementing organisation activities failed");
+      }
+
 
       function successFn(data, status, headers, config) {
 
