@@ -2211,6 +2211,10 @@ hr {
     background-color: transparent !important;
     transition:all .4s ease-in-out;
   }
+  .spent {
+    position:absolute;
+    left:10px;
+  }
 }
 
 .wrap-alternate {

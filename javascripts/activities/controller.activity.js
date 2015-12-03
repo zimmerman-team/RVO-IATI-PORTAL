@@ -9,12 +9,12 @@
     .module('oipa.activities')
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl', '$location','programmesMapping'];
+  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl', '$location'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, $location,programmesMapping) {
+  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, $location) {
     var vm = this;
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
@@ -52,10 +52,6 @@
             vm.end_actual = vm.activity.activity_dates[i]
           }
         }
-        for (var i = 0; i < vm.activity.related_activities.length;i++){
-          vm.activity.related_activities[i].name = programmesMapping[vm.activity.related_activities[i].ref];
-        }
-        console.log(vm.activity);
       }
 
       function procesTransactions(data, status, headers, config){
@@ -130,6 +126,9 @@
         },
       ];
 
+      vm.disbursements = 0;
+      vm.budget = 0;
+
       for (var i =0; i < transactions.length;i++){
 
         var date = transactions[i].transaction_date;
@@ -137,8 +136,10 @@
 
         if(transactions[i].transaction_type.code == 2){
           data[0]['values'].push([(new Date(date).getTime()), parseInt(value)]);
+          vm.budget += parseInt(value);
         } else if(transactions[i].transaction_type.code == 3){
           data[1]['values'].push([(new Date(date).getTime()), parseInt(value)]);
+          vm.disbursements += parseInt(value);
         }
       }
 
@@ -162,6 +163,14 @@
 
       for (var i = 1; i < data[1]['values'].length;i++){
         data[1]['values'][i][1] += data[1].values[(i-1)][1];
+      }
+
+      if(vm.budget > 0) {
+        vm.budgetLeft = Math.round(vm.disbursements / vm.budget * 100);
+        vm.progressStyle = {'width': vm.budgetLeft + '%'}
+      }
+      else {
+        vm.budgetLeft = 0;
       }
 
       console.log(data);

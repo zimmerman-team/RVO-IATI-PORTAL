@@ -120,7 +120,7 @@
                                 <td>
                                     <div class="progress small">
                                         <div class="progress-bar" role="progressbar" aria-valuenow="vm.budgetLeft" aria-valuemin="0" aria-valuemax="100" ng-style="vm.progressStyle">
-                                            {{vm.budgetLeft}}% spent
+                                            <span class="spent">{{vm.budgetLeft}}% spent</span>
                                         <div class="gradient"></div>
                                       </div>
                                     </div>
@@ -441,12 +441,12 @@
                         <hr>
                     </div>
 
-                     <table class="no-format" ng-if="vm.budgetLeft">
+                     <table class="no-format">
                         <tr>
                             <td>
                                 <div class="progress small">
                                     <div class="progress-bar" role="progressbar" aria-valuenow="vm.budgetLeft" aria-valuemin="0" aria-valuemax="100" ng-style="vm.progressStyle">
-                                     {{vm.budgetLeft}}% of budget spent
+                                        <span class="spent">{{vm.budgetLeft}}% of budget spent</span>
                                     <div class="gradient"></div>
                                   </div>
                                 </div>
