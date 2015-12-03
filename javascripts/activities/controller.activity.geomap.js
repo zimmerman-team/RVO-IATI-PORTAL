@@ -109,9 +109,12 @@
         vm.markers[recipient_country.country.code] = {
             lat: parseInt(location[1]),
             lng: parseInt(location[0]),
-            message: '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
-                '<h4>'+recipient_country.country.name+'</h4>'+
-                '<a class="btn btn-default" href="'+homeUrl+'/countries/'+recipient_country.country.code+'/">Go to country overview</a>',
+            message: '<h4><span class="flag-icon flag-icon-'+flag_lc+'"></span> '+recipient_country.country.name+'</h4>'+
+              '<hr>'+
+              // '<p><i class="icon lightbulb"></i><b>Projects:</b> '+vm.countryMarkerData[i]['count']+'</p>'+
+              // '<p><i class="icon euro"></i><b>Total budget:</b> '+ $filter('shortcurrency')(vm.countryMarkerData[i]['incoming_fund'],'€') +'</p>'+
+              // '<p><i class="icon medal"></i><b>Sectors:</b> '+ vm.countryMarkerData[i]['sector_count'] +'</p>'+
+              '<a href="'+homeUrl+'/countries/'+recipient_country.country.code+'/"><i class="icon graph"></i>Go to country overview</a>',
             icon: vm.markerIcons['Country'],
         }
       }
