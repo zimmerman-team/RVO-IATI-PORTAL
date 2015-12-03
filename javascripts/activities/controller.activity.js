@@ -9,12 +9,12 @@
     .module('oipa.activities')
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl', '$location'];
+  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl', '$location','programmesMapping'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, $location) {
+  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, $location,programmesMapping) {
     var vm = this;
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
@@ -52,6 +52,10 @@
             vm.end_actual = vm.activity.activity_dates[i]
           }
         }
+        for (var i = 0; i < vm.activity.related_activities.length;i++){
+          vm.activity.related_activities[i].name = programmesMapping[vm.activity.related_activities[i].ref];
+        }
+        console.log(vm.activity);
       }
 
       function procesTransactions(data, status, headers, config){

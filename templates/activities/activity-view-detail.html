@@ -106,7 +106,9 @@
                             </tr>
                             <tr>
                                 <td>Programme:</td>
-                                <td>{{vm.activity.related_activities[0].ref}}<span ng-if="!vm.activity.related_activities[0].ref">No data available yet</span></td>
+                                <td><a ui-sref="programme({ programme_id: vm.activity.related_activities[0].ref })">
+                                    {{vm.activity.related_activities[0].name}}
+                                </a><span ng-if="!vm.activity.related_activities[0].ref">No data available yet</span></td>
                             </tr>
                             <tr>
                                 <td>Total budget: </td>
