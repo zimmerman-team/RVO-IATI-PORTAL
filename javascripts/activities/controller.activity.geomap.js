@@ -19,16 +19,16 @@
 
     vm.defaults = {
       tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.483b5b1a/{z}/{x}/{y}.png',
-      maxZoom: 5,
+      maxZoom: 10,
       minZoom: 2,
       attributionControl: false,
       scrollWheelZoom: false,
-      continuousWorld: false
+      continuousWorld: false,
     };
     vm.center = {
         lat: 14.505,
         lng: 18.00,
-        zoom: 2
+        zoom: 8
     };
     vm.markers = {};
     vm.markerIcons = { 
