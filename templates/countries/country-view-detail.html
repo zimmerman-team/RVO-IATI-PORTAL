@@ -53,7 +53,8 @@
                                         Total country expenditure
                                     </td>
                                     <td>
-                                        {{vm.disbursements | shortcurrency :'€'}}
+                                        <span ng-if="vm.disbursements">{{vm.disbursements | shortcurrency :'€'}}</span>
+                                        <span ng-if="!vm.disbursements">No data available yet</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -63,7 +64,7 @@
                                     <td>
                                         <div class="progress">
                                           <div class="progress-bar" role="progressbar" aria-valuenow="vm.budgetLeft" aria-valuemin="0" aria-valuemax="100" ng-style="vm.progressStyle">
-                                            {{vm.budgetLeft}}% spent
+                                                <span class="spent">{{vm.budgetLeft}}% spent</span>
                                             <div class="gradient"></div>
                                           </div>
                                         </div>
@@ -81,9 +82,9 @@
                         <h3>Projects per sector</h3>
                         <hr>
                         <oipa-pie-chart group-by="sector" aggregation-key="count" aggregations="count,incoming_fund"></oipa-pie-chart>
-                        <h3>Projects per programme</h3>
+                        <!-- <h3>Projects per programme</h3>
                         <hr>
-                        <oipa-pie-chart group-by="programme" aggregation-key="count" aggregations="count,incoming_fund"></oipa-pie-chart>
+                        <oipa-pie-chart group-by="programme" aggregation-key="count" aggregations="count,incoming_fund"></oipa-pie-chart> -->
                     </div>
                      <div class="panel lightblue">
                         <h3>More information</h3>
@@ -104,7 +105,7 @@
                     <div class="panel lightblue">
                         <h3>Related documents</h3>
                         <hr>
-                            <p ng-show="vm.activity.documents.length == 0">
+                            <p ng-show="!vm.activity.documents">
                                 No documents available
                             </p>
                             <p ng-repeat="document in vm.activity.documents">

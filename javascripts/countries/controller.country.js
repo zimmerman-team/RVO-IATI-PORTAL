@@ -60,6 +60,7 @@
         vm.country = data.data;
         Countries.selectedCountries.push({'count': 0, 'recipient_country': {'code':vm.country.code,'name':vm.country.name}});
         FilterSelection.save();
+        console.log(vm.country);
       }
 
       vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
@@ -80,6 +81,7 @@
       
       Aggregations.aggregation('recipient_country', 'incoming_fund', selectionString).then(function(data, status, headers, config){
         vm.disbursements = data.data.results[0].disbursement;
+        console.log(data);
         if(vm.budget){
           vm.setBudgetLeft();
         }
