@@ -52,6 +52,7 @@
             vm.end_actual = vm.activity.activity_dates[i]
           }
         }
+        console.log(vm.activity);
       }
 
       function procesTransactions(data, status, headers, config){
