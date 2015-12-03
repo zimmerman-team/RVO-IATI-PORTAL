@@ -13,11 +13,12 @@ IATI is a global aid transparency standard and it makes information about aid sp
 --------
 
 * Web Site:         http://aiddata.rvo.nl/
+* RVO IATI data:    http://iatiregistry.org/dataset/rvo-01
 * OIPA:             http://www.oipa.nl
 * Authors:          [Zimmerman & Zimmerman ](https://www.zimmermanzimmerman.nl/)
 * License:          AGPLv3 (see included [LICENSE](https://github.com/openaid-IATI/OIPA/blob/master/LICENSE.MD) file for full license)
-* Github Repo:      https://github.com/zimmerman-zimmerman/rvo/
-* Bug Tracker:      https://github.com/zimmerman-zimmerman/rvo/issues
-* Documentation:    https://github.com/zimmerman-zimmerman/rvo/wiki
+* Github Repo:      https://github.com/zimmerman-zimmerman/RVO/
+* Bug Tracker:      https://github.com/zimmerman-zimmerman/RVO/issues
+* Documentation:    https://github.com/zimmerman-zimmerman/RVO/wiki
 
 
