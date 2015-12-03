@@ -1,3 +1,10 @@
+<div align="center">
+  <a href="http://aiddata.rvo.nl/">
+    <img src="http://aiddata.rvo.nl/wp-content/themes/rvo/images/logo-en-highres.png"/>
+  </a>
+</div>
+
+
 #### IATI aiddata Portal for Netherlands Enterprise Agency, an agency of the Dutch government
 --------
 This is the Angular.JS User Interface for Netherlands Enterprise Agency.  The http://aiddata.rvo.nl/ portal has visualized the open data on official development aid projects and programmes executed by the Netherlands Enterprise Agency (Rijksdienst voor Ondernemend Nederland - RVO.nl). 
