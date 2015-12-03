@@ -79,7 +79,7 @@
     vm.update = function(selectionString){
       if (selectionString.indexOf("recipient_country") < 0){ return false;}
       
-      Aggregations.aggregation('recipient_country', 'incoming_fund', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('recipient_country', 'disbursement', selectionString).then(function(data, status, headers, config){
         vm.disbursements = data.data.results[0].disbursement;
         console.log(data);
         if(vm.budget){
