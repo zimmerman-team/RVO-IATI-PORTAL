@@ -56,7 +56,7 @@
     }
 
     function errorFn(data, status, headers, config) {
-      console.log("getting country failed");
+      console.log("getting implementing organisation failed");
     }
 
     vm.update = function(selectionString){
