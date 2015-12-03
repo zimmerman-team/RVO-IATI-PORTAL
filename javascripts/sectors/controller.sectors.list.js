@@ -102,7 +102,7 @@
         }
         sector.incoming_fund = incoming_fund;
         sector.count = count;
-        return [incoming_fund, count]
+        return [incoming_fund, count];
       }
 
       function sortSectorChildren(sector, i, reverse) {
@@ -136,6 +136,7 @@
           vm.sectors = applySectorHierarchy(vm.sectorMapping)
           vm.totalSectors = data.data.count
           $scope.count = vm.totalSectors
+          console.log(vm.sectors);
       }
 
       function errorFn(data, status, headers, config){
