@@ -17,6 +17,7 @@
         mapDropdown: '@',
         mapLegend: '@',
         mapHeight: '@',
+        exactLocation: '=',
         geoView: '=?'
       },
       templateUrl: templateBaseUrl + '/templates/locations/locations-geomap.html'
