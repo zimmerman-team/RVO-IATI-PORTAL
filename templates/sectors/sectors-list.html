@@ -1,24 +1,24 @@
 <script type="text/ng-template" id="tree">
     <div ng-if="item.children && (item.count != 0)" class="row parent collapsed">
-            <div class="col-xs-6">
-                <div class="wrap">
-                    <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span>
-                    <a ui-sref="sector({ sector_id: item.sector_id })">
-                        <span ng-if="item.name">{{ item.name }}</span>
-                        <span ng-if="item.sector.name">{{ item.sector.name }}</span>
-                    </a>
-                </div>
+        <div class="col-xs-6">
+            <div class="wrap">
+                <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span>
+                <a ui-sref="sector({ sector_id: item.sector_id })">
+                    <span ng-if="item.name">{{ item.name }}</span>
+                    <span ng-if="item.sector.name">{{ item.sector.name }}</span>
+                </a>
             </div>
-            <div class="col-xs-3">
-                <div class="wrap">
-                    {{item.count || 0}} projects
-                </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="wrap">
+                {{item.count || 0}} projects
             </div>
-            <div class="col-xs-3">
-                <div class="wrap">
-                    {{item.incoming_fund  | shortcurrency :'€'}}
-                </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="wrap">
+                {{item.incoming_fund  | shortcurrency :'€'}}
             </div>
+        </div>
     </div>
 
     <div ng-if="!item.children && item.count" class="row">
@@ -97,15 +97,16 @@
 
 <div class="fake-table" ng-show="vm.sectors.length != 0">
 
-        <div class="row head">
-            <div class="col-xs-6"><div class="wrap">Sector</div></div>
-            <div class="col-xs-3"><div class="wrap">Total projects</div></div>
-            <div class="col-xs-3"><div class="wrap">Total budget</div></div>
-        </div>
+    <div class="row head">
+        <div class="col-xs-6"><div class="wrap">Sector</div></div>
+        <div class="col-xs-3"><div class="wrap">Total projects</div></div>
+        <div class="col-xs-3"><div class="wrap">Total budget</div></div>
+    </div>
 
-        <div class="body" 
-            ng-repeat="item in vm.sectors"
-            ng-include="'tree'">
-        </div>
+    <div class="body" 
+        ng-repeat="item in vm.sectors"
+        ng-include="'tree'"
+        ng-if="item.count != 0">
+    </div>
 
 </div>
