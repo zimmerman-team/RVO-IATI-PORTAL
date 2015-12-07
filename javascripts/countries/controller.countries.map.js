@@ -78,7 +78,6 @@
         Aggregations.aggregation('recipient_country', 'count,incoming_fund', vm.selectionString).then(countrySuccessFn, errorFn);
         
         function countrySuccessFn(data, status, headers, config) {
-          console.log(data)
             vm.countryMarkerData = data.data.results;
             vm.updateCountryMarkers();
         }
