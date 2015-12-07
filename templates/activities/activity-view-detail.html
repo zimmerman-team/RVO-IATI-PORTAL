@@ -112,8 +112,8 @@
                             </tr>
                             <tr>
                                 <td>Total budget: </td>
-                                <td><span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span>
-                                <span ng-if='!vm.activity.total_budget.length'>No data available yet</span></td>
+                                <td><span ng-if='vm.budget'>{{vm.budget | shortcurrency :'€'}}</span>
+                                <span ng-if='!vm.budget'>No data available yet</span></td>
                             </tr>
                             <tr>
                                 <td>Budget spent:</td>
