@@ -128,15 +128,18 @@
                             </tr>
                             <tr>
                                 <td>Funding partners:</td>
-                                <td><span ng-if="org.role.code == 1" ng-repeat='org in vm.activity.participating_organisations'>
-                                    {{org.narratives[0].text}}{{$last ? '' : ', '}}
-                                </span></td>
+                                <td>
+                                    <span class="show-me" ng-if="org.role.code == 1" ng-repeat='org in vm.activity.participating_organisations'>
+                                    {{org.narratives[0].text}}{{$last ? '' : ', '}}</span>
+                                    <span class="hide-me">No data available yet</span></td>
                             </tr>
                             <tr>
-                                <td>Implementing partners:</td>
-                                <td><span ng-if="org.role.code == 4" ng-repeat='org in vm.activity.participating_organisations'>
-                                    {{org.narratives[0].text}}{{$last ? '' : ', '}}
-                                </span></td>
+                                <td>Project partners:</td>
+                                <td>
+                                    <span class="show-me" ng-if="org.role.code == 4" ng-repeat='org in vm.activity.participating_organisations'>
+                                    {{org.narratives[0].text}}{{$last ? '' : ', '}}</span>
+                                    <span class="hide-me">No data available yet</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Status:</td>
@@ -441,7 +444,7 @@
                         <hr>
                     </div>
 
-                     <table class="no-format">
+                    <table class="no-format">
                         <tr>
                             <td>
                                 <div class="progress small">
@@ -450,6 +453,16 @@
                                     <div class="gradient"></div>
                                   </div>
                                 </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <hr style="margin-top:5px;">
+
+                    <table class="no-format">
+                        <tr>
+                            <td>
+                                <nvd3 options="vm.transactionChartOptions" data="vm.transactionChartData" class="with-3d-shadow with-transitions"></nvd3>
                             </td>
                         </tr>
                     </table>

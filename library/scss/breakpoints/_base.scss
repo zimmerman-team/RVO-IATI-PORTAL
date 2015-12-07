@@ -1538,6 +1538,10 @@ table {
   padding:0 15px;
 }
 
+.show-me + .hide-me {
+    display: none;
+}
+
 .table.list-overview {
   td,th {
     padding: 10px 30px;
@@ -1833,45 +1837,6 @@ Sunburst vis
   .legendItem, path{
     cursor: pointer;
   }
-}
-
-.zz_tooltip{
-  position: absolute;
-  background-color: #fff;
-  text-align: center;
-  transition: all .2s ease-in-out;
-  filter: drop-shadow(rgba(0, 0, 0, 0.5) 0 2px 10px);
-  -webkit-filter: drop-shadow(rgba(0,0,0,0.5) 0 2px 10px);
-  pointer-events: none;
-
-  .tt-header{
-    font-size: 16px;
-    color: #fff;
-    padding: 4px 6px;
-    word-wrap: break-word;
-  }
-
-  .tt-text{
-    padding: 9px 16px;
-    font-weight: 400;
-    text-align:left;
-  }
-
-  &:after {
-    top: 100%;
-    left: 50%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-    border-color: rgba(0, 0, 0, 0);
-    border-top-color: #fff;
-    border-width: 10px;
-    margin-left: -10px;
-  }
-
 }
 
 
@@ -2702,9 +2667,10 @@ footer {
 }
 
 //donut pie chart tooltips
-.nvtooltip {
+.nvtooltip,.zz_tooltip {
+  font-size: 14px;
   padding:10px;
-  width: 280px;
+  width: 280px !important;
   border-radius: 0px;
   box-shadow: 0 3px 14px rgba(0,0,0,0.4);
   color: $rvo-zwart;
@@ -2724,7 +2690,7 @@ footer {
   }
   p {
     margin:0 0 2px;
-    font-size: 12px;
+    font-size: 14px;
     color:$rvo-donkerblauw;
     text-align:left;
     padding:0;
@@ -2735,6 +2701,28 @@ footer {
   }
   .icon {
     margin-right: 3px;
+  }
+}
+
+.zz_tooltip {
+  position: absolute;
+  transition: all .2s ease-in-out;
+  filter: drop-shadow(rgba(0, 0, 0, 0.5) 0 2px 10px);
+  -webkit-filter: drop-shadow(rgba(0,0,0,0.5) 0 2px 10px);
+  pointer-events: none;
+  &:after {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(0, 0, 0, 0);
+    border-top-color: #fff;
+    border-width: 10px;
+    margin-left: -10px;
   }
 }
 

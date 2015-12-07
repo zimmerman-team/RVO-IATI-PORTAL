@@ -611,7 +611,12 @@ ZzSunburst = (function() {
     hideTooltip();
     
     function showTooltip(d){
-      $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">'+d.abbreviatedValue+'<br><a style="pointer-events: all" href="'+home_url+'/sectors/'+d.sector_id+'/">Go to sector page</a></div>');
+      $("#"+tooltipId).html('<h4>'+d.name+'</h4>'+
+        '<hr>'+
+        '<p><i class="icon lightbulb"></i><b>Projects:</b> '+ '' +'</p>'+
+        '<p><i class="icon euro"></i><b>Total budget:</b> '+ d.abbreviatedValue +'</p>'+
+        '<hr>'+
+        '<a style="pointer-events: all" href="'+home_url+'/sectors/'+d.sector_id+'/"><i class="icon graph"></i>Go to sector page</a>');
       
       updatePosition(d3.event);
       $("#"+tooltipId).show(0);
