@@ -93,9 +93,6 @@
 
     vm.download = function(format){
       var url = homeUrl + '/export/?format=json&filters='+encodeURIComponent(FilterSelection.selectionString);
-      if(vm.currentPage == 'activity'){
-        url = homeUrl + '/export/?format=json&detail='+$scope.activityId+'&filters=';
-      }
       window.open(url);
     }
 
