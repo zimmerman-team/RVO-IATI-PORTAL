@@ -45,7 +45,6 @@
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);
-        console.log('TO DO: set filters to oipaPieChart?');
       }, true);
 
       if(countryPageUrls[vm.country_id] != undefined){

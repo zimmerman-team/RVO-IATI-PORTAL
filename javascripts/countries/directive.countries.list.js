@@ -22,7 +22,6 @@
         count: '=?',
         searchValue: '=?',
         shown: '=?',
-        
       },
       templateUrl: templateBaseUrl + '/templates/countries/country-list.html'
     };

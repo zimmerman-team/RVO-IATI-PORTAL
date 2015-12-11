@@ -43,7 +43,7 @@
     }
 
     vm.activateSunburst = function(){
-      Aggregations.aggregation('sector', 'incoming_fund', vm.selectionString).then(successFn, errorFn);
+      Aggregations.aggregation('sector', 'count,incoming_fund', vm.selectionString).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.reformatSunburstData(data.data.results);
@@ -58,7 +58,7 @@
 
       var sector5 = {};
       for(var i = 0;i < data.length;i++){
-        sector5[data[i].sector.code] = data[i].incoming_fund;
+        sector5[data[i].sector.code] = {'incoming_fund':data[i].incoming_fund, 'count': data[i].count};
       }
 
       var mapping = angular.copy(sectorMapping);
@@ -69,16 +69,17 @@
             loopChildren(arr[i].children);
           } else{
             if(sector5[arr[i].sector_id] != undefined){
-              arr[i].incoming_fund = sector5[arr[i].sector_id];
+              arr[i].incoming_fund = sector5[arr[i].sector_id].incoming_fund;
+              arr[i].count = sector5[arr[i].sector_id].count;
             } else {
               arr[i].incoming_fund = 0;
+              arr[i].count = 0;
             }
           }
         }
       }
 
       loopChildren(mapping.children);
-      console.log(mapping);
       vm.sunburstData = angular.copy(mapping);
       vm.refreshSunburst = true;
     }

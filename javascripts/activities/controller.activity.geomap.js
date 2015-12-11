@@ -19,7 +19,7 @@
 
     vm.defaults = {
       tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.483b5b1a/{z}/{x}/{y}.png',
-      maxZoom: 10,
+      maxZoom: 14,
       minZoom: 2,
       attributionControl: false,
       scrollWheelZoom: false,
@@ -33,7 +33,6 @@
     vm.markers = {};
     vm.markerIcons = { 
       Country: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Other"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
-      Region: { html: '<div class="region-marker-circle"></div>' ,type: 'div',iconSize: [200, 200],iconAnchor: [100, 100],markerColor: 'blue',iconColor: 'white',}
     };
 
     vm.activity = $scope.activity;
@@ -54,6 +53,9 @@
 
         leafletData.getMap().then(function(map) {
             map.fitBounds(vm.getBounds());
+            if(map._zoom > 7){
+              map.setZoom(7);
+            }
         });
 
     }
@@ -99,28 +101,18 @@
 
     vm.updateCountryMarkers = function() {
 
-      for (var i = 0; i < vm.activity.recipient_countries.length;i++){
-         
-        var recipient_country = vm.activity.recipient_countries[i];
 
-        var location = countryLocations[recipient_country.country.code].location.coordinates;
-        var flag = recipient_country.country.code;
-        var flag_lc = flag.toLowerCase();
-        vm.markers[recipient_country.country.code] = {
-            lat: parseInt(location[1]),
-            lng: parseInt(location[0]),
-            message: '<h4><span class="flag-icon flag-icon-'+flag_lc+'"></span> '+recipient_country.country.name+'</h4>'+
-              '<hr>'+
-              // '<p><i class="icon lightbulb"></i><b>Projects:</b> '+vm.countryMarkerData[i]['count']+'</p>'+
-              // '<p><i class="icon euro"></i><b>Total budget:</b> '+ $filter('shortcurrency')(vm.countryMarkerData[i]['incoming_fund'],'€') +'</p>'+
-              // '<p><i class="icon medal"></i><b>Sectors:</b> '+ vm.countryMarkerData[i]['sector_count'] +'</p>'+
-              '<a href="'+homeUrl+'/countries/'+recipient_country.country.code+'/"><i class="icon graph"></i>Go to country overview</a>',
+      for (var i = 0; i < vm.activity.locations.length;i++){
+        console.log(vm.activity.locations[i]);
+
+        var location = vm.activity.locations[i];
+        vm.markers[i] = {
+            lat: parseInt(location.point.pos.latitude),
+            lng: parseInt(location.point.pos.longitude),
             icon: vm.markerIcons['Country'],
         }
       }
     }
-
-    console.log('TO DO: show exact locations | controller.activity.geomap.js');
 
     activate();
   }

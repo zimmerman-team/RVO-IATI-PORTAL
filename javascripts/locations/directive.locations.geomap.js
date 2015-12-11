@@ -18,7 +18,8 @@
         mapLegend: '@',
         mapHeight: '@',
         exactLocation: '=',
-        geoView: '=?'
+        geoView: '=?',
+        hasToContain: '@'
       },
       templateUrl: templateBaseUrl + '/templates/locations/locations-geomap.html'
     };

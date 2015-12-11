@@ -19,6 +19,9 @@
     vm.mapHeight = $scope.mapHeight;
     vm.mapDropdown = $scope.mapDropdown;
     vm.templateBaseUrl = templateBaseUrl;
+    vm.hasToContain = $scope.hasToContain;
+
+    vm.markerIcon = { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Other"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',};
 
     vm.defaults = {
       maxZoom: 10,
@@ -66,8 +69,6 @@
     
     vm.resultCounter = 0;
 
-    vm.geoLocation = null;
-
     /**
     * @name activate
     * @desc Actions to be performed when this controller is instantiated
@@ -75,78 +76,105 @@
     */
     function activate() {
 
-      if($scope.exactLocation !== undefined){
-        
-        $scope.$watch('exactLocation', function (exactLocation) {
-          if(exactLocation){
-            vm.geoLocation = exactLocation;
-            vm.showExactLocation();
-          }
-          
-        }, true);
-
-      } else {
-        $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
-          vm.selectionString = selectionString;
-          vm.updateMap();
-        }, true);
-      }
+      $scope.$watch('vm.filterSelection.selectionString', function (selectionString, oldSelectionString) {
+        if(selectionString == oldSelectionString){ return false; }
+        vm.selectionString = selectionString;
+        vm.updateMap();
+      }, true);
     }
 
-    vm.showExactLocation = function() {
+    vm.hasContains = function(){
 
-      if(!vm.geoLocation.location){
-        return false;
+      if(vm.hasToContain !== undefined){
+        var totalString = vm.filterSelection.selectionString + vm.extraSelectionString;
+        if(totalString.indexOf(vm.hasToContain) < 0){
+          return false;
+        }
       }
-
-      var coordinates = vm.geoLocation.location.coordinates
-
-      vm.center.lat = parseInt(coordinates[1]);
-      vm.center.lng = parseInt(coordinates[0]);
-
-      vm.markers['location'] = {
-        lat: parseInt(coordinates[1]),
-        lng: parseInt(coordinates[0]),
-      }
-
-      if (vm.geoLocation.code === parseInt(vm.geoLocation.code, 10))
-        vm.markers['location'].icon = { html: '<div class="region-marker-circle"></div>' ,type: 'div',iconSize: [200, 200],iconAnchor: [100, 100],markerColor: 'blue',iconColor: 'white',};
-      else
-        vm.markers['location'].icon = { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Other2"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',};
-      
-        
-    };
-
+      return true;
+    }
 
     vm.updateMap = function(){
+      if (!vm.hasContains()) return false;
+      console.log('yoyo');
 
       Activities.locations(vm.selectionString).then(function(data,status,headers,config){
-
+        console.log(data);
+        console.log(vm.selectionString);
         vm.deleteAllMarkers();
         var newMarkers = {};
         var results = data.data.results;
 
         for (var r in results){
-          for (var l in r.locations){
-
+          for (var l in results[r].locations){
+            console.log(r);
+            console.log(l);
             var message = '<h4>'+results[r].title.narratives[0].text+'</h4><hr><a target="_blank" href="'+homeUrl+'/projects/'+results[r].id+'/"><i class="icon graph"></i>Go to project overview</a>';
 
             newMarkers[r + '_' + l] = {
-              lat: parseInt(r.locations[l].point.pos.latitude),
-              lng: parseInt(r.locations[l].point.pos.longitude),
+              lat: parseInt(results[r].locations[l].point.pos.latitude),
+              lng: parseInt(results[r].locations[l].point.pos.longitude),
               layer: 'locations',
-              message: message
+              message: message,
+              icon: vm.markerIcon,
             };
           }
         }
         vm.markers = newMarkers;
 
+        leafletData.getMap().then(function(map) {
+            map.fitBounds(vm.getBounds());
+            if(map._zoom > 1){
+              map.setZoom(map._zoom - 1);
+            }
+        });
+
       }, function(data,status,headers,config){
         console.log('failed');
-        console.log(data);
       });
 
     }
+
+
+
+    vm.getBounds = function(){
+        var minlat = 0;
+        var maxlat = 0;
+        var minlng = 0;
+        var maxlng = 0;
+        var first = true;
+        for (var marker in vm.markers){
+
+            var value = vm.markers[marker];
+            var curlat = value.lat;
+            var curlng = value.lng;
+
+            if (first){
+                minlat = curlat;
+                maxlat = curlat;
+                minlng = curlng;
+                maxlng = curlng;
+            }
+
+            if (curlat < minlat){
+                minlat = curlat;
+            }
+            if (curlat > maxlat){
+                maxlat = curlat;
+            }
+            if (curlng < minlng){
+                minlng = curlng;
+            }
+            if (curlng > maxlng){
+                maxlng = curlng;
+            }
+
+            first = false;
+        }
+
+        return [[minlat, minlng],[maxlat, maxlng]];
+    }
+
 
     vm.deleteAllMarkers = function(){
 
