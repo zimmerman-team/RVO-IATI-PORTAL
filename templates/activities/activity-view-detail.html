@@ -46,18 +46,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="result in vm.results">
+                            <tr ng-repeat="result in vm.activity.results">
                                 <td>
-                                    result title
+                                    {{result.title.narratives[0].text}}
                                 </td>
                                 <td>
-                                    result indicator title
+                                    {{result.indicator[0].title.narratives[0].text}}
                                 </td>
                                 <td>
-                                    result target
+                                    {{result.indicator[0].period[0].target.value}}
                                 </td>
                                 <td>
-                                    result actual
+                                    {{result.indicator[0].period[0].actual.value}}
                                 </td>
                             </tr>
                         </tbody>
