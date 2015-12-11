@@ -103,7 +103,6 @@
 
 
       for (var i = 0; i < vm.activity.locations.length;i++){
-        console.log(vm.activity.locations[i]);
 
         var location = vm.activity.locations[i];
         vm.markers[i] = {

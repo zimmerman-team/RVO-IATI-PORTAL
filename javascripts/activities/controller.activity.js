@@ -34,8 +34,7 @@
 
     
 
-    function activate() {      
-      console.log('TO DO: results, waiting for parser implementation');
+    function activate() {
       Activities.get(vm.activityId).then(successFn, errorFn);
       Activities.getTransactions(vm.activityId).then(procesTransactions, errorFn);
 
@@ -112,7 +111,6 @@
     }
 
     vm.reformatTransactionData = function(transactions){
-      console.log(transactions);
       var data = [
         {
             values: [],

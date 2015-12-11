@@ -24,10 +24,10 @@
                         <select
                           ng-model="vm.order_by"
                           ng-change="vm.toggleOrder()">
-                          <option value="start_actual">Starting date (increasing)</option>
-                          <option value="-start_actual">Starting date (decreasing)</option>
-                          <option value="total_budget">Budget (increasing)</option>
-                          <option value="-total_budget">Budget (decreasing)</option>
+                          <option value="title">Title (A-Z)</option>
+                          <option value="-title">Title (Z-A)</option>
+                          <option value="activity_incoming_fund_value">Budget (increasing)</option>
+                          <option value="-activity_incoming_fund_value">Budget (decreasing)</option>
                         </select>
                     </div>
                 <span class="results">Results: <span class="total">{{vm.totalActivities}}</span></span>

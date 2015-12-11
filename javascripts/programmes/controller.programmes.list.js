@@ -18,7 +18,7 @@
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
-    vm.order_by = 'start_actual';
+    vm.order_by = 'title';
     vm.page_size = 15;
     vm.page = 1;
     vm.totalActivities = 0;
