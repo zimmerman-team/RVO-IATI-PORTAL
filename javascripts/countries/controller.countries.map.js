@@ -10,12 +10,12 @@
     .module('oipa.countries')
     .controller('CountriesMapController', CountriesMapController);
 
-  CountriesMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$sce', '$filter', 'countryLocations'];
+  CountriesMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$sce', '$filter'];
 
   /**
   * @namespace CountriesMapController
   */
-  function CountriesMapController($scope, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection, $sce, $filter, countryLocations) {
+  function CountriesMapController($scope, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection, $sce, $filter) {
     var vm = this;
     vm.mapHeight = $scope.mapHeight;
     vm.templateBaseUrl = templateBaseUrl;
@@ -103,11 +103,12 @@
       }
     }
 
-    vm.updateCountryMarkers = function(markerData) {
-      
+    vm.updateCountryMarkers = function() {
+
       vm.deleteAllMarkers();
 
       for (var i = 0; i < vm.countryMarkerData.length;i++){
+        
        
         var message = '<h4><span class="flag-icon flag-icon-'+vm.countryMarkerData[i].recipient_country.code.toLowerCase()+'"></span>'+vm.countryMarkerData[i].recipient_country.name+'</h4>'+
               '<hr>'+
@@ -118,13 +119,11 @@
               '<a href="'+homeUrl+'/countries/'+vm.countryMarkerData[i].recipient_country.code+'/"><i class="icon graph"></i>Go to country overview</a>';
 
         if(vm.markers[vm.countryMarkerData[i].recipient_country.code] === undefined){
-          if(countryLocations[vm.countryMarkerData[i].recipient_country.code] != undefined){
-            var coordinates = countryLocations[vm.countryMarkerData[i].recipient_country.code].location.coordinates;
-            vm.markers[vm.countryMarkerData[i].recipient_country.code] = {
-              lat: parseInt(coordinates[1]),
-              lng: parseInt(coordinates[0]),
-              icon: vm.markerIcon,
-            }
+          var coordinates = vm.countryMarkerData[i].recipient_country.location.coordinates;
+          vm.markers[vm.countryMarkerData[i].recipient_country.code] = {
+            lat: parseInt(coordinates[1]),
+            lng: parseInt(coordinates[0]),
+            icon: vm.markerIcon,
           }
         }
         vm.markers[vm.countryMarkerData[i].recipient_country.code].message = message;   

@@ -134,7 +134,7 @@
         var date = transactions[i].transaction_date;
         var value = transactions[i].value;
 
-        if(transactions[i].transaction_type.code == 2){
+        if(transactions[i].transaction_type.code == 1){ // 1 = incoming fund
           data[0]['values'].push([(new Date(date).getTime()), parseInt(value)]);
           vm.budget += parseInt(value);
         } else if(transactions[i].transaction_type.code == 3){
