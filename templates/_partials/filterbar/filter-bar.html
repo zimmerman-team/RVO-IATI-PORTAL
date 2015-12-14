@@ -22,25 +22,10 @@
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('recipient_countries')" 
                 ng-class="{'active': vm.isOpenedHeader('recipient_countries')}"
-                ng-show="vm.isIncludedFilter('recipient_countries')">
+                ng-show="vm.isIncludedFilter('recipient_countries')"
+                ng-if="vm.pageName != 'country'">
               Countries
             </span>
-
-            <!-- <span 
-                class="fa-stack fa-lg" 
-                ng-click="vm.toggleOpenPanel('recipient_regions')" 
-                ng-class="{'active': vm.isOpenedHeader('recipient_regions')}"
-                ng-mouseover="vm.hoverIn('recipient_regions')" 
-                ng-mouseleave="vm.hoverOut('recipient_regions')"
-                ng-show="vm.isIncludedFilter('recipient_regions')">
-                <div 
-                    class="glyphicon-popup" 
-                    ng-show="vm.buttonTexts['recipient_regions'].hoverShow" 
-                    ng-bind-html="vm.currentHoverText"></div>
-
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
-            </span> -->
             <span 
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('budget')" 
@@ -52,7 +37,8 @@
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('sectors')" 
                 ng-class="{'active': vm.isOpenedHeader('sectors')}"
-                ng-show="vm.isIncludedFilter('recipient_sectors')">
+                ng-show="vm.isIncludedFilter('recipient_sectors')"
+                ng-if="vm.pageName != 'sector'">
               Sectors
             </span>
             <span 

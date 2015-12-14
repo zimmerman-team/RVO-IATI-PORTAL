@@ -29,6 +29,7 @@
     vm.shareDescription = '';
     vm.selectedView = '';
     vm.views = $scope.views;
+    vm.pageName = $state.current.name;
 
     vm.buttonTexts = {
       'recipient_countries': {'text': 'Recipient country', hoverShow: false},
