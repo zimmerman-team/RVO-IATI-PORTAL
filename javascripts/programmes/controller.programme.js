@@ -82,8 +82,8 @@
     }
 
     vm.setBudgetLeft = function(){
-      vm.budgetleft = Math.round(vm.activity.child_aggregation.disbursement_value / vm.activity.child_aggregation.incoming_funds_value * 100);
-      vm.progressStyle = {'width': vm.budgetleft + '%'}
+      vm.budgetLeft = Math.round(vm.activity.child_aggregation.disbursement_value / vm.activity.child_aggregation.incoming_funds_value * 100);
+      vm.progressStyle = {'width': vm.budgetLeft + '%'}
     }
 
     vm.download = function(format){
