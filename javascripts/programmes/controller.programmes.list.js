@@ -19,7 +19,7 @@
     vm.filterSelection = FilterSelection;
     vm.activities = [];
     vm.order_by = 'title';
-    vm.page_size = 15;
+    vm.page_size = 50;
     vm.page = 1;
     vm.totalActivities = 0;
     vm.hasToContain = $scope.hasToContain;
@@ -46,7 +46,20 @@
     }
 
     vm.toggleOrder = function(){
-      vm.update(vm.filterSelection.selectionString);
+      if(vm.order_by.indexOf('budget') > -1){
+        var descending = false;
+
+        if(vm.order_by.charAt(0) == '-'){
+          descending = true;
+        }
+
+        vm.activities = _.sortBy(vm.activities, function(obj){ return +obj.budget; });
+        if(descending){
+          vm.activities.reverse();
+        }
+      } else {
+        vm.update(vm.filterSelection.selectionString);
+      }
     }
 
     vm.hasContains = function(){
@@ -97,23 +110,6 @@
         console.warn('error getting data for activity.list.block');
       }
     }
-
-    vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalActivities < (vm.page * vm.page_size))) return;
-
-      vm.busy = true;
-      vm.page += 1;
-      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.page_size, vm.order_by, vm.page).then(succesFn, errorFn);
-
-      function succesFn(data, status, headers, config){
-        vm.activities.concat(data.data.results);
-        vm.busy = false;   
-      }
-
-      function errorFn(data, status, headers, config){
-        console.warn('error getting data on lazy loading');
-      }
-    };
 
     activate();
   }

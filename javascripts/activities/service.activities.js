@@ -54,6 +54,29 @@
             return $http.get(url, { cache: true });
         }
 
+        function list_programmes(filters, page_size, order_by, page){
+            var url = oipaUrl + '/activities/?format=json'
+            url += '&fields=id,title,activity_status,recipient_countries,activity_plus_child_aggregation'
+
+            if(reportingOrganisationId){
+                url += '&reporting_organisation=' + reportingOrganisationId
+            }
+            if(filters !== undefined){
+                url += filters;
+            }
+            if(order_by !== undefined){
+                url += '&ordering=' + order_by;
+            }
+            if(page !== undefined){ 
+                url += '&page=' + page;
+            }
+            if(page_size !== undefined){
+                url += '&page_size=' + page_size;
+            }
+
+            return $http.get(url, { cache: true });
+        }
+
         function get(code) {
             return $http.get(oipaUrl + '/activities/' + code + '/?format=json', { cache: true });
         }

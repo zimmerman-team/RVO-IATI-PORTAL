@@ -26,8 +26,8 @@
                           ng-change="vm.toggleOrder()">
                           <option value="title">Title (A-Z)</option>
                           <option value="-title">Title (Z-A)</option>
-                          <option value="activity_incoming_fund_value">Budget (increasing)</option>
-                          <option value="-activity_incoming_fund_value">Budget (decreasing)</option>
+                          <option value="budget">Budget (increasing)</option>
+                          <option value="-budget">Budget (decreasing)</option>
                         </select>
                     </div>
                 <span class="results">Results: <span class="total">{{vm.totalActivities}}</span></span>
@@ -45,7 +45,7 @@
     </div>
 </div>
 
-<table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' class="table list-overview" ng-show="vm.activities.length != 0">
+<table class="table list-overview" ng-show="vm.activities.length != 0">
     <thead>
         <tr>
             <th width="500">Programme title</th>
