@@ -30,14 +30,7 @@
                     <div class="panel lightblue with-table no-header">
                         <table class="no-format">
                             <tbody>
-                                <tr>
-                                    <td width="200">
-                                        Total sector expenditure
-                                    </td>
-                                    <td>
-                                        {{vm.disbursements | shortcurrency :'€'}}
-                                    </td>
-                                </tr>
+
                                 <tr>
                                     <td>
                                         Total sector budget
@@ -46,6 +39,16 @@
                                         {{vm.budget | shortcurrency :'€'}}
                                     </td>
                                 </tr>
+                                
+                                <tr>
+                                    <td width="200">
+                                        Total sector expenditure
+                                    </td>
+                                    <td>
+                                        {{vm.disbursements | shortcurrency :'€'}}
+                                    </td>
+                                </tr>
+                                
                                 <tr>
                                     <td>
                                         Budget depletion

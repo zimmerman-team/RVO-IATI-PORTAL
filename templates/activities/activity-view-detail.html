@@ -30,9 +30,6 @@
                     <div class="map">
                         <activity-geomap map-height="350px" activity="vm.activity"></activity-geomap>
                     </div>
-                    <div class="panel lightblue">
-                        <p><b>Country:</b> <a ng-repeat="recipient_country in vm.activity.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">{{recipient_country.country.name}}{{$last ? '' : ', '}}</a><span ng-if='vm.activity.recipient_countries.length == 0'>No data available yet</span> </p>
-                    </div>
                     <div class="white no-margin-bottom no-padding-bottom">
                         <h2>Goals & results</h2>
                     </div>
@@ -97,6 +94,10 @@
                             <tr>
                                 <td>End date:</td>
                                 <td>{{vm.activity.activity_dates[3].iso_date ? vm.activity.activity_dates[3].iso_date : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
+                            </tr>
+                            <tr class="panel lightblue">
+                                <td>Country:</td>
+                                <td><a ng-repeat="recipient_country in vm.activity.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">{{recipient_country.country.name}}{{$last ? '' : ', '}}</a><span ng-if='vm.activity.recipient_countries.length == 0'>No data available yet</span> </td>
                             </tr>
                             <tr>
                                 <td width="130">Sectors: </td>
@@ -167,7 +168,9 @@
                         <!-- <div class="video">
                             <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
                         </div> -->
-                        <h4>Related documents</h4>
+                    </div>
+                     <div class="panel lightblue">
+                        <h3>Related documents</h3>
                         <hr>
                             <p ng-show="vm.activity.document_links.length == 0">
                                 No documents available.

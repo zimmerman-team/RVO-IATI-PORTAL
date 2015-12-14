@@ -94,7 +94,7 @@
     }
 
     vm.download = function(format){
-      var url = homeUrl + '/export/?format=json&filters='+encodeURIComponent(FilterSelection.selectionString);
+      var url = 'http://rvo.oipa.nl/api/countries/'+ vm.country.code +'/?format=json';
       window.open(url);
     }
 
