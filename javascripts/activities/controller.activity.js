@@ -171,8 +171,6 @@
         vm.budgetLeft = 0;
       }
 
-      console.log(data);
-
       vm.transactionChartData = data;
     }
 

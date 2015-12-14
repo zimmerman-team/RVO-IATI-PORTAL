@@ -31,6 +31,45 @@
                     <div class="map">
                         <countries-geo-map map-height='450px' map-legend='false'></countries-geo-map>
                     </div>
+                    <div class="white no-margin-bottom no-padding-bottom">
+                        <h2>Financial</h2>
+                    </div>
+                    <div class="panel lightblue with-table no-header">
+                        <table class="no-format">
+                            <tbody>
+                                <tr>
+                                    <td width="200">
+                                        Total programme budget
+                                    </td>
+                                    <td>
+                                        {{vm.activity.child_aggregation.incoming_funds_value | shortcurrency :'€'}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Total programme expenditure
+                                    </td>
+                                    <td>
+                                        <span ng-if="vm.activity.child_aggregation.disbursement_value">{{vm.activity.child_aggregation.disbursement_value | shortcurrency :'€'}}</span>
+                                        <span ng-if="!vm.activity.child_aggregation.disbursement_value">No data available yet</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Budget depletion
+                                    </td>
+                                    <td>
+                                        <div class="progress">
+                                          <div class="progress-bar" role="progressbar" aria-valuenow="vm.budgetLeft" aria-valuemin="0" aria-valuemax="100" ng-style="vm.progressStyle">
+                                                <span class="spent">{{vm.budgetLeft}}% spent</span>
+                                            <div class="gradient"></div>
+                                          </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="panel lightblue with-pie">
