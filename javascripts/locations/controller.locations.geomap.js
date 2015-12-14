@@ -107,8 +107,8 @@
             var message = '<h4>'+results[r].title.narratives[0].text+'</h4><hr><a target="_blank" href="'+homeUrl+'/projects/'+results[r].id+'/"><i class="icon graph"></i>Go to project overview</a>';
 
             newMarkers[r + '_' + l] = {
-              lat: parseInt(results[r].locations[l].point.pos.latitude),
-              lng: parseInt(results[r].locations[l].point.pos.longitude),
+              lat: parseFloat(results[r].locations[l].point.pos.latitude),
+              lng: parseFloat(results[r].locations[l].point.pos.longitude),
               layer: 'locations',
               message: message,
               icon: vm.markerIcon,
@@ -127,10 +127,7 @@
       }, function(data,status,headers,config){
         console.log('failed');
       });
-
     }
-
-
 
     vm.getBounds = function(){
         var minlat = 0;
