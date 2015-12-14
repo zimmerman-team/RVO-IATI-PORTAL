@@ -70,12 +70,12 @@
         console.log(data);
       }
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString, 'transaction_date_year').then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction_date_year', 'incoming_fund', selectionString).then(function(data, status, headers, config){
         vm.disbursements_by_year = data.data.results;
         vm.startReformatTransactionData();
       }, errorFn);
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString, 'transaction_date_year').then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction_date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
         vm.commitments_by_year = data.data.results;
         vm.startReformatTransactionData();
       }, errorFn);
