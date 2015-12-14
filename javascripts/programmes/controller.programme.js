@@ -83,6 +83,7 @@
 
     vm.setBudgetLeft = function(){
       vm.budgetLeft = Math.round(vm.activity.child_aggregation.disbursement_value / vm.activity.child_aggregation.incoming_funds_value * 100);
+      if (isNaN(vm.budgetLeft) || !isFinite(vm.budgetLeft)) {vm.budgetLeft = 0;}
       vm.progressStyle = {'width': vm.budgetLeft + '%'}
     }
 
