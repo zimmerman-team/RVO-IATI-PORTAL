@@ -2238,8 +2238,11 @@ table.no-format {
 
 .panel.with-table {
   padding:0;
-  h3 {
+  h3, h4 {
     padding: 10px 15px 0 15px;
+  }
+  p {
+    padding:0 15px;
   }
   &.no-header {
     padding-top:10px;
@@ -2303,6 +2306,9 @@ table.finance {
     }
     th,td {
       border-right:1px solid $white;
+      &:last-of-type {
+        border-right:0;
+      }
     }
   }
 }

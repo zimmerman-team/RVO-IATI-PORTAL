@@ -33,32 +33,41 @@
                     <div class="white no-margin-bottom no-padding-bottom">
                         <h2>Goals & results</h2>
                     </div>
-                    <table class="finance" ng-if="vm.activity.results.length != 0">
-                        <thead>
-                            <tr>
-                                <th>Goal</th>
-                                <th>Unit of result</th>
-                                <th>Planned result</th>
-                                <th>Obtained result</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="result in vm.activity.results">
-                                <td>
-                                    {{result.title.narratives[0].text}}
-                                </td>
-                                <td>
-                                    {{result.indicator[0].title.narratives[0].text}}
-                                </td>
-                                <td>
-                                    {{result.indicator[0].period[0].target.value}}
-                                </td>
-                                <td>
-                                    {{result.indicator[0].period[0].actual.value}}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                    <div class="panel lightblue no-margin-bottom with-table" ng-repeat="result in vm.activity.results" ng-if="vm.activity.results.length != 0">
+                        <h4>{{result.title.narratives[0].text}}</h4>
+                        <p style="margin-bottom:10px;">{{result.description.narratives[0].text}}</p>
+                            <table class="finance no-blue" ng-if="vm.activity.results.length != 0">
+                            <thead>
+                                <tr>
+                                    <th width="200">Unit of result</th>
+                                    <th>Period start</th>
+                                    <th>Period end</th>
+                                    <th>Planned result</th>
+                                    <th>Obtained result</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        {{result.indicator[0].title.narratives[0].text ? result.indicator[0].title.narratives[0].text : 'Not available yet'}}
+                                    </td>
+                                     <td>
+                                        {{result.indicator[0].period[0].period_start ? result.indicator[0].period[0].period_start : 'No data' | date : 'dd-MM-yyyy'}}
+                                    </td>
+                                     <td>
+                                        {{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : 'No data' | date : 'dd-MM-yyyy'}}
+                                    </td>
+                                    <td>
+                                        {{result.indicator[0].period[0].target.value ? result.indicator[0].period[0].target.value : 'Not available yet'}}
+                                    </td>
+                                    <td>
+                                        {{result.indicator[0].period[0].actual.value ? result.indicator[0].period[0].actual.value : 'Not available yet'}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="panel lightblue" ng-if="vm.activity.results.length == 0">
                         No data avaiable yet
                     </div>
