@@ -96,19 +96,14 @@
 
     vm.updateMap = function(){
       if (!vm.hasContains()) return false;
-      console.log('yoyo');
 
       Activities.locations(vm.selectionString).then(function(data,status,headers,config){
-        console.log(data);
-        console.log(vm.selectionString);
         vm.deleteAllMarkers();
         var newMarkers = {};
         var results = data.data.results;
 
         for (var r in results){
           for (var l in results[r].locations){
-            console.log(r);
-            console.log(l);
             var message = '<h4>'+results[r].title.narratives[0].text+'</h4><hr><a target="_blank" href="'+homeUrl+'/projects/'+results[r].id+'/"><i class="icon graph"></i>Go to project overview</a>';
 
             newMarkers[r + '_' + l] = {
