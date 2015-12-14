@@ -58,11 +58,11 @@
     <tbody>
         <tr
             ng-repeat="item in vm.activities">
-            <td><a ui-sref="programme({ programme_id: item.id })">{{ item.title.narratives[0].text }}</a></td>
+            <td><a ui-sref="programme({ programme_id: item.activity_id })">{{ item.name }}</a></td>
             <td>{{item.count ? item.count : '0'}} projects</td>
             <!-- <td>XX countries</td> -->
             <!-- <td>XX sectors</td> -->
-            <td>{{item.budget ? item.budget : 0 | shortcurrency :'€'}}</td>
+            <td>{{item.incoming_fund ? item.incoming_fund : 0 | shortcurrency :'€'}}</td>
         </tr>
     </tbody>
 </table>

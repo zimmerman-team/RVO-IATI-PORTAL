@@ -9,12 +9,12 @@
     .module('oipa.programmes')
     .controller('ProgrammeListController', ProgrammeListController);
 
-  ProgrammeListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'Aggregations'];
+  ProgrammeListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'Aggregations', 'programmesMapping'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function ProgrammeListController($scope, Activities, FilterSelection, Aggregations) {
+  function ProgrammeListController($scope, Activities, FilterSelection, Aggregations, programmesMapping) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
@@ -77,33 +77,31 @@
 
       vm.page = 1;
 
-      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=1', vm.page_size, vm.order_by, vm.page).then(succesFn, errorFn);
+      // Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=1', vm.page_size, vm.order_by, vm.page).then(succesFn, errorFn);
 
-      function succesFn(data, status, headers, config){
+      // function succesFn(data, status, headers, config){
 
-        vm.activities = data.data.results;
+      //   vm.activities = data.data.results;
+      //   vm.totalActivities = data.data.count;
+      //   $scope.count = vm.totalActivities;
+
+      //   Aggregations.aggregation('related_activity', 'count,incoming_fund', vm.filterSelection.selectionString).then(aggregationSuccessFn, errorFn);
+
+      // }
+
+      Aggregations.aggregation('related_activity', 'count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(aggregationSuccessFn, errorFn);
+
+      function aggregationSuccessFn(data, status, headers, config){
+        var results = data.data.results;
+
+        for(var i = 0;i < results.length;i++){
+          results[i].name = programmesMapping[results[i].activity_id];
+        }
+
+        vm.activities = results;
         vm.totalActivities = data.data.count;
         $scope.count = vm.totalActivities;
 
-        Aggregations.aggregation('related_activity', 'count,incoming_fund', vm.filterSelection.selectionString).then(aggregationSuccessFn, errorFn);
-
-      }
-
-      function aggregationSuccessFn(data, status, headers, config){
-
-        // make dict
-        var results = data.data.results;
-        var dict = {}
-        for(var i = 0;i < results.length;i++){
-          dict[results[i].activity_id] = results[i];
-        }
-
-        for(var i = 0;i < vm.activities.length;i++){
-          if(dict[vm.activities[i].id] != undefined){
-            vm.activities[i].count = dict[vm.activities[i].id].count;
-            vm.activities[i].budget = dict[vm.activities[i].id].incoming_fund;
-          }
-        }
       }
 
       function errorFn(data, status, headers, config){
