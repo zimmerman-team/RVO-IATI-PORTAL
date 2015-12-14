@@ -9,12 +9,12 @@
     .module('oipa.activities')
     .controller('ActivityGeoMapController', ActivityGeoMapController);
 
-  ActivityGeoMapController.$inject = ['$scope', 'leafletData', 'homeUrl', 'countryLocations'];
+  ActivityGeoMapController.$inject = ['$scope', 'leafletData', 'homeUrl'];
 
   /**
   * @namespace ActivityGeoMapController
   */
-  function ActivityGeoMapController($scope, leafletData, homeUrl, countryLocations) {
+  function ActivityGeoMapController($scope, leafletData, homeUrl) {
     var vm = this;
 
     vm.defaults = {
