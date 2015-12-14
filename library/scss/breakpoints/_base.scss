@@ -809,18 +809,25 @@ FILTER BAR
   }
   .selected {
     color:$white;
-    margin-left:3px;
-    transition: all .2s ease-in-out;
+    margin:2px 4px;
+    transition: background .2s ease-in-out;
     display: inline-block;
+    background:$rvo-groen;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.15),0 1px 1px rgba(0,0,0,0.075);
+    border-radius:2px;
+    border:1px solid darken($rvo-groen,15%);
+    padding:2px 4px;
     &:before {
-      font-family: 'AGNL-Icon-Font';
+      font-family: 'FontAwesome';
       margin-right:2px;
-      content:"\e62c";
+      content:"\f00d";
       float: left;
     }
     &:hover {
-      transform:scale(1.02);
-      color:darken(red,5%);
+      background:darken($rvo-groen,5%);
+    }
+    &:active {
+      box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
     }
   }
 }
