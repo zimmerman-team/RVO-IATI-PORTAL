@@ -490,51 +490,47 @@
                             <tr>
                                 <th>Title</th>
                                 <th>Description</th>
+                                <th>Type</th>
                                 <th>Indicator</th>
-                                <th>Indicator name</th>
-                                <th>Target</th>
+                                <th>Baseline year</th>
+                                <th>Baseline value</th>
                                 <th>Period start</th>
                                 <th>Period end</th>
-                                <th>Baseline</th>
-                                <th>Actual</th>
+                                <th>Target value</th>
+                                <th>Actual value</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="result in vm.activity.results">
                                 <td>
-                                    {{result.name}}
+                                    {{result.title.narratives[0].text ? result.title.narratives[0].text : '-'}}
                                 </td>
                                 <td>
-                                    {{result.description}}
-                                    <span ng-if="!result.description">-</span>
+                                    {{result.description.narratives[0].text ? result.description.narratives[0].text : '-'}}
                                 </td>
                                 <td>
-                                    {{result.description}}
-                                    <span ng-if="!result.description">-</span>
+                                    {{result.type.name ? result.type.name : '-'}}
                                 </td>
                                 <td>
-                                    {{result.description}}
-                                    <span ng-if="!result.description">-</span>
+                                    {{result.indicator[0].title.narratives[0].text ? result.indicator[0].title.narratives[0].text : '-'}}
                                 </td>
                                 <td>
-                                    {{result.description}}
-                                    <span ng-if="!result.description">-</span>
+                                    {{result.indicator[0].baseline.year ? result.indicator[0].baseline.year : '-'}}
                                 </td>
                                 <td>
-                                    {{result.description}}
-                                    <span ng-if="!result.description">-</span>
+                                    {{result.indicator[0].baseline.value ? result.indicator[0].baseline.value : '-'}}
                                 </td>
                                 <td>
-                                    {{result.description}}
-                                    <span ng-if="!result.description">-</span>
+                                    {{result.indicator[0].period[0].period_start ? result.indicator[0].period[0].period_start : '-' | date : 'dd-MM-yyyy'}}
                                 </td>
                                 <td>
-                                    {{result.description}}
-                                    <span ng-if="!result.description">-</span>
+                                    {{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : '-' | date : 'dd-MM-yyyy'}}
                                 </td>
                                 <td>
-                                    {{result.description}}
-                                    <span ng-if="!result.description">-</span>
+                                    {{result.indicator[0].period[0].target.value ? result.indicator[0].period[0].target.value : '-'}}
+                                </td>
+                                <td>
+                                    {{result.indicator[0].period[0].actual.value ? result.indicator[0].period[0].actual.value : '-'}}
                                 </td>
                             </tr>
                         </tbody>
@@ -545,396 +541,7 @@
                     </div>
                 </div>
 
-
-                        <!-- <tr>
-                            <td>IATI Project #:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Description type:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Status code:</td>
-                            <td>XX</td>
-                        </tr>
-                        
-                        <tr>
-                            <td>Default tied:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Default finance:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Participating org.:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Country code:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Region code:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Sector code:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Policy marker:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Budget type:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Transaction code:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Result code:</td>
-                            <td>XX</td>
-                        </tr>
-                        <tr>
-                            <td>Indicator code:</td>
-                            <td>XX</td>
-                        </tr>
-                    </table> -->
-
-                <!-- <div class="row">
-                    <div class="col-sm-4">
-                        IATI Identifier
-                    </div>
-                    <div class="col-sm-8">
-                        {{vm.activity.iati_identifier}}
-                    </div>
-                </div>
-                </div>
-
-
-                <div class="panel blue no-margin-bottom">
-                    Description
-                </div>
-                <div class="panel xlightblue">
-                    <p>{{vm.activity.descriptions[0].description}}</p>
-                </div>
-
-                <div class="wrap-alternate">
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Project scope
-                            </div>
-                            <div class="col-sm-8">
-                                <span ng-if='vm.activity.activity_scope.name.length'>{{vm.activity.activity_scope.name}}</span>
-                                <span ng-if='!vm.activity.activity_scope.name.length'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Start date planned
-                            </div>
-                            <div class="col-sm-8">
-                                {{vm.activity.start_planned.length ? vm.activity.start_planned : 'No data available yet' | date : 'dd MMM yyyy'}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Start date actual
-                            </div>
-                            <div class="col-sm-8">
-                                {{vm.activity.start_actual.length ? vm.activity.start_actual : 'No data available yet' | date : 'dd MMM yyyy'}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                End date planned
-                            </div>
-                            <div class="col-sm-8">
-                                {{vm.activity.end_planned.length ? vm.activity.end_planned : 'No data available yet' | date : 'dd MMM yyyy'}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                End date actual
-                            </div>
-                            <div class="col-sm-8">
-                                {{vm.activity.end_actual.length ? vm.activity.end_actual : 'No data available yet' | date : 'dd MMM yyyy'}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Reporting organisation
-                            </div>
-                            <div class="col-sm-8">
-                                {{vm.activity.reporting_organisation.name}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Participating organisations
-                            </div>
-                            <div class="col-sm-8">
-                                <span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}},</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Country
-                            </div>
-                            <div class="col-sm-8">
-                                <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">{{country.name}}</a><span ng-if='vm.activity.countries.length == 0'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Region
-                            </div>
-                            <div class="col-sm-8">
-                                <a ng-repeat="region in vm.activity.regions" ui-sref="region({ region_id: region.code })">
-                                    {{region.name}}
-                                </a>
-                                <span ng-if='vm.activity.regions.length == 0'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Locations
-                            </div>
-                            <div class="col-sm-8">
-                                <span ng-repeat="location in vm.activity.locations" >
-                                    {{location.name}},
-                                </span>
-                                <span ng-if='vm.activity.locations.length == 0'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Sectors
-                            </div>
-                            <div class="col-sm-8">
-                                <a ui-sref="sector({'sector_id': sector.code})" ng-repeat="(key, sector) in vm.activity.sectors">{{ sector.name }}, </a><span ng-show='!vm.activity.sectors.length'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Sector code
-                            </div>
-                            <div class="col-sm-8">
-                                <a ui-sref="sector({ sector_id: vm.activity.sectors[0].code })">{{vm.activity.sectors[0].code}}</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Other identifiers
-                            </div>
-                            <div class="col-sm-8">
-                                <a ng-repeat="other_identifier in vm.activity.other_identifier">
-                                    {{other_identifier.name}}
-                                </a>
-                                <span ng-if='vm.activity.related_activities.length == 0'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Related activities
-                            </div>
-                            <div class="col-sm-8">
-                                <a ng-repeat="act in vm.activity.related_activities">
-                                    {{act.id}}
-                                </a>
-                                <span ng-if='vm.activity.related_activities.length == 0'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel blue no-margin-bottom">
-                    Transaction
-                </div>
-                <div class="wrap-alternate">
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Finance type
-                            </div>
-                            <div class="col-sm-8">
-                                <span ng-if='vm.activity.default_finance_type.name.length'>{{vm.activity.default_finance_type.name}}</span>
-                                <span ng-if='!vm.activity.default_finance_type.name.length'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Estimated budget
-                            </div>
-                            <div class="col-sm-8">
-                                <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span>
-                                <span ng-if='!vm.activity.total_budget.length'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Capital spent
-                            </div>
-                            <div class="col-sm-8">
-                                <span ng-if='vm.activity.activity_scope.name.length'>{{vm.activity.capital_spend.percentage}}</span>
-                                <span ng-if='!vm.activity.activity_scope.name.length'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Flow type
-                            </div>
-                            <div class="col-sm-8">
-                                <span ng-if='vm.activity.default_flow_type.name.length'>{{vm.activity.default_flow_type.name}}</span>
-                                <span ng-if='!vm.activity.default_flow_type.name.length'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Tied status
-                            </div>
-                            <div class="col-sm-8">
-                                <span ng-if='vm.activity.default_tied_status.name.length'>{{vm.activity.default_tied_status.name}}</span>
-                                <span ng-if='!vm.activity.default_tied_status.name.length'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Collaboration type
-                            </div>
-                            <div class="col-sm-8">
-                                <span ng-if='vm.activity.collaboration_type.name.length'>{{vm.activity.collaboration_type.name}}</span>
-                                <span ng-if='!vm.activity.collaboration_type.name.length'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Aid type
-                            </div>
-                            <div class="col-sm-8">
-                                <span ng-if='vm.activity.default_aid_type.name.length'>{{vm.activity.default_aid_type.name}}</span>
-                                <span ng-if='!vm.activity.default_aid_type.name.length'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Websites
-                            </div>
-                            <div class="col-sm-8">
-                                <a ng-repeat="website in vm.activity.websites">
-                                    {{website.name}}
-                                </a>
-                                <span ng-if='vm.activity.websites.length == 0'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Linked data URI
-                            </div>
-                            <div class="col-sm-8">
-                                <span ng-if='vm.activity.linked_data_uri.length'>{{vm.activity.linked_data_uri}}</span>
-                                <span ng-if='!vm.activity.linked_data_uri.length'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Hierarchy
-                            </div>
-                            <div class="col-sm-8">
-                                <span ng-if='vm.activity.hierarchy'>{{vm.activity.hierarchy}}</span>
-                                <span ng-if='!vm.activity.hierarchy'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel no-margin-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Results
-                            </div>
-                            <div class="col-sm-8">
-                                <a ng-repeat="result in vm.activity.results">
-                                    {{result.name}}
-                                </a>
-                                <span ng-if='vm.activity.results.length == 0'>No data available yet</span>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
             </div>
-            <!-- <div class="col-md-4">
-
-                <div class="panel lightblue with-table share">
-                    <h3>Export & share</h3>
-                    <hr>
-                    <table class="no-format">
-                        <tr>
-                            <td width="130">Download:</td>
-                            <td><a ng-click="vm.download('json')"><i class="fa fa-download"></i>JSON</a></td>
-                        </tr>
-                        <tr>
-                            <td>Share:</td>
-                            <td>
-                                <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="fa fa-twitter-square"></i></a>
-                                <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="fa fa-facebook-square"></i></a>
-                                <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="fa fa-linkedin-square"></i></a>
-                                <a href=""><i class="fa fa-envelope-square"></i></a>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-            </div>
-        </div> -->
 
     </div>
 </div>

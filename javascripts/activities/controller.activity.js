@@ -54,6 +54,7 @@
         for (var i = 0; i < vm.activity.related_activities.length;i++){
           vm.activity.related_activities[i].name = programmesMapping[vm.activity.related_activities[i].ref];
         }
+        // console.log(vm.activity);
       }
 
       function procesTransactions(data, status, headers, config){
