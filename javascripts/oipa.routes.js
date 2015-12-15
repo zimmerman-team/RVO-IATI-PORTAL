@@ -109,8 +109,6 @@
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisation-view-detail.html'
         })
-
-
         .state({
             name:        'programmes',
             url:         '/programmes/',
@@ -125,8 +123,6 @@
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/programmes/programme-view-detail.html'
         })
-
-
         .state({
             name:        'sectors',
             url:         '/sectors/',
@@ -168,7 +164,7 @@
         })
         .state({
             name:        'search',
-            url:         '/zoeken/?search&tab',
+            url:         '/search/?search&tab',
             controller:  'SearchPageController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/search/search-page.html'

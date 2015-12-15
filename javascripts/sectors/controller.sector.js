@@ -104,12 +104,12 @@ var sectorLayoutTest = null;
       if (selectionString.indexOf("sector") < 0){ return false;}
 
       Aggregations.aggregation('sector', 'disbursement', selectionString).then(function(data, status, headers, config){
-        vm.disbursements = data.data.results[0].disbursement;
+        vm.disbursements = data.data.results.length ? data.data.results[0].disbursement : 0;
         vm.setBudgetLeft();
       }, errorFn);
 
       Aggregations.aggregation('sector', 'incoming_fund', selectionString).then(function(data, status, headers, config){
-        vm.budget = data.data.results[0].incoming_fund;
+        vm.budget = data.data.results.length ? data.data.results[0].incoming_fund : 0;
         vm.setBudgetLeft();
       }, errorFn);
 

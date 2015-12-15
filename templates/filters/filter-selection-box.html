@@ -1,13 +1,90 @@
-<div class="filter-selected" ng-show="vm.filterSelection.selectionString.length">
+<div class="filter-selected" ng-show="vm.filterCount">
+	<div class="container extra">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="filter-box">
+
+					<a 
+						class="selected filter-selected-button selectedProgrammes" 
+						ng-repeat="item in vm.selectedProgrammes" 
+						ng-click="vm.removeFilter(vm.selectedProgrammes, 'activity_id', item.activity_id)" 
+						ng-if="vm.currentPage != 'programmes'">
+						{{item.name}}
+					</a>
+
+					<a 
+						class="selected filter-selected-button selectedCountries" 
+						ng-repeat="item in vm.selectedCountries" 
+						ng-click="vm.removeFilter(vm.selectedCountries, 'recipient_country', item.recipient_country.code)" 
+						ng-if="vm.currentPage != 'country'">
+						{{item.recipient_country.name}}
+					</a>
+
+					<a 
+						class="selected filter-selected-button selectedSectors" 
+						ng-repeat="item in vm.selectedSectors" 
+						ng-click="vm.removeFilter(vm.selectedSectors, 'sector', item.sector.code)" 
+						ng-if="vm.currentPage != 'sector'">
+						{{item.sector.name}}
+					</a>
+
+					<a 
+						class="selected filter-selected-button selectedImplementingOrganisations" 
+						ng-repeat="item in vm.selectedImplementingOrganisations" 
+						ng-click="vm.removeFilter(vm.selectedImplementingOrganisations, '', item.organisation.code)" 
+						ng-if="vm.currentPage != 'organisation'">
+						{{item.name}}
+					</a>
+
+					<a 
+						class="selected filter-selected-button selectedActivityStatuses" 
+						ng-repeat="item in vm.selectedActivityStatuses" 
+						ng-click="vm.removeFilter(vm.selectedActivityStatuses, 'activity_status', item.activity_status.code)">
+						{{item.activity_status.name}}
+					</a>
+
+					<a 
+						ng-if="vm.search.searchString.length > 0" 
+						class="selected filter-selected-button selectedRegions" 
+						ng-click="vm.removeSearch()">
+						'{{vm.search.searchString}}'
+					</a>
+
+					<a 
+						class="selected filter-selected-button selectedActivityStatuses" 
+						ng-show="vm.selectedBudget.on && vm.selectedBudget.value[1] == 30000000" 
+						ng-click="vm.removeBudgetFilter()">
+						Budget: {{vm.selectedBudget.value[0] | shortcurrency :'€'}} - {{vm.selectedBudget.value[1] | shortcurrency :'€'}}
+						
+					</a>
+
+					<a 
+						class="selected filter-selected-button selectedActivityStatuses" 
+						ng-show="vm.selectedTransactionYear.on" 
+						ng-click="vm.removeTransactionYearFilter()">
+						Transaction date year: {{vm.selectedTransactionYear.value}}
+						
+					</a>
+
+					<div style="margin-bottom:4px;" ng-show="!vm.filterCount">
+						No filters selected
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 
+
+<div class="filter-selected" ng-show="vm.filterCount">
 	<div class="container extra">
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="filter-box">
 					<span class="selected-items">Your selection: </span>
 
-					<a class="selected filter-selected-button selectedProgrammes" ng-repeat="item in vm.selectedProgrammes" ng-click="vm.removeFilter(vm.selectedProgrammes, item.code)">
-						{{item.activity_id}}
-					</a>
+					
 
 					<a class="selected filter-selected-button selectedCountries" ng-repeat="item in vm.selectedCountries" ng-click="vm.removeFilter(vm.selectedCountries, item.code)">
 						{{item.recipient_country.name}}
@@ -34,10 +111,12 @@
 
 					<a 
 						class="selected filter-selected-button selectedActivityStatuses" 
-						ng-show="vm.selectedBudget.on" 
+						ng-show="vm.selectedBudget.on && vm.selectedBudget.value[1] == 30000000" 
 						ng-click="vm.removeBudgetFilter()">
 						Budget: {{vm.selectedBudget.value[0] | shortcurrency :'€'}} - {{vm.selectedBudget.value[1] | shortcurrency :'€'}}
+						
 					</a>
+
 
 					<a 
 						class="selected filter-selected-button selectedActivityStatuses" 
@@ -46,17 +125,11 @@
 						Transaction date year: {{vm.selectedTransactionYear.value}}
 					</a>
 
-					<span style="margin-bottom:4px;" ng-show="!(
-					vm.selectedCountries.length + 
-					vm.selectedProgrammes.length + 
-					vm.selectedSectors.length + 
-					vm.selectedImplementingOrganisations.length + 
-					vm.selectedActivityStatuses.length +
-					vm.search.searchString.length) && !vm.selectedBudget.on && !vm.selectedTransactionYear.on">
+					<span style="margin-bottom:4px;" ng-show="!vm.filterCount">
 						No filters selected
 					</span>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->

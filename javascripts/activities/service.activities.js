@@ -95,7 +95,6 @@
             if(filters !== undefined){
                 url += filters;
             }
-            console.log(url);
             return $http.get(url, { cache: true });
         }
     }
