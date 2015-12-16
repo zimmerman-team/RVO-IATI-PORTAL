@@ -177,7 +177,7 @@ tr {
 }
 
 [ui-view].ng-enter{
-  transition: 0.75s;
+  transition: all 0s linear;
   opacity: 0;
 }
 
@@ -186,13 +186,35 @@ tr {
 }
 
 [ui-view].ng-leave{
-  transition: 0.75s;
-  opacity: 0;
+  -webkit-animation:0s fadeout;
+  -moz-animation:0s fadeout;
+  -o-animation:0s fadeout;
+  animation:0s fadeout;
 }
 
-[ui-view].ng-leave-active{
-  opacity: 1;
+@keyframes fadeout {
+  from { opacity:1; }
+  to { opacity:0; }
 }
+
+@-webkit-keyframes fadeout {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-moz-keyframes fadeout {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-o-keyframes fadeout {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+// [ui-view].ng-leave-active{
+//   opacity: 0;
+// }
 
 .title {
   display: inline-block;
