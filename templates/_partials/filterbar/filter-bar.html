@@ -61,7 +61,8 @@
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('recipient_implementing_organisations')" 
                 ng-class="{'active': vm.isOpenedHeader('recipient_implementing_organisations')}"
-                ng-show="vm.isIncludedFilter('recipient_implementing_organisations')">
+                ng-show="vm.isIncludedFilter('recipient_implementing_organisations')"
+                ng-if="vm.pageName != 'organisation'">
               Implementing organisations
             </span>
  
