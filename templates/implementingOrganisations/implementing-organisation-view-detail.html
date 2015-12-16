@@ -35,7 +35,7 @@
                                         Total commitment to partner:
                                     </td>
                                     <td>
-                                        No data available yet
+                                        {{vm.budget | shortcurrency :'€'}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -43,7 +43,7 @@
                                         Total disbursement to partner:
                                     </td>
                                     <td>
-                                        No data available yet
+                                        {{vm.disbursements | shortcurrency :'€'}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -64,7 +64,7 @@
                     </div>
 <!--                     <div class="graph">
                         <financials-line-chart 
-                            has-to-contain="participating_organisations__organisation__code__in">
+                            has-to-contain="participating_organisation_name">
                         </financials-line-chart>
                     </div> -->
                 </div>
@@ -144,7 +144,7 @@
                 <div class="col-md-12">
 
                     <programme-list 
-                        has-to-contain="participating_organisations__organisation__code__in" 
+                        has-to-contain="participating_organisation_name" 
                         count="vm.tabs[1].count"
                         shown="vm.selectedTab == 'programmes'"></programme-list>
 
@@ -159,7 +159,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <activity-list 
-                        has-to-contain='participating_organisations__organisation__code__in' 
+                        has-to-contain='participating_organisation_name' 
                         count='vm.tabs[2].count'
                         shown="vm.selectedTab == 'activities'"></activity-list>
                 </div>
@@ -173,7 +173,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <sector-list 
-                        has-to-contain='participating_organisations__organisation__code__in' 
+                        has-to-contain='participating_organisation_name' 
                         count='vm.tabs[3].count'
                         shown="vm.selectedTab == 'sectors'"></sector-list>
                 </div>
@@ -187,7 +187,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <country-list 
-                        has-to-contain='participating_organisations__organisation__code__in' 
+                        has-to-contain='participating_organisation_name' 
                         count='vm.tabs[4].count'
                         shown="vm.selectedTab == 'countries'"></country-list>
                 </div>

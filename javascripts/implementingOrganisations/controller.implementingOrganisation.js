@@ -24,13 +24,12 @@
     vm.pageUrlDecoded = $location.absUrl();
 
 
-    console.log('TODO: tabs met inhoud fixen');
     vm.tabs = [
       {'id': 'samenvatting', 'name': 'Summary', 'count': -1},
-      // {'id': 'programmes', 'name': 'Programmes', 'count': -1},
-      // {'id': 'activities', 'name': 'Projects', 'count': -1},
-      // {'id': 'sectors', 'name': 'Sectors', 'count': -1},
-      // {'id': 'countries', 'name': 'Countries', 'count': -1},
+      {'id': 'programmes', 'name': 'Programmes', 'count': -1},
+      {'id': 'activities', 'name': 'Projects', 'count': -1},
+      {'id': 'sectors', 'name': 'Sectors', 'count': -1},
+      {'id': 'countries', 'name': 'Countries', 'count': -1},
     ]
 
 
@@ -43,9 +42,8 @@
         vm.update(selectionString);
       }, true);
 
-      ImplementingOrganisations.get(vm.organisation_id).then(successFn, errorFn);
+      // ImplementingOrganisations.get(vm.organisation_id).then(successFn, errorFn);
       ImplementingOrganisations.getActivities(vm.organisation_id).then(successFnActivities, errorFnActivities);
-    
 
       function successFnActivities(data, status, headers, config) {
         vm.part_org_activities = data.data.results;
@@ -56,13 +54,9 @@
       }
 
 
-      function successFn(data, status, headers, config) {
+      ImplementingOrganisations.selectedImplementingOrganisations[0] = {'organisation_id':vm.organisation_id,'name':vm.organisation_id};
+      vm.filterSelection.save();
 
-        vm.organisation = data.data;
-        ImplementingOrganisations.selectedImplementingOrganisations[0] = {'organisation_id':vm.organisation.code,'name':vm.organisation.name};
-        vm.filterSelection.save();
-        setTimeout(function(){ vm.update(vm.filterSelection.selectionString); }, 3000);
-      }
       vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
       vm.shareDescription = encodeURIComponent('View the aid projects of the RVO on ' + vm.pageUrlDecoded);
 
@@ -72,22 +66,37 @@
       console.log("getting implementing organisation failed");
     }
 
+    vm.setBudgetLeft = function(){
+      vm.budgetLeft = Math.round(vm.disbursements / vm.budget * 100);
+      vm.progressStyle = {'width': vm.budgetLeft + '%'}
+    }
+
     vm.update = function(selectionString){
 
-      if (selectionString.indexOf("participating_organisations__organisation__code__in") < 0) return false;
+      if (selectionString.indexOf("participating_organisation_name") < 0) return false;
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
-        vm.disbursements_by_year = data.data.results;
+      Aggregations.aggregation('participating_organisation', 'disbursement', selectionString).then(function(data, status, headers, config){
+        vm.disbursements = data.data.results.length ? data.data.results[0].disbursement : 0;
+        vm.setBudgetLeft();
+      }, errorFn);
+
+      Aggregations.aggregation('participating_organisation', 'incoming_fund', selectionString).then(function(data, status, headers, config){
+        vm.budget = data.data.results.length ? data.data.results[0].incoming_fund : 0;
+        vm.setBudgetLeft();
+      }, errorFn);
+
+      // Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
+      //   vm.disbursements_by_year = data.data.results;
         
-      }, errorFn);
+      // }, errorFn);
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString).then(function(data, status, headers, config){
-        vm.commitments_by_year = data.data.results;
-      }, errorFn);
+      // Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString).then(function(data, status, headers, config){
+      //   vm.commitments_by_year = data.data.results;
+      // }, errorFn);
 
-      Aggregations.aggregation('reporting-org', 'budget__value', selectionString).then(function(data, status, headers, config){
-        vm.budget_by_year = data.data.results;
-      }, errorFn);
+      // Aggregations.aggregation('reporting-org', 'budget__value', selectionString).then(function(data, status, headers, config){
+      //   vm.budget_by_year = data.data.results;
+      // }, errorFn);
 
     }
 

@@ -65,6 +65,8 @@
     vm.hasContains = function(){
       if(vm.hasToContain !== undefined){
         var totalString = vm.filterSelection.selectionString + vm.extraSelectionString;
+        console.log('called')
+        console.log(totalString)
         if(totalString.indexOf(vm.hasToContain) < 0){
           return false;
         }

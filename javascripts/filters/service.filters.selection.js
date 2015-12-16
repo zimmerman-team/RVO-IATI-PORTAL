@@ -40,7 +40,10 @@
 		   var selectList = [
 	        m.selectArrayToString('recipient_country', 'code', m.selectedCountries),
 	        m.selectArrayToString('sector', 'code', m.selectedSectors),
-	        m.selectArrayToString('participating_organisations__organisation__code', 'organisation_id', m.selectedImplementingOrganisations),
+			"&participating_organisation_name=" + _.pluck(m.selectedImplementingOrganisations, 'name').map(function(name) {
+				return encodeURIComponent(name)
+			}).join(','),
+	        // m.selectArrayToString('participating_organisations__organisation__code', 'name', m.selectedImplementingOrganisations),
 	        m.selectArrayToString('activity_status', 'code', m.selectedActivityStatuses),
 	      ];
 
