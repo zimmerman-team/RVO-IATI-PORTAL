@@ -176,23 +176,23 @@ tr {
   padding-top:0 !important;
 }
 
-[ui-view].ng-enter{
-  transition: 0.75s;
-  opacity: 0;
-}
+// [ui-view].ng-enter{
+//   transition: 0s;
+//   opacity: 0;
+// }
 
-[ui-view].ng-enter-active{
-  opacity: 1;
-}
+// [ui-view].ng-enter-active{
+//   opacity: 1;
+// }
 
-[ui-view].ng-leave{
-  transition: 0.75s;
-  opacity: 0;
-}
+// [ui-view].ng-leave{
+//   transition: 0s;
+//   opacity: 0;
+// }
 
-[ui-view].ng-leave-active{
-  opacity: 1;
-}
+// [ui-view].ng-leave-active{
+//   opacity: 1;
+// }
 
 .title {
   display: inline-block;
@@ -775,7 +775,7 @@ FILTER BAR
     /* ensure visibility during the transition */
     display: block !important; /* yes, important */
   }
-  .slideDown {
+  .slideDown.ng-animate {
     transition: all .5s ease-in-out;
     .filter-panel {
       transition: max-height .5s ease-in-out, opacity .2s ease-in-out;
