@@ -53,6 +53,10 @@
            $("#toTop").fadeOut();
         }
       });
+
+      $('.nav a.mobi').on('click', function(){
+        $('.navbar-toggle').click();
+      });
       
     }
     

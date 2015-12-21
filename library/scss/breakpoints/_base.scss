@@ -70,8 +70,6 @@ body{
 .page-wrap {
   background:$white;
   box-shadow: #bec6cc 0px 0px 8px;
-  margin-top:30px;
-  margin-bottom: 30px;
   padding:0;
 }
 
@@ -1162,6 +1160,16 @@ FILTER BAR
 
 
 //homepage
+.mobile-header {
+  height: 30vw;
+  margin-bottom: 0;
+  img {
+    width: 100%;
+  }
+  background-size:cover;
+  background-image:url('../../images/Develop2Build header.jpg');
+  background-position:center;
+}
 .logo {
   margin-bottom: 16px;
   a {
@@ -1174,16 +1182,15 @@ FILTER BAR
   }
 }
 .home-header {
-  display: flex;
   position:relative;
-  min-height:23vh;
   font-size: 16px;
-  .col-md-4 {
-    flex:1;
-    display: flex;
-    z-index: 10;
+  .col-sm-6 {
+    &.left {
+      .panel {
+        margin-bottom: 0;
+      }
+    }
     .panel {
-      flex: 1;
       padding:25px 30px;
       background:$rvo-xlichtblauw;
       border:0;
@@ -1215,7 +1222,7 @@ FILTER BAR
   }
   .pic {
     flex:1;
-    display: flex;
+    display: none;
     position: absolute;
     left:15px;
     height: 100%;
@@ -1233,13 +1240,6 @@ FILTER BAR
   }
 }
 .homepage-blocks {
-  .col-sm-3 {
-    flex: 1;
-    display: flex;
-  }
-  .row {
-    display: flex;
-  }
   .panel {
     flex:1;
     padding:15px;
@@ -2804,32 +2804,17 @@ footer {
   font-size: 14px;
   border-bottom: 13px solid $rvo-lichtblauw;
   margin: 0;
-  padding: 17px 0 0;
+  padding: 0;
   text-align: center;
   position: relative;
   #main-menu-links {
     list-style: none;
     margin: 0;
-    padding: 0 30px;
     overflow: hidden;
     li {
       background: none;
-      float: left;
       margin: 0;
       padding: 0;
-    }
-    a {
-      display: block;
-      padding: 6px 10px 4px;
-      margin-right: 4px;
-      text-decoration: none;
-      color: white;
-      height: 29px;
-      &:hover,&.active {
-        background-color: $rvo-lichtblauw;
-        color: $rvo-zwart;
-        text-decoration: none;
-      }
     }
   }
 }

@@ -51,6 +51,15 @@ come into play. Have fun!
 // 	}
 // }
 
+.page-wrap {
+	margin-top:30px;
+	margin-bottom: 30px;
+}
+
+#primary-navigation {
+	padding: 17px 0 0;
+}
+
 .actions {
 	.filters {
 		span {
@@ -237,9 +246,34 @@ come into play. Have fun!
   // }
 }
 
+.mobile-header {
+  height: 15vw;
+}
+
 //homepage blokken
 .homepage-blocks {
 	.col-md-2 {
 		width:20%;
+	}
+}
+
+.home-header {
+	display: flex;
+	.col-sm-6 {
+	    flex:1;
+	    display: flex;
+	    z-index: 10;
+	    &.left {
+	    	padding-right:0;
+			.panel {
+				margin-bottom: 20px;
+			}
+   	    }
+	    &.right {
+	    	padding-left:0;
+	    }
+	}
+    .panel {
+		flex: 1;
 	}
 }

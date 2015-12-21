@@ -37,3 +37,19 @@ be seen on the Desktop.
 /*#openaid-main {
   padding-top:60px;
 }*/
+
+.homepage-blocks {
+  .col-md-3 {
+    flex: 1;
+    display: flex;
+  }
+  .row {
+    display: flex;
+  }
+}
+
+.home-header {
+	.pic {
+   		display: flex;
+   	}
+}
