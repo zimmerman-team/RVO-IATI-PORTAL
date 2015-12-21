@@ -106,8 +106,8 @@
 
         var location = vm.activity.locations[i];
         vm.markers[i] = {
-            lat: parseInt(location.point.pos.latitude),
-            lng: parseInt(location.point.pos.longitude),
+            lat: parseFloat(location.point.pos.latitude),
+            lng: parseFloat(location.point.pos.longitude),
             icon: vm.markerIcons['Country'],
         }
       }
