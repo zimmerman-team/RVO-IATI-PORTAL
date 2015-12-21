@@ -188,7 +188,7 @@
                             </p>
                             <p ng-repeat="document in vm.activity.document_links">
                                 <a target="_blank" href="{{document.url}}">
-                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title}}
+                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title[0].narratives[0].text}}
                                 </a>
                             </p>
                     </div>
