@@ -266,7 +266,7 @@ ZzSunburst = (function() {
 
     var that = sunburst;
     var level = that.getLevel(p, 0);
-    if(that.zooming || level == 3){
+    if(that.zooming || level == 3 || level == 0){
       return false;
     }
 
@@ -461,7 +461,8 @@ ZzSunburst = (function() {
         .attr("transform", function(d, i) { return "translate(" + (d.depth * 15) + "," + (10 + (i * 30)) + ")"; })
         .on("mouseover", that.mouseOverPath)
         .on("mouseout", that.mouseOutPath)
-        .on("click", function(d){ window.open(home_url + '/sectors/' +d.sector_id+ '/'); });
+        .on("click", that.zoom);
+        //.on("click", function(d){ window.open(home_url + '/sectors/' +d.sector_id+ '/'); });
 
     legendItemEnter
       .append('circle')
