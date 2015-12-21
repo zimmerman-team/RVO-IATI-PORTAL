@@ -11,7 +11,7 @@ on larger screens.
 
 //navbar centreren, pas bij hoge res, anders gaat het springen
 .container {
-	//width:1192px;
+    width: 1170px;
 }
 
 .navbar {
@@ -41,6 +41,22 @@ on larger screens.
 	// .container {
 	// 	width: 1140px;
 	// }
+	.filter-pop {
+		&:after {
+	      opacity: 0;
+	      content: " ";
+	      width: 0; 
+	      height: 0; 
+	      border-left: 8px solid transparent;
+	      border-right: 8px solid transparent;
+	      border-bottom: 8px solid $rvo-blauw;
+	      position:absolute;
+	      bottom:-8px;
+	      left:50%;
+	      margin-left: -4px;
+	      transition: all .2s ease-in-out .1s;
+	    }
+	}
 }
 
 /*#openaid-main {

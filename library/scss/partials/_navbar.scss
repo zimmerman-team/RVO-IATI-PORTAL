@@ -1,6 +1,6 @@
 /// Navbar collapse override!
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   #primary-navigation {
     .navbar-header {
         float: none;
@@ -134,7 +134,7 @@
     }
   }
   #main-menu-links {
-    padding: 0 30px;
+    padding: 0 15px;
     li {
       float: left;
     }

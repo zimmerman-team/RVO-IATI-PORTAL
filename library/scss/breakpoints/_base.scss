@@ -636,20 +636,6 @@ FILTER BAR
         }
       }
     }
-    &:after {
-      opacity: 0;
-      content: " ";
-      width: 0; 
-      height: 0; 
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-bottom: 8px solid $rvo-blauw;
-      position:absolute;
-      bottom:-8px;
-      left:50%;
-      margin-left: -4px;
-      transition: all .2s ease-in-out .1s;
-    }
     &.active {
       &:before {
         color:$rvo-blauw;
@@ -2929,5 +2915,13 @@ footer {
     &:before {
       content: '\0021';
     }
+  }
+}
+
+//mobile only fix
+@media (max-width: 767px) {
+  .page-wrap {
+    width: 100%;
+    overflow:hidden;
   }
 }
