@@ -186,11 +186,13 @@
                             <p ng-show="vm.activity.document_links.length == 0">
                                 No documents available.
                             </p>
-                            <p ng-repeat="document in vm.activity.document_links">
-                                <a target="_blank" href="{{document.url}}">
-                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title[0].narratives[0].text}}
-                                </a>
-                            </p>
+                            <ul ng-if="vm.activity.document_links.length != 0" class="fa-ul">
+                                <li ng-repeat="document in vm.activity.document_links">
+                                    <a target="_blank" href="{{document.url}}">
+                                        <i class="fa-li fa fa-download"></i>{{document.title[0].narratives[0].text}}
+                                    </a>
+                                </li>
+                            </ul>
                     </div>
                     <div class="panel lightblue with-table share">
                         <h3>Export & share</h3>
