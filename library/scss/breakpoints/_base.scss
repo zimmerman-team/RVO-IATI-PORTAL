@@ -1155,6 +1155,9 @@ FILTER BAR
   background-size:cover;
   background-image:url('../../images/Develop2Build header.jpg');
   background-position:center;
+  a {
+    outline: none;
+  }
 }
 .logo {
   margin-bottom: 16px;

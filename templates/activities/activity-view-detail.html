@@ -37,36 +37,38 @@
                     <div class="panel lightblue no-margin-bottom with-table" ng-repeat="result in vm.activity.results" ng-if="vm.activity.results.length != 0">
                         <h4>{{result.title.narratives[0].text}}</h4>
                         <p style="margin-bottom:10px;">{{result.description.narratives[0].text}}</p>
+                        <div class="table-responsive">
                             <table class="finance no-blue" ng-if="vm.activity.results.length != 0">
-                            <thead>
-                                <tr>
-                                    <th width="200">Unit of result</th>
-                                    <th>Period start</th>
-                                    <th>Period end</th>
-                                    <th>Planned result</th>
-                                    <th>Obtained result</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        {{result.indicator[0].title.narratives[0].text ? result.indicator[0].title.narratives[0].text : 'Not available yet'}}
-                                    </td>
-                                     <td>
-                                        {{result.indicator[0].period[0].period_start ? result.indicator[0].period[0].period_start : 'No data' | date : 'dd-MM-yyyy'}}
-                                    </td>
-                                     <td>
-                                        {{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : 'No data' | date : 'dd-MM-yyyy'}}
-                                    </td>
-                                    <td>
-                                        {{result.indicator[0].period[0].target.value ? result.indicator[0].period[0].target.value : 'Not available yet'}}
-                                    </td>
-                                    <td>
-                                        {{result.indicator[0].period[0].actual.value ? result.indicator[0].period[0].actual.value : 'Not available yet'}}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                <thead>
+                                    <tr>
+                                        <th width="200">Unit of result</th>
+                                        <th>Period start</th>
+                                        <th>Period end</th>
+                                        <th>Planned result</th>
+                                        <th>Obtained result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            {{result.indicator[0].title.narratives[0].text ? result.indicator[0].title.narratives[0].text : 'Not available yet'}}
+                                        </td>
+                                         <td>
+                                            {{result.indicator[0].period[0].period_start ? result.indicator[0].period[0].period_start : 'No data' | date : 'dd-MM-yyyy'}}
+                                        </td>
+                                         <td>
+                                            {{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : 'No data' | date : 'dd-MM-yyyy'}}
+                                        </td>
+                                        <td>
+                                            {{result.indicator[0].period[0].target.value ? result.indicator[0].period[0].target.value : 'Not available yet'}}
+                                        </td>
+                                        <td>
+                                            {{result.indicator[0].period[0].actual.value ? result.indicator[0].period[0].actual.value : 'Not available yet'}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="panel lightblue" ng-if="vm.activity.results.length == 0">
                         No data avaiable yet
@@ -222,7 +224,6 @@
 
                     <h3>Dates & description</h3>
                     <hr>
-
                     <table class="no-format">
                         <tr>
                             <td width="200">RVO Project: </td>
@@ -287,36 +288,37 @@
                 <div class="panel lightblue with-table">
 
                     <h3>Related organisations</h3>
-
-                    <table class="finance no-blue" ng-if="vm.activity.participating_organisations">
-                        <thead>
-                            <tr>
-                                <th>Participating org.</th>
-                                <th>Participating org. role</th>
-                                <th>Participating org. ref.</th>
-                                <th>Participating org. type</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="org in vm.activity.participating_organisations">
-                                <td>
-                                    {{org.narratives[0].text}}
-                                </td>
-                                <td>
-                                    {{org.role.name}}
-                                    <span ng-if="!org.role.name">-</span>
-                                </td>
-                                <td>
-                                    {{org.ref}}
-                                    <span ng-if="!org.ref">-</span>
-                                </td>
-                                <td>
-                                    {{org.type.name}}
-                                    <span ng-if="!org.type.name">-</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="finance no-blue" ng-if="vm.activity.participating_organisations">
+                            <thead>
+                                <tr>
+                                    <th>Participating org.</th>
+                                    <th>Participating org. role</th>
+                                    <th>Participating org. ref.</th>
+                                    <th>Participating org. type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="org in vm.activity.participating_organisations">
+                                    <td>
+                                        {{org.narratives[0].text}}
+                                    </td>
+                                    <td>
+                                        {{org.role.name}}
+                                        <span ng-if="!org.role.name">-</span>
+                                    </td>
+                                    <td>
+                                        {{org.ref}}
+                                        <span ng-if="!org.ref">-</span>
+                                    </td>
+                                    <td>
+                                        {{org.type.name}}
+                                        <span ng-if="!org.type.name">-</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div ng-if="!vm.activity.participating_organisations">
                         <hr>
                         <p style="padding-left:15px;padding-bottom:10px;">No data available yet</p>
@@ -326,37 +328,37 @@
                 <div class="panel lightblue with-table">
 
                     <h3>Related countries</h3>
-
-                    <table class="finance no-blue" ng-if="vm.activity.recipient_countries.length != 0">
-                        <thead>
-                            <tr>
-                                <th>Country</th>
-                                <th>Region</th>
-                                <th>Latitude</th>
-                                <th>Longitude</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="country in vm.activity.recipient_countries">
-                                <td>
-                                    {{country.country.name}}
-                                </td>
-                                <td>
-                                    {{country.region}}
-                                    <span ng-if="!country.region">-</span>
-                                </td>
-                                <td>
-                                    {{country.latitude}}
-                                    <span ng-if="!country.latitude">-</span>
-                                </td>
-                                <td>
-                                    {{country.longitude}}
-                                    <span ng-if="!country.longitude">-</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+                    <div class="table-responsive">
+                        <table class="finance no-blue" ng-if="vm.activity.recipient_countries.length != 0">
+                            <thead>
+                                <tr>
+                                    <th>Country</th>
+                                    <th>Region</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="country in vm.activity.recipient_countries">
+                                    <td>
+                                        {{country.country.name}}
+                                    </td>
+                                    <td>
+                                        {{country.region}}
+                                        <span ng-if="!country.region">-</span>
+                                    </td>
+                                    <td>
+                                        {{country.latitude}}
+                                        <span ng-if="!country.latitude">-</span>
+                                    </td>
+                                    <td>
+                                        {{country.longitude}}
+                                        <span ng-if="!country.longitude">-</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div ng-if="vm.activity.recipient_countries.length == 0">
                         <hr>
                         <p style="padding-left:15px;padding-bottom:10px;">No data available yet</p>
@@ -399,57 +401,58 @@
                 <div class="panel lightblue with-table">
 
                     <h3>Transactions</h3>
-
-                    <table class="finance no-blue" ng-if="vm.transactionData.length != 0">
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Provider</th>
-                                <th>Provider ref.</th>
-                                <th>Provider act. id</th>
-                                <th>Receiver</th>
-                                <th>Receiver ref.</th>
-                                <th>Receiver act. id</th>
-                                <th>Value</th>
-                                <th>Date</th>
-                                <th>Value date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="transaction in vm.transactionData">
-                                <td>
-                                    {{transaction.transaction_type.name}}
-                                </td>
-                                <td>
-                                    {{transaction.provider_organisation.narratives[0].text}}
-                                    <span ng-if="!transaction.provider_organisation">-</span>
-                                </td>
-                                <td>
-                                    {{transaction.provider_organisation.ref}}
-                                    <span ng-if="!transaction.provider_organisation.ref">-</span>
-                                </td>
-                                <td>
-                                    {{transaction.provider_organisation.receiver_activity_id}}
-                                    <span ng-if="!transaction.provider_organisation.receiver_activity_id">-</span>
-                                </td>
-                                <td>
-                                    {{transaction.receiver_organisation.narratives[0].text}}
-                                    <span ng-if="!transaction.receiver_organisation">-</span>
-                                </td>
-                                <td>
-                                    {{transaction.receiver_organisation.ref}}
-                                    <span ng-if="!transaction.receiver_organisation.ref">-</span>
-                                </td>
-                                <td>
-                                    {{transaction.receiver_organisation.receiver_activity_id}}
-                                    <span ng-if="!transaction.receiver_organisation.receiver_activity_id">-</span>
-                                </td>
-                                <td>{{transaction.value | shortcurrency :'€'}}</td>
-                                <td>{{transaction.transaction_date | date : 'dd-MM-yyyy'}}</td>
-                                <td>{{transaction.value_date | date : 'dd-MM-yyyy'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="finance no-blue" ng-if="vm.transactionData.length != 0">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Provider</th>
+                                    <th>Provider ref.</th>
+                                    <th>Provider act. id</th>
+                                    <th>Receiver</th>
+                                    <th>Receiver ref.</th>
+                                    <th>Receiver act. id</th>
+                                    <th>Value</th>
+                                    <th>Date</th>
+                                    <th>Value date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="transaction in vm.transactionData">
+                                    <td>
+                                        {{transaction.transaction_type.name}}
+                                    </td>
+                                    <td>
+                                        {{transaction.provider_organisation.narratives[0].text}}
+                                        <span ng-if="!transaction.provider_organisation">-</span>
+                                    </td>
+                                    <td>
+                                        {{transaction.provider_organisation.ref}}
+                                        <span ng-if="!transaction.provider_organisation.ref">-</span>
+                                    </td>
+                                    <td>
+                                        {{transaction.provider_organisation.receiver_activity_id}}
+                                        <span ng-if="!transaction.provider_organisation.receiver_activity_id">-</span>
+                                    </td>
+                                    <td>
+                                        {{transaction.receiver_organisation.narratives[0].text}}
+                                        <span ng-if="!transaction.receiver_organisation">-</span>
+                                    </td>
+                                    <td>
+                                        {{transaction.receiver_organisation.ref}}
+                                        <span ng-if="!transaction.receiver_organisation.ref">-</span>
+                                    </td>
+                                    <td>
+                                        {{transaction.receiver_organisation.receiver_activity_id}}
+                                        <span ng-if="!transaction.receiver_organisation.receiver_activity_id">-</span>
+                                    </td>
+                                    <td>{{transaction.value | shortcurrency :'€'}}</td>
+                                    <td>{{transaction.transaction_date | date : 'dd-MM-yyyy'}}</td>
+                                    <td>{{transaction.value_date | date : 'dd-MM-yyyy'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div ng-if="vm.transactionData.length == 0">
                         <hr>
                         <p style="padding-left:15px;">No data available yet</p>
@@ -484,57 +487,58 @@
                 <div class="panel lightblue with-table">
 
                     <h3>Results</h3>
-
-                    <table class="finance no-blue" ng-if="vm.activity.results.length != 0">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Type</th>
-                                <th>Indicator</th>
-                                <th>Baseline year</th>
-                                <th>Baseline value</th>
-                                <th>Period start</th>
-                                <th>Period end</th>
-                                <th>Target value</th>
-                                <th>Actual value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="result in vm.activity.results">
-                                <td>
-                                    {{result.title.narratives[0].text ? result.title.narratives[0].text : '-'}}
-                                </td>
-                                <td>
-                                    {{result.description.narratives[0].text ? result.description.narratives[0].text : '-'}}
-                                </td>
-                                <td>
-                                    {{result.type.name ? result.type.name : '-'}}
-                                </td>
-                                <td>
-                                    {{result.indicator[0].title.narratives[0].text ? result.indicator[0].title.narratives[0].text : '-'}}
-                                </td>
-                                <td>
-                                    {{result.indicator[0].baseline.year ? result.indicator[0].baseline.year : '-'}}
-                                </td>
-                                <td>
-                                    {{result.indicator[0].baseline.value ? result.indicator[0].baseline.value : '-'}}
-                                </td>
-                                <td>
-                                    {{result.indicator[0].period[0].period_start ? result.indicator[0].period[0].period_start : '-' | date : 'dd-MM-yyyy'}}
-                                </td>
-                                <td>
-                                    {{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : '-' | date : 'dd-MM-yyyy'}}
-                                </td>
-                                <td>
-                                    {{result.indicator[0].period[0].target.value ? result.indicator[0].period[0].target.value : '-'}}
-                                </td>
-                                <td>
-                                    {{result.indicator[0].period[0].actual.value ? result.indicator[0].period[0].actual.value : '-'}}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="finance no-blue" ng-if="vm.activity.results.length != 0">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    <th>Indicator</th>
+                                    <th>Baseline year</th>
+                                    <th>Baseline value</th>
+                                    <th>Period start</th>
+                                    <th>Period end</th>
+                                    <th>Target value</th>
+                                    <th>Actual value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="result in vm.activity.results">
+                                    <td>
+                                        {{result.title.narratives[0].text ? result.title.narratives[0].text : '-'}}
+                                    </td>
+                                    <td>
+                                        {{result.description.narratives[0].text ? result.description.narratives[0].text : '-'}}
+                                    </td>
+                                    <td>
+                                        {{result.type.name ? result.type.name : '-'}}
+                                    </td>
+                                    <td>
+                                        {{result.indicator[0].title.narratives[0].text ? result.indicator[0].title.narratives[0].text : '-'}}
+                                    </td>
+                                    <td>
+                                        {{result.indicator[0].baseline.year ? result.indicator[0].baseline.year : '-'}}
+                                    </td>
+                                    <td>
+                                        {{result.indicator[0].baseline.value ? result.indicator[0].baseline.value : '-'}}
+                                    </td>
+                                    <td>
+                                        {{result.indicator[0].period[0].period_start ? result.indicator[0].period[0].period_start : '-' | date : 'dd-MM-yyyy'}}
+                                    </td>
+                                    <td>
+                                        {{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : '-' | date : 'dd-MM-yyyy'}}
+                                    </td>
+                                    <td>
+                                        {{result.indicator[0].period[0].target.value ? result.indicator[0].period[0].target.value : '-'}}
+                                    </td>
+                                    <td>
+                                        {{result.indicator[0].period[0].actual.value ? result.indicator[0].period[0].actual.value : '-'}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div ng-if="vm.activity.results.length == 0">
                         <hr>
                         <p style="padding-left:15px;padding-bottom:10px;">No data available yet</p>
