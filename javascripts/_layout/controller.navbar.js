@@ -54,9 +54,9 @@
         }
       });
 
-      $('.nav a.mobi').on('click', function(){
-        $('.navbar-toggle').click();
-      });
+      // $('.nav a.mobi').on('click', function(){
+      //   $('.navbar-toggle').click();
+      // });
       
     }
     
