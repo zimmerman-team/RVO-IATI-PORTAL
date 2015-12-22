@@ -28,20 +28,20 @@
         <div class="results">
             <div class="row" ng-repeat="programme in vm.searchData.programmes.data">
                 <div class="col-md-9">
-                    <a ui-sref='programme({"programme_id": programme.id})'>{{programme.titles[0].title}}</a>
+                    <a ui-sref='programme({"programme_id": programme.id})'>{{programme.title.narratives[0].text}}</a>
                 </div>
                 <div class="col-md-3">
-                    {{programme.iati_identifier}}
+                    {{programme.id}}
                 </div>
             </div>
-             <div class="row" ng-show="!vm.searchData.countries.data.length">
+             <div class="row" ng-show="!vm.searchData.programmes.data.length">
                 <div class="col-md-9">
                     0 results
                 </div>
             </div>
-            <div class="row" ng-show="!vm.searchData.activities.loaded">
+            <div class="row" ng-show="!vm.searchData.programmes.loaded">
                 <div class="svg-loader">
-                    <img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
+                    <img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
                 </div>
             </div>
         </div>
@@ -59,20 +59,20 @@
         <div class="results">
             <div class="row" ng-repeat="activity in vm.searchData.activities.data">
                 <div class="col-md-9">
-                    <a ui-sref='activiteit({"activity_id": activity.id})'>{{activity.titles[0].title}}</a>
+                    <a ui-sref='activiteit({"activity_id": activity.id})'>{{activity.title.narratives[0].text}}</a>
                 </div>
                 <div class="col-md-3">
-                    {{activity.iati_identifier}}
+                    {{activity.id}}
                 </div>
             </div>
-             <div class="row" ng-show="!vm.searchData.countries.data.length">
+             <div class="row" ng-show="!vm.searchData.activities.data.length">
                 <div class="col-md-9">
                     0 results
                 </div>
             </div>
             <div class="row" ng-show="!vm.searchData.activities.loaded">
                 <div class="svg-loader">
-                    <img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
+                    <img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
                 </div>
             </div>
         </div>
@@ -90,10 +90,10 @@
         <div class="results">
             <div class="row" ng-repeat="country in vm.searchData.countries.data">
                 <div class="col-md-9">
-                    <a ui-sref='country({"country_id": country.country_id})'>{{country.name}}</a>
+                    <a ui-sref='country({"country_id": country.recipient_country.code})'>{{country.recipient_country.name}}</a>
                 </div>
                 <div class="col-md-3">
-                    {{country.activity_count}} projects
+                    {{country.count}} projects
                 </div>
             </div>
 
@@ -104,7 +104,7 @@
             </div>
             <div class="row" ng-show="!vm.searchData.countries.loaded">
                 <div class="svg-loader">
-                    <img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
+                    <img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
                 </div>
             </div>
         </div>
@@ -122,10 +122,10 @@
         <div class="results">
             <div class="row" ng-repeat="sector in vm.searchData.sectors.data">
                 <div class="col-md-9">
-                    <a ui-sref='sector({"sector_id": sector.sector_id})'>{{sector.name}}</a>
+                    <a ui-sref='sector({"sector_id": sector.sector.code})'>{{sector.sector.name}}</a>
                 </div>
                 <div class="col-md-3">
-                    {{sector.activity_count}} projects
+                    {{sector.count}} projects
                 </div>
             </div>
 
@@ -136,7 +136,7 @@
             </div>
             <div class="row" ng-show="!vm.searchData.sectors.loaded">
                 <div class="svg-loader">
-                    <img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
+                    <img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
                 </div>
             </div>
         </div>
@@ -157,7 +157,7 @@
                     <a ui-sref='organisation({"organisation_id": organisation.receiver_organisation_id})'>{{organisation.name}}</a>
                 </div>
                 <div class="col-md-3">
-                    {{organisation.activity_count}} transactions
+                    {{organisation.count}} transactions
                 </div>
             </div>
 
@@ -169,7 +169,7 @@
 
             <div class="row" ng-show="!vm.searchData.organisations.loaded">
                 <div class="svg-loader">
-                    <img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
+                    <img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
                 </div>
             </div>
         </div>

@@ -57,7 +57,7 @@
 	      }
 
 	      if(m.selectedBudget.on){
-	        selectList.push('&activity_aggregation__incoming_fund__gte='+m.selectedBudget.value[0]+'&activity_aggregation__incoming_fund__lte='+m.selectedBudget.value[1]);
+	        selectList.push('&activity_aggregation_incoming_fund_value_gte='+m.selectedBudget.value[0]+'&activity_aggregation_incoming_fund_value_lte='+m.selectedBudget.value[1]);
 	      }
 
 	      if(m.selectedTransactionYear.on){

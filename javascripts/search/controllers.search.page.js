@@ -11,6 +11,7 @@
     var vm = this;
     vm.selectedTab = 'activities';
     vm.searchValue = '';
+    vm.templateBaseUrl = templateBaseUrl;
 
     vm.tabs = [
       {'id': 'activities', 'name': 'Projects', 'count': -1},

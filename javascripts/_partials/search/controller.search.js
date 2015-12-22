@@ -22,6 +22,7 @@
     vm.currentPage = $scope.currentPage;
 
     vm.searchData = {
+      'programmes': {'total': 0, 'data': [], 'loaded': false},
       'activities': {'total': 0, 'data': [], 'loaded': false},
       'countries': {'total': 0, 'data': [], 'loaded': false},
       'sectors': {'total': 0, 'data': [], 'loaded': false},
@@ -70,17 +71,18 @@
 
       vm.showResults = true;
 
-      // get results from activities
-      Activities.list('&hierarchy=1&q_fields=title,description&q='+vm.searchString, 3, 'count', 1).then(function(data, status, headers, config){
-        vm.searchData.activities.data = data.data.showResults;
-        vm.searchData.activities.total = data.data.count;
-        vm.searchData.activities.loaded = true;
+      // get results from programmes
+      Activities.list('&hierarchy=1&q_fields=iati_identifier,title,description&q='+vm.searchString, 3, 'count', 1).then(function(data, status, headers, config){
+        vm.searchData.programmes.data = data.data.results;
+        console.log(vm.searchData.programmes.data);
+        vm.searchData.programmes.total = data.data.count;
+        vm.searchData.programmes.loaded = true;
       }, errorFn);
 
 
       // get results from activities
-      Activities.list('&hierarchy=2&q_fields=title,description&q='+vm.searchString, 3, 'count', 1).then(function(data, status, headers, config){
-        vm.searchData.activities.data = data.data.showResults;
+      Activities.list('&hierarchy=2&q_fields=iati_identifier,title,description&q='+vm.searchString, 3, 'count', 1).then(function(data, status, headers, config){
+        vm.searchData.activities.data = data.data.results;
         vm.searchData.activities.total = data.data.count;
         vm.searchData.activities.loaded = true;
       }, errorFn);
