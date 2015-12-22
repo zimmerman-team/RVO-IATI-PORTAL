@@ -1269,7 +1269,7 @@ Budget SLIDER
         background: $rvo-groen;
       }
       .tooltip {
-        .tooltip-inner {
+        .currency {
           background: rgba($rvo-groen, 0.7);
         }
         &.top {
@@ -1337,11 +1337,16 @@ Budget SLIDER
     margin-left:-38px !important;
     font-size: 12px;
     .tooltip-inner {
+      display: none;
+    }
+    .currency {
+      padding:3px 8px;
       background: $rvo-donkerblauw;
       box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.3);
-      &:before {
-        content: '\20AC\2008' ;
-      }
+      white-space: nowrap;
+      text-align: center;
+      color:$white;
+      border-radius:3px;
     }
     &.top {
       margin-top:-45px !important;

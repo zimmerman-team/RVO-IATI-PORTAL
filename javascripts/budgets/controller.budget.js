@@ -5,9 +5,9 @@
     .module('oipa.budget')
     .controller('BudgetController', BudgetController);
 
-  BudgetController.$inject = ['$scope', 'Budget', 'FilterSelection'];
+  BudgetController.$inject = ['$scope', 'Budget', 'FilterSelection', '$filter'];
 
-  function BudgetController($scope, Budget, FilterSelection) {
+  function BudgetController($scope, Budget, FilterSelection, $filter) {
     var vm = this;
     vm.on = false;
     vm.budgetValue = [0,30000000];
@@ -19,6 +19,15 @@
 
       $scope.$watch("vm.budgetValue", function (budgetValue) {
         Budget.budget.value = budgetValue;
+
+        //tooltip mods
+        $('.tooltip-max .currency').html(function(){
+          return $filter('shortcurrency')($('.tooltip-max .tooltip-inner').text(),'€');
+        });
+        $('.tooltip-min .currency').html(function(){
+          return $filter('shortcurrency')($('.tooltip-min .tooltip-inner').text(),'€');
+        });
+
       }, true);
 
       $scope.$watch("vm.on", function (budgetOn) {
@@ -32,6 +41,12 @@
           vm.budget.toReset = false;
         }
       }, true);
+
+      
+      // tickFormat: function(d){
+      //         return $filter('shortcurrency')(d,'€');
+      //       },
+
     }
 
     vm.save = function(){
