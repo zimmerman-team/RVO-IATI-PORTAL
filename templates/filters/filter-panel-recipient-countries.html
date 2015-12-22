@@ -4,7 +4,7 @@
 			<div class="col-md-4">
 				<div class="search-box">
 				    <div class="form-group">
-				        <input ng-model="vm.q" class="form-control" placeholder="Search by country name..">
+				        <input ng-model="vm.q" class="form-control" placeholder="Search by country name...">
 				        <button class="btn-search" type="button">
 				            <span class="fa fa-search"></span>
 				        </button>
@@ -12,12 +12,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="row" ng-show="vm.loading">
+		<div class="row" ng-show="vm.recipientCountries.length == 0">
 			<div class="svg-loader">
-				There are no regions found within your current selection. 
+				There are no countries found within your current selection. 
 			</div>
 		</div>
-		<div class="row" ng-show="!vm.loading">
+		<div class="row" ng-show="vm.recipientCountries.length != 0">
 			<div class="col-md-12">
 				<table class="table">
 					<thead>
