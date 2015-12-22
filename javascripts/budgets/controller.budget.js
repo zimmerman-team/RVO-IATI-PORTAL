@@ -10,7 +10,7 @@
   function BudgetController($scope, Budget, FilterSelection) {
     var vm = this;
     vm.on = false;
-    vm.budgetValue = [0,30000000];
+    vm.budgetValue = [0,1000000000];
     vm.budget = Budget;
 
     activate();
@@ -27,7 +27,7 @@
 
       $scope.$watch("vm.budget.toReset", function (toReset) {
         if(toReset == true){
-          vm.budgetValue = [0,30000000];
+          vm.budgetValue = [0,1000000000];
           vm.on = false;
           vm.budget.toReset = false;
         }
