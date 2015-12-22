@@ -38,23 +38,8 @@ oipa-table-chart .table tbody tr td.colour {
   display: none;
 }
 
-.about-page{
-
-  .intro{
-    margin-top: 16px;
-    font-weight: 600;
-  }
-  h4{
-    margin-top: 22px;
-    margin-bottom: 4px;
-    font-weight: bold;
-  }
-
-
-}
-
 /*********************
-GLOBAL
+GLOBAL EN HELPERS
 *********************/
 html {
   background: $rvo-xlichtblauw;
@@ -88,32 +73,6 @@ a {
   }
 }
 
-// .description{
-//   font-size: 1.3em;
-// }
-
-// .white-background{
-//   background-color: #fff;
-// }
-
-// .btn-openaid{
-//   background-color: $blauw;
-//   padding: 5px 28px;
-//   color: #fff;
-//   border: 0;
-//   font-size: 12px;
-//   border-radius: 2px;
-// }
-
-// .btn-cancel{
-//   margin-left: 5px;
-//   background-color: #CBCCDA;
-// }
-
-// .align-right{
-//   text-align: right;
-// }
-
 hr{
   border-top: 1px solid #fff;
   margin:10px -15px;
@@ -133,7 +92,6 @@ tr {
   text-align: center;
   margin: 70px 0 60px;
 }
-
 
 .main-placeholder{
   margin: 20px 0 40px; 
@@ -174,73 +132,12 @@ tr {
   padding-top:0 !important;
 }
 
-// [ui-view].ng-enter{
-//   transition: 0s;
-//   opacity: 0;
-// }
-
-// [ui-view].ng-enter-active{
-//   opacity: 1;
-// }
-
-// [ui-view].ng-leave{
-//   transition: 0s;
-//   opacity: 0;
-// }
-
-// [ui-view].ng-leave-active{
-//   opacity: 1;
-// }
+.fa-ul {
+  margin-left:1.8em;
+}
 
 .title {
   display: inline-block;
-}
-
-.search-box {
-  float: none;
-  margin-bottom: 15px;
-  position:relative;
-  form {
-    height: 34px;
-  }
-  input {
-    height: 34px;
-    padding:0 12px;
-    line-height: 34px;
-    background:#fff;
-    display: inline-block;
-    border-radius:0;
-    width: 100%;
-    border-top-right-radius:17px;
-    border-bottom-right-radius:17px;
-    border:1px solid #ccc;
-    font-size:14px;
-  }
-  .btn-search {
-    background:$rvo-lichtblauw;
-    color: #fff;
-    margin:0;
-    border-radius:17px;
-    width: 34px;
-    height: 34px;
-    border:0;
-    line-height: 34px;
-    padding:0;
-    display: inline-block;
-    position:absolute;
-    right: 0;
-    top:0;
-    transition: all .2s ease-in-out;
-    &:hover {
-      background:$rvo-blauw;
-    }
-    .icon:before {
-      color: #fff;
-      font-size:22px;
-      margin-right: 0;
-      line-height: 34px;
-    }
-  }
 }
 
 .btn-default{
@@ -248,153 +145,23 @@ tr {
   color:$white;
 }
 
-/*.view.ng-enter{
-  animation:view_enter 1s;
+.no-margin {
+  margin-bottom:0 !important;
 }
-@keyframes view_enter {
-  0% { left: 100%; }
-  30% { left: 80%; }
-  100% { left: 0; }
-}*/
 
-// .glyphicon-popup{
-//     position: absolute;
-//     left: 0;
-//     top: 50%;
-//     color: #fff;
-//     background-color: rgba(64,64,64,0.95);
-//     -webkit-box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.35);
-//     -moz-box-shadow:    3px 3px 6px 0px rgba(0, 0, 0, 0.35);
-//     box-shadow:         3px 3px 6px 0px rgba(0, 0, 0, 0.35);
-//     min-width: 400px;
-//     max-width: 600px;
-//     border-radius: 8px;
-//     padding: 12px 16px 20px;
-//     z-index: 999999;
-//     h3{
-//       margin-top: 0;
-//       margin-bottom: 6px;
-//     }
-//   }
-
-// .actions {
-//   .glyphicon-popup {
-//     white-space: nowrap;
-//     top:46px;
-//     min-width: 0;
-//     left:-50%;
-//     padding:0px 10px;
-//     font-size: 0.7em;
-//   }
-// }
+#toTop {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  z-index: 99;
+  cursor: pointer;
+  right: 10px;
+  opacity: .8;
+}
 
 /*********************
-NAVBAR
+Subnavbar tabs
 *********************/
-// .navbar{
-//   background-color: #333;
-//   border-radius: 0 !important;
-//   border: 0 !important;
-//   margin-bottom: 12px;
-//   font-weight: 300;
-//   position:fixed;
-//   width: 100%;
-//   z-index: 99999;
-//   a {
-//     text-decoration: none;
-//   }
-//   .glyphicon {
-//     font-size:18px;
-//   }
-
-//   button.navbar-toggle {
-//     color:#fff;
-//     padding:2px 6px;
-//     &:focus, &:hover {
-      
-//     }
-//   }
-//   .navbar-collapse {
-//     border-color: #333;
-//   }
-//   .navbar-toggle {
-//     border:0;
-//   }
-//   .nav.navbar-nav {
-//     li {
-//       height: 50px;
-//       line-height: 50px;
-//       margin:0 10px;
-//       &.home {
-//         line-height: 60px;
-//       }
-//     }
-//     a {
-//       background:none;
-//       color: #fff;
-//       text-transform: uppercase;
-//       display: inline;
-//       padding:0;
-//       &:hover {
-//         color: $oranje;
-//       }
-//     }
-//     .active {
-//       a {
-//         background:none;
-//         color: $oranje;
-//         &:hover {
-//           color: $oranje;
-//         }
-//       }
-//     }
-//   }
-//   .mobilenav {
-//     text-align:right;
-//     color:#fff;
-//     float: right;
-//     padding:15px;
-//     a {
-//       color: #fff;
-//       &:hover {
-//         color:$oranje;
-//       }
-//     }
-//     &.active {
-//       a {
-//         color: $oranje;
-//       }
-//     }
-//   }
-// }
-
-// .nvd3 text{
-//   font-family: $sans-serif;
-// }
-
-// .navbar-brand{
-//   margin-right: 20px;
-//   padding-top: 14px;
-//   img {
-//     max-width: 120px;
-//     height: auto;
-//   }
-// }
-
-// .nav > li > a{
-//   padding: 10px 10px;
-// }
-
-// .glyphicon-user{
-//   margin-right: 5px;
-// }
-
-// .navbar-nav {
-//   margin:0;
-// }
-
-
-//tabs navigation on detail page
 .subnav {
   text-transform: uppercase;
   padding-top:10px;
@@ -481,17 +248,8 @@ NAVBAR
 }
 
 /*********************
-SEARCH BAR
+SEARCH
 *********************/
-
-// .selectvis {
-//   margin-bottom:10px;   
-//   .vis-select {
-//     padding:0 15px;
-//     text-align: left;
-//     margin:10px 0;
-//   }
-// }
 
 .search-box {
   margin-top: 15px;
@@ -503,21 +261,6 @@ SEARCH BAR
     background: #fff;
     position: relative;
   }
-  // input {
-  //   line-height: 16px;
-  //   border:0;
-  //   background: none;
-  //   width: 100%;
-  //   height: 24px;
-  //   padding: 0 4px;
-  //   font-size: 15px;
-  // }
-  // .input-group-btn {
-  //   position: absolute;
-  //   right:0;
-  //   top:0;
-  //   width:34px;
-  // }
   .btn{
     padding: 2px 9px 0px;
     line-height: 18px;
@@ -528,6 +271,50 @@ SEARCH BAR
   .glyphicon-search{
     font-size: 1.3em;
     color: #ccc;
+  }
+  float: none;
+  margin-bottom: 15px;
+  position:relative;
+  form {
+    height: 34px;
+  }
+  input {
+    height: 34px;
+    padding:0 12px;
+    line-height: 34px;
+    background:#fff;
+    display: inline-block;
+    border-radius:0;
+    width: 100%;
+    border-top-right-radius:17px;
+    border-bottom-right-radius:17px;
+    border:1px solid #ccc;
+    font-size:14px;
+  }
+  .btn-search {
+    background:$rvo-lichtblauw;
+    color: #fff;
+    margin:0;
+    border-radius:17px;
+    width: 34px;
+    height: 34px;
+    border:0;
+    line-height: 34px;
+    padding:0;
+    display: inline-block;
+    position:absolute;
+    right: 0;
+    top:0;
+    transition: all .2s ease-in-out;
+    &:hover {
+      background:$rvo-blauw;
+    }
+    .icon:before {
+      color: #fff;
+      font-size:22px;
+      margin-right: 0;
+      line-height: 34px;
+    }
   }
 }
 
@@ -553,38 +340,7 @@ SEARCH BAR
 }
 
 /*********************
-Dashboard buttons
-*********************/
-
-// .dashboard-button{
-//   background-color: rgba(255,255,255, 0.3);
-//   display: block;
-//   text-align: center;
-//   border-radius: 8px;
-//   padding: 5px 0;
-//   color: #fff;
-//   cursor: pointer;
-//   font-size: 1.3em;
-
-//   .fa, .ic{
-//     position: relative;
-//     display: inline-block;
-//     height: 34px;
-//     width: 34px;
-//     margin-left: 10px;
-//     border-radius: 17px;
-//     padding: 5px;
-//     font-size: 1em;
-//     background-color: rgba(118, 167, 200, 1);
-//   }
-
-//   .ic-map{
-
-//   }
-// }
-
-/*********************
-FILTER BAR
+FILTERS
 *********************/
 .filters-fixed {
   color:$rvo-blauw;
@@ -601,11 +357,6 @@ FILTER BAR
     font-size: 14px;
     margin-right: 10px;
     font-weight: 700;
-    // &:before {
-    //   font-family: 'AGNL-Icon-Font';
-    //   margin-right: 2px;
-    //   content:'\e61e';
-    // }
   }
   .filter-pop {
     position: relative;
@@ -663,7 +414,6 @@ FILTER BAR
     top:0;
     position:fixed;
     z-index:999;
-    /*background:rgba(30,30,30,.7);*/
     width: 100%;
     left:0;
     padding-top:0;
@@ -756,8 +506,7 @@ FILTER BAR
 
 .filter-panel-wrap {
   .ng-hide-add, .ng-hide-remove {
-    /* ensure visibility during the transition */
-    display: block !important; /* yes, important */
+    display: block !important;
   }
   .slideDown.ng-animate {
     transition: all .5s ease-in-out;
@@ -785,11 +534,6 @@ FILTER BAR
   .selected-items {
     text-transform: uppercase;
     font-weight: 700;
-    // &:before {
-    //   font-family: 'AGNL-Icon-Font';
-    //   margin-right:2px;
-    //   content:"\e61c";
-    // }
   }
   .selected {
     color:$white;
@@ -816,8 +560,9 @@ FILTER BAR
   }
 }
 
-
-//sorteren
+/*********************
+Sorteren
+**********************/
 .sort {
   font-size: 14px;
   color:$rvo-blauw;
@@ -872,178 +617,21 @@ FILTER BAR
   }
 }
 
-// .dash-wrap {
-//   float: left;
-//   margin-right: 20px;
-//   position: relative;
-//   width: 210px;
-//   .select-wrap {
-//     background:rgba(#738191,1);
-//     border-radius:0 0 20px 20px;
-//     //display: none;
-//     position: absolute;
-//     width: 100%;
-//     max-height: 0;
-//     opacity: 0;
-//     transition: all .1s;
-//     visibility: hidden;
-//   }
-//   &:hover {
-//     .title {
-//       background:rgba(#738191,1);
-//       border-bottom-left-radius:0;
-//       border-bottom-right-radius:0;
-//     }
-//     .select-wrap {
-//       //display: block;
-//       visibility: visible;
-//       max-height: 400px;
-//       opacity: 1;
-//       transition: all .3s;
-//       visibility: visible;
-//     }
-//   }
-//   a, a:hover {
-//     color: #fff;
-//     text-decoration: none;
-//   }
-//   .title {
-//     line-height: 42px;
-//     padding:0 20px;
-//     background:rgba(#738191,.5);
-//     height: 42px;
-//     border-radius:20px;
-//     width: 100%;
-//     transition: all .1s;
-//   }
-//   i {
-//     margin-right: 10px;
-//   }
-//   .vis-type {
-//     line-height: 42px;
-//     padding:0 20px;
-//     height: 42px;
-//     white-space: nowrap;
-//     a {
-//       cursor: pointer;
-//       &:hover {
-//         color:$oranje;
-//         .fa-inverse {
-//           color:$oranje;
-//         }
-//       }
-//     }
-//   }
-//   .fa-locations, .fa-sectors, .fa-regions-vis {
-//     &:before {
-//       content: "\f080";
-//     }
-//   }
-//   .fa-locations-polygonmap {
-//     &:before {
-//       content: "\f0ac";
-//     }
-//   }
-//   .fa-activities, .fa-locations-map {
-//     &:before {
-//       content: "\f279";
-//     }
-//   }
-//   .fa-activities-list, .fa-sector-list, .fa-organisations, .fa-locations-list, .fa-regions-list {
-//     &:before {
-//       content: "\f03a";
-//     }
-//   }
-// }
-
-// .download-button {
-//   position: relative;
-//   cursor: pointer;
-//   transition: all .5s;
-//   &:hover {
-//     .download-wrap {
-//       //display: block;
-//       max-width: 300px;
-//       max-height: 300px;
-//       opacity: 1;
-//       visibility: visible;
-//     }
-//   }
-//   .download-wrap {
-//     opacity: 0;
-//     transition: all .5s;
-//     overflow: hidden;
-//     max-width: 0;
-//     visibility: hidden;
-//     max-height: 0;
-//     //display: none;
-//     background:#738191;
-//     position: absolute;
-//     top:0;
-//     right:0;
-//     font-size:16px;
-//     z-index: 99;
-//     padding:0 0 0 15px;
-//     border-radius:20px;
-//     a {
-//       display: block;
-//       white-space: nowrap;
-//       text-decoration:none;
-//       &:hover {
-//         color:$oranje;
-//         .fa-inverse {
-//           color: $oranje;
-//         }
-//       }
-//     }
-//   }
-// }
-
-// .makeblock {
-//   display: block;
-//   margin-top:5px;
-// }
-
 .about-page {
-  .social {
-    text-align: center !important;
-    margin-bottom: 0 !important;
+  .intro {
+    margin-top: 16px;
+    font-weight: 600;
   }
-  .hp-block {
-    padding:0;
+  h4 {
+    margin-top: 22px;
+    margin-bottom: 4px;
+    font-weight: bold;
   }
 }
 
-// .detailbar {
-//   margin: 10px 0;
-//   .fa-circle {
-//     color:rgba(#738191,.5);
-//     transition:all .3s;
-//   }
-//   .fa-stack {
-//     a {
-//       color:#fff;
-//     }
-//   }
-//   .social {
-//     text-align: right;
-//     .fa-stack:hover {
-//       .fa-circle {
-//         color:rgba(#738191,1);
-//       }
-//     }
-//   }
-// }
-
-// h4 {
-//   &.filter-panel-header {
-//     margin-top: 0;
-//     font-size: 1.4em;
-//   }
-// }
-
-//switch checkbox
-
+/*********************
+Switch iOS style checkbox
+*********************/
 .switch {
   input {
     display: none;
@@ -1092,8 +680,9 @@ FILTER BAR
   }
 }
 
-
-//pagination style
+/*********************
+Pagination
+*********************/
 .pagination {
   margin: 0;
   ul {
@@ -1144,8 +733,9 @@ FILTER BAR
   }
 }
 
-
-//homepage
+/*********************
+Homepage
+*********************/
 .mobile-header {
   height: 30vw;
   margin-bottom: 0;
@@ -1276,6 +866,10 @@ FILTER BAR
     }
   }
 }
+
+/*********************
+Charts
+*********************/
 .visualize {
   padding-top:15px;
 }
@@ -1289,7 +883,6 @@ FILTER BAR
   }
 }
 .cirkle-vis {
-  //margin-top:-10px;
   .panel {
     padding-top:15px !important;
   }
@@ -1298,7 +891,6 @@ FILTER BAR
   }
 }
 
-//chart dingen
 .chart-wrap {
   position:relative;
   .svg-loader {
@@ -1339,7 +931,9 @@ FILTER BAR
   }
 }
 
-//view switcher
+/*********************
+Switch view tabs
+*********************/
 .switch-view {
   //position:absolute;
   z-index: 9;
@@ -1387,130 +981,8 @@ FILTER BAR
 }
 
 /*********************
-Activiteitenkaart
+Tables, listviews, detail pages
 *********************/
-// .explore-block-header{
-//   background-color: rgba($blauw,.5);
-//   padding: 6px 10px;
-//   font-size: 1.2em;
-//   color:$textstd;
-//   .explore-block-count {
-//     font-weight: 700;
-//     font-size: 2em;
-//     display: block;
-//     line-height: 1em;
-//   }
-// }
-
-// .clickable {
-//   cursor: pointer;
-// }
-
-/*********************
-Countries
-*********************/
-
-// #main-grouped-page-wrapper{
-
-//   .filter-panel-header-wrapper{
-//     margin-top: 20px;
-//     margin-bottom: 20px;
-//   }
-
-//   .country-list{
-//     padding-left: 0;
-//     padding-right: 0;
-//     border-top: 1px solid #ccc;
-//   }
-
-//   .country-list a{
-//     display: block;
-//     padding: 6px 0px 6px 20px;
-//     border-bottom: 1px solid #ccc;
-//     font-size: 16px;
-//   }
-// }
-
-
-// /* TEMP */
-// .countries-vis-wrapper{
-//   .checkbox{
-//     display: inline-block;
-//   }
-// }
-
-/*********************
-TOOL BAR
-*********************/
-// #tool-bar{
-//   //background-color: rgba(#738191, .5);
-//   //padding:6px 10px;
-//   position:relative;
-//   //margin-top: 10px;
-
-//   a {
-//     cursor: pointer;
-//     text-decoration: none;
-//     &:hover {
-//       //color:#fff;
-//       text-decoration: none;
-//     }
-//   }
-//   .fa-circle {
-//     color: rgba(#738191, .5);
-//   }
-//   .active {
-//     .fa-circle {
-//       color: rgba(#738191, 1);
-//     }
-//   }
-//   .right {
-//     text-align: right;
-//   }
-//   .center {
-//     text-align: center;
-//   }
-//   .tool-text{
-//     color: #fff;
-//     white-space: nowrap;
-//     margin-left: 6px;
-//     margin-right: 22px;
-//     font-size: 1.2em;
-//     vertical-align: middle;
-//   }
-//   .right {
-//     .tool-text {
-//       display: none;
-//     }
-//   }
-// }
-
-/*********************
-ACTIVITY DETAIL
-*********************/
-
-// .project-circle {
-//   text-align: center;
-//   float: right;
-//   background-color: rgba(255,255,255,0.9); 
-//   padding:10px;
-//   border-radius: 125px;
-//   width: 250px;
-//   height: 250px;
-//   p {
-//     margin-bottom: 0;
-//   }
-//   .flag-icon {
-//     font-size: 2.5em;
-//     border-radius: 4px;
-//     margin-top:15px;
-//   }
-//   .btn {
-//     margin-top:10px;
-//   }
-// }
-
-//tabellen / matrix met lijsten countries etc.
 table {
   td,th {
     vertical-align: top;
@@ -1644,7 +1116,6 @@ table {
   }
 }
 
-//countries
 .flag-icon {
   &.big {
     display: inline-block;
@@ -1682,62 +1153,6 @@ table {
 
 }
 
-
-/*********************
-TABS
-*********************/
-
-// .content-offset {
-//   margin-top:10px;
-// }
-
-// .tabs-wrapper {
-
-//   .tab-headers{
-//     margin-top: 20px;
-//     padding-left: 80px;
-//     padding-right: 30px;
-//   }
-
-//   .tab-header{
-//     display: inline-block;
-//     background-color: #EEE;
-//     text-align: center;
-//     border-right: 1px solid #ddd;
-//     width: 19%;
-//     color: #444;
-//     font-weight: bold;
-//     font-size: 15px;
-//     padding-top: 10px;
-//     padding-bottom: 10px;
-//   }
-
-//   .tab-header:last-child{
-//     border-right: 0;
-//   }
-
-//   .tab-header:hover, .tab-header.active{
-//     background-color: #444;
-//     color: #fff;
-//     text-decoration: none;
-//   }
-
-//   .col-xs-4{
-//     padding-left: 80px;
-//   }
-
-//   .chart-container{
-//     padding-top: 80px;
-//     padding-bottom: 50px;
-//   }
-
-//   .tab-item{
-//     -webkit-transition-duration: 5s; /* Safari */
-//     transition-duration: 5s;
-
-//   }
-
-// }
 
 /*********************
 Search suggest box
@@ -1835,20 +1250,9 @@ Sunburst vis
   }
 }
 
-
 /*********************
-MAIN AREA
+Budget SLIDER
 *********************/
-
-// #main-content{
-//   min-height: 600px;
-// }
-
-/*********************
-SLIDER
-*********************/
-
-//budget slider
 
 .slide {
   padding:11px 14px 4px 14px;
@@ -1958,13 +1362,6 @@ ACTIVITY LIST
 
 .activity-list-item {
   overflow: hidden;
-  // a {
-  //   color:$rvo-blauw;
-  //   text-decoration: none;
-  //   &:hover {
-  //     color:$rvo-donkerblauw;
-  //   }
-  // }
   ul {
     margin: 0 0 0 20px;
     li {
@@ -2019,22 +1416,6 @@ ACTIVITY LIST
   .panel.header {
     background:darken($rvo-lichtblauw,15%);
   }
-  // &.countries:nth-of-type(2n),&.projects:nth-of-type(2n),&.sectors {
-  //   .panel {
-  //     background:lighten($rvo-lichtblauw,8%);
-  //     //color:$rvo-blauw;
-  //     // a,h3,h4 {
-  //     //   color:$rvo-blauw;
-  //     // }
-  //     // a:hover {
-  //     //   color:$rvo-donkerblauw;
-  //     // }
-  //     hr {
-  //       border-color:$rvo-blauw;
-  //     }
-  //   }
-  // }
-
   .children {
     h3 {
       font-size:22px;
@@ -2075,9 +1456,9 @@ ACTIVITY LIST
   padding-bottom: 1em;
 }
 
-
-//detail pages
-
+/*********************
+Detail page
+*********************/
 .panel {
   border:0;
   border-radius:0;
@@ -2119,11 +1500,6 @@ ACTIVITY LIST
         margin-top:0;
       }
     }
-    hr {
-      //border-color:$rvo-blauw;
-      // margin-left: -15px;
-      // margin-right: -15px;
-    }
   }
   &.xlightblue {
     background:$rvo-xlichtblauw;
@@ -2134,11 +1510,6 @@ ACTIVITY LIST
       &:first-of-type {
         margin-top:0;
       }
-    }
-    hr {
-      // border-color:$rvo-blauw;
-      // margin-left: -15px;
-      // margin-right: -15px;
     }
   }
 }
@@ -2175,6 +1546,8 @@ hr {
   .spent {
     position:absolute;
     left:10px;
+    color:$white;
+    text-shadow: 1px 1px 1px $rvo-zwart;
   }
 }
 
@@ -2186,9 +1559,6 @@ hr {
     }
   }
 }
-
-//formatting for detail page
-
 
 .detailview {
   .icon {
@@ -2258,12 +1628,6 @@ table.no-format {
   }
 }
 
-.panel.with-pie {
-  svg {
-   // margin:-25px 0;
-  }
-}
-
 table.finance {
   width: 100%;
   border:0;
@@ -2288,9 +1652,6 @@ table.finance {
     &:nth-of-type(2n) {
       background:$rvo-footerblauw;
     }
-    // td {
-    //   color:$rvo-blauw;
-    // }
   }
   &.no-blue {
     thead {
@@ -2375,26 +1736,9 @@ footer {
   margin-top:30px;
 }
 
-//custom icons shiz
-.ic {
-  display: inline-block;
-  font-family: 'iconscustom';
-  font-style: normal;
-  font-weight: normal;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transform: translate(0, 0);
-  &.ic-globe:before {
-    content: "A";
-  }
-  &.ic-map:before {
-    content: "@";
-  }
-}
-
-//map page
+/*********************
+Kaarten
+*********************/
 .map-holder {
   background-color: rgba($blauw,0.3);
   position: relative;
@@ -2419,7 +1763,6 @@ footer {
   width:220px;
   z-index: 99;
   .custom-select {
-    //border-radius:4px;
     border-color:#ccc;
   }
   select {
@@ -2429,42 +1772,6 @@ footer {
   }
 }
 
-// .top5 {
-//   margin-bottom: 15px;
-//   a {
-//     color:#222;
-//     text-decoration: none;
-//     &:hover {
-//       color:$oranje;
-//     }
-//   }
-//   .flag-icon {
-//     margin: 0 8px 0px 10px;
-//   }
-//   .no {
-//     width: 17px;
-//     display:inline-block;
-//   }
-//   .nvd3-svg {
-//     background-color:#fff;
-//     padding-top:10px;
-//   }
-//   table {
-//     margin-bottom: 0;
-//     th {
-//       font-weight: 600;
-//     }
-//     tbody {
-//       tr {
-//          td {
-//           padding-left:10px;
-//           padding-right:10px;
-//         }
-//       }
-//     }
-//   }
-// }
-
 .marker-circle{ 
   border-radius: 22px;
   font-size:15px;
@@ -2472,42 +1779,11 @@ footer {
   height: 22px;
 }
 
-//kaart dingen
-
-.legend .kleur-2 .fa.kleur {
-  color:rgba(207,32,38,1);
-}
-.legend .kleur-3 .fa.kleur {
-  color:rgba(75,103,47,1);
-}
-.legend .kleur-4 .fa.kleur {
-  color:rgba(244,160,29,1);
-}
-.legend .kleur-5 .fa.kleur {
-  color:rgba(146,127,186,1);
-}
-
-.marker-circle-Transitionrelation{
-  background-color: rgba(207,32,38,0.8);
-}
-
-.marker-circle-EXITrelation{
-  background-color: rgba(75,103,47,0.8);
-}
-
-.marker-circle-Aidrelation{
-  background-color: rgba(63,169,245,0.8);
-}
-
-.marker-circle-Traderelation{
-  background-color: rgba(244,160,29,0.8);
-}
-
 .marker-circle-Other{
-  background-color: rgba(146,127,186,0.8);
+  background-color: $rvo-groen;
 }
 .marker-circle-Other2{
-  background-color: rgba($oranje,1);
+  background-color: $rvo-blauw;
 }
 
 .tab {
@@ -2669,7 +1945,9 @@ footer {
   }
 }
 
-//donut pie chart tooltips
+/*********************
+Tooltips donuts
+*********************/
 .nvtooltip,.zz_tooltip {
   font-size: 14px;
   padding:10px;
@@ -2729,87 +2007,9 @@ footer {
   }
 }
 
-.no-margin {
-  margin-bottom:0 !important;
-}
-
-#toTop {
-  display: none;
-  position: fixed;
-  bottom: 10px;
-  z-index: 99;
-  cursor: pointer;
-  right: 10px;
-  opacity: .8;
-}
-
-/// Navbar collapse override!
-
-@media (max-width: 1000px) {
-    .navbar-header {
-        float: none;
-    }
-    .navbar-left,.navbar-right {
-        float: none !important;
-    }
-    .navbar-toggle {
-        display: block;
-    }
-    .navbar-collapse {
-        border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-    .navbar-fixed-top {
-    top: 0;
-    border-width: 0 0 1px;
-  }
-    .navbar-collapse.collapse {
-        display: none!important;
-    }
-    .navbar-nav {
-        float: none!important;
-    margin-top: 7.5px;
-  }
-  .navbar-nav>li {
-        float: none;
-    }
-    .navbar-nav>li>a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    .collapse.in{
-      display:block !important;
-  }
-}
-
-
-
-
-
-/* RVO navigatie opgeschoond*/
-
-#primary-navigation {
-  background: $rvo-blauw;
-  font-weight: bold;
-  font-size: 14px;
-  border-bottom: 13px solid $rvo-lichtblauw;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  position: relative;
-  #main-menu-links {
-    list-style: none;
-    margin: 0;
-    overflow: hidden;
-    li {
-      background: none;
-      margin: 0;
-      padding: 0;
-    }
-  }
-}
-
-//icons
+/*********************
+Icons
+*********************/
 .icon {
   display: inline-block;
   &:before {
@@ -2922,11 +2122,9 @@ footer {
   }
 }
 
-.fa-ul {
-  margin-left:1.8em;
-}
-
-//mobile only fix
+/*********************
+Mobile only fix
+*********************/
 @media (max-width: 767px) {
   .page-wrap {
     width: 100%;

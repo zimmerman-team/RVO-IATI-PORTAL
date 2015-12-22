@@ -1,4 +1,25 @@
-/// Navbar collapse override!
+/// Navbar styling en collapse override
+
+#primary-navigation {
+  background: $rvo-blauw;
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom: 13px solid $rvo-lichtblauw;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  position: relative;
+  #main-menu-links {
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    li {
+      background: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
 
 @media (max-width: 767px) {
   #primary-navigation {
