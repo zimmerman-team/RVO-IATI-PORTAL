@@ -57,7 +57,7 @@
     </div>  
   </div> 
   <div class="row">
-    <div class="col-sm-12 text-center social">
+    <div class="col-sm-12 social">
       <a href="http://twitter.com/RVO_Nederland" title="Twitter"><i class="fa fa-twitter-square"></i></a>
       <a href="http://www.facebook.com/rijksdienstvoorondernemendnederland" title="Facebook"><i class="fa fa-facebook-square"></i></a>  
       <a href="http://www.linkedin.com/company/rijksdienstvoorondernemendnederland" title="Linkedin"><i class="fa fa-linkedin-square"></i></a>

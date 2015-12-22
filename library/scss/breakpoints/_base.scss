@@ -2325,7 +2325,7 @@ FOOTER
 *********************/
 
 footer {
-  padding:30px;
+  padding:14px 30px 30px 30px;
   border-top: 13px solid #b2d7ee;
   background:$rvo-footerblauw;
   color:$rvo-donkerblauw;
@@ -2333,7 +2333,7 @@ footer {
   h2 {
     font-size: 23px;
     margin-bottom: 8px;
-    margin-top: 0;
+    margin-top: 16px;
   }
   a {
     color:$rvo-donkerblauw;
@@ -2354,6 +2354,7 @@ footer {
   }
   .social {
     font-size: 22px;
+    margin-top:6px;
     a {
       margin:0 2px;
       display: inline-block;
