@@ -59,7 +59,6 @@
 
       vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
       vm.shareDescription = encodeURIComponent('View the aid projects of the RVO on ' + vm.pageUrlDecoded);
-      console.log(vm);
 
     }
 
