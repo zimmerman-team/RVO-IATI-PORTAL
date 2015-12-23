@@ -119,9 +119,11 @@
 
         leafletData.getMap().then(function(map) {
             map.fitBounds(vm.getBounds());
-            if(map._zoom > 1){
-              map.setZoom(map._zoom - 1);
-            }
+            map.addOneTimeEventListener('moveend', function() {
+              if(map._zoom > 1){
+                map.setZoom(map._zoom - 1);
+              }
+            });
         });
 
       }, function(data,status,headers,config){
