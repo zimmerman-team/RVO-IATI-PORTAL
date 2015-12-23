@@ -1,179 +1,195 @@
 <div id="main-content" >
 
-    <filter-bar 
-        views="[]"
-        current-page="themas"></filter-bar>
+    <div ng-if="!vm.sector">
+        <div class="container extra">
 
-    <div class="container extra">
+            <div class="white no-margin-bottom">
+                <h1>Sector not found</h1>
+            </div>
 
-        <div class="white no-margin-bottom">
-            <h1 class="no-margin-bottom">{{vm.sector.name}}</h1>
+            <h4>Please contact the administrators if you feel this page is shown in error.</h4>
         </div>
 
-        <hr class="darkblue no-margin-bottom">
-
-        <sub-navbar 
-            tabs='vm.tabs' 
-            selected-tab='vm.selectedTab'>
-        </sub-navbar>
     </div>
 
-    <div class="content-offset" ng-show="vm.selectedTab == 'samenvatting'">
+    <div ng-if="vm.sector">
 
-        <div class="container detailview extra">
+        <filter-bar 
+            views="[]"
+            current-page="themas"></filter-bar>
 
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="white no-margin-bottom no-padding-bottom">
-                        <h2>Financial</h2>
+        <div class="container extra">
+
+            <div class="white no-margin-bottom">
+                <h1 class="no-margin-bottom">{{vm.sector.name}}</h1>
+            </div>
+
+            <hr class="darkblue no-margin-bottom">
+
+            <sub-navbar 
+                tabs='vm.tabs' 
+                selected-tab='vm.selectedTab'>
+            </sub-navbar>
+        </div>
+
+        <div class="content-offset" ng-show="vm.selectedTab == 'samenvatting'">
+
+            <div class="container detailview extra">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="white no-margin-bottom no-padding-bottom">
+                            <h2>Financial</h2>
+                        </div>
+                        <div class="panel lightblue with-table no-header">
+                            <table class="no-format">
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                                            Total sector budget
+                                        </td>
+                                        <td>
+                                            {{vm.budget | shortcurrency :'€'}}
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td width="200">
+                                            Total sector expenditure
+                                        </td>
+                                        <td>
+                                            {{vm.disbursements | shortcurrency :'€'}}
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>
+                                            Budget depletion
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                              <div class="progress-bar" role="progressbar" aria-valuenow="vm.budgetLeft" aria-valuemin="0" aria-valuemax="100" ng-style="vm.progressStyle">
+                                                <span class="spent">{{vm.budgetLeft}}% spent</span>
+                                                <div class="gradient"></div>
+                                              </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="graph">
+                            <!-- <financials-line-chart 
+                                has-to-contain="sectors__in">
+                            </financials-line-chart> -->
+                        </div>
                     </div>
-                    <div class="panel lightblue with-table no-header">
-                        <table class="no-format">
-                            <tbody>
-
+                    <div class="col-md-4">
+                        <div class="panel lightblue with-pie">
+                            <h3>Programmes linked to</h3>
+                            <hr>
+                            <oipa-pie-chart group-by="related_activity" aggregation-key="count" aggregations="count,incoming_fund"></oipa-pie-chart>
+                            <h3>Countries linked to</h3>
+                            <hr>
+                            <oipa-pie-chart group-by="recipient_country" aggregation-key="count" aggregations="count,incoming_fund"></oipa-pie-chart>
+                        </div>
+                        <div class="panel lightblue">
+                            <h3>Related videos</h3>
+                            <hr>
+                            <p>Not yet available</p>
+                        </div>
+                        <div class="panel lightblue">
+                            <h3>Related documents</h3>
+                            <hr>
+                                <p ng-show="!vm.activity.documents">
+                                    No documents available
+                                </p>
+                                <p ng-repeat="document in vm.activity.documents">
+                                    <a target="_blank" href="{{document.url}}">
+                                        <i class="glyphicon glyphicon-download-alt"></i>{{document.title}}
+                                    </a>
+                                </p>
+                        </div>
+                        <div class="panel lightblue with-table share">
+                            <h3>Export & share</h3>
+                            <hr>
+                            <table class="no-format">
                                 <tr>
+                                    <td width="130">Download:</td>
+                                    <td><a ng-click="vm.download('json')"><i class="fa fa-download"></i>JSON</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Share:</td>
                                     <td>
-                                        Total sector budget
-                                    </td>
-                                    <td>
-                                        {{vm.budget | shortcurrency :'€'}}
+                                        <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="fa fa-twitter-square"></i></a>
+                                        <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="fa fa-facebook-square"></i></a>
+                                        <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="fa fa-linkedin-square"></i></a>
+                                        <a href="mailto:?&subject={{vm.shareDescription}}&body={{vm.pageUrl}}"><i class="fa fa-envelope-square"></i></a>
                                     </td>
                                 </tr>
-                                
-                                <tr>
-                                    <td width="200">
-                                        Total sector expenditure
-                                    </td>
-                                    <td>
-                                        {{vm.disbursements | shortcurrency :'€'}}
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-                                    <td>
-                                        Budget depletion
-                                    </td>
-                                    <td>
-                                        <div class="progress">
-                                          <div class="progress-bar" role="progressbar" aria-valuenow="vm.budgetLeft" aria-valuemin="0" aria-valuemax="100" ng-style="vm.progressStyle">
-                                            <span class="spent">{{vm.budgetLeft}}% spent</span>
-                                            <div class="gradient"></div>
-                                          </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="graph">
-                        <!-- <financials-line-chart 
-                            has-to-contain="sectors__in">
-                        </financials-line-chart> -->
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel lightblue with-pie">
-                        <h3>Programmes linked to</h3>
-                        <hr>
-                        <oipa-pie-chart group-by="related_activity" aggregation-key="count" aggregations="count,incoming_fund"></oipa-pie-chart>
-                        <h3>Countries linked to</h3>
-                        <hr>
-                        <oipa-pie-chart group-by="recipient_country" aggregation-key="count" aggregations="count,incoming_fund"></oipa-pie-chart>
-                    </div>
-                    <div class="panel lightblue">
-                        <h3>Related videos</h3>
-                        <hr>
-                        <p>Not yet available</p>
-                    </div>
-                    <div class="panel lightblue">
-                        <h3>Related documents</h3>
-                        <hr>
-                            <p ng-show="!vm.activity.documents">
-                                No documents available
-                            </p>
-                            <p ng-repeat="document in vm.activity.documents">
-                                <a target="_blank" href="{{document.url}}">
-                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title}}
-                                </a>
-                            </p>
-                    </div>
-                    <div class="panel lightblue with-table share">
-                        <h3>Export & share</h3>
-                        <hr>
-                        <table class="no-format">
-                            <tr>
-                                <td width="130">Download:</td>
-                                <td><a ng-click="vm.download('json')"><i class="fa fa-download"></i>JSON</a></td>
-                            </tr>
-                            <tr>
-                                <td>Share:</td>
-                                <td>
-                                    <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="fa fa-twitter-square"></i></a>
-                                    <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="fa fa-facebook-square"></i></a>
-                                    <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="fa fa-linkedin-square"></i></a>
-                                    <a href="mailto:?&subject={{vm.shareDescription}}&body={{vm.pageUrl}}"><i class="fa fa-envelope-square"></i></a>
-                                </td>
-                            </tr>
-                        </table>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div ng-show="vm.selectedTab == 'programmes'">
-        <div class="container extra detailview">
-            <div class="row">
-                <div class="col-md-12">
-                    <programme-list 
-                        has-to-contain="sector" 
-                        count="vm.tabs[1].count"
-                        shown="vm.selectedTab == 'programmes'"></programme-list>
+        <div ng-show="vm.selectedTab == 'programmes'">
+            <div class="container extra detailview">
+                <div class="row">
+                    <div class="col-md-12">
+                        <programme-list 
+                            has-to-contain="sector" 
+                            count="vm.tabs[1].count"
+                            shown="vm.selectedTab == 'programmes'"></programme-list>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div ng-show="vm.selectedTab == 'activities'">
-        <div class="container detailview extra">
+        <div ng-show="vm.selectedTab == 'activities'">
+            <div class="container detailview extra">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <activity-list 
-                        has-to-contain="sector"  
-                        count="vm.tabs[2].count"
-                        shown="vm.selectedTab == 'activities'"></activity-list>
+                <div class="row">
+                    <div class="col-md-12">
+                        <activity-list 
+                            has-to-contain="sector"  
+                            count="vm.tabs[2].count"
+                            shown="vm.selectedTab == 'activities'"></activity-list>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div ng-show="vm.selectedTab == 'countries'">
-        <div class="container detailview extra">
+        <div ng-show="vm.selectedTab == 'countries'">
+            <div class="container detailview extra">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <country-list 
-                        has-to-contain="sector" 
-                        count="vm.tabs[3].count"
-                        shown="vm.selectedTab == 'countries'"></country-list>
+                <div class="row">
+                    <div class="col-md-12">
+                        <country-list 
+                            has-to-contain="sector" 
+                            count="vm.tabs[3].count"
+                            shown="vm.selectedTab == 'countries'"></country-list>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div ng-show="vm.selectedTab == 'implementing-organisations'">
-        <div class="container detailview extra">
+        <div ng-show="vm.selectedTab == 'implementing-organisations'">
+            <div class="container detailview extra">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <implementing-organisations-list 
-                        has-to-contain="sector" 
-                        count="vm.tabs[4].count"
-                        shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
+                <div class="row">
+                    <div class="col-md-12">
+                        <implementing-organisations-list 
+                            has-to-contain="sector" 
+                            count="vm.tabs[4].count"
+                            shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 
 </div>

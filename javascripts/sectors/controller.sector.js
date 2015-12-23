@@ -70,24 +70,27 @@ var sectorLayoutTest = null;
         vm.sector_digit = 5;
       }
       findSector(vm.sector_id, sectorMapping.children);
-      var sectors = listChildren([],vm.sector);
 
-      if(vm.sector_digit == 5){
-        Sectors.selectedSectors.push({'sector': {"code":vm.sector.sector_id,"name":vm.sector.name}});
+      if (vm.sector) { 
+        var sectors = listChildren([],vm.sector);
+
+        if(vm.sector_digit == 5){
+          Sectors.selectedSectors.push({'sector': {"code":vm.sector.sector_id,"name":vm.sector.name}});
+        }
+
+        for (var i = 0;i < sectors.length;i++){
+          Sectors.selectedSectors.push({'sector': {"code":sectors[i].sector_id,"name":sectors[i].name}});
+        }
+        FilterSelection.save();
+
+
+
+        $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
+          vm.update(selectionString);
+        }, true);
+        vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
+        vm.shareDescription = encodeURIComponent('View the aid projects of the RVO on ' + vm.pageUrlDecoded);
       }
-
-      for (var i = 0;i < sectors.length;i++){
-        Sectors.selectedSectors.push({'sector': {"code":sectors[i].sector_id,"name":sectors[i].name}});
-      }
-      FilterSelection.save();
-
-
-
-      $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
-        vm.update(selectionString);
-      }, true);
-      vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
-      vm.shareDescription = encodeURIComponent('View the aid projects of the RVO on ' + vm.pageUrlDecoded);
     }
 
     function errorFn(data, status, headers, config) {
