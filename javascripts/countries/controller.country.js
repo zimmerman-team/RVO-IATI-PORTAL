@@ -27,6 +27,7 @@
     vm.progressStyle = {};
     vm.templateBaseUrl = templateBaseUrl;
     vm.pageUrlDecoded = $location.absUrl();
+    vm.loading = true;
 
     vm.tabs = [
       {'id': 'samenvatting', 'name': 'Summary', 'count': -1},
@@ -59,6 +60,7 @@
         vm.country = data.data;
         Countries.selectedCountries.push({'count': 0, 'recipient_country': {'code':vm.country.code,'name':vm.country.name}});
         FilterSelection.save();
+        vm.loading = false;
       }
 
       vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
@@ -67,6 +69,7 @@
 
     function errorFn(data, status, headers, config) {
       console.log("getting country failed");
+      vm.loading = false;
     }
 
     vm.setBudgetLeft = function(){

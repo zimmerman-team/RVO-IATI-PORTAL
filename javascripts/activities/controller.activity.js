@@ -24,7 +24,7 @@
     vm.end_planned = null;
     vm.end_actual = null;
     vm.pageUrlDecoded = $location.absUrl();
-
+    vm.loading = true;
     vm.selectedTab = 'summary';
 
     vm.tabs = [
@@ -40,6 +40,7 @@
 
       function successFn(data, status, headers, config) {
         vm.activity = data.data;
+        vm.loading = false;
         for(var i = 0;i < vm.activity.activity_dates.length;i++){
           if(vm.activity.activity_dates[i].type.code == 1){
             vm.start_planned = vm.activity.activity_dates[i]
@@ -64,6 +65,7 @@
 
       function errorFn(data, status, headers, config) {
         console.log("getting activity failed");
+        vm.loading = false;
       }
 
       vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);

@@ -42,6 +42,7 @@
     vm.pageUrlDecoded = $location.absUrl();
     vm.budgetLeft = 0;
     vm.progressStyle = {};
+    vm.loading = true;
 
     vm.tabs = [
       {'id': 'summary', 'name': 'Summary', 'count': -1},
@@ -67,6 +68,7 @@
         Programmes.selectedProgrammes.push({'activity_id': vm.activity.id, 'count': 0});
         FilterSelection.save();
         vm.setBudgetLeft();
+        vm.loading = false;
       }
 
       function procesTransactions(data, status, headers, config){
@@ -75,6 +77,7 @@
 
       function errorFn(data, status, headers, config) {
         console.log("getting activity failed");
+        vm.loading = false;
       }
       vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
       vm.shareDescription = encodeURIComponent('View the aid projects of the RVO on ' + vm.pageUrlDecoded);

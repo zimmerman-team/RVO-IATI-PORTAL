@@ -1,4 +1,17 @@
-<div id="main-content" class="activity">
+<div id="main-content" ng-if="!vm.activity && !vm.loading">
+
+    <div class="container extra">
+
+        <div class="white no-margin-bottom">
+            <h1>Not found</h1>
+        </div>
+
+        <h4>Please contact the administrators if you feel this page is shown in error.</h4>
+    </div>
+
+</div>
+
+<div id="main-content" class="activity" ng-if="vm.activity">
 
     <div class="container extra">
 

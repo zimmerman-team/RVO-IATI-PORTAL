@@ -1,4 +1,17 @@
-<div id="main-content" >
+<div id="main-content" ng-if="!vm.country && !vm.loading">
+
+    <div class="container extra">
+
+        <div class="white no-margin-bottom">
+            <h1>Not found</h1>
+        </div>
+
+        <h4>Please contact the administrators if you feel this page is shown in error.</h4>
+    </div>
+
+</div>
+
+<div id="main-content" ng-if="vm.country">
 
     <filter-bar 
         views="[]"
