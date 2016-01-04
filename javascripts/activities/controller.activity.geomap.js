@@ -51,6 +51,8 @@
     vm.updateGeo = function(){
         vm.updateCountryMarkers();
 
+        console.log(vm.activity);
+
         leafletData.getMap().then(function(map) {
             map.fitBounds(vm.getBounds());
             if(map._zoom > 7){
@@ -100,17 +102,34 @@
 
 
     vm.updateCountryMarkers = function() {
+      
+      // to finish!
+      //
+      // if (vm.activity.locations.length == 0) {
+      //   for (var i = 0; i < vm.activity.recipient_countries.length;i++){
+      //     var country = vm.activity.recipient_countries[i];
+      //     vm.markers[i] = {
+      //         lat: parseFloat(0),
+      //         lng: parseFloat(0),
+      //         icon: vm.markerIcons['Country'],
+      //     }
+      //   }
+      // }
 
+      // else {
 
-      for (var i = 0; i < vm.activity.locations.length;i++){
+        for (var i = 0; i < vm.activity.locations.length;i++){
 
-        var location = vm.activity.locations[i];
-        vm.markers[i] = {
-            lat: parseFloat(location.point.pos.latitude),
-            lng: parseFloat(location.point.pos.longitude),
-            icon: vm.markerIcons['Country'],
+          var location = vm.activity.locations[i];
+          vm.markers[i] = {
+              lat: parseFloat(location.point.pos.latitude),
+              lng: parseFloat(location.point.pos.longitude),
+              icon: vm.markerIcons['Country'],
+          }
         }
-      }
+
+      //}
+
     }
 
     activate();

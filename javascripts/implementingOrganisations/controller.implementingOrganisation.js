@@ -22,7 +22,8 @@
     vm.selectionString = '';
     vm.selectedTab = 'samenvatting';
     vm.pageUrlDecoded = $location.absUrl();
-
+    vm.part_org_activities = '';
+    vm.loading = true;
 
     vm.tabs = [
       {'id': 'samenvatting', 'name': 'Summary', 'count': -1},
@@ -47,10 +48,12 @@
 
       function successFnActivities(data, status, headers, config) {
         vm.part_org_activities = data.data.results;
+        vm.loading = false;
       }
 
       function errorFnActivities(data, status, headers, config) {
         console.log("getting implementing organisation activities failed");
+        vm.loading = false;
       }
 
 
