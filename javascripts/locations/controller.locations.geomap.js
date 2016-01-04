@@ -77,7 +77,7 @@
     function activate() {
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString, oldSelectionString) {
-        if(selectionString == oldSelectionString){ return false; }
+        //if(selectionString == oldSelectionString){ return false; }
         vm.selectionString = selectionString;
         vm.updateMap();
       }, true);
@@ -106,9 +106,14 @@
           for (var l in results[r].locations){
             var message = '<h4>'+results[r].title.narratives[0].text+'</h4><hr><a target="_blank" href="'+homeUrl+'/projects/'+results[r].id+'/"><i class="icon graph"></i>Go to project overview</a>';
 
+            var lat = parseFloat(results[r].locations[l].point.pos.latitude);
+            var lng = parseFloat(results[r].locations[l].point.pos.longitude);
+
+            if (lat < -180 || lat > 180 || lng < -180 || lng > 180){ continue; }
+
             newMarkers[r + '_' + l] = {
-              lat: parseFloat(results[r].locations[l].point.pos.latitude),
-              lng: parseFloat(results[r].locations[l].point.pos.longitude),
+              lat: lat,
+              lng: lng,
               layer: 'locations',
               message: message,
               icon: vm.markerIcon,
