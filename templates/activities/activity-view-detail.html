@@ -64,19 +64,19 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            {{result.indicator[0].title.narratives[0].text ? result.indicator[0].title.narratives[0].text : 'Not available yet'}}
+                                            {{result.indicator[0].title.narratives[0].text ? result.indicator[0].title.narratives[0].text : 'Data to be added'}}
                                         </td>
                                          <td>
-                                            {{result.indicator[0].period[0].period_start ? result.indicator[0].period[0].period_start : 'No data' | date : 'dd-MM-yyyy'}}
+                                            {{result.indicator[0].period[0].period_start ? result.indicator[0].period[0].period_start : 'Data to be added' | date : 'dd-MM-yyyy'}}
                                         </td>
                                          <td>
-                                            {{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : 'No data' | date : 'dd-MM-yyyy'}}
+                                            {{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : 'Data to be added' | date : 'dd-MM-yyyy'}}
                                         </td>
                                         <td>
-                                            {{result.indicator[0].period[0].target.value ? result.indicator[0].period[0].target.value : 'Not available yet'}}
+                                            {{result.indicator[0].period[0].target.value ? result.indicator[0].period[0].target.value : 'Data to be added'}}
                                         </td>
                                         <td>
-                                            {{result.indicator[0].period[0].actual.value ? result.indicator[0].period[0].actual.value : 'Not available yet'}}
+                                            {{result.indicator[0].period[0].actual.value ? result.indicator[0].period[0].actual.value : 'Data to be added'}}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <div class="panel lightblue" ng-if="vm.activity.results.length == 0">
-                        No data avaiable yet
+                        Data to be added
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -113,32 +113,32 @@
                         <table class="no-format">
                             <tr>
                                 <td>Start date:</td>
-                                <td>{{vm.activity.activity_dates[1].iso_date ? vm.activity.activity_dates[1].iso_date : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
+                                <td>{{vm.activity.activity_dates[1].iso_date ? vm.activity.activity_dates[1].iso_date : 'Data to be added' | date : 'dd-MM-yyyy'}}</td>
                             </tr>
                             <tr>
                                 <td>End date:</td>
-                                <td>{{vm.activity.activity_dates[3].iso_date ? vm.activity.activity_dates[3].iso_date : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
+                                <td>{{vm.activity.activity_dates[3].iso_date ? vm.activity.activity_dates[3].iso_date : 'Data to be added' | date : 'dd-MM-yyyy'}}</td>
                             </tr>
                             <tr class="panel lightblue">
                                 <td>Country:</td>
-                                <td><a ng-repeat="recipient_country in vm.activity.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">{{recipient_country.country.name}}{{$last ? '' : ', '}}</a><span ng-if='vm.activity.recipient_countries.length == 0'>No data available yet</span> </td>
+                                <td><a ng-repeat="recipient_country in vm.activity.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">{{recipient_country.country.name}}{{$last ? '' : ', '}}</a><span ng-if='vm.activity.recipient_countries.length == 0'>Data to be added</span> </td>
                             </tr>
                             <tr>
                                 <td width="130">Sectors: </td>
                                 <td><a ui-sref="sector({ sector_id: vm.activity.sectors[0].sector.code })">
                                     {{vm.activity.sectors[0].sector.name}}
-                                </a><span ng-show='!vm.activity.sectors.length'>No data available yet</span></td>
+                                </a><span ng-show='!vm.activity.sectors.length'>Data to be added</span></td>
                             </tr>
                             <tr>
                                 <td>Programme:</td>
                                 <td><a ui-sref="programme({ programme_id: vm.activity.related_activities[0].ref })">
                                     {{vm.activity.related_activities[0].name}}
-                                </a><span ng-if="!vm.activity.related_activities[0].ref">No data available yet</span></td>
+                                </a><span ng-if="!vm.activity.related_activities[0].ref">Data to be added</span></td>
                             </tr>
                             <tr>
                                 <td>Total budget: </td>
                                 <td><span ng-if='vm.budget'>{{vm.budget | shortcurrency :'€'}}</span>
-                                <span ng-if='!vm.budget'>No data available yet</span></td>
+                                <span ng-if='!vm.budget'>Data to be added</span></td>
                             </tr>
                             <tr>
                                 <td>Budget spent:</td>
@@ -156,14 +156,14 @@
                                 <td>
                                     <span class="show-me" ng-if="org.role.code == 1" ng-repeat='org in vm.activity.participating_organisations'>
                                     {{org.narratives[0].text}}{{$last ? '' : ', '}}</span>
-                                    <span class="hide-me">No data available yet</span></td>
+                                    <span class="hide-me">Data to be added</span></td>
                             </tr>
                             <tr>
                                 <td>Project partners:</td>
                                 <td>
                                     <span class="show-me" ng-if="org.role.code == 4" ng-repeat='org in vm.activity.participating_organisations'>
                                     {{org.narratives[0].text}}{{$last ? '' : ', '}}</span>
-                                    <span class="hide-me">No data available yet</span>
+                                    <span class="hide-me">Data to be added</span>
                                 </td>
                             </tr>
                             <tr>
@@ -176,19 +176,19 @@
                                     {{vm.activity.default_tied_status.name}}
                                 </span>
                                 <span ng-if='!vm.activity.default_tied_status.name.length'>
-                                    No data available yet
+                                    Data to be added
                                 </span></td>
                             </tr>
                             <tr>
                                 <td>Policy marker:</td>
-                                <td>No data available yet</td>
+                                <td>Data to be added</td>
                             </tr>
                         </table>
                     </div>
                     <div class="panel lightblue">
-                        <h3>Project updates</h3>
+                        <h3>Related videos</h3>
                         <hr>
-                        <p>No updates available.</p>
+                        <p>No videos available</p>
                         <!-- <div class="video">
                             <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
                         </div> -->
@@ -197,7 +197,7 @@
                         <h3>Related documents</h3>
                         <hr>
                             <p ng-show="vm.activity.document_links.length == 0">
-                                No documents available.
+                                No documents available
                             </p>
                             <ul ng-if="vm.activity.document_links.length != 0" class="fa-ul">
                                 <li ng-repeat="document in vm.activity.document_links">
@@ -262,19 +262,19 @@
                         </tr>
                         <tr>
                             <td>Start date planned:</td>
-                            <td>{{vm.activity.activity_dates[0].iso_date ? vm.activity.activity_dates[0].iso_date : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
+                            <td>{{vm.activity.activity_dates[0].iso_date ? vm.activity.activity_dates[0].iso_date : 'Data to be added' | date : 'dd-MM-yyyy'}}</td>
                         </tr>
                         <tr>
                             <td>Start date actual:</td>
-                            <td>{{vm.activity.activity_dates[1].iso_date ? vm.activity.activity_dates[1].iso_date : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
+                            <td>{{vm.activity.activity_dates[1].iso_date ? vm.activity.activity_dates[1].iso_date : 'Data to be added' | date : 'dd-MM-yyyy'}}</td>
                         </tr>
                         <tr>
                             <td>End date planned:</td>
-                            <td>{{vm.activity.activity_dates[2].iso_date ? vm.activity.activity_dates[2].iso_date : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
+                            <td>{{vm.activity.activity_dates[2].iso_date ? vm.activity.activity_dates[2].iso_date : 'Data to be added' | date : 'dd-MM-yyyy'}}</td>
                         </tr>
                         <tr>
                             <td>End date actual:</td>
-                            <td>{{vm.activity.activity_dates[3].iso_date ? vm.activity.activity_dates[3].iso_date : 'No data available yet' | date : 'dd-MM-yyyy'}}</td>
+                            <td>{{vm.activity.activity_dates[3].iso_date ? vm.activity.activity_dates[3].iso_date : 'Data to be added' | date : 'dd-MM-yyyy'}}</td>
                         </tr>
                     </table>
                 </div>
@@ -287,15 +287,15 @@
                     <table class="no-format">
                         <tr>
                             <td width="200">Related activity name:</td>
-                            <td>{{vm.activity.related_activities[0].name}}<span ng-if="!vm.activity.related_activities[0].name">No data available yet</span></td>
+                            <td>{{vm.activity.related_activities[0].name}}<span ng-if="!vm.activity.related_activities[0].name">Data to be added</span></td>
                         </tr>
                         <tr>
                             <td>Related activity ref:</td>
-                            <td>{{vm.activity.related_activities[0].ref}}<span ng-if="!vm.activity.related_activities[0].ref">No data available yet</span></td>
+                            <td>{{vm.activity.related_activities[0].ref}}<span ng-if="!vm.activity.related_activities[0].ref">Data to be added</span></td>
                         </tr>
                         <tr>
                             <td>Related activity type:</td>
-                            <td>{{vm.activity.related_activities[0].type.name}}<span ng-if="!vm.activity.related_activities[0].type.name">No data available yet</span></td>
+                            <td>{{vm.activity.related_activities[0].type.name}}<span ng-if="!vm.activity.related_activities[0].type.name">Data to be added</span></td>
                         </tr>
                     </table>
                 </div>
@@ -336,7 +336,7 @@
                     </div>
                     <div ng-if="!vm.activity.participating_organisations">
                         <hr>
-                        <p style="padding-left:15px;padding-bottom:10px;">No data available yet</p>
+                        <p style="padding-left:15px;padding-bottom:10px;">Data to be added</p>
                     </div>
                 </div>
 
@@ -376,7 +376,7 @@
                     </div>
                     <div ng-if="vm.activity.recipient_countries.length == 0">
                         <hr>
-                        <p style="padding-left:15px;padding-bottom:10px;">No data available yet</p>
+                        <p style="padding-left:15px;padding-bottom:10px;">Data to be added</p>
                     </div>
 
                 </div>
@@ -407,7 +407,7 @@
 
                     <div ng-if="vm.activity.sectors.length == 0">
                         <hr>
-                        <p style="padding-left:15px;padding-bottom:10px;">No data available yet</p>
+                        <p style="padding-left:15px;padding-bottom:10px;">Data to be added</p>
                     </div>
 
                 </div>
@@ -470,7 +470,7 @@
                     </div>
                     <div ng-if="vm.transactionData.length == 0">
                         <hr>
-                        <p style="padding-left:15px;">No data available yet</p>
+                        <p style="padding-left:15px;">Data to be added</p>
                         <hr>
                     </div>
 
@@ -556,7 +556,7 @@
                     </div>
                     <div ng-if="vm.activity.results.length == 0">
                         <hr>
-                        <p style="padding-left:15px;padding-bottom:10px;">No data available yet</p>
+                        <p style="padding-left:15px;padding-bottom:10px;">Data to be added</p>
                     </div>
                 </div>
 

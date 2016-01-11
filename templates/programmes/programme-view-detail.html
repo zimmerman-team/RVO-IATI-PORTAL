@@ -64,7 +64,7 @@
                                     </td>
                                     <td>
                                         <span ng-if="vm.activity.child_aggregation.disbursement_value">{{vm.activity.child_aggregation.disbursement_value | shortcurrency :'€'}}</span>
-                                        <span ng-if="!vm.activity.child_aggregation.disbursement_value">No data available yet</span>
+                                        <span ng-if="!vm.activity.child_aggregation.disbursement_value">Data to be added</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -99,9 +99,9 @@
                         <p><a ng-href="{{vm.programmeUrl}}" target="_blank">Visit the programme page on rvo.nl</a></p>
                     </div>
                     <div class="panel lightblue">
-                        <h3>Programme updates</h3>
+                        <h3>Related videos</h3>
                         <hr>
-                        <p>Not yet available</p>
+                        <p>No videos available</p>
                         <!-- <div class="video">
                             <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
                         </div>
@@ -113,7 +113,7 @@
                         <h3>Related documents</h3>
                         <hr>
                             <p ng-show="!vm.activity.documents">
-                                No documents available.
+                                No documents available
                             </p>
                             <p ng-repeat="document in vm.activity.documents">
                                 <a target="_blank" href="{{document.url}}">
