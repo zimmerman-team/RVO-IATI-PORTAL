@@ -31,7 +31,7 @@
 					<a 
 						class="selected filter-selected-button selectedImplementingOrganisations" 
 						ng-repeat="item in vm.selectedImplementingOrganisations" 
-						ng-click="vm.removeFilter(vm.selectedImplementingOrganisations, '', item.organisation.code)" 
+						ng-click="vm.removeFilter(vm.selectedImplementingOrganisations, '', item.name)" 
 						ng-if="vm.currentPage != 'organisation'">
 						{{item.name}}
 					</a>

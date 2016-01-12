@@ -121,6 +121,7 @@
     }
 
     vm.resetFilters = function(){
+      console.log(FilterSelection);
       FilterSelection.reset();
     }
 

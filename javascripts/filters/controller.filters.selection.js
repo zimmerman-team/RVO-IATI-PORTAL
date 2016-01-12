@@ -56,14 +56,15 @@
         }
 
       }, true);
+      console.log(vm.filterSelection);
     }
     activate();
 
     vm.removeFilter = function(selectedArr, name, item_id) {
-      console.log(selectedArr);
-      console.log('got here');
-      console.log(name);
-      console.log(item_id);
+      // console.log(selectedArr);
+      // console.log('got here');
+      // console.log(name);
+      // console.log(item_id);
 
       for (var i = 0; i < selectedArr.length;i++){
         if(name == 'activity_id'){
@@ -71,8 +72,15 @@
             selectedArr.splice(i, 1);
             break;
           }
-
-        } else if(selectedArr[i][name].code == item_id){
+        }
+        //mooier maken? lelijk voor org filter 
+        else if(typeof selectedArr[i][name] != 'undefined') {
+          if(selectedArr[i][name].code == item_id){
+            selectedArr.splice(i, 1);
+            break;
+          }
+        }
+        else if(selectedArr[i].name == item_id){
           selectedArr.splice(i, 1);
           break;
         }
