@@ -1529,10 +1529,10 @@ hr {
   margin-bottom: 0;
   height:24px;
   position:relative;
-  background: -webkit-linear-gradient(left, lighten($rvo-groen,20%), $rvo-groen, darken($rvo-groen,20%) );
-  background: -o-linear-gradient(right, lighten($rvo-groen,20%), $rvo-groen, darken($rvo-groen,20%) );
-  background: -moz-linear-gradient(right, lighten($rvo-groen,20%), $rvo-groen, darken($rvo-groen,20%) );
-  background: linear-gradient(to right, lighten($rvo-groen,20%), $rvo-groen, darken($rvo-groen,20%) );
+  background: -webkit-linear-gradient(left, lighten($rvo-groen,30%), $rvo-groen, darken($rvo-groen,20%) );
+  background: -o-linear-gradient(right, lighten($rvo-groen,30%), $rvo-groen, darken($rvo-groen,20%) );
+  background: -moz-linear-gradient(right, lighten($rvo-groen,30%), $rvo-groen, darken($rvo-groen,20%) );
+  background: linear-gradient(to right, lighten($rvo-groen,30%), $rvo-groen, darken($rvo-groen,20%) );
   border-radius:2px;
   &.small {
     height: 18px;
