@@ -2,10 +2,10 @@
 $format  = $_GET['format'];
 
 
-$oipa_url = 'http://149.210.176.175/api/v3/activities/';
+$oipa_url = 'https://rvo.oipa.nl/api/activities/';
 
 if(empty($_GET['detail'])){
-    $oipa_url .= '?limit=400&reporting_organisation__in=NL-1&format=' . $format;
+    $oipa_url .= '?limit=400&reporting_organisation=NL-KVK-27378529&format=' . $format;
     $oipa_filter  = $_GET['filters'];
     $url = $oipa_url . urldecode($oipa_filter);
 } else {
