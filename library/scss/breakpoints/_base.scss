@@ -763,6 +763,19 @@ Homepage
     }
   }
 }
+.disclaimer {
+  h4,p {
+    color:$white;
+  }
+  h4 {
+    margin-bottom: 4px;
+    margin-top:14px;
+    font-size:16px;
+  }
+  p {
+    font-size:12px;
+  }
+}
 .home-header {
   position:relative;
   font-size: 16px;
