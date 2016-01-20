@@ -61,6 +61,7 @@
         Countries.selectedCountries.push({'count': 0, 'recipient_country': {'code':vm.country.code,'name':vm.country.name}});
         FilterSelection.save();
         vm.loading = false;
+
       }
 
       vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);

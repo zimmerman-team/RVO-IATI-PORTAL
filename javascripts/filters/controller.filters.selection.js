@@ -56,15 +56,10 @@
         }
 
       }, true);
-      console.log(vm.filterSelection);
     }
     activate();
 
     vm.removeFilter = function(selectedArr, name, item_id) {
-      // console.log(selectedArr);
-      // console.log('got here');
-      // console.log(name);
-      // console.log(item_id);
 
       for (var i = 0; i < selectedArr.length;i++){
         if(name == 'activity_id'){

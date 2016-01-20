@@ -9,17 +9,20 @@
     .module('oipa.locations')
     .controller('LocationsGeoMapController', LocationsGeoMapController);
 
-  LocationsGeoMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'Activities', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$filter'];
+  LocationsGeoMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'Activities', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$filter', 'Countries'];
 
   /**
   * @namespace LocationsGeoMapController
   */
-  function LocationsGeoMapController($scope, leafletData, Aggregations, Activities, templateBaseUrl, homeUrl, FilterSelection, $filter) {
+  function LocationsGeoMapController($scope, leafletData, Aggregations, Activities, templateBaseUrl, homeUrl, FilterSelection, $filter, Countries) {
     var vm = this;
     vm.mapHeight = $scope.mapHeight;
     vm.mapDropdown = $scope.mapDropdown;
     vm.templateBaseUrl = templateBaseUrl;
     vm.hasToContain = $scope.hasToContain;
+    vm.country_id = $scope.country;
+    vm.country = null;
+
 
     vm.markerIcon = { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Other"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',};
 
@@ -76,11 +79,26 @@
     */
     function activate() {
 
-      $scope.$watch('vm.filterSelection.selectionString', function (selectionString, oldSelectionString) {
-        //if(selectionString == oldSelectionString){ return false; }
-        vm.selectionString = selectionString;
+      Countries.getCountry(vm.country_id).then(successFn, errorFn);
+
+
+      function successFn(data, status, headers, config) {
+        vm.country = data.data;
+        var polygon = L.multiPolygon(data.data.polygon.coordinates);
+        vm.bounds = polygon.getBounds();
         vm.updateMap();
+      }
+
+      function errorFn(data, status, headers, config) {
+        console.log('cound not find country');
+      }
+      $scope.$watch('vm.filterSelection.selectionString', function (selectionString, oldSelectionString) {
+        vm.selectionString = selectionString;
+        if (vm.country != null){
+          vm.updateMap();
+        }
       }, true);
+
     }
 
     vm.hasContains = function(){
@@ -110,6 +128,9 @@
             var lng = parseFloat(results[r].locations[l].point.pos.longitude);
 
             if (lat < -180 || lat > 180 || lng < -180 || lng > 180){ continue; }
+            if(vm.bounds.contains([lng,lat]) == false){continue;}
+
+
 
             newMarkers[r + '_' + l] = {
               lat: lat,
