@@ -9,16 +9,18 @@
     .module('oipa.activities')
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl', '$location','programmesMapping'];
+  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl', '$location','programmesMapping', '$sce'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, $location, programmesMapping) {
+  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, $location, programmesMapping, $sce) {
     var vm = this;
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
     vm.templateBaseUrl = templateBaseUrl;
+    vm.start_date = null;
+    vm.end_date = null;
     vm.start_planned = null;
     vm.start_actual = null;
     vm.end_planned = null;
@@ -41,21 +43,43 @@
       function successFn(data, status, headers, config) {
         vm.activity = data.data;
         vm.loading = false;
+        vm.description = null;
+
+        if(vm.activity.descriptions.length){
+          vm.description = $sce.trustAsHtml(vm.activity.descriptions[0].narratives[0].text.replace(/\\n/g, '<br>'));
+        }
+
+        console.log(vm.activity.activity_dates);
         for(var i = 0;i < vm.activity.activity_dates.length;i++){
           if(vm.activity.activity_dates[i].type.code == 1){
-            vm.start_planned = vm.activity.activity_dates[i]
+            vm.start_planned = vm.activity.activity_dates[i].iso_date;
           } else if(vm.activity.activity_dates[i].type.code == 2){
-            vm.actual_planned = vm.activity.activity_dates[i]
+            vm.start_actual = vm.activity.activity_dates[i].iso_date;
           } else if(vm.activity.activity_dates[i].type.code == 3){
-            vm.end_planned = vm.activity.activity_dates[i]
+            vm.end_planned = vm.activity.activity_dates[i].iso_date;
           } else if(vm.activity.activity_dates[i].type.code == 4){
-            vm.end_actual = vm.activity.activity_dates[i]
+            vm.end_actual = vm.activity.activity_dates[i].iso_date;
           }
         }
         for (var i = 0; i < vm.activity.related_activities.length;i++){
           vm.activity.related_activities[i].name = programmesMapping[vm.activity.related_activities[i].ref];
         }
-        // console.log(vm.activity);
+
+        if(vm.end_actual != null){
+          vm.end_date = vm.end_actual;
+        } else if(vm.end_planned != null){
+          vm.end_date = vm.end_planned;
+        } else {
+          vm.end_date = 'Data to be added';
+        }
+
+        if(vm.start_actual != null){
+          vm.start_date = vm.start_actual;
+        } else if(vm.start_planned != null){
+          vm.start_date = vm.start_planned;
+        } else {
+          vm.start_date = 'Data to be added';
+        }
       }
 
       function procesTransactions(data, status, headers, config){

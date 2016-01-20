@@ -64,46 +64,12 @@
     }
 
     vm.center = {
-        lat: 14.505,
-        lng: 18.00,
+        lat: -59.204,
+        lng: -131.484,
         zoom: 3
     };
 
-    vm.markers = {
-        m1: {
-            lat: 42.20133,
-            lng: 2.19110,
-            layer: 'cars',
-            message: "I'm a moving car"
-        },
-        m2: {
-            lat: 42.21133,
-            lng: 2.18110,
-            layer: 'cars',
-            message: "I'm a car"
-        },
-        m3: {
-            lat: 42.19133,
-            lng: 2.18110,
-            layer: 'cars',
-            message: 'A bike!!'
-        },
-        m4: {
-            lat: 42.3,
-            lng: 2.16110,
-            layer: 'cars'
-        },
-        m5: {
-            lat: 42.1,
-            lng: 2.16910,
-            layer: 'cars'
-        },
-        m6: {
-            lat: 42.15,
-            lng: 2.17110,
-            layer: 'cars'
-        }
-    };
+    vm.markers = {};
     vm.markerIcons = {
       Delete: { html: '<div class="removed-marker" style="display: none"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
       Other: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Other2"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},

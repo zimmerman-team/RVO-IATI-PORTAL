@@ -26,8 +26,8 @@
       continuousWorld: false,
     };
     vm.center = {
-        lat: 14.505,
-        lng: 18.00,
+        lat: -59.204,
+        lng: -131.484,
         zoom: 8
     };
     vm.markers = {};
@@ -50,8 +50,6 @@
 
     vm.updateGeo = function(){
         vm.updateCountryMarkers();
-
-        console.log(vm.activity);
 
         leafletData.getMap().then(function(map) {
             map.fitBounds(vm.getBounds());

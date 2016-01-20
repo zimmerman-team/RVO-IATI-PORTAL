@@ -36,7 +36,7 @@
                 <div class="col-md-8">
                     <div class="white">
                         <h2 class="no-margin-top">Description</h2>
-                        <p>{{vm.activity.description[0].narratives[0].text}}</p>              
+                        <p>{{vm.activity.descriptions[0].narratives[0].text}}</p>              
                     </div>
                     <div class="white">
                         <h2>Related project map</h2>
@@ -55,7 +55,7 @@
                                         Total programme budget
                                     </td>
                                     <td>
-                                        {{vm.activity.child_aggregation.incoming_funds_value | shortcurrency :'€'}}
+                                        {{vm.activity.aggregations.activity_children.incoming_funds_value | shortcurrency :'€'}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -63,8 +63,8 @@
                                         Total programme expenditure
                                     </td>
                                     <td>
-                                        <span ng-if="vm.activity.child_aggregation.disbursement_value">{{vm.activity.child_aggregation.disbursement_value | shortcurrency :'€'}}</span>
-                                        <span ng-if="!vm.activity.child_aggregation.disbursement_value">Data to be added</span>
+                                        <span ng-if="vm.activity.aggregations.activity_children.disbursement_value">{{vm.activity.aggregations.activity_children.disbursement_value | shortcurrency :'€'}}</span>
+                                        <span ng-if="!vm.activity.aggregations.activity_children.disbursement_value">Data to be added</span>
                                     </td>
                                 </tr>
                                 <tr>

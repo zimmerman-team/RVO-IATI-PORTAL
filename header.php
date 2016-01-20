@@ -30,7 +30,7 @@
             <meta name="theme-color" content="#121212">
 
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/font-awesome.min.css">
 
 		
 		<?php // wordpress head functions ?>
@@ -40,7 +40,8 @@
 		<script>
 			var home_url = '<?php echo home_url(); ?>';
 			var template_url = '<?php echo get_template_directory_uri(); ?>';
-			var oipa_url = 'https://rvo.oipa.nl/api';
+			// var oipa_url = 'https://rvo.oipa.nl/api';
+			var oipa_url = 'http://localhost:8000/api';
 			var reporting_organisation_id = 'NL-KVK-27378529';
 			<?php $customFields = get_post_custom(); ?>
 			var customFields = <?php echo json_encode($customFields); ?>;

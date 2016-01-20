@@ -31,11 +31,11 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="featured-image">
-                        <img src="{{vm.templateBaseUrl}}/images/Develop2Build header.jpg">
+                        <img ng-src="{{vm.templateBaseUrl}}/images/Develop2Build header.jpg">
                     </div>
                     <div class="white">
                         <h2>Description</h2>
-                        <p>{{vm.activity.description[0].narratives[0].text}}</p>              
+                        <p ng-bind-html="vm.description"></p>              
                     </div>
                     <div class="white no-margin-bottom no-padding-bottom">
                         <h2>Location</h2>
@@ -113,27 +113,11 @@
                         <table class="no-format">
                             <tr>
                                 <td>Start date:</td>
-                                <td ng-if="vm.activity.activity_dates[1].iso_date">
-                                    {{vm.activity.activity_dates[1].iso_date | date : 'dd-MM-yyyy'}}
-                                </td>
-                                <td ng-if="!vm.activity.activity_dates[1].iso_date && vm.activity.activity_dates[0].iso_date">
-                                    {{vm.activity.activity_dates[0].iso_date | date : 'dd-MM-yyyy'}} (planned)
-                                </td>
-                                <td ng-if="!vm.activity.activity_dates[1].iso_date && !vm.activity.activity_dates[0].iso_date">
-                                    Data to be added
-                                </td>
+                                <td>{{vm.start_date | date : 'dd-MM-yyyy'}}</td>
                             </tr>
                             <tr>
                                 <td>End date:</td>
-                                <td ng-if="vm.activity.activity_dates[3].iso_date">
-                                    {{vm.activity.activity_dates[3].iso_date | date : 'dd-MM-yyyy'}}
-                                </td>
-                                <td ng-if="!vm.activity.activity_dates[3].iso_date && vm.activity.activity_dates[2].iso_date">
-                                    {{vm.activity.activity_dates[2].iso_date | date : 'dd-MM-yyyy'}} (planned)
-                                </td>
-                                <td ng-if="!vm.activity.activity_dates[3].iso_date && !vm.activity.activity_dates[2].iso_date">
-                                    Data to be added
-                                </td>
+                                <td>{{vm.end_date | date : 'dd-MM-yyyy'}}</td>
                             </tr>
                             <tr class="panel lightblue">
                                 <td>Country:</td>
@@ -177,7 +161,7 @@
                             <tr>
                                 <td>Project partners:</td>
                                 <td>
-                                    <span class="show-me" ng-if="org.role.code == 4" ng-repeat='org in vm.activity.participating_organisations'>
+                                    <span class="show-me" ng-if="org.role.code == 2 || org.role.code == 4" ng-repeat='org in vm.activity.participating_organisations'>
                                     {{org.narratives[0].text}}{{$last ? '' : ', '}}</span>
                                     <span class="hide-me">Data to be added</span>
                                 </td>
@@ -266,11 +250,11 @@
                         </tr>
                         <tr>
                             <td>Description:</td>
-                            <td>{{vm.activity.description[0].narratives[0].text}}</td>
+                            <td>{{vm.activity.descriptions[0].narratives[0].text}}</td>
                         </tr>
                         <tr>
-                            <td>Description name:</td>
-                            <td>{{vm.activity.description[0].type.name}}</td>
+                            <td>Description type:</td>
+                            <td>{{vm.activity.descriptions[0].type.name}}</td>
                         </tr>
                         <tr>
                             <td>Status:</td>
@@ -278,19 +262,19 @@
                         </tr>
                         <tr>
                             <td>Start date planned:</td>
-                            <td>{{vm.activity.activity_dates[0].iso_date ? vm.activity.activity_dates[0].iso_date : 'Data to be added' | date : 'dd-MM-yyyy'}}</td>
+                            <td>{{vm.start_planned ? vm.start_planned : 'Data to be added' | date : 'dd-MM-yyyy'}}</td>
                         </tr>
                         <tr>
                             <td>Start date actual:</td>
-                            <td>{{vm.activity.activity_dates[1].iso_date ? vm.activity.activity_dates[1].iso_date : 'Data to be added' | date : 'dd-MM-yyyy'}}</td>
+                            <td>{{vm.start_actual ? vm.start_actual : 'Data to be added' | date : 'dd-MM-yyyy'}}</td>
                         </tr>
                         <tr>
                             <td>End date planned:</td>
-                            <td>{{vm.activity.activity_dates[2].iso_date ? vm.activity.activity_dates[2].iso_date : 'Data to be added' | date : 'dd-MM-yyyy'}}</td>
+                            <td>{{vm.end_planned ? vm.end_planned : 'Data to be added' | date : 'dd-MM-yyyy'}}</td>
                         </tr>
                         <tr>
                             <td>End date actual:</td>
-                            <td>{{vm.activity.activity_dates[3].iso_date ? vm.activity.activity_dates[3].iso_date : 'Data to be added' | date : 'dd-MM-yyyy'}}</td>
+                            <td>{{vm.end_actual ? vm.end_actual : 'Data to be added' | date : 'dd-MM-yyyy'}}</td>
                         </tr>
                     </table>
                 </div>
