@@ -32,6 +32,7 @@
     vm.tabs = [
       {'id': 'summary', 'name': 'Summary', 'count': -1},
       {'id': 'detailedreport', 'name': 'Detailed report', 'count': -1},
+      {'id': 'mediapage', 'name': 'Media', 'count': -1},
     ]
 
     
@@ -45,11 +46,12 @@
         vm.loading = false;
         vm.description = null;
 
+        console.log(vm.activity.document_links);
+
         if(vm.activity.descriptions.length){
           vm.description = $sce.trustAsHtml(vm.activity.descriptions[0].narratives[0].text.replace(/\\n/g, '<br>'));
         }
 
-        console.log(vm.activity.activity_dates);
         for(var i = 0;i < vm.activity.activity_dates.length;i++){
           if(vm.activity.activity_dates[i].type.code == 1){
             vm.start_planned = vm.activity.activity_dates[i].iso_date;

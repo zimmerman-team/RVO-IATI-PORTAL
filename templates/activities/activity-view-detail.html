@@ -185,28 +185,6 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="panel lightblue">
-                        <h3>Related videos</h3>
-                        <hr>
-                        <p>No videos available</p>
-                        <!-- <div class="video">
-                            <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
-                        </div> -->
-                    </div>
-                     <div class="panel lightblue">
-                        <h3>Related documents</h3>
-                        <hr>
-                            <p ng-show="vm.activity.document_links.length == 0">
-                                No documents available
-                            </p>
-                            <ul ng-if="vm.activity.document_links.length != 0" class="fa-ul">
-                                <li ng-repeat="document in vm.activity.document_links">
-                                    <a target="_blank" href="{{document.url}}">
-                                        <i class="fa-li fa fa-download"></i>{{document.title[0].narratives[0].text}}
-                                    </a>
-                                </li>
-                            </ul>
-                    </div>
                     <div class="panel lightblue with-table share">
                         <h3>Export & share</h3>
                         <hr>
@@ -561,6 +539,31 @@
                 </div>
 
             </div>
+        </div>
+
+        <div class="" ng-if="vm.selectedTab == 'mediapage'">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="panel lightblue">
+                        <h3>Related videos</h3>
+                        <hr>
+                        <p>Data to be added</p>
+                    </div>
+                    <div class="panel lightblue">
+                        <h3>Related images</h3>
+                        <hr>
+                        <p>Data to be added</p>
+                    </div>
+                    <div class="panel lightblue">
+                        <h3>Related documents</h3>
+                        <hr>
+                        <p>Data to be added</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 </div>

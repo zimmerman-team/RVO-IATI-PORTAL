@@ -9,12 +9,12 @@
     .module('oipa.countries')
     .controller('CountryController', CountryController);
 
-  CountryController.$inject = ['$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'countryPageUrls', 'homeUrl', '$location'];
+  CountryController.$inject = ['$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'countryPageUrls', 'homeUrl', '$location', 'uploadBaseUrl'];
 
   /**
   * @namespace CountryController
   */
-  function CountryController($scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations, countryPageUrls, homeUrl, $location) {
+  function CountryController($scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations, countryPageUrls, homeUrl, $location, uploadBaseUrl) {
     var vm = this;
     vm.country = null;
     vm.country_id = $stateParams.country_id;
@@ -28,6 +28,7 @@
     vm.templateBaseUrl = templateBaseUrl;
     vm.pageUrlDecoded = $location.absUrl();
     vm.loading = true;
+    vm.uploadBaseUrl = uploadBaseUrl;
 
     vm.tabs = [
       {'id': 'samenvatting', 'name': 'Summary', 'count': -1},

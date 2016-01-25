@@ -218,6 +218,12 @@ Subnavbar tabs
       @extend .icon.lightbulb;
       @extend .icon;
     }
+  } 
+  .mediapage {
+    a {
+      @extend .icon.film;
+      @extend .icon;
+    }
   }    
   .sectors {
     a {
@@ -2140,6 +2146,11 @@ Icons
   &.link {
     &:before {
       content: '\0021';
+    }
+  }
+  &.film {
+    &:before {
+      content: '\e602';
     }
   }
 }
