@@ -33,7 +33,7 @@
     vm.relatedYoutube = [];
     vm.relatedImages = [];
     vm.relatedDocuments = [];
-    vm.featuredImage = '';
+    vm.featuredImage = vm.templateBaseUrl + '/images/Develop2Build header.jpg';
 
     vm.tabs = [
       {'id': 'summary', 'name': 'Summary', 'count': -1},
@@ -213,6 +213,12 @@
     vm.sortDocs = function(documents) {
       for (var i =0; i < documents.length;i++){
         var obj = {};
+
+        if(documents[i].title.length){
+            obj.title = documents[i].title[0].narratives[0].text;
+          }
+
+
         if ( documents[i].format.code == 'text/html' && documents[i].url.indexOf('vimeo') != -1 ) {
           obj.url = documents[i].url
           vm.relatedVimeo.push(obj);
@@ -223,9 +229,9 @@
         }
         else if (documents[i].format.code == 'image/jpeg' || documents[i].format.code == 'image/png') {
           obj.url = documents[i].url;
-          obj.title = documents[i].title[0].narratives[0].text;
           vm.relatedImages.push(obj);
-          if (obj.title.indexOf('eatured') != -1) {
+
+          if (obj.title != undefined && obj.title.indexOf('eatured') != -1) {
             vm.featuredImage = obj.url;
           }
         }
@@ -238,7 +244,6 @@
           else if (documents[i].format.code == 'application/vnd.oasis.opendocument.text') { fileType = 'Open Office'; }
           else { fileType = 'Other'; }
           obj.filetype = fileType;
-          obj.title = documents[i].title[0].narratives[0].text;
           obj.language = documents[i].title[0].narratives[0].language.name;
           obj.categories = documents[i].categories;
           obj.url = documents[i].url;

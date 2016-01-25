@@ -33,7 +33,6 @@
       {'id': 'countries', 'name': 'Countries', 'count': -1},
     ]
 
-
     activate();
 
     function activate() {
@@ -44,12 +43,6 @@
       }, true);
 
       vm.organisation_id = vm.organisation_id;
-
-      // ImplementingOrganisations.get(vm.organisation_id).then(successFn, errorFn);
-
-      // function successFn(data, status, headers, config){
-
-      // }
 
       ImplementingOrganisations.getActivities(vm.organisation_id).then(successFnActivities, errorFn);
 
@@ -62,7 +55,6 @@
         console.log("getting implementing organisation or its activities failed");
         vm.loading = false;
       }
-
 
       ImplementingOrganisations.selectedImplementingOrganisations[0] = {'organisation_id':vm.organisation_id,'name':vm.organisation_id};
       vm.filterSelection.save();
@@ -85,29 +77,21 @@
 
       if (selectionString.indexOf("participating_organisation_name") < 0) return false;
 
-      Aggregations.aggregation('participating_organisation', 'disbursement', selectionString).then(function(data, status, headers, config){
-        vm.disbursements = data.data.results.length ? data.data.results[0].disbursement : 0;
+      vm.budget = 0;
+      vm.disbursements = 0;
+      Aggregations.aggregation('transaction_receiver_org_narrative', 'transaction_value', '&transaction_receiver_organisation_name=' + encodeURIComponent(vm.organisation_id)).then(function(data, status, headers, config){
+
+        for(var i = 0; i < data.data.results.length;i++){
+          if((data.data.results[i].transaction_type == '3' || data.data.results[i].transaction_type == '4') && data.data.results[i].name == vm.organisation_id){
+            vm.disbursements += data.data.results[i].value;
+          }
+          if(data.data.results[i].transaction_type == '2' && data.data.results[i].name == vm.organisation_id){
+            vm.budget += data.data.results[i].value;
+          }
+        }
+
         vm.setBudgetLeft();
       }, errorFn);
-
-      Aggregations.aggregation('participating_organisation', 'incoming_fund', selectionString).then(function(data, status, headers, config){
-        vm.budget = data.data.results.length ? data.data.results[0].incoming_fund : 0;
-        vm.setBudgetLeft();
-      }, errorFn);
-
-      // Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
-      //   vm.disbursements_by_year = data.data.results;
-        
-      // }, errorFn);
-
-      // Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString).then(function(data, status, headers, config){
-      //   vm.commitments_by_year = data.data.results;
-      // }, errorFn);
-
-      // Aggregations.aggregation('reporting-org', 'budget__value', selectionString).then(function(data, status, headers, config){
-      //   vm.budget_by_year = data.data.results;
-      // }, errorFn);
-
     }
 
     vm.download = function(format){

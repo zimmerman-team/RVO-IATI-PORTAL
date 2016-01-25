@@ -70,7 +70,7 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
-      Aggregations.aggregation('participating_organisation', 'count', vm.filterSelection.selectionString + '&participating_organisation_role=4' + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
+      Aggregations.aggregation('participating_organisation', 'count', vm.filterSelection.selectionString + '&participating_organisation_role=2,4' + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.organisations = data.data.results;
@@ -88,7 +88,7 @@
 
       vm.busy = true;
       vm.page += 1;
-      Aggregations.aggregation('participating_organisation', 'count', vm.filterSelection.selectionString + '&participating_organisation_role=4' + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
+      Aggregations.aggregation('participating_organisation', 'count', vm.filterSelection.selectionString + '&participating_organisation_role=2,4' + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.organisations = vm.organisations.concat(data.data.results);
