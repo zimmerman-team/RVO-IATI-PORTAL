@@ -541,24 +541,71 @@
             </div>
         </div>
 
-        <div class="" ng-if="vm.selectedTab == 'mediapage'">
+        <div class="mediapage" ng-if="vm.selectedTab == 'mediapage'">
             <div class="row">
 
                 <div class="col-md-12">
                     <div class="panel lightblue">
                         <h3>Related videos</h3>
                         <hr>
-                        <p>Data to be added</p>
+                        <div class="row" ng-if="vm.relatedYoutube.length != 0 || vm.relatedVimeo.length != 0">
+                            <div class="col-md-6 item" ng-repeat="video in vm.relatedVimeo">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="{{video.url}}" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-md-6 item" ng-repeat="video in vm.relatedYoutube">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" width="560" height="315" src="{{video.url}}" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                        <p ng-if="vm.relatedYoutube.length == 0 && vm.relatedVimeo.length == 0">Data to be added</p>
                     </div>
-                    <div class="panel lightblue">
+                    <div class="panel lightblue images">
                         <h3>Related images</h3>
                         <hr>
-                        <p>Data to be added</p>
+                        <div class="row" ng-if="vm.relatedImages.length != 0">
+                            <div class="col-xs-6 col-sm-4 col-md-3 item" ng-repeat="img in vm.relatedImages">
+                                <a href="{{img.url}}"><img src="{{img.url}}" alt="{{img.title}}" title="{{img.title}}"></a>
+                            </div>
+                        </div>
+                        <p ng-if="vm.relatedImages.length == 0">Data to be added</p>
                     </div>
-                    <div class="panel lightblue">
+                    <div class="panel lightblue with-table">
                         <h3>Related documents</h3>
-                        <hr>
-                        <p>Data to be added</p>
+                        <div class="table-responsive" ng-if="vm.relatedDocuments.length != 0">
+                            <table class="finance no-blue">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Categories</th>
+                                        <th>Language</th>
+                                        <th width="110">Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="document in vm.relatedDocuments">
+                                        <td>
+                                            <a href="{{document.url}}">{{document.title}}</a>
+                                        </td>
+                                        <td>
+                                             <span ng-repeat='cat in document.categories'>{{cat.name}}{{$last ? '' : '; '}}</span>
+                                        </td>
+                                        <td>
+                                            {{document.language}}
+                                        </td>
+                                        <td>
+                                            {{document.filetype}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div ng-if="vm.relatedDocuments.length == 0">
+                            <hr>
+                            <p style="padding-left:15px;padding-bottom:10px;">Data to be added</p>
+                        </div>
                     </div>
                 </div>
             </div>

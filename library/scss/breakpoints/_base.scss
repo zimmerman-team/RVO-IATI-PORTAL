@@ -1029,6 +1029,35 @@ table {
   }
 }
 
+.mediapage {
+  .images {
+    img {
+      width: 100%;
+      border:2px solid transparent;
+      transition: all .2s ease;
+    }
+    a {
+      &:hover {
+        img {
+          border:2px solid $rvo-blauw;
+        }
+      }
+    }
+  }
+  .item {
+    margin-bottom: 15px;
+  }
+  .panel.lightblue {
+    padding-bottom:0;
+  }
+  p {
+    padding-bottom: 10px !important;
+  }
+  .finance {
+    margin-bottom: 0;
+  }
+}
+
 .no-results {
   padding:0 15px;
 }

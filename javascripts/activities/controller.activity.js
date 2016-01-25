@@ -29,6 +29,11 @@
     vm.loading = true;
     vm.selectedTab = 'summary';
 
+    vm.relatedVimeo = [];
+    vm.relatedYoutube = [];
+    vm.relatedImages = [];
+    vm.relatedDocuments = [];
+
     vm.tabs = [
       {'id': 'summary', 'name': 'Summary', 'count': -1},
       {'id': 'detailedreport', 'name': 'Detailed report', 'count': -1},
@@ -46,7 +51,7 @@
         vm.loading = false;
         vm.description = null;
 
-        console.log(vm.activity.document_links);
+        vm.sortDocs(vm.activity.document_links);
 
         if(vm.activity.descriptions.length){
           vm.description = $sce.trustAsHtml(vm.activity.descriptions[0].narratives[0].text.replace(/\\n/g, '<br>'));
@@ -201,6 +206,40 @@
       }
 
       vm.transactionChartData = data;
+    }
+
+    vm.sortDocs = function(documents) {
+      for (var i =0; i < documents.length;i++){
+        var obj = {};
+        if ( documents[i].format.code == 'text/html' && documents[i].url.indexOf('vimeo') != -1 ) {
+          obj.url = documents[i].url
+          vm.relatedVimeo.push(obj);
+        }
+        else if (documents[i].format.code == 'text/html' && documents[i].url.indexOf('youtube') != -1 ) {
+          obj.url = documents[i].url
+          vm.relatedYoutube.push(obj);
+        }
+        else if (documents[i].format.code == 'image/jpeg' || documents[i].format.code == 'image/png') {
+          obj.url = documents[i].url;
+          obj.title = documents[i].title[0].narratives[0].text;
+          vm.relatedImages.push(obj);
+        }
+        else {
+          var fileType = '';
+          if (documents[i].format.code == 'application/pdf') { fileType = 'Adobe PDF'; }
+          else if (documents[i].format.code == 'application/msword' || documents[i].format.code == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') { fileType = 'MS Word'; }
+          else if (documents[i].format.code == 'application/vnd.ms-excel' || documents[i].format.code == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') { fileType = 'MS Excel'; }
+          else if (documents[i].format.code == 'text/csv') { fileType = 'Comma separated'; }
+          else if (documents[i].format.code == 'application/vnd.oasis.opendocument.text') { fileType = 'Open Office'; }
+          else { fileType = 'Other'; }
+          obj.filetype = fileType;
+          obj.title = documents[i].title[0].narratives[0].text;
+          obj.language = documents[i].title[0].narratives[0].language.name;
+          obj.categories = documents[i].categories;
+          obj.url = documents[i].url;
+          vm.relatedDocuments.push(obj);
+        }
+      }
     }
 
     activate();
