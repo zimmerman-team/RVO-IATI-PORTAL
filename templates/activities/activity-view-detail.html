@@ -30,11 +30,12 @@
     
             <div class="row">
                 <div class="col-md-8">
-                    <div class="featured-image">
-                        <img ng-src="{{vm.templateBaseUrl}}/images/Develop2Build header.jpg">
+                    <div class="featured-image" ng-if="vm.featuredImage">
+                        <img ng-src="{{vm.featuredImage}}">
                     </div>
                     <div class="white">
-                        <h2>Description</h2>
+                        <h2 ng-if="vm.featuredImage">Description</h2>
+                        <h2 ng-if="!vm.featuredImage" class="no-margin-top">Description</h2>
                         <p ng-bind-html="vm.description"></p>              
                     </div>
                     <div class="white no-margin-bottom no-padding-bottom">

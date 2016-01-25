@@ -33,6 +33,7 @@
     vm.relatedYoutube = [];
     vm.relatedImages = [];
     vm.relatedDocuments = [];
+    vm.featuredImage = '';
 
     vm.tabs = [
       {'id': 'summary', 'name': 'Summary', 'count': -1},
@@ -223,6 +224,9 @@
           obj.url = documents[i].url;
           obj.title = documents[i].title[0].narratives[0].text;
           vm.relatedImages.push(obj);
+          if (obj.title.indexOf('eatured') != -1) {
+            vm.featuredImage = obj.url;
+          }
         }
         else {
           var fileType = '';
