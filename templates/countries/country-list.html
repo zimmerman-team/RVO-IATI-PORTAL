@@ -6,7 +6,7 @@
                     <oipa-pie-chart 
                         group-by="recipient_country" 
                         aggregation-key="count" 
-                        aggregations="count,incoming_fund"
+                        aggregations="count,recipient_country_percentage_weighted_incoming_fund"
                         aggregation-filters="vm.filterSelection"></oipa-pie-chart>
                     <h4>Project distribution</h4>
                 </div>
@@ -14,7 +14,7 @@
                     <oipa-pie-chart 
                         group-by="recipient_country" 
                         aggregation-key="incoming_fund" 
-                        aggregations="count,incoming_fund"
+                        aggregations="count,recipient_country_percentage_weighted_incoming_fund"
                         aggregation-filters="vm.filterSelection"></oipa-pie-chart>
                     <h4>Budget distribution</h4>
                 </div>

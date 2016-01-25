@@ -65,7 +65,7 @@
 
       function successFn(data, status, headers, config) {
         vm.activity = data.data;
-        Programmes.selectedProgrammes.push({'activity_id': vm.activity.id, 'count': 0});
+        Programmes.selectedProgrammes.push({'activity_id': vm.activity.id, 'count': 0, 'name': vm.activity.title.narratives[0].text});
         FilterSelection.save();
         vm.setBudgetLeft();
         vm.loading = false;
@@ -85,8 +85,10 @@
     }
 
     vm.setBudgetLeft = function(){
-      vm.budgetLeft = Math.round(vm.activity.aggregations.activity_children.disbursement_value / vm.activity.aggregations.activity_children.incoming_funds_value * 100);
-      if (isNaN(vm.budgetLeft) || !isFinite(vm.budgetLeft)) {vm.budgetLeft = 0;}
+      vm.budgetLeft = Math.round((vm.activity.aggregations.activity_children.expenditure_value + vm.activity.aggregations.activity_children.disbursement_value) / vm.activity.aggregations.activity_children.incoming_funds_value * 100);
+      if (isNaN(vm.budgetLeft) || !isFinite(vm.budgetLeft)) {
+        vm.budgetLeft = 0;
+      }
       vm.progressStyle = {'width': vm.budgetLeft + '%'}
     }
 

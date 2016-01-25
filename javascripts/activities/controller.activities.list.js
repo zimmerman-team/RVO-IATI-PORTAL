@@ -78,7 +78,7 @@
     }
 
     vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalActivities < (vm.page * vm.pageSize))) return;
+      if (!vm.hasContains() || vm.busy || (vm.totalActivities <= (vm.page * vm.pageSize))) return;
 
       vm.busy = true;
       vm.page += 1;

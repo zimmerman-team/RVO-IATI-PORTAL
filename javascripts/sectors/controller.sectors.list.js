@@ -68,7 +68,7 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
-      Aggregations.aggregation('sector', 'incoming_fund,count', vm.filterSelection.selectionString + vm.extraSelectionString, 'sector').then(succesFn, errorFn);
+      Aggregations.aggregation('sector', 'sector_percentage_weighted_incoming_fund,count', vm.filterSelection.selectionString + vm.extraSelectionString, 'sector').then(succesFn, errorFn);
 
       function replaceDac5(arr){
         for (var i = 0;i < arr.length;i++){

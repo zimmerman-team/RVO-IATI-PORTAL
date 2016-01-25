@@ -37,13 +37,12 @@
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
           vm.selectionString = selectionString;
           vm.activateSunburst();
-
       }, true);
 
     }
 
     vm.activateSunburst = function(){
-      Aggregations.aggregation('sector', 'count,incoming_fund', vm.selectionString).then(successFn, errorFn);
+      Aggregations.aggregation('sector', 'count,sector_percentage_weighted_incoming_fund', vm.selectionString).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.reformatSunburstData(data.data.results);
@@ -83,7 +82,6 @@
       vm.sunburstData = angular.copy(mapping);
       vm.refreshSunburst = true;
     }
-
 
   }
 })();

@@ -23,6 +23,7 @@ var sectorLayoutTest = null;
     vm.filterSelection = FilterSelection;
     vm.selectedTab = 'samenvatting';
     vm.pageUrlDecoded = $location.absUrl();
+    vm.aggregated_transactions = null;
 
     vm.tabs = [
       {'id': 'samenvatting', 'name': 'Summary', 'count': -1},
@@ -61,7 +62,6 @@ var sectorLayoutTest = null;
 
     function activate() {
 
-
       if(vm.sector_id < 100){
         vm.sector_digit = 2;
       } else if(100 < vm.sector_id && vm.sector_id < 9999){
@@ -72,18 +72,16 @@ var sectorLayoutTest = null;
       findSector(vm.sector_id, sectorMapping.children);
 
       if (vm.sector) { 
-        var sectors = listChildren([],vm.sector);
+        // var sectors = listChildren([],vm.sector);
 
-        if(vm.sector_digit == 5){
+        // if(vm.sector_digit == 5){
           Sectors.selectedSectors.push({'sector': {"code":vm.sector.sector_id,"name":vm.sector.name}});
-        }
+        // }
 
-        for (var i = 0;i < sectors.length;i++){
-          Sectors.selectedSectors.push({'sector': {"code":sectors[i].sector_id,"name":sectors[i].name}});
-        }
+        // for (var i = 0;i < sectors.length;i++){
+          // Sectors.selectedSectors.push({'sector': {"code":sectors[i].sector_id,"name":sectors[i].name}});
+        // }
         FilterSelection.save();
-
-
 
         $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
           vm.update(selectionString);
@@ -98,7 +96,25 @@ var sectorLayoutTest = null;
     }
 
     vm.setBudgetLeft = function(){
-      vm.budgetLeft = Math.round(vm.disbursements / vm.budget * 100);
+      var budget = 0
+      var expenditure = 0;
+
+      function stringStartsWith (string, prefix) {
+        return string.toString().slice(0, prefix.length) == prefix;
+      }
+
+      var sector_id = vm.sector_id.toString();
+      for(var i = 0;i < vm.aggregated_transactions.length;i++){
+        if(stringStartsWith(vm.aggregated_transactions[i].sector.code, sector_id)){
+          budget += vm.aggregated_transactions[i].incoming_fund;
+          expenditure += vm.aggregated_transactions[i].disbursement + vm.aggregated_transactions[i].expenditure;
+        }
+      }
+
+      vm.budget = budget;
+      vm.expenditure = expenditure;
+
+      vm.budgetLeft = Math.round(vm.expenditure / vm.budget * 100);
       vm.progressStyle = {'width': vm.budgetLeft + '%'}
     }
 
@@ -106,16 +122,10 @@ var sectorLayoutTest = null;
 
       if (selectionString.indexOf("sector") < 0){ return false;}
 
-      Aggregations.aggregation('sector', 'disbursement', selectionString).then(function(data, status, headers, config){
-        vm.disbursements = data.data.results.length ? data.data.results[0].disbursement : 0;
+      Aggregations.aggregation('sector', 'sector_percentage_weighted_disbursement,sector_percentage_weighted_expenditure,sector_percentage_weighted_incoming_fund', selectionString).then(function(data, status, headers, config){
+        vm.aggregated_transactions = data.data.results;
         vm.setBudgetLeft();
       }, errorFn);
-
-      Aggregations.aggregation('sector', 'incoming_fund', selectionString).then(function(data, status, headers, config){
-        vm.budget = data.data.results.length ? data.data.results[0].incoming_fund : 0;
-        vm.setBudgetLeft();
-      }, errorFn);
-
     }
 
     vm.download = function(format){

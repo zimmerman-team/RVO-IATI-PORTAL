@@ -112,7 +112,6 @@
       if(angular.element('.tooltip-min > .currency').length == 0) {
         angular.element('.tooltip-min').append('<div class="currency">'+$filter('shortcurrency')(angular.element('.tooltip-min .tooltip-inner').text(),'€')+'</div>');
       }
-
     }
 
     vm.toggleSelection = function(){
@@ -121,8 +120,7 @@
     }
 
     vm.resetFilters = function(){
-      console.log(FilterSelection);
-      FilterSelection.reset();
+      FilterSelection.reset(vm.pageName);
     }
 
     vm.saveFilters = function(){

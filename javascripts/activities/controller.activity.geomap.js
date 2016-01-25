@@ -9,12 +9,12 @@
     .module('oipa.activities')
     .controller('ActivityGeoMapController', ActivityGeoMapController);
 
-  ActivityGeoMapController.$inject = ['$scope', 'leafletData', 'homeUrl'];
+  ActivityGeoMapController.$inject = ['$scope', 'leafletData', 'homeUrl', 'Countries'];
 
   /**
   * @namespace ActivityGeoMapController
   */
-  function ActivityGeoMapController($scope, leafletData, homeUrl) {
+  function ActivityGeoMapController($scope, leafletData, homeUrl, Countries) {
     var vm = this;
 
     vm.defaults = {
@@ -50,14 +50,16 @@
 
     vm.updateGeo = function(){
         vm.updateCountryMarkers();
+        vm.setPosition(7);
+    }
 
-        leafletData.getMap().then(function(map) {
-            map.fitBounds(vm.getBounds());
-            if(map._zoom > 7){
-              map.setZoom(7);
-            }
-        });
-
+    vm.setPosition = function(max_zoom){
+      leafletData.getMap().then(function(map) {
+          map.fitBounds(vm.getBounds());
+          if(map._zoom > max_zoom){
+            map.setZoom(max_zoom);
+          }
+      });
     }
 
     vm.getBounds = function(){
@@ -100,21 +102,28 @@
 
 
     vm.updateCountryMarkers = function() {
-      
-      // to finish!
-      //
-      // if (vm.activity.locations.length == 0) {
-      //   for (var i = 0; i < vm.activity.recipient_countries.length;i++){
-      //     var country = vm.activity.recipient_countries[i];
-      //     vm.markers[i] = {
-      //         lat: parseFloat(0),
-      //         lng: parseFloat(0),
-      //         icon: vm.markerIcons['Country'],
-      //     }
-      //   }
-      // }
 
-      // else {
+
+    
+      if (vm.activity.locations.length == 0) {
+
+        for (var i = 0; i < vm.activity.recipient_countries.length;i++){
+          Countries.getCountry(vm.activity.recipient_countries[i].country.code).then(successFn, errorFn);
+        }
+
+        function successFn(data, status, headers, config) {
+          vm.markers[data.data.code] = {
+              lat: parseFloat(data.data.location.coordinates[1]),
+              lng: parseFloat(data.data.location.coordinates[0]),
+              icon: vm.markerIcons['Country'],
+          }
+          vm.setPosition(5);
+        }
+
+        function errorFn(data, status, headers, config) {
+          console.log('cound not find country');
+        }
+      } else {
 
         for (var i = 0; i < vm.activity.locations.length;i++){
 
@@ -126,7 +135,7 @@
           }
         }
 
-      //}
+      }
 
     }
 

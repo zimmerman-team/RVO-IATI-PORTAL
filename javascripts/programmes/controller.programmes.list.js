@@ -77,18 +77,6 @@
 
       vm.page = 1;
 
-      // Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=1', vm.page_size, vm.order_by, vm.page).then(succesFn, errorFn);
-
-      // function succesFn(data, status, headers, config){
-
-      //   vm.activities = data.data.results;
-      //   vm.totalActivities = data.data.count;
-      //   $scope.count = vm.totalActivities;
-
-      //   Aggregations.aggregation('related_activity', 'count,incoming_fund', vm.filterSelection.selectionString).then(aggregationSuccessFn, errorFn);
-
-      // }
-
       Aggregations.aggregation('related_activity', 'count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(aggregationSuccessFn, errorFn);
 
       function aggregationSuccessFn(data, status, headers, config){

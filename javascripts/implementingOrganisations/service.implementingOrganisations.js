@@ -41,7 +41,7 @@
 	     }
 
 		 function getActivities(id) {
-	     	return $http.get(oipaUrl + '/activities/' + '/?format=json&' + 'participating_organisation_name=' + id , { cache: true });
+	     	return $http.get(oipaUrl + '/activities/?format=json&participating_organisation_name=' + id , { cache: true });
 
 		 }
 	}

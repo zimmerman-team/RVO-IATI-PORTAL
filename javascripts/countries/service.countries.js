@@ -27,7 +27,7 @@
 		return Countries;
 
 	    function getCountry(code) {
-	     	return $http.get(oipaUrl + '/countries/' + code + '?format=json', { cache: true });
+	     	return $http.get(oipaUrl + '/countries/' + code + '/?format=json', { cache: true });
 	    }
 	}
 })();

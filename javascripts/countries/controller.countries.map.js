@@ -75,7 +75,7 @@
 
     vm.updateMap = function(){
 
-        Aggregations.aggregation('recipient_country', 'count,incoming_fund', vm.selectionString).then(countrySuccessFn, errorFn);
+        Aggregations.aggregation('recipient_country', 'count,recipient_country_percentage_weighted_incoming_fund', vm.selectionString).then(countrySuccessFn, errorFn);
         
         function countrySuccessFn(data, status, headers, config) {
             vm.countryMarkerData = data.data.results;

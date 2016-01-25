@@ -75,6 +75,9 @@
     }
 
     vm.setBudgetLeft = function(){
+      vm.budget = vm.aggregated_transactions['incoming_fund'];
+      vm.disbursements = vm.aggregated_transactions['disbursement'] + vm.aggregated_transactions['expenditure'];;
+
       vm.budgetLeft = Math.round(vm.disbursements / vm.budget * 100);
       vm.progressStyle = {'width': vm.budgetLeft + '%'}
     }
@@ -82,20 +85,15 @@
     vm.update = function(selectionString){
       if (selectionString.indexOf("recipient_country") < 0){ return false;}
       
-      Aggregations.aggregation('recipient_country', 'disbursement', selectionString).then(function(data, status, headers, config){
-        vm.disbursements = data.data.results[0].disbursement;
-        if(vm.budget){
-          vm.setBudgetLeft();
-        }
-      }, errorFn);
+      Aggregations.aggregation('recipient_country', 'recipient_country_percentage_weighted_disbursement,recipient_country_percentage_weighted_expenditure,recipient_country_percentage_weighted_incoming_fund', selectionString).then(function(data, status, headers, config){
 
-      Aggregations.aggregation('recipient_country', 'incoming_fund', selectionString).then(function(data, status, headers, config){
-        vm.budget = data.data.results[0].incoming_fund;
-        if(vm.disbursements){
-          vm.setBudgetLeft();
+        for(var i = 0;i < data.data.results.length;i++){
+          if(data.data.results[i].recipient_country.code == vm.country_id){
+            vm.aggregated_transactions = data.data.results[i];
+          }
         }
+        vm.setBudgetLeft();
       }, errorFn);
-
     }
 
     vm.download = function(format){

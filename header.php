@@ -43,6 +43,9 @@
 			var oipa_url = 'https://rvo.oipa.nl/api';
 			var upload_url = '<?php echo wp_upload_dir()["baseurl"]; ?>';
 			// var oipa_url = 'http://localhost:8000/api';
+
+			
+			
 			var reporting_organisation_id = 'NL-KVK-27378529';
 			<?php $customFields = get_post_custom(); ?>
 			var customFields = <?php echo json_encode($customFields); ?>;

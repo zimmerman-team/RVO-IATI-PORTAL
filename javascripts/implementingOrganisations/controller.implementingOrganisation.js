@@ -43,16 +43,23 @@
         vm.update(selectionString);
       }, true);
 
+      vm.organisation_id = vm.organisation_id;
+
       // ImplementingOrganisations.get(vm.organisation_id).then(successFn, errorFn);
-      ImplementingOrganisations.getActivities(vm.organisation_id).then(successFnActivities, errorFnActivities);
+
+      // function successFn(data, status, headers, config){
+
+      // }
+
+      ImplementingOrganisations.getActivities(vm.organisation_id).then(successFnActivities, errorFn);
 
       function successFnActivities(data, status, headers, config) {
         vm.part_org_activities = data.data.results;
         vm.loading = false;
       }
 
-      function errorFnActivities(data, status, headers, config) {
-        console.log("getting implementing organisation activities failed");
+      function errorFn(data, status, headers, config) {
+        console.log("getting implementing organisation or its activities failed");
         vm.loading = false;
       }
 

@@ -41,21 +41,24 @@
       {'id': 'mediapage', 'name': 'Media', 'count': -1},
     ]
 
-    
-
     function activate() {
       Activities.get(vm.activityId).then(successFn, errorFn);
       Activities.getTransactions(vm.activityId).then(procesTransactions, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.activity = data.data;
+
         vm.loading = false;
         vm.description = null;
-
         vm.sortDocs(vm.activity.document_links);
-
+        var desc = '';
         if(vm.activity.descriptions.length){
-          vm.description = $sce.trustAsHtml(vm.activity.descriptions[0].narratives[0].text.replace(/\\n/g, '<br>'));
+
+          for (var i = 0; i < vm.activity.descriptions[0].narratives.length;i++){
+            desc += vm.activity.descriptions[0].narratives[i].text + '<br>&nbsp<br>';
+          }
+
+          vm.description = $sce.trustAsHtml(desc.replace(/\\n/g, '<br>'));
         }
 
         for(var i = 0;i < vm.activity.activity_dates.length;i++){
@@ -154,7 +157,7 @@
         },
         {
             values: [],
-            key: 'Disbursement',
+            key: 'Expenditure',
             color: '#FF7F0E'
         },
       ];
@@ -170,7 +173,7 @@
         if(transactions[i].transaction_type.code == 1){ // 1 = incoming fund
           data[0]['values'].push([(new Date(date).getTime()), parseInt(value)]);
           vm.budget += parseInt(value);
-        } else if(transactions[i].transaction_type.code == 3){
+        } else if(transactions[i].transaction_type.code == 3 || transactions[i].transaction_type.code == 4){
           data[1]['values'].push([(new Date(date).getTime()), parseInt(value)]);
           vm.disbursements += parseInt(value);
         }
@@ -183,9 +186,7 @@
           else {
               return (a[0] < b[0]) ? -1 : 1;
           }
-      }
-
-      
+      }      
 
       data[0]['values'].sort(sortFunction);
       data[1]['values'].sort(sortFunction);

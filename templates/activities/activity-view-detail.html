@@ -155,15 +155,17 @@
                             <tr>
                                 <td>Funding partners:</td>
                                 <td>
-                                    <span class="show-me" ng-if="org.role.code == 1" ng-repeat='org in vm.activity.participating_organisations'>
-                                    {{org.narratives[0].text}}{{$last ? '' : ', '}}</span>
+                                    <a class="show-me" ng-if="org.role.code == 1" ui-sref="organisation({ organisation_id: org.narratives[0].text })" ng-repeat='org in vm.activity.participating_organisations'>
+                                    {{org.narratives[0].text}}{{$last ? '' : ', '}}
+                                    </a>
                                     <span class="hide-me">Data to be added</span></td>
                             </tr>
                             <tr>
                                 <td>Project partners:</td>
                                 <td>
-                                    <span class="show-me" ng-if="org.role.code == 2 || org.role.code == 4" ng-repeat='org in vm.activity.participating_organisations'>
-                                    {{org.narratives[0].text}}{{$last ? '' : ', '}}</span>
+                                    <a class="show-me" ng-if="org.role.code == 2 || org.role.code == 4" ui-sref="organisation({ organisation_id: org.narratives[0].text })" ng-repeat='org in vm.activity.participating_organisations'>
+                                    {{org.narratives[0].text}}{{$last ? '' : ', '}}
+                                    </a>
                                     <span class="hide-me">Data to be added</span>
                                 </td>
                             </tr>

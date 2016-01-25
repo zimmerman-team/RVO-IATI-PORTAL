@@ -64,7 +64,7 @@
         filterString += '&q_fields=participating_organisation&q=' + vm.q;
       }
 
-      Aggregations.aggregation('participating_organisation', 'count,incoming_fund', filterString, 'participating_organisation', vm.perPage, vm.currentPage).then(successFn, errorFn);
+      Aggregations.aggregation('participating_organisation', 'count', filterString + '&participating_organisation_role=2,4', 'participating_organisation', vm.perPage, vm.currentPage).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.totalCount = data.data.count;
