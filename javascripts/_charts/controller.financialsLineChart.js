@@ -20,9 +20,9 @@
         height: 450,
         margin : {
             top: 20,
-            right: 20,
+            right: 0,
             bottom: 60,
-            left: 85
+            left: 75
         },
         x: function(d){ return d[0]; },
         y: function(d){ return d[1]; },
