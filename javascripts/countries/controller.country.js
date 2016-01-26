@@ -79,6 +79,7 @@
       vm.disbursements = vm.aggregated_transactions['disbursement'] + vm.aggregated_transactions['expenditure'];;
 
       vm.budgetLeft = Math.round(vm.disbursements / vm.budget * 100);
+      if (isNaN(vm.budgetLeft)) { vm.budgetLeft = 0; }
       vm.progressStyle = {'width': vm.budgetLeft + '%'}
     }
 

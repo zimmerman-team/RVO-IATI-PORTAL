@@ -199,13 +199,9 @@
         data[1]['values'][i][1] += data[1].values[(i-1)][1];
       }
 
-      if(vm.budget > 0) {
-        vm.budgetLeft = Math.round(vm.disbursements / vm.budget * 100);
-        vm.progressStyle = {'width': vm.budgetLeft + '%'}
-      }
-      else {
-        vm.budgetLeft = 0;
-      }
+      vm.budgetLeft = Math.round(vm.disbursements / vm.budget * 100);
+      if (isNaN(vm.budgetLeft)) { vm.budgetLeft = 0; }
+      vm.progressStyle = {'width': vm.budgetLeft + '%'}
 
       vm.transactionChartData = data;
     }
