@@ -44,7 +44,7 @@
 
       vm.organisation_id = vm.organisation_id;
 
-      ImplementingOrganisations.getActivities(vm.organisation_id).then(successFnActivities, errorFn);
+      ImplementingOrganisations.getActivities(encodeURIComponent(vm.organisation_id)).then(successFnActivities, errorFn);
 
       function successFnActivities(data, status, headers, config) {
         vm.part_org_activities = data.data.results;
