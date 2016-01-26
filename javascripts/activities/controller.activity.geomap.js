@@ -98,25 +98,13 @@
 
 
     vm.updateCountryMarkers = function() {
-      
+
       if (vm.activity.locations.length == 0) {
 
         for (var i = 0; i < vm.activity.recipient_countries.length;i++){
           Countries.getCountry(vm.activity.recipient_countries[i].country.code).then(successFn, errorFn);
         }
 
-        function successFn(data, status, headers, config) {
-          vm.markers[data.data.code] = {
-              lat: parseFloat(data.data.location.coordinates[1]),
-              lng: parseFloat(data.data.location.coordinates[0]),
-              icon: vm.markerIcons['Country'],
-          }
-          vm.setPosition(5);
-        }
-
-        function errorFn(data, status, headers, config) {
-          console.log('cound not find country');
-        }
       } else {
 
         for (var i = 0; i < vm.activity.locations.length;i++){
@@ -130,6 +118,21 @@
         }
 
       }
+
+      function successFn(data, status, headers, config) {
+        console.log(data);
+        vm.markers[data.data.code] = {
+            lat: parseFloat(data.data.location.coordinates[1]),
+            lng: parseFloat(data.data.location.coordinates[0]),
+            icon: vm.markerIcons['Country'],
+        }
+        vm.setPosition(5);
+      } 
+
+      function errorFn(data, status, headers, config) {
+        console.log('cound not find country');
+      }
+      
 
     }
 
