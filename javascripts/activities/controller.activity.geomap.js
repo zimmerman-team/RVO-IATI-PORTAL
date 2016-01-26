@@ -1,7 +1,3 @@
-/**
-* ActivityGeoMapController
-* @namespace oipa.locations
-*/
 (function () {
   'use strict';
 
@@ -102,9 +98,7 @@
 
 
     vm.updateCountryMarkers = function() {
-
-
-    
+      
       if (vm.activity.locations.length == 0) {
 
         for (var i = 0; i < vm.activity.recipient_countries.length;i++){
