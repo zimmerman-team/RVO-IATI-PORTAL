@@ -101,29 +101,6 @@
                         <hr>
                         <p><a ng-href="{{vm.programmeUrl}}" target="_blank">Visit the programme page on rvo.nl</a></p>
                     </div>
-                    <div class="panel lightblue">
-                        <h3>Related videos</h3>
-                        <hr>
-                        <p>No videos available</p>
-                        <!-- <div class="video">
-                            <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                        <div class="video">
-                            <iframe width="581" height="215" src="https://www.youtube.com/embed/Ygng2822jMQ" frameborder="0" allowfullscreen></iframe>
-                        </div> -->
-                    </div>
-                    <div class="panel lightblue">
-                        <h3>Related documents</h3>
-                        <hr>
-                            <p ng-show="!vm.activity.documents">
-                                No documents available
-                            </p>
-                            <p ng-repeat="document in vm.activity.documents">
-                                <a target="_blank" href="{{document.url}}">
-                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title}}
-                                </a>
-                            </p>
-                    </div>
                     <div class="panel lightblue with-table share">
                         <h3>Export & share</h3>
                         <hr>
