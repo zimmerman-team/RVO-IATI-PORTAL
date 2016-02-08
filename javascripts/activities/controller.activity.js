@@ -216,11 +216,11 @@
 
 
         if ( documents[i].format.code == 'text/html' && documents[i].url.indexOf('vimeo') != -1 ) {
-          obj.url = documents[i].url
+          obj.url = $sce.trustAsResourceUrl(documents[i].url);
           vm.relatedVimeo.push(obj);
         }
         else if (documents[i].format.code == 'text/html' && documents[i].url.indexOf('youtube') != -1 ) {
-          obj.url = documents[i].url
+          obj.url = $sce.trustAsResourceUrl(documents[i].url);
           vm.relatedYoutube.push(obj);
         }
         else if (documents[i].format.code == 'image/jpeg' || documents[i].format.code == 'image/png') {

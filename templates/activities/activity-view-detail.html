@@ -554,12 +554,12 @@
                         <div class="row" ng-if="vm.relatedYoutube.length != 0 || vm.relatedVimeo.length != 0">
                             <div class="col-md-6 item" ng-repeat="video in vm.relatedVimeo">
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item" src="{{video.url}}" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                    <iframe class="embed-responsive-item" ng-src="{{video.url}}" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                                 </div>
                             </div>
                             <div class="col-md-6 item" ng-repeat="video in vm.relatedYoutube">
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item" width="560" height="315" src="{{video.url}}" frameborder="0" allowfullscreen></iframe>
+                                    <iframe class="embed-responsive-item" width="560" height="315" ng-src="{{video.url}}" frameborder="0" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>

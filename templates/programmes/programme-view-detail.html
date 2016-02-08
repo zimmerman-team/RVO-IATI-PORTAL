@@ -63,8 +63,9 @@
                                         Total programme expenditure
                                     </td>
                                     <td>
-                                        <span ng-if="vm.activity.aggregations.activity_children.disbursement_value">{{vm.activity.aggregations.activity_children.disbursement_value | shortcurrency :'€'}}</span>
-                                        <span ng-if="!vm.activity.aggregations.activity_children.disbursement_value">Data to be added</span>
+                                        <span>
+                                            {{vm.expenditure | shortcurrency :'€'}}
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
