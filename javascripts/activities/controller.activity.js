@@ -225,10 +225,11 @@
         }
         else if (documents[i].format.code == 'image/jpeg' || documents[i].format.code == 'image/png') {
           obj.url = documents[i].url;
-          vm.relatedImages.push(obj);
-
           if (obj.title != undefined && obj.title.indexOf('eatured') != -1) {
             vm.featuredImage = obj.url;
+          }
+          else {
+            vm.relatedImages.push(obj);
           }
         }
         else {
