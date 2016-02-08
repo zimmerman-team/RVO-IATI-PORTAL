@@ -83,6 +83,7 @@ function bones_custom_image_sizes( $sizes ) {
 function add_rewrite_rules( $wp_rewrite ) 
 {
   $new_rules = array(
+    'programmes/([^/]+)/?$' => 'index.php?pagename=programme&iati_id='.$wp_rewrite->preg_index(1),
     'project/([^/]+)/?$' => 'index.php?pagename=project&iati_id='.$wp_rewrite->preg_index(1),
     'landen/([^/]+)/?$' => 'index.php?pagename=landen&country_id='.$wp_rewrite->preg_index(1),
     'organisaties/([^/]+)/?$' => 'index.php?pagename=organisaties&donor_id='.$wp_rewrite->preg_index(1),

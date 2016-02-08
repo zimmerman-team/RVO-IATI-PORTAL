@@ -116,11 +116,9 @@
               icon: vm.markerIcons['Country'],
           }
         }
-
       }
 
       function successFn(data, status, headers, config) {
-        console.log(data);
         vm.markers[data.data.code] = {
             lat: parseFloat(data.data.location.coordinates[1]),
             lng: parseFloat(data.data.location.coordinates[0]),
