@@ -29,6 +29,7 @@
     vm.pageUrlDecoded = $location.absUrl();
     vm.loading = true;
     vm.uploadBaseUrl = uploadBaseUrl;
+    vm.aggregated_transactions = {};
 
     vm.tabs = [
       {'id': 'samenvatting', 'name': 'Summary', 'count': -1},
@@ -75,6 +76,11 @@
     }
 
     vm.setBudgetLeft = function(){
+
+      if('incoming_fund' in vm.aggregated_transactions){ vm.aggregated_transactions['incoming_fund'] = 0; }
+      if('disbursement' in vm.aggregated_transactions){ vm.aggregated_transactions['disbursement'] = 0; }
+      if('expenditure' in vm.aggregated_transactions){ vm.aggregated_transactions['expenditure'] = 0; }
+
       vm.budget = vm.aggregated_transactions['incoming_fund'];
       vm.disbursements = vm.aggregated_transactions['disbursement'] + vm.aggregated_transactions['expenditure'];;
 
