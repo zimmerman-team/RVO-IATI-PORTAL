@@ -20,7 +20,8 @@
 		var Sectors = {
 			selectedSectors: this.selectedSectors,
 			all: all,
-			get: get
+			get: get,
+            getSectors: getSectors
 		};
 
 		return Sectors;
@@ -39,6 +40,16 @@
             if(reportingOrganisationId){
                 url += '&reporting_organisation__in=' + reportingOrganisationId;
             }
+            return $http.get(url, { cache: true });
+        }
+
+        function getSectors(sectors) {
+
+            var url = oipaUrl + '/activities/aggregations/?format=json&group_by=sector&aggregations=count';
+            if(reportingOrganisationId){
+                url += '&reporting_organisation__in=' + reportingOrganisationId;
+            }
+            url += '&sector=' + sectors;
             return $http.get(url, { cache: true });
         }
 

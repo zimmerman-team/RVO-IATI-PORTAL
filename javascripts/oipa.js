@@ -51,11 +51,45 @@
         .module('oipa')
         .run(run);
 
-    run.$inject = ['$http'];
+    run.$inject = ['$http', '$rootScope', '$urlRouter', '$location', '$state'];
 
-    function run($http) {
+    function run($http, $rootScope, $urlRouter, $location, $state) {
         $http.defaults.xsrfHeaderName = 'X-CSRFToken';
         $http.defaults.xsrfCookieName = 'csrftoken';
+
+        var original = $location.path;
+        $location.path = function (path, reload) {
+            $location.reload = false;
+            return original.apply($location, [path]);
+        };
+
+
+        $rootScope.$on('$locationChangeSuccess', function(e, newUrl, oldUrl) {
+          // Prevent $urlRouter's default handler from firing
+          e.preventDefault();
+
+          /** 
+           * provide conditions on when to 
+           * sync change in $location.path() with state reload.
+           * I use $location and $state as examples, but
+           * You can do any logic
+           * before syncing OR stop syncing all together.
+           */
+           // console.log($state);
+           // console.log($location);
+           // console.log(newUrl);
+           // console.log(oldUrl);
+           // console.log($urlRouter);
+
+           if($location.reload != undefined){
+            delete $location['reload'];
+           } else {
+            $urlRouter.sync();
+           }
+
+        });
+        // Configures $urlRouter's listener *after* your custom listener
+        $urlRouter.listen();
     }
 
 })();

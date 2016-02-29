@@ -40,7 +40,7 @@
 			FilterSelection.openedPanel = '';
 		}
 
-		m.getSectors = function(sectors){
+		m.getSectors = function(){
 
 			var list = [];
 
@@ -63,15 +63,18 @@
 				}
 
 				m.sector_count = m.selectedSectors.length;
-				if(m.sector_count > 0){ list.unshift('&sector='); }
-				m.sector_filter = list.join(',');
+				
+				if(m.sector_count > 0){
+					m.sector_filter = '&sector=' + list.join(','); 
+				} else {
+					m.sector_filter = '';
+				}
 			}
 			return m.sector_filter;
 		}
 
 		m.updateSelectionString = function(){
       		
-
 			var selectList = [
 			m.selectArrayToString('recipient_country', 'code', m.selectedCountries),
 			// m.selectArrayToString('sector', 'code', m.selectedSectors),

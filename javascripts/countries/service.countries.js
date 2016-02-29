@@ -22,6 +22,7 @@
 		var Countries = {
 			selectedCountries: m.selectedCountries,
 			getCountry: getCountry,
+			getCountries: getCountries
 		};
 
 		return Countries;
@@ -29,5 +30,18 @@
 	    function getCountry(code) {
 	     	return $http.get(oipaUrl + '/countries/' + code + '/?format=json', { cache: true });
 	    }
+
+	    function getCountries(countries) {
+
+            var url = oipaUrl + '/activities/aggregations/?format=json&group_by=recipient_country&aggregations=count';
+            if(reportingOrganisationId){
+                url += '&reporting_organisation__in=' + reportingOrganisationId;
+            }
+            url += '&recipient_country=' + countries;
+            return $http.get(url, { cache: true });
+        }
+
+
 	}
+
 })();

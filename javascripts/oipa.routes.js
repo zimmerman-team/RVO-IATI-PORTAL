@@ -7,6 +7,9 @@
 
     config.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'templateBaseUrl', ];
 
+    var filters = '?filters';
+
+
     /**
     * @name config
     * @desc Define valid application routes
@@ -29,7 +32,7 @@
         })
         .state({
             name:         'activities',
-            url:          '/projects/',
+            url:          '/projects/' + filters,
             controller:   'ActivitiesExploreController',
             controllerAs: 'vm',
             templateUrl:  templateBaseUrl + '/templates/activities/activities-view-list-map.html',
@@ -39,7 +42,7 @@
         })
         .state({
             name:         'activities-list',
-            url:          '/projects/lijst/',
+            url:          '/projects/lijst/' + filters,
             controller:   'ActivitiesExploreController',
             controllerAs: 'vm',
             templateUrl:  templateBaseUrl + '/templates/activities/activities-view-list.html',
@@ -59,7 +62,7 @@
         })
         .state({
             name:        'locations-map',
-            url:         '/countries/list/',
+            url:         '/countries/list/' + filters,
             controller:  'LocationsMapListController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/locations/locations-view-map-list.html',
@@ -69,7 +72,7 @@
         })
         .state({
             name:        'locations-polygonmap',
-            url:         '/countries/map/',
+            url:         '/countries/map/' + filters,
             controller:  'LocationsPolygonGeoMapController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/locations/locations-view-map-polygons.html',
@@ -79,7 +82,7 @@
         })
         .state({
             name:        'country',
-            url:         '/countries/:country_id/',
+            url:         '/countries/:country_id/' + filters,
             controller:  'CountryController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/countries/country-view-detail.html',
@@ -90,7 +93,7 @@
         })
         .state({
             name:        'organisations',
-            url:         '/organisations/',
+            url:         '/organisations/' + filters,
             controller:  'ImplementingOrganisationsExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-list.html'
@@ -104,42 +107,42 @@
         // })
         .state({
             name:        'organisation',
-            url:         '/organisations/:organisation_id/',
+            url:         '/organisations/:organisation_id/' + filters,
             controller:  'ImplementingOrganisationController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisation-view-detail.html'
         })
         .state({
             name:        'programmes',
-            url:         '/programmes/',
+            url:         '/programmes/' + filters,
             controller:  'ProgrammesExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/programmes/programmes-view-list.html'
         })
         .state({
             name:        'programme',
-            url:         '/programmes/:programme_id/',
+            url:         '/programmes/:programme_id/' + filters,
             controller:  'ProgrammeController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/programmes/programme-view-detail.html'
         })
         .state({
             name:        'sectors',
-            url:         '/sectors/',
+            url:         '/sectors/' + filters,
             controller:  'SectorsExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-list.html'
         })
         .state({
             name:        'sectors-vis',
-            url:         '/sectors/vis/',
+            url:         '/sectors/vis/' + filters,
             controller:  'SectorsVisualisationController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-visualisation.html'
         })
         .state({
             name:        'sector',
-            url:         '/sectors/:sector_id/',
+            url:         '/sectors/:sector_id/' + filters,
             controller:  'SectorController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sector-view-detail.html'
@@ -164,7 +167,7 @@
         })
         .state({
             name:        'search',
-            url:         '/search/?search&tab',
+            url:         '/search/?search&tab&filters',
             controller:  'SearchPageController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/search/search-page.html'
