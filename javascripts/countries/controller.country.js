@@ -77,12 +77,12 @@
 
     vm.setBudgetLeft = function(){
 
-      if('incoming_fund' in vm.aggregated_transactions){ vm.aggregated_transactions['incoming_fund'] = 0; }
-      if('disbursement' in vm.aggregated_transactions){ vm.aggregated_transactions['disbursement'] = 0; }
-      if('expenditure' in vm.aggregated_transactions){ vm.aggregated_transactions['expenditure'] = 0; }
+      if(vm.aggregated_transactions['incoming_fund'] == undefined){ vm.aggregated_transactions['incoming_fund'] = 0; }
+      if(vm.aggregated_transactions['disbursement'] == undefined){ vm.aggregated_transactions['disbursement'] = 0; }
+      if(vm.aggregated_transactions['expenditure'] == undefined){ vm.aggregated_transactions['expenditure'] = 0; }
 
       vm.budget = vm.aggregated_transactions['incoming_fund'];
-      vm.disbursements = vm.aggregated_transactions['disbursement'] + vm.aggregated_transactions['expenditure'];;
+      vm.disbursements = vm.aggregated_transactions['disbursement'] + vm.aggregated_transactions['expenditure'];
 
       vm.budgetLeft = Math.round(vm.disbursements / vm.budget * 100);
       if (isNaN(vm.budgetLeft)) { vm.budgetLeft = 0; }

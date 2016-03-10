@@ -121,7 +121,7 @@
         })
         .state({
             name:        'programme',
-            url:         '/programmes/:programme_id/' + filters,
+            url:         '/programmes/:programme_id/',
             controller:  'ProgrammeController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/programmes/programme-view-detail.html'

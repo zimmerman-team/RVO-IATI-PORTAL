@@ -100,7 +100,7 @@
 			}
 
 			if(m.selectedBudget.on){
-				selectList.push('&activity_aggregation_incoming_fund_value_gte='+m.selectedBudget.value[0]+'&activity_aggregation_incoming_fund_value_lte='+m.selectedBudget.value[1]);
+				selectList.push('&total_incoming_funds_gte='+m.selectedBudget.value[0]+'&total_incoming_funds_lte='+m.selectedBudget.value[1]);
 			}
 
 			if(m.selectedTransactionYear.on){

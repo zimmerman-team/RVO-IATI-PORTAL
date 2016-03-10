@@ -41,7 +41,8 @@
 			var home_url = '<?php echo home_url(); ?>';
 			var template_url = '<?php echo get_template_directory_uri(); ?>';
 			var oipa_url = 'https://rvo.oipa.nl/api';
-			var upload_url = '<?php $upload_dir = wp_upload_dir(); echo $upload_dir["baseurl"]; ?>';
+			// var oipa_url = 'http://localhost:8000/api';
+            var upload_url = '<?php $upload_dir = wp_upload_dir(); echo $upload_dir["baseurl"]; ?>';
 			// var oipa_url = 'http://localhost:8000/api';
 
 			

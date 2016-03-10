@@ -66,9 +66,40 @@
     vm.selectionToParameters = function(){
 
       var path = $state.current.url.split('?')[0];
+      var selectionString = vm.filterSelection.selectionString;
 
-      if(vm.filterSelection.selectionString.length){
-        $location.path(path).search('filters', vm.filterSelection.selectionString);
+      if(path.indexOf(':') !== -1){
+
+        var detail_pages = ['country_id','activity_id','organisation_id', 'programme_id', 'sector_id'];
+        for(var i = 0;i < detail_pages.length;i++){
+          if(path.indexOf(detail_pages[i]) !== -1){
+            path = path.replace(':' + detail_pages[i], $state.params[detail_pages[i]]);
+
+            // we are at a detail page with name detail_pages[i]
+            // remove sector filter from selection string
+
+            var single_filter_key = detail_pages[i].replace('_id', '');
+          
+            selectionString = _.map(selectionString.split('&'), function(single_filter){ 
+              if(single_filter.length){
+                var single_filter_splitted = single_filter.split('=');
+                if(single_filter_splitted[0] == single_filter_key){
+                  return '';
+                }
+              }
+
+              return single_filter; 
+            });
+
+            selectionString.splice(0, 1);
+            selectionString = selectionString.join('&');
+            break;
+          }
+        }
+      }
+      
+      if(selectionString.length){
+        $location.path(path).search('filters', selectionString);
       } else {
         $location.path(path).search('filters',null);
       }
@@ -96,7 +127,7 @@
       }
 
       // add to filters under the right header (with the wrong name)
-      if(filter_obj['related_activity_id'] != undefined){
+      if(filter_obj['related_activity_id'] != undefined && vm.selectedProgrammes.length == 0){
         var related_activity_ids = filter_obj['related_activity_id'].split(',');
 
         for(var i = 0;i < related_activity_ids.length; i++){
@@ -109,7 +140,7 @@
       }
 
       // add to filters under the right header (with the wrong name)
-      if(filter_obj['recipient_country'] != undefined){
+      if(filter_obj['recipient_country'] != undefined && vm.selectedCountries.length == 0){
         Countries.getCountries(filter_obj['recipient_country']).then(function(data, status, headers, config){
 
           for(var i = 0;i < data.data.results.length; i++){
@@ -119,8 +150,9 @@
         }, errorFn);
       }
 
+
       // add to filters under the right header (with the wrong name)
-      if(filter_obj['sector'] != undefined){
+      if(filter_obj['sector'] != undefined && vm.selectedSectors.length == 0){
         Sectors.getSectors(filter_obj['sector']).then(function(data, status, headers, config){
 
           for(var i = 0;i < data.data.results.length; i++){
@@ -142,7 +174,7 @@
       }
       
       // add to filters under the right header (with the wrong name)
-      if(filter_obj['participating_organisation_name'] != undefined){
+      if(filter_obj['participating_organisation_name'] != undefined  && vm.selectedImplementingOrganisations.length == 0){
         var participating_organisation_names = filter_obj['participating_organisation_name'].split(',');
 
         for(var i = 0;i < participating_organisation_names.length; i++){
@@ -161,10 +193,10 @@
         vm.search.searchString = filter_obj['q'];
       }
 
-      if(filter_obj['activity_aggregation_incoming_fund_value_gte'] != undefined && filter_obj['activity_aggregation_incoming_fund_value_lte'] != undefined){
+      if(filter_obj['total_incoming_funds_gte'] != undefined && filter_obj['total_incoming_funds_lte'] != undefined){
 
         Budget.budget.on = true;
-        Budget.budget.value = [filter_obj['activity_aggregation_incoming_fund_value_gte'], filter_obj['activity_aggregation_incoming_fund_value_lte']];
+        Budget.budget.value = [filter_obj['total_incoming_funds_gte'], filter_obj['total_incoming_funds_lte']];
       }
 
       vm.filterSelection.save();
