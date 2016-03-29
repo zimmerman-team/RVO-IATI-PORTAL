@@ -614,7 +614,7 @@ ZzSunburst = (function() {
     function showTooltip(d){
       $("#"+tooltipId).html('<h4>'+d.name+'</h4>'+
         '<hr>'+
-        // '<p><i class="icon lightbulb"></i><b>Projects:</b> '+ '' +'</p>'+
+        '<p><i class="icon lightbulb"></i><b>Number of Projects:</b> '+ d.count +'</p>'+
         '<p><i class="icon euro"></i><b>Total budget:</b> '+ d.abbreviatedValue +'</p>'+
         '<hr>'+
         '<a style="pointer-events: all" href="'+home_url+'/sectors/'+d.sector_id+'/"><i class="icon graph"></i>Go to sector page</a>');
