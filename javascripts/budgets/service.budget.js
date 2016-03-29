@@ -32,17 +32,6 @@
 
 		return Budget;
 
-
-
-		////////////////////
-
-
-		/**
-         * @name all
-         * @desc Try to get all countries
-         * @returns {Promise}
-         * @memberOf oipa.countries.services.Countries
-         */
         function all() {
         	return m.budget;
         }

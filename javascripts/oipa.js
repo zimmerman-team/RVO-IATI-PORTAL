@@ -29,6 +29,7 @@
             'oipa.activityStatus',
             'oipa.pages',
             'oipa.implementingOrganisations',
+            'oipa.implementingOrganisationType',
             'oipa.bubbleChart',
             'oipa.sunburst',
             'oipa.tabs',
@@ -67,19 +68,6 @@
         $rootScope.$on('$locationChangeSuccess', function(e, newUrl, oldUrl) {
           // Prevent $urlRouter's default handler from firing
           e.preventDefault();
-
-          /** 
-           * provide conditions on when to 
-           * sync change in $location.path() with state reload.
-           * I use $location and $state as examples, but
-           * You can do any logic
-           * before syncing OR stop syncing all together.
-           */
-           // console.log($state);
-           // console.log($location);
-           // console.log(newUrl);
-           // console.log(oldUrl);
-           // console.log($urlRouter);
 
            if($location.reload != undefined){
             delete $location['reload'];

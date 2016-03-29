@@ -7,7 +7,7 @@
 
     config.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'templateBaseUrl', ];
 
-    var filters = '?filters';
+    var filters = '?filters&tab';
 
 
     /**

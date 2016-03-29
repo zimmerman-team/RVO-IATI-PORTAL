@@ -33,12 +33,10 @@
     */
     function activate() {
 
-      vm.offset = 0;
       vm.update();
 
       $scope.$watch('vm.q', function(valueNew, valueOld){
         if (valueNew !== valueOld){
-          vm.offset = 0;
           vm.currentPage = 1;
           vm.update();
         }
@@ -46,7 +44,6 @@
 
       $scope.$watch('vm.filterSelection.selectionString', function(valueNew, valueOld){
         if (valueNew !== valueOld){
-          vm.offset = 0;
           vm.currentPage = 1;
           vm.update();
         }

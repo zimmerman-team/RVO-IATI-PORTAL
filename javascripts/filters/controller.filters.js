@@ -38,6 +38,7 @@
       'transaction_year': {'text': 'Transaction date', 'hoverShow': false},
       'recipient_activity_status': {'text': 'Activity status', hoverShow: false},
       'recipient_implementing_organisations': {'text': 'Implementing organisation', hoverShow: false},
+      'recipient_implementing_organisation_types': {'text': 'Implementing organisation type', hoverShow: false},
       'search': {'text': 'Search in title/description', hoverShow: false},
       'reset': {'text': 'Reset filters', hoverShow: false},
       'download': {'text': 'Download projects', hoverShow: false},

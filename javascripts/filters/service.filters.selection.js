@@ -9,19 +9,20 @@
 		.module('oipa.filters')
 		.factory('FilterSelection', FilterSelection);
 
-	FilterSelection.$inject = ['$http', 'reportingOrganisationId', 'Programmes', 'Countries', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
+	FilterSelection.$inject = ['$http', 'reportingOrganisationId', 'Programmes', 'Countries', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search', 'ImplementingOrganisationType'];
 
 	/**
 	* @namespace Filters
 	* @returns {Factory}
 	*/
-	function FilterSelection($http, reportingOrganisationId, Programmes, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search) {
+	function FilterSelection($http, reportingOrganisationId, Programmes, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search, ImplementingOrganisationType) {
 		var m = this;
 		m.selectedProgrammes = Programmes.selectedProgrammes;
 	    m.selectedCountries = Countries.selectedCountries;
 	    m.selectedSectors = Sectors.selectedSectors;
 	    m.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
 	    m.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
+	    m.selectedImplementingOrganisationTypes = ImplementingOrganisationType.selectedImplementingOrganisationTypes;
 	    m.selectedBudget = Budget.budget;
 	    m.selectedTransactionYear = Transaction.year;
 	    m.search = Search;

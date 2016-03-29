@@ -37,6 +37,14 @@
 					</a>
 
 					<a 
+						class="selected filter-selected-button selectedImplementingOrganisationTypes" 
+						ng-repeat="item in vm.selectedImplementingOrganisationTypes" 
+						ng-click="vm.removeFilter(vm.selectedImplementingOrganisationTypes, '', item.name)" >
+						{{item.participating_organisation_type.name}}
+					</a>
+
+
+					<a 
 						class="selected filter-selected-button selectedActivityStatuses" 
 						ng-repeat="item in vm.selectedActivityStatuses" 
 						ng-click="vm.removeFilter(vm.selectedActivityStatuses, 'activity_status', item.activity_status.code)">

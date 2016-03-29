@@ -45,7 +45,7 @@
 
     <div ng-if="item.children && (item.count != 0)" class="children">
         <div collapse="vm.isCollapsed" ng-repeat="item in item.children" ng-include="'tree'"></div>
-    </div>    
+    </div>
 </script>
 
 <div class="row cirkle-vis" ng-hide="vm.currentPage === 'search'">

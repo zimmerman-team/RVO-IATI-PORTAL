@@ -9,12 +9,12 @@
     .module('oipa.countries')
     .controller('CountryController', CountryController);
 
-  CountryController.$inject = ['$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'countryPageUrls', 'homeUrl', '$location', 'uploadBaseUrl'];
+  CountryController.$inject = ['$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'countryPageUrls', 'homeUrl', '$location', 'uploadBaseUrl', 'oipaUrl'];
 
   /**
   * @namespace CountryController
   */
-  function CountryController($scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations, countryPageUrls, homeUrl, $location, uploadBaseUrl) {
+  function CountryController($scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations, countryPageUrls, homeUrl, $location, uploadBaseUrl, oipaUrl) {
     var vm = this;
     vm.country = null;
     vm.country_id = $stateParams.country_id;
@@ -63,7 +63,6 @@
         Countries.selectedCountries.push({'count': 0, 'recipient_country': {'code':vm.country.code,'name':vm.country.name}});
         FilterSelection.save();
         vm.loading = false;
-
       }
 
       vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
@@ -104,7 +103,7 @@
     }
 
     vm.download = function(format){
-      var url = 'http://rvo.oipa.nl/api/countries/'+ vm.country.code +'/?format=json';
+      var url = oipaUrl + 'countries/' + vm.country.code +'/?format=json';
       window.open(url);
     }
 

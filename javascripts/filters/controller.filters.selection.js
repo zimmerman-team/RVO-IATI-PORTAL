@@ -9,14 +9,15 @@
     .module('oipa.filters')
     .controller('FiltersSelectionController', FiltersSelectionController);
 
-  FiltersSelectionController.$inject = ['$scope', '$state', '$stateParams', '$location', 'FilterSelection', 'Programmes', 'Countries', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search', 'programmesMapping'];
+  FiltersSelectionController.$inject = ['$scope', '$state', '$stateParams', '$location', 'FilterSelection', 'Programmes', 'Countries', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ImplementingOrganisationType', 'ActivityStatus', 'Search', 'programmesMapping'];
 
-  function FiltersSelectionController($scope, $state, $stateParams, $location, FilterSelection, Programmes, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search, programmesMapping) {
+  function FiltersSelectionController($scope, $state, $stateParams, $location, FilterSelection, Programmes, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ImplementingOrganisationTypes, ActivityStatus, Search, programmesMapping) {
     var vm = this;
     vm.selectedCountries = Countries.selectedCountries;
     vm.selectedSectors = Sectors.selectedSectors;
     vm.selectedProgrammes = Programmes.selectedProgrammes;
     vm.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
+    vm.selectedImplementingOrganisationTypes = ImplementingOrganisationTypes.selectedImplementingOrganisationTypes;
     vm.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
     vm.selectedBudget = Budget.budget;
     vm.selectedTransactionYear = Transaction.year;

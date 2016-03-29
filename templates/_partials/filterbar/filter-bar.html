@@ -65,6 +65,15 @@
                 ng-if="vm.pageName != 'organisation'">
               Project partners
             </span>
+
+            <span 
+                class="filter-pop"
+                ng-click="vm.toggleOpenPanel('recipient_implementing_organisation_types')" 
+                ng-class="{'active': vm.isOpenedHeader('recipient_implementing_organisation_types')}"
+                ng-show="vm.isIncludedFilter('recipient_implementing_organisation_types')">
+              Project partner type
+            </span>
+        
  
             <span 
                 class="filter-pop"
@@ -99,6 +108,7 @@
             <filter-panel-transaction-year ng-show="vm.isOpenedHeader('transaction_year')" class="ng-hide slideDown"></filter-panel-transaction-year>
             <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('recipient_implementing_organisations')" class="ng-hide slideDown"></filter-panel-implementing-organisations>
             <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')" class="ng-hide slideDown"></filter-panel-activity-status>
+            <filter-panel-implementing-organisation-type ng-show="vm.isOpenedHeader('recipient_implementing_organisation_types')" class="ng-hide slideDown"></filter-panel-implementing-organisation-type>
             <filter-panel-search ng-show="vm.isOpenedHeader('search')" class="ng-hide slideDown"></filter-panel-search>
           </div>
     </div>

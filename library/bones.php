@@ -243,6 +243,12 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'controller.activitystatus', get_stylesheet_directory_uri() . '/javascripts/activityStatus/controller.activityStatus.js', array('oipa'), '', true );
 		wp_register_script( 'service.activitystatus', get_stylesheet_directory_uri() . '/javascripts/activityStatus/service.activityStatus.js', array('oipa'), '', true );
 
+
+		wp_register_script( 'module.implementingOrganisationType', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisationType/module.implementingOrganisationType.js', array('oipa'), '', true );
+		wp_register_script( 'controller.implementingOrganisationType', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisationType/controller.implementingOrganisationType.js', array('oipa'), '', true );
+		wp_register_script( 'service.implementingOrganisationType', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisationType/service.implementingOrganisationType.js', array('oipa'), '', true );
+
+
 		wp_register_script( 'module.implementingOrganisations', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/module.implementingOrganisations.js', array('oipa'), '', true );
 		wp_register_script( 'controller.implementingOrganisations', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/controller.implementingOrganisations.js', array('oipa'), '', true );
 		wp_register_script( 'controller.implementingOrganisation', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/controller.implementingOrganisation.js', array('oipa'), '', true );
@@ -273,6 +279,7 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'directive.filters.budget.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.budget.js', array('oipa'), '', true );
 		wp_register_script( 'directive.filters.activity.status.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.activitystatus.js', array('oipa'), '', true );
 		wp_register_script( 'directive.filters.implementing.organisations.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.implementingOrganisations.js', array('oipa'), '', true );
+		wp_register_script( 'directive.filters.implementing.organisation_types.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.implementingOrganisationTypes.js', array('oipa'), '', true );
 		wp_register_script( 'directive.filters.search.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.search.js', array('oipa'), '', true );
 		wp_register_script( 'directive.filters.programmes', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.programmes.js', array('oipa'), '', true );
 		
@@ -422,6 +429,10 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'controller.activitystatus' );
 		wp_enqueue_script( 'service.activitystatus' );
 
+		wp_enqueue_script( 'module.implementingOrganisationType' );
+		wp_enqueue_script( 'controller.implementingOrganisationType' );
+		wp_enqueue_script( 'service.implementingOrganisationType' );
+
 		wp_enqueue_script( 'module.tabs' );
 		wp_enqueue_script( 'controller.tabs' );
 		wp_enqueue_script( 'directive.tabs' );
@@ -484,8 +495,8 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'directive.filters.activity.status.panel' );
 		wp_enqueue_script( 'directive.filters.implementing.organisations.panel' );
 		wp_enqueue_script( 'directive.filters.search.panel' );
-		wp_enqueue_script( 'directive.filters.programmes');
-
+		wp_enqueue_script( 'directive.filters.programmes' );
+		wp_enqueue_script( 'directive.filters.implementing.organisation_types.panel' );
 		
 
 		wp_enqueue_script( 'module.search.page' );
