@@ -39,10 +39,9 @@
 					<a 
 						class="selected filter-selected-button selectedImplementingOrganisationTypes" 
 						ng-repeat="item in vm.selectedImplementingOrganisationTypes" 
-						ng-click="vm.removeFilter(vm.selectedImplementingOrganisationTypes, '', item.name)" >
+						ng-click="vm.removeFilter(vm.selectedImplementingOrganisationTypes, '', item.code)" >
 						{{item.participating_organisation_type.name}}
 					</a>
-
 
 					<a 
 						class="selected filter-selected-button selectedActivityStatuses" 
@@ -63,7 +62,6 @@
 						ng-show="vm.selectedBudget.on" 
 						ng-click="vm.removeBudgetFilter()">
 						Budget: {{vm.selectedBudget.value[0] | shortcurrency :'€'}} - {{vm.selectedBudget.value[1] | shortcurrency :'€'}}
-						
 					</a>
 
 					<a 
@@ -71,7 +69,6 @@
 						ng-show="vm.selectedTransactionYear.on" 
 						ng-click="vm.removeTransactionYearFilter()">
 						Transaction date year: {{vm.selectedTransactionYear.value}}
-						
 					</a>
 
 					<div style="margin-bottom:4px;" ng-show="!vm.filterCount">

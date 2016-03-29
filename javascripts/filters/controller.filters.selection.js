@@ -28,11 +28,13 @@
     vm.filterCount = 0;
 
     vm.updateFilterCount = function(){
+
       var count = 0;
       if(vm.currentPage != 'country'){ count += vm.selectedCountries.length; }
       if(vm.currentPage != 'programmes'){ count += vm.selectedProgrammes.length; }
       if(vm.currentPage != 'sector'){ count += vm.selectedSectors.length; }
       if(vm.currentPage != 'organisation'){ count += vm.selectedImplementingOrganisations.length; }
+      count += vm.selectedImplementingOrganisationTypes.length;
       count += vm.selectedActivityStatuses.length;
       count += vm.search.searchString.length;
       if(vm.selectedBudget.on){ count += 1; }

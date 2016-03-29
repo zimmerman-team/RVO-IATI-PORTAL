@@ -81,6 +81,7 @@
 			// m.selectArrayToString('sector', 'code', m.selectedSectors),
 			// m.selectArrayToString('participating_organisations__organisation__code', 'name', m.selectedImplementingOrganisations),
 			m.selectArrayToString('activity_status', 'code', m.selectedActivityStatuses),
+			m.selectArrayToString('participating_organisation_type', 'code', m.selectedImplementingOrganisationTypes),
 			];
 
 			selectList.push(m.getSectors());
