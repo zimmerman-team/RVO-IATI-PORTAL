@@ -1,1 +1,486 @@
-@font-face{font-family:"AGNL-Icon-Font";src:url(../fonts/AGNL-Icon-Font.eot);src:url(../fonts/AGNL-Icon-Font.eot?#iefix) format("embedded-opentype"),url(../fonts/AGNL-Icon-Font.woff) format("woff"),url(../fonts/AGNL-Icon-Font.ttf) format("truetype"),url(../fonts/AGNL-Icon-Font.svg#AGNL-Icon-Font) format("svg");font-weight:normal;font-style:normal}@font-face{font-family:"RijksOverheidSans";src:url(../fonts/rijksoverheidsansheading-bold_2_0.eot);src:url(../fonts/rijksoverheidsansheading-bold_2_0.eot?#iefix) format("embedded-opentype"),url(../fonts/rijksoverheidsansheading-bold_2_0.woff) format("woff"),url(../fonts/rijksoverheidsansheading-bold_2_0.ttf) format("truetype"),url(../fonts/rijksoverheidsansheading-bold_2_0.svg#RijksOverheidSansBold) format("svg");font-weight:bold;font-style:normal}@font-face{font-family:"RijksOverheidSans";src:url(../fonts/rijksoverheidsansheading-regular_2_0.eot);src:url(../fonts/rijksoverheidsansheading-regular_2_0.eot?#iefix) format("embedded-opentype"),url(../fonts/rijksoverheidsansheading-regular_2_0.woff) format("woff"),url(../fonts/rijksoverheidsansheading-regular_2_0.ttf) format("truetype"),url(../fonts/rijksoverheidsansheading-regular_2_0.svg#RijksOverheidSansRegular) format("svg");font-weight:normal;font-style:normal}@font-face{font-family:"RijksoverheidSansText-Regular";src:url("../fonts/rijksoverheidsanstext-regular.eot");src:url("../fonts/rijksoverheidsanstext-regular.eot?#iefix") format("embedded-opentype"),url("../fonts/rijksoverheidsanstext-regular.woff") format("woff"),url("../fonts/rijksoverheidsanstext-regular.ttf") format("truetype"),url("../fonts/rijksoverheidsanstext-regular.svg#RijksoverheidSansText-Regular") format("svg");font-weight:normal;font-style:normal}@font-face{font-family:"RijksoverheidSerif-Regular";src:url("../fonts/rijksoverheidserif-regular.eot");src:url("../fonts/rijksoverheidserif-regular.eot?#iefix") format("embedded-opentype"),url("../fonts/rijksoverheidserif-regular.woff") format("woff"),url("../fonts/rijksoverheidserif-regular.ttf") format("truetype"),url("../fonts/rijksoverheidserif-regular.svg#RijksoverheidSerif-Regular") format("svg");font-weight:normal;font-style:normal}@font-face{font-family:"RijksoverheidSerif-Italic";src:url("../fonts/rijksoverheidserif-italic.eot");src:url("../fonts/rijksoverheidserif-italic.eot?#iefix") format("embedded-opentype"),url("../fonts/rijksoverheidserif-italic.woff") format("woff"),url("../fonts/rijksoverheidserif-italic.ttf") format("truetype"),url("../fonts/rijksoverheidserif-italic.svg#RijksoverheidSerif-Italic") format("svg");font-weight:normal;font-style:normal}#tool-bar .right .tool-text{display:inline}.mobile-header{height:22vw}.page-wrap{margin-top:30px;margin-bottom:30px}#primary-navigation{padding:17px 0 0}.actions .filters span .fa-circle{transition:all 0.2s}.actions .filters span:hover .fa-circle{color:#738191}.actions .dash a .fa-circle,.actions .dash span .fa-circle{transition:all 0.2s}.actions .dash a:nth-of-type(2):hover .fa-circle,.actions .dash span:nth-of-type(2):hover .fa-circle{color:#00a99d}.actions .dash a:nth-of-type(3):hover .fa-circle,.actions .dash span:nth-of-type(3):hover .fa-circle{color:#ad7979}.actions .dash a:nth-of-type(4):hover .fa-circle,.actions .dash span:nth-of-type(4):hover .fa-circle{color:#29abe2}.filter-box .btn .fa{transition:all 0.2s}.filter-box .btn:hover .fa{transform:scale(1.3)}#tool-bar span .fa-circle{transition:all 0.2s}#tool-bar span:hover .fa-circle{color:#00a99d}.btn-default{transition:all 0.2s}.btn-default:hover{color:#fff;background:#007bc7}.hp-block.clickable{transition:all 0.2s}.hp-block.clickable:hover{background-color:rgba(41,171,226,0.6)}.hp-block.clickable.groen:hover{background-color:rgba(178,215,238,0.6)}.eq{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex}.makeblock{display:inline;margin-top:0}.info{padding:0;position:absolute;width:250px;height:250px;border-radius:125px;text-align:center;left:50%;top:20px;margin-left:180px;z-index:9999}.info .flag-icon{margin-top:.5em}.navbar .btn.btn-default,.navbar .btn-group .btn{margin-right:10px}.navbar .nav.navbar-nav.navbar-right .active a{color:#fff}.navbar .nav.navbar-nav.navbar-right a{color:#808080}.navbar .nav.navbar-nav.navbar-right a:hover{color:#fff}.navbar-header{margin:0 auto}.navbar-collapse{padding:0}.filters-fixed.fixed{top:0}.mobile-header{height:15vw}.container{width:720px}.homepage-blocks .col-md-2{width:20%}.home-header{display:flex}.home-header .col-sm-6{flex:1;display:flex;z-index:10}.home-header .col-sm-6.left{padding-right:0}.home-header .col-sm-6.left .panel{margin-bottom:20px}.home-header .col-sm-6.right{padding-left:0}.home-header .panel{flex:1}footer .social{text-align:center}.filters-fixed.fixed{top:0}.container{width:945px}.homepage-blocks .col-md-3{flex:1;display:flex}.homepage-blocks .row{display:flex}.home-header .pic{display:flex}
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: IE Stylesheet
+
+So instead of using the respond.js file to add media query support
+to IE, we're going to use SASS to create an easily readable css file.
+Here, we import all the styles the standard stylesheet gets, only
+without the media queries. No need to worry about editing anything!
+
+******************************************************************/
+/******************************************************************
+IMPORTS & DEPENDENCIES
+Remember, all the BASE styles are called already since IE can
+read those. Below, we need to import only the stuff IE can't
+understand (what's inside the media queries). We also need to
+import the mixins file so SASS can understand the variables.
+******************************************************************/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Variables
+
+Here is where we declare all our variables like colors, fonts,
+base values, and defaults. We want to make sure this file ONLY
+contains variables that way our files don't get all messy.
+No one likes a mess.
+
+******************************************************************/
+/*********************
+COLORS
+Need help w/ choosing your colors? Try this site out:
+http://0to255.com/
+*********************/
+/*
+Here's a great tutorial on how to
+use color variables properly:
+http://sachagreif.com/sass-color-variables/
+*/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Typography
+
+Need to import a font or set of icons for your site? Drop them in
+here or just use this to establish your typographical grid. Or not.
+Do whatever you want to...GOSH!
+
+Helpful Articles:
+http://trentwalton.com/2012/06/19/fluid-type/
+http://ia.net/blog/responsive-typography-the-basics/
+http://alistapart.com/column/responsive-typography-is-a-physical-discipline
+
+******************************************************************/
+/*********************
+FONT FACE
+*********************/
+/*  To embed your own fonts, use this syntax
+  and place your fonts inside the
+  library/fonts folder. For more information
+  on embedding fonts, go to:
+  http://www.fontsquirrel.com/
+  Be sure to remove the comment brackets.
+*/
+@font-face {
+  font-family: "AGNL-Icon-Font";
+  src: url(../fonts/AGNL-Icon-Font.eot);
+  src: url(../fonts/AGNL-Icon-Font.eot?#iefix) format("embedded-opentype"), url(../fonts/AGNL-Icon-Font.woff) format("woff"), url(../fonts/AGNL-Icon-Font.ttf) format("truetype"), url(../fonts/AGNL-Icon-Font.svg#AGNL-Icon-Font) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+  -------------------------------------------------------------------
+  RijksoverheidSansHeading-Bold 2.0
+  -------------------------------------------------------------------
+*/
+@font-face {
+  font-family: "RijksOverheidSans";
+  src: url(../fonts/rijksoverheidsansheading-bold_2_0.eot);
+  src: url(../fonts/rijksoverheidsansheading-bold_2_0.eot?#iefix) format("embedded-opentype"), url(../fonts/rijksoverheidsansheading-bold_2_0.woff) format("woff"), url(../fonts/rijksoverheidsansheading-bold_2_0.ttf) format("truetype"), url(../fonts/rijksoverheidsansheading-bold_2_0.svg#RijksOverheidSansBold) format("svg");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/*
+  -------------------------------------------------------------------
+  RijksoverheidSansHeading-Regular 2.0
+  -------------------------------------------------------------------
+*/
+@font-face {
+  font-family: "RijksOverheidSans";
+  src: url(../fonts/rijksoverheidsansheading-regular_2_0.eot);
+  src: url(../fonts/rijksoverheidsansheading-regular_2_0.eot?#iefix) format("embedded-opentype"), url(../fonts/rijksoverheidsansheading-regular_2_0.woff) format("woff"), url(../fonts/rijksoverheidsansheading-regular_2_0.ttf) format("truetype"), url(../fonts/rijksoverheidsansheading-regular_2_0.svg#RijksOverheidSansRegular) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+  -------------------------------------------------------------------
+  RijksoverheidSansText-Regular
+  -------------------------------------------------------------------
+*/
+@font-face {
+  font-family: "RijksoverheidSansText-Regular";
+  src: url("../fonts/rijksoverheidsanstext-regular.eot");
+  src: url("../fonts/rijksoverheidsanstext-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidsanstext-regular.woff") format("woff"), url("../fonts/rijksoverheidsanstext-regular.ttf") format("truetype"), url("../fonts/rijksoverheidsanstext-regular.svg#RijksoverheidSansText-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+  -------------------------------------------------------------------
+  RijksoverheidSerif-Regular
+  -------------------------------------------------------------------
+*/
+@font-face {
+  font-family: "RijksoverheidSerif-Regular";
+  src: url("../fonts/rijksoverheidserif-regular.eot");
+  src: url("../fonts/rijksoverheidserif-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidserif-regular.woff") format("woff"), url("../fonts/rijksoverheidserif-regular.ttf") format("truetype"), url("../fonts/rijksoverheidserif-regular.svg#RijksoverheidSerif-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+  -------------------------------------------------------------------
+  RijksoverheidSerif-Italic
+  -------------------------------------------------------------------
+*/
+@font-face {
+  font-family: "RijksoverheidSerif-Italic";
+  src: url("../fonts/rijksoverheidserif-italic.eot");
+  src: url("../fonts/rijksoverheidserif-italic.eot?#iefix") format("embedded-opentype"), url("../fonts/rijksoverheidserif-italic.woff") format("woff"), url("../fonts/rijksoverheidserif-italic.ttf") format("truetype"), url("../fonts/rijksoverheidserif-italic.svg#RijksoverheidSerif-Italic") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+The following is based of Typebase:
+https://github.com/devinhunt/typebase.css
+I've edited it a bit, but it's a nice starting point.
+*/
+/*
+some nice typographical defaults
+more here: http://www.newnet-soft.com/blog/csstypography
+*/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Mixins Stylesheet
+
+This is where you can take advantage of Sass' great features: Mixins.
+I won't go in-depth on how they work exactly,
+there are a few articles below that will help do that. What I will
+tell you is that this will help speed up simple changes like
+changing a color or adding CSS3 techniques gradients.
+
+A WORD OF WARNING: It's very easy to overdo it here. Be careful and
+remember less is more.
+
+Helpful:
+http://sachagreif.com/useful-sass-mixins/
+http://thesassway.com/intermediate/leveraging-sass-mixins-for-cleaner-code
+http://web-design-weekly.com/blog/2013/05/12/handy-sass-mixins/
+
+******************************************************************/
+/*********************
+TRANSITION
+*********************/
+/*
+I totally rewrote this to be cleaner and easier to use.
+You'll need to be using Sass 3.2+ for these to work.
+Thanks to @anthonyshort for the inspiration on these.
+USAGE: @include transition(all 0.2s ease-in-out);
+*/
+/*********************
+CSS3 GRADIENTS
+Be careful with these since they can
+really slow down your CSS. Don't overdo it.
+*********************/
+/* @include css-gradient(#dfdfdf,#f8f8f8); */
+/*********************
+BOX SIZING
+*********************/
+/* @include box-sizing(border-box); */
+/* NOTE: value of "padding-box" is only supported in Gecko. So
+probably best not to use it. I mean, were you going to anyway? */
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: 481px and Up Stylesheet
+
+This stylesheet is loaded for larger devices. It's set to
+481px because at 480px it would load on a landscaped iPhone.
+This isn't ideal because then you would be loading all those
+extra styles on that same mobile connection.
+
+A word of warning. This size COULD be a larger mobile device,
+so you still want to keep it pretty light and simply expand
+upon your base.scss styles.
+
+******************************************************************/
+/*
+IMPORTANT NOTE ABOUT SASS 3.3 & UP
+You can't use @extend within media queries
+anymore, so just be aware that if you drop
+them in here, they won't work.
+*/
+/* line 27, ../scss/breakpoints/_481up.scss */
+#tool-bar .right .tool-text {
+  display: inline;
+}
+
+/* line 39, ../scss/breakpoints/_481up.scss */
+.mobile-header {
+  height: 22vw;
+}
+
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Tablet & Small Desktop Stylesheet
+
+Here's where you can start getting into the good stuff.
+This size will work on iPads, other tablets, and desktops.
+So you can start working with more styles, background images,
+and other resources. You'll also notice the grid starts to
+come into play. Have fun!
+
+******************************************************************/
+/* line 54, ../scss/breakpoints/_768up.scss */
+.page-wrap {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* line 59, ../scss/breakpoints/_768up.scss */
+#primary-navigation {
+  padding: 17px 0 0;
+}
+
+/* line 66, ../scss/breakpoints/_768up.scss */
+.actions .filters span .fa-circle {
+  transition: all 0.2s;
+}
+/* line 70, ../scss/breakpoints/_768up.scss */
+.actions .filters span:hover .fa-circle {
+  color: #738191;
+}
+/* line 78, ../scss/breakpoints/_768up.scss */
+.actions .dash a .fa-circle, .actions .dash span .fa-circle {
+  transition: all 0.2s;
+}
+/* line 83, ../scss/breakpoints/_768up.scss */
+.actions .dash a:nth-of-type(2):hover .fa-circle, .actions .dash span:nth-of-type(2):hover .fa-circle {
+  color: #00a99d;
+}
+/* line 90, ../scss/breakpoints/_768up.scss */
+.actions .dash a:nth-of-type(3):hover .fa-circle, .actions .dash span:nth-of-type(3):hover .fa-circle {
+  color: #ad7979;
+}
+/* line 97, ../scss/breakpoints/_768up.scss */
+.actions .dash a:nth-of-type(4):hover .fa-circle, .actions .dash span:nth-of-type(4):hover .fa-circle {
+  color: #29abe2;
+}
+
+/* line 108, ../scss/breakpoints/_768up.scss */
+.filter-box .btn .fa {
+  transition: all 0.2s;
+}
+/* line 112, ../scss/breakpoints/_768up.scss */
+.filter-box .btn:hover .fa {
+  transform: scale(1.3);
+}
+
+/* line 121, ../scss/breakpoints/_768up.scss */
+#tool-bar span .fa-circle {
+  transition: all 0.2s;
+}
+/* line 125, ../scss/breakpoints/_768up.scss */
+#tool-bar span:hover .fa-circle {
+  color: #00a99d;
+}
+
+/* line 132, ../scss/breakpoints/_768up.scss */
+.btn-default {
+  transition: all 0.2s;
+}
+/* line 134, ../scss/breakpoints/_768up.scss */
+.btn-default:hover {
+  color: #fff;
+  background: #007bc7;
+}
+
+/* line 140, ../scss/breakpoints/_768up.scss */
+.hp-block.clickable {
+  transition: all 0.2s;
+}
+/* line 142, ../scss/breakpoints/_768up.scss */
+.hp-block.clickable:hover {
+  background-color: rgba(41, 171, 226, 0.6);
+}
+/* line 146, ../scss/breakpoints/_768up.scss */
+.hp-block.clickable.groen:hover {
+  background-color: rgba(178, 215, 238, 0.6);
+}
+
+/* line 152, ../scss/breakpoints/_768up.scss */
+.eq {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* line 159, ../scss/breakpoints/_768up.scss */
+.makeblock {
+  display: inline;
+  margin-top: 0;
+}
+
+/* line 190, ../scss/breakpoints/_768up.scss */
+.info {
+  padding: 0;
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 125px;
+  text-align: center;
+  left: 50%;
+  top: 20px;
+  margin-left: 180px;
+  z-index: 9999;
+}
+/* line 201, ../scss/breakpoints/_768up.scss */
+.info .flag-icon {
+  margin-top: .5em;
+}
+
+/* line 206, ../scss/breakpoints/_768up.scss */
+.navbar .btn.btn-default, .navbar .btn-group .btn {
+  margin-right: 10px;
+}
+
+/* line 214, ../scss/breakpoints/_768up.scss */
+.navbar .nav.navbar-nav.navbar-right .active a {
+  color: #fff;
+}
+/* line 218, ../scss/breakpoints/_768up.scss */
+.navbar .nav.navbar-nav.navbar-right a {
+  color: #808080;
+}
+/* line 220, ../scss/breakpoints/_768up.scss */
+.navbar .nav.navbar-nav.navbar-right a:hover {
+  color: #fff;
+}
+
+/* line 232, ../scss/breakpoints/_768up.scss */
+.navbar-header {
+  margin: 0 auto;
+}
+
+/* line 236, ../scss/breakpoints/_768up.scss */
+.navbar-collapse {
+  padding: 0;
+}
+
+/* line 241, ../scss/breakpoints/_768up.scss */
+.filters-fixed.fixed {
+  top: 0;
+}
+
+/* line 249, ../scss/breakpoints/_768up.scss */
+.mobile-header {
+  height: 15vw;
+}
+
+/* line 253, ../scss/breakpoints/_768up.scss */
+.container {
+  width: 720px;
+}
+
+/* line 259, ../scss/breakpoints/_768up.scss */
+.homepage-blocks .col-md-2 {
+  width: 20%;
+}
+
+/* line 264, ../scss/breakpoints/_768up.scss */
+.home-header {
+  display: flex;
+}
+/* line 266, ../scss/breakpoints/_768up.scss */
+.home-header .col-sm-6 {
+  flex: 1;
+  display: flex;
+  z-index: 10;
+}
+/* line 270, ../scss/breakpoints/_768up.scss */
+.home-header .col-sm-6.left {
+  padding-right: 0;
+}
+/* line 272, ../scss/breakpoints/_768up.scss */
+.home-header .col-sm-6.left .panel {
+  margin-bottom: 20px;
+}
+/* line 276, ../scss/breakpoints/_768up.scss */
+.home-header .col-sm-6.right {
+  padding-left: 0;
+}
+/* line 280, ../scss/breakpoints/_768up.scss */
+.home-header .panel {
+  flex: 1;
+}
+
+/* line 286, ../scss/breakpoints/_768up.scss */
+footer .social {
+  text-align: center;
+}
+
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Desktop Stylsheet
+
+This is the desktop size. It's larger than an iPad so it will only
+be seen on the Desktop.
+
+******************************************************************/
+/* line 29, ../scss/breakpoints/_1030up.scss */
+.filters-fixed.fixed {
+  top: 0;
+}
+
+/* line 37, ../scss/breakpoints/_1030up.scss */
+.container {
+  width: 945px;
+}
+
+/*#openaid-main {
+  padding-top:60px;
+}*/
+/* line 46, ../scss/breakpoints/_1030up.scss */
+.homepage-blocks .col-md-3 {
+  flex: 1;
+  display: flex;
+}
+/* line 50, ../scss/breakpoints/_1030up.scss */
+.homepage-blocks .row {
+  display: flex;
+}
+
+/* line 56, ../scss/breakpoints/_1030up.scss */
+.home-header .pic {
+  display: flex;
+}
+
+/*
+you can call the larger styles if you want, but there's really no need
+*/
+/******************************************************************
+ADDITIONAL IE FIXES
+These fixes are now ONLY seen by IE, so you don't have to worry
+about using prefixes, although it's best practice. For more info
+on using Modernizr classes, check out this link:
+http://www.modernizr.com/docs/
+******************************************************************/
+/*
+For example, you can use something like:
+
+.no-textshadow .class { ... }
+
+You can also target specific versions by using the classes applied to
+the html element. These can sometimes change, so take a look inside the
+header.php file to see what they are:
+
+
+.lt-ie8 .class { ... }
+
+*/

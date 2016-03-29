@@ -9,7 +9,6 @@
 
     var filters = '?filters&tab';
 
-
     /**
     * @name config
     * @desc Define valid application routes
@@ -98,13 +97,6 @@
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-list.html'
         })
-        // .state({
-        //     name:        'organisations',
-        //     url:         '/organisaties/',
-        //     controller:  'ImplementingOrganisationsVisualisationController',
-        //     controllerAs: 'vm',
-        //     templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-visualisation.html'
-        // })
         .state({
             name:        'organisation',
             url:         '/organisations/:organisation_id/' + filters,
@@ -121,7 +113,7 @@
         })
         .state({
             name:        'programme',
-            url:         '/programmes/:programme_id/',
+            url:         '/programmes/:programme_id/?tab',
             controller:  'ProgrammeController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/programmes/programme-view-detail.html'

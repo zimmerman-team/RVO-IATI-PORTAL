@@ -16,7 +16,8 @@
     <div class="container extra">
 
         <div class="detailview white no-margin-bottom no-padding-bottom">
-            <h1 class="no-margin-bottom">{{vm.activity.title.narratives[0].text}}</h1>         
+
+            <h1 class="no-margin-bottom"><span ng-repeat="recipient_country in vm.activity.recipient_countries" class="flag-icon flag-icon-{{recipient_country.country.code | lowercase }} detail-flag"></span>{{vm.activity.title.narratives[0].text}}</h1>         
         </div>
 
         <hr class="darkblue no-margin-bottom">
@@ -45,7 +46,7 @@
                         <activity-geomap map-height="350px" activity="vm.activity"></activity-geomap>
                     </div>
                     <div class="white no-margin-bottom no-padding-bottom">
-                        <h2>Goals & results</h2>
+                        <h2>Goals &amp; results</h2>
                     </div>
 
                     <div class="panel lightblue no-margin-bottom with-table" ng-repeat="result in vm.activity.results" ng-if="vm.activity.results.length != 0">
