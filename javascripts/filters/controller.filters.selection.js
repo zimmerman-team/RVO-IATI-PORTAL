@@ -76,12 +76,19 @@
         var detail_pages = ['country_id','activity_id','organisation_id', 'programme_id', 'sector_id'];
         for(var i = 0;i < detail_pages.length;i++){
           if(path.indexOf(detail_pages[i]) !== -1){
-            path = path.replace(':' + detail_pages[i], $state.params[detail_pages[i]]);
 
             // we are at a detail page with name detail_pages[i]
             // remove sector filter from selection string
 
-            var single_filter_key = detail_pages[i].replace('_id', '');
+            var detail_mapping = {
+              'country_id': 'recipient_country',
+              'activity_id': 'activity',
+              'organisation_id': 'participating_organisation_name',
+              'programme_id': 'related_activity_id',
+              'sector_id': 'sector'
+            }
+
+            var single_filter_key = detail_mapping[detail_pages[i]];
           
             selectionString = _.map(selectionString.split('&'), function(single_filter){ 
               if(single_filter.length){
@@ -102,9 +109,9 @@
       }
       
       if(selectionString.length){
-        $location.path(path).search('filters', selectionString);
+        $location.search('filters', selectionString);
       } else {
-        $location.path(path).search('filters',null);
+        $location.search('filters',null);
       }
     }
 

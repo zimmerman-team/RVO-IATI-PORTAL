@@ -32,6 +32,7 @@
         .state({
             name:         'activities',
             url:          '/projects/' + filters,
+            reloadOnSearch: false,
             controller:   'ActivitiesExploreController',
             controllerAs: 'vm',
             templateUrl:  templateBaseUrl + '/templates/activities/activities-view-list-map.html',
@@ -42,6 +43,7 @@
         .state({
             name:         'activities-list',
             url:          '/projects/lijst/' + filters,
+            reloadOnSearch: false,
             controller:   'ActivitiesExploreController',
             controllerAs: 'vm',
             templateUrl:  templateBaseUrl + '/templates/activities/activities-view-list.html',
@@ -62,6 +64,7 @@
         .state({
             name:        'locations-map',
             url:         '/countries/list/' + filters,
+            reloadOnSearch: false,
             controller:  'LocationsMapListController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/locations/locations-view-map-list.html',
@@ -72,6 +75,7 @@
         .state({
             name:        'locations-polygonmap',
             url:         '/countries/map/' + filters,
+            reloadOnSearch: false,
             controller:  'LocationsPolygonGeoMapController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/locations/locations-view-map-polygons.html',
@@ -82,6 +86,7 @@
         .state({
             name:        'country',
             url:         '/countries/:country_id/' + filters,
+            reloadOnSearch: false,
             controller:  'CountryController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/countries/country-view-detail.html',
@@ -93,6 +98,7 @@
         .state({
             name:        'organisations',
             url:         '/organisations/' + filters,
+            reloadOnSearch: false,
             controller:  'ImplementingOrganisationsExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-list.html'
@@ -100,6 +106,7 @@
         .state({
             name:        'organisation',
             url:         '/organisations/:organisation_id/' + filters,
+            reloadOnSearch: false,
             controller:  'ImplementingOrganisationController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisation-view-detail.html'
@@ -107,6 +114,7 @@
         .state({
             name:        'programmes',
             url:         '/programmes/' + filters,
+            reloadOnSearch: false,
             controller:  'ProgrammesExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/programmes/programmes-view-list.html'
@@ -121,6 +129,7 @@
         .state({
             name:        'sectors',
             url:         '/sectors/' + filters,
+            reloadOnSearch: false,
             controller:  'SectorsExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-list.html'
@@ -128,6 +137,7 @@
         .state({
             name:        'sectors-vis',
             url:         '/sectors/vis/' + filters,
+            reloadOnSearch: false,
             controller:  'SectorsVisualisationController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-visualisation.html'
@@ -135,6 +145,7 @@
         .state({
             name:        'sector',
             url:         '/sectors/:sector_id/' + filters,
+            reloadOnSearch: false,
             controller:  'SectorController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sector-view-detail.html'

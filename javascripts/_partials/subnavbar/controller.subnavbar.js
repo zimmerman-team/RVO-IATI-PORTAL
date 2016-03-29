@@ -9,12 +9,12 @@
     .module('oipa.partials')
     .controller('SubNavbarController', SubNavbarController);
 
-  SubNavbarController.$inject = ['$scope', '$location'];
+  SubNavbarController.$inject = ['$scope', '$location', '$state'];
 
   /**
   * @namespace CountriesController
   */
-  function SubNavbarController($scope, $location) {
+  function SubNavbarController($scope, $location, $state) {
     var vm = this;
     vm.tabs = $scope.tabs;
 
@@ -27,7 +27,11 @@
 
     vm.openTab = function(id){
       $scope.selectedTab = id;
+      var path = $state.current.url;
+      console.log($state);
+      console.log(path);
       $location.search('tab', id);
+      // $location.search('tab', id);
 
       setTimeout(function(){
         window.dispatchEvent(new Event('resize'));
