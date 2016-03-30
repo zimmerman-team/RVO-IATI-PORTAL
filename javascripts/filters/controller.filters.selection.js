@@ -11,13 +11,13 @@
 
   FiltersSelectionController.$inject = ['$scope', '$state', '$stateParams', '$location', 'FilterSelection', 'Programmes', 'Countries', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ImplementingOrganisationType', 'ActivityStatus', 'Search', 'programmesMapping'];
 
-  function FiltersSelectionController($scope, $state, $stateParams, $location, FilterSelection, Programmes, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ImplementingOrganisationTypes, ActivityStatus, Search, programmesMapping) {
+  function FiltersSelectionController($scope, $state, $stateParams, $location, FilterSelection, Programmes, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ImplementingOrganisationType, ActivityStatus, Search, programmesMapping) {
     var vm = this;
     vm.selectedCountries = Countries.selectedCountries;
     vm.selectedSectors = Sectors.selectedSectors;
     vm.selectedProgrammes = Programmes.selectedProgrammes;
     vm.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
-    vm.selectedImplementingOrganisationTypes = ImplementingOrganisationTypes.selectedImplementingOrganisationTypes;
+    vm.selectedImplementingOrganisationTypes = ImplementingOrganisationType.selectedImplementingOrganisationTypes;
     vm.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
     vm.selectedBudget = Budget.budget;
     vm.selectedTransactionYear = Transaction.year;
@@ -190,6 +190,21 @@
         for(var i = 0;i < participating_organisation_names.length; i++){
           vm.selectedImplementingOrganisations.push({'name': participating_organisation_names[i]}); 
         } 
+      }
+
+      // add to filters under the right header (with the wrong name)
+
+      if(filter_obj['participating_organisation_type'] != undefined  && vm.selectedImplementingOrganisationTypes.length == 0){
+
+        ImplementingOrganisationType.getParticipatingOrgTypes(filter_obj['participating_organisation_type']).then(function(data, status, headers, config){
+
+          for(var i = 0;i < data.data.results.length; i++){
+            if (filter_obj['participating_organisation_type'].indexOf(data.data.results[i].participating_organisation_type.code) > -1){
+              vm.selectedImplementingOrganisationTypes.push(data.data.results[i]);
+            }
+          }
+          vm.filterSelection.save();
+        }, errorFn);
       }
 
       // transaction year filter

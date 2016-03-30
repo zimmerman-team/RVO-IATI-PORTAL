@@ -22,16 +22,17 @@
 
 		var ImplementingOrganisationType = {
             selectedImplementingOrganisationTypes: m.selectedImplementingOrganisationTypes,
-            getStatuses: getStatuses
+            getParticipatingOrgTypes: getParticipatingOrgTypes
 		};
 
-		function getStatuses(statuses) {
+		function getParticipatingOrgTypes(org_types) {
+            console.log(org_types);
 
             var url = oipaUrl + '/activities/aggregations/?format=json&group_by=participating_organisation_type&aggregations=count';
             if(reportingOrganisationId){
-                url += '&reporting_organisation__in=' + reportingOrganisationId;
+                url += '&reporting_organisation=' + reportingOrganisationId;
             }
-            url += '&participating_organisation_type=' + statuses;
+            url += '&participating_organisation_type=' + org_types;
             return $http.get(url, { cache: true });
         }
 
