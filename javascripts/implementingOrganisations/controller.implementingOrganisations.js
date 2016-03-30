@@ -61,7 +61,7 @@
       filterString = filterString.join('&');
       
       if(vm.q != ''){
-        filterString += '&q_fields=participating_organisation&q=' + vm.q;
+        filterString += '&q_fields=participating_org&q=' + vm.q;
       }
 
       Aggregations.aggregation('participating_organisation', 'count', filterString + '&participating_organisation_role=2,4', 'participating_organisation', vm.perPage, vm.currentPage).then(successFn, errorFn);
