@@ -55,28 +55,31 @@
     run.$inject = ['$http', '$rootScope', '$urlRouter', '$location', '$state'];
 
     function run($http, $rootScope, $urlRouter, $location, $state) {
-        $http.defaults.xsrfHeaderName = 'X-CSRFToken';
-        $http.defaults.xsrfCookieName = 'csrftoken';
+        // $http.defaults.xsrfHeaderName = 'X-CSRFToken';
+        // $http.defaults.xsrfCookieName = 'csrftoken';
 
-        var original = $location.path;
-        $location.path = function (path, reload) {
-            $location.reload = false;
-            return original.apply($location, [path]);
-        };
+        // var original = $location.path;
+        // $location.path = function (path, reload) {
+        //     $location.reload = false;
+        //     return original.apply($location, [path]);
+        // };
 
 
-        $rootScope.$on('$locationChangeSuccess', function(e, newUrl, oldUrl) {
-          // Prevent $urlRouter's default handler from firing
-          e.preventDefault();
+        // $rootScope.$on('$locationChangeSuccess', function(e, newUrl, oldUrl) {
+        //     console.log(e);
+        //     console.log(newUrl);
+        //   // Prevent $urlRouter's default handler from firing
+        //   // e.preventDefault();
 
-           if($location.reload != undefined){
-            delete $location['reload'];
-           } else {
-            $urlRouter.sync();
-           }
+        //   //  if($location.reload != undefined){
+        //   //   delete $location['reload'];
+        //   //  } else {
+        //   //   $urlRouter.sync();
+        //   //  }
 
-        });
-        // Configures $urlRouter's listener *after* your custom listener
+        // });
+        
+        // // Configures $urlRouter's listener *after* your custom listener
         $urlRouter.listen();
     }
 

@@ -20,13 +20,13 @@
     vm.organisation_id = $stateParams.organisation_id;
     vm.filterSelection = FilterSelection;
     vm.selectionString = '';
-    vm.selectedTab = 'samenvatting';
+    vm.selectedTab = 'summary';
     vm.pageUrlDecoded = $location.absUrl();
     vm.part_org_activities = '';
     vm.loading = true;
 
     vm.tabs = [
-      {'id': 'samenvatting', 'name': 'Summary', 'count': -1},
+      {'id': 'summary', 'name': 'Summary', 'count': -1},
       {'id': 'programmes', 'name': 'Programmes', 'count': -1},
       {'id': 'activities', 'name': 'Projects', 'count': -1},
       {'id': 'sectors', 'name': 'Sectors', 'count': -1},

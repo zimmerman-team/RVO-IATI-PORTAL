@@ -19,7 +19,7 @@
     vm.country = null;
     vm.country_id = $stateParams.country_id;
     vm.filterSelection = FilterSelection;
-    vm.selectedTab = 'samenvatting';
+    vm.selectedTab = 'summary';
     vm.countryPageUrl = null;
     vm.disbursements = null;
     vm.budget = null;
@@ -32,7 +32,7 @@
     vm.aggregated_transactions = {};
 
     vm.tabs = [
-      {'id': 'samenvatting', 'name': 'Summary', 'count': -1},
+      {'id': 'summary', 'name': 'Summary', 'count': -1},
       {'id': 'programmes', 'name': 'Programmes', 'count': -1},
       {'id': 'activities', 'name': 'Projects', 'count': -1},
       {'id': 'sectors', 'name': 'Sectors', 'count': -1},

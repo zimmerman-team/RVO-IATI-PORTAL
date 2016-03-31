@@ -21,12 +21,12 @@ var sectorLayoutTest = null;
     vm.sector_id = parseInt($stateParams.sector_id);
     vm.sector_digit = 0;
     vm.filterSelection = FilterSelection;
-    vm.selectedTab = 'samenvatting';
+    vm.selectedTab = 'summary';
     vm.pageUrlDecoded = $location.absUrl();
     vm.aggregated_transactions = null;
 
     vm.tabs = [
-      {'id': 'samenvatting', 'name': 'Summary', 'count': -1},
+      {'id': 'summary', 'name': 'Summary', 'count': -1},
       {'id': 'programmes', 'name': 'Programmes', 'count': -1},
       {'id': 'activities', 'name': 'Projects', 'count': -1},
       {'id': 'countries', 'name': 'Countries', 'count': -1},
