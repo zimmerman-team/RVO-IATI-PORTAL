@@ -31,6 +31,11 @@
                         </select>
                     </div>
                 <span class="results">Results: <span class="total">{{vm.totalActivities}}</span></span>
+                <span class="download-list">
+                  <a ng-click="vm.download('json')"><i class="fa fa-download"></i>JSON</a>
+                  &nbsp;&nbsp;&nbsp;
+                  <a ng-click="vm.download('csv')"><i class="fa fa-download"></i>CSV</a>
+                </span>
             </div>
         </div>
     </div>

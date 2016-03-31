@@ -9,12 +9,12 @@
     .module('oipa.implementingOrganisations')
     .controller('ImplementingOrganisationsListController', ImplementingOrganisationsListController);
 
-  ImplementingOrganisationsListController.$inject = ['$scope', 'Aggregations', 'FilterSelection'];
+  ImplementingOrganisationsListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'homeUrl'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function ImplementingOrganisationsListController($scope, Aggregations, FilterSelection) {
+  function ImplementingOrganisationsListController($scope, Aggregations, FilterSelection, homeUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.organisations = [];
@@ -99,6 +99,12 @@
         console.warn('error getting data on lazy loading');
       }
     };
+
+    vm.download = function(format){
+      var aggregation_url = Aggregations.prepare_url('participating_organisation', 'count', vm.filterSelection.selectionString + '&participating_organisation_role=2,4' + vm.extraSelectionString, vm.order_by);
+      var url = homeUrl + '/export/?type=aggregated-list&format='+format+'&aggregation_group=participating_organisation&aggregation_url=' + encodeURIComponent(aggregation_url);
+      window.open(url);
+    }
 
     activate();
   }

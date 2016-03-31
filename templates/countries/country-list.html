@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="container list-view-wrapper">
+<div class="list-view-wrapper">
      <div class="row">
         <div class="col-md-12">
             <div class="sort">
@@ -39,6 +39,11 @@
                         </select>
                     </div>
                 <span class="results">Results: <span class="total">{{vm.totalCountries}}</span></span>
+                <span class="download-list">
+                  <a ng-click="vm.download('json')"><i class="fa fa-download"></i>JSON</a>
+                  &nbsp;&nbsp;&nbsp;
+                  <a ng-click="vm.download('csv')"><i class="fa fa-download"></i>CSV</a>
+                </span>
             </div>
         </div>
     </div>

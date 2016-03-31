@@ -9,12 +9,12 @@
     .module('oipa.sectors')
     .controller('SectorListController', SectorListController);
 
-  SectorListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'sectorMapping'];
+  SectorListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'sectorMapping', 'homeUrl'];
 
   /**
   * @namespace SectorListController
   */
-  function SectorListController($scope, Aggregations, FilterSelection, sectorMapping) {
+  function SectorListController($scope, Aggregations, FilterSelection, sectorMapping, homeUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.sectors = [];
@@ -152,6 +152,12 @@
 
     vm.toggleOrder = function(){
       vm.update(vm.filterSelection.selectionString);
+    }
+
+    vm.download = function(format){
+      var aggregation_url = Aggregations.prepare_url('sector', 'sector_percentage_weighted_incoming_fund,count', vm.filterSelection.selectionString + vm.extraSelectionString, 'sector');
+      var url = homeUrl + '/export/?type=aggregated-list&format='+format+'&aggregation_group=sector&aggregation_url=' + encodeURIComponent(aggregation_url);
+      window.open(url);
     }
 
     activate();

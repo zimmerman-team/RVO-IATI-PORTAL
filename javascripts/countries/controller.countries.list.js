@@ -9,12 +9,12 @@
     .module('oipa.countries')
     .controller('CountriesListController', CountriesListController);
 
-  CountriesListController.$inject = ['$scope', 'Aggregations', 'FilterSelection'];
+  CountriesListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'homeUrl'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function CountriesListController($scope, Aggregations, FilterSelection) {
+  function CountriesListController($scope, Aggregations, FilterSelection, homeUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.countries = [];
@@ -100,6 +100,12 @@
         console.warn('error getting data on lazy loading');
       }
     };
+
+    vm.download = function(format){
+      var aggregation_url = Aggregations.prepare_url('recipient_country', 'count,recipient_country_percentage_weighted_incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by);
+      var url = homeUrl + '/export/?type=aggregated-list&format='+format+'&aggregation_group=recipient_country&aggregation_url=' + encodeURIComponent(aggregation_url);
+      window.open(url);
+    }
 
     activate();
   }

@@ -9,12 +9,12 @@
     .module('oipa.programmes')
     .controller('ProgrammeListController', ProgrammeListController);
 
-  ProgrammeListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'Aggregations', 'programmesMapping'];
+  ProgrammeListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'Aggregations', 'programmesMapping', 'homeUrl'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function ProgrammeListController($scope, Activities, FilterSelection, Aggregations, programmesMapping) {
+  function ProgrammeListController($scope, Activities, FilterSelection, Aggregations, programmesMapping, homeUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
@@ -95,6 +95,12 @@
       function errorFn(data, status, headers, config){
         console.warn('error getting data for activity.list.block');
       }
+    }
+
+    vm.download = function(format){
+      var aggregation_url = Aggregations.prepare_url('related_activity', 'count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by);
+      var url = homeUrl + '/export/?type=aggregated-list&format='+format+'&aggregation_group=programme&aggregation_url=' + encodeURIComponent(aggregation_url);
+      window.open(url);
     }
 
     activate();

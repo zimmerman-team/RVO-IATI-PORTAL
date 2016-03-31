@@ -1,34 +1,39 @@
-<div class="container">  
-    <div class="row">
-        <div class="col-md-12">
-            <div class="sort">
-                <span class="sort-by">Sort by: </span>
-                    <div class="custom-select ff-hack">
-                        <select
-                          ng-model="vm.order_by"
-                          ng-change="vm.toggleOrder()">
-                          <option value="title">Title (A-Z)</option>
-                          <option value="-title">Title (Z-A)</option>
-                          <!-- <option value="start_actual">Starting date (increasing)</option>
-                          <option value="-start_actual">Starting date (decreasing)</option> -->
-                          <option value="activity_incoming_funds_value">Budget (increasing)</option>
-                          <option value="-activity_incoming_funds_value">Budget (decreasing)</option>
-                        </select>
-                    </div>
-                <span class="results">Results: <span class="total">{{vm.totalActivities}}</span></span>
-            </div>
-        </div>
-    </div>
 
-    <div ng-if='vm.totalActivities == 0' class="row">
-        <div class="col-sm-12">
-            <div class="no-results">
-                <h2>Nothing found</h2>
-                <p>Please select some different filters.</p>
-            </div>
-        </div>
-    </div>
-</div>
+  <div class="row">
+      <div class="col-md-12">
+          <div class="sort">
+              <span class="sort-by">Sort by: </span>
+              <div class="custom-select ff-hack">
+                  <select
+                    ng-model="vm.order_by"
+                    ng-change="vm.toggleOrder()">
+                    <option value="title">Title (A-Z)</option>
+                    <option value="-title">Title (Z-A)</option>
+                    <!-- <option value="start_actual">Starting date (increasing)</option>
+                    <option value="-start_actual">Starting date (decreasing)</option> -->
+                    <option value="activity_incoming_funds_value">Budget (increasing)</option>
+                    <option value="-activity_incoming_funds_value">Budget (decreasing)</option>
+                  </select>
+              </div>
+              <span class="results">Results: <span class="total">{{vm.totalActivities}}</span></span>
+              
+              <span class="download-list">
+                <a ng-click="vm.download('json')"><i class="fa fa-download"></i>JSON</a>
+                &nbsp;&nbsp;&nbsp;
+                <a ng-click="vm.download('csv')"><i class="fa fa-download"></i>CSV</a>
+              </span>
+          </div>
+      </div>
+  </div>
+
+  <div ng-if='vm.totalActivities == 0' class="row">
+      <div class="col-sm-12">
+          <div class="no-results">
+              <h2>Nothing found</h2>
+              <p>Please select some different filters.</p>
+          </div>
+      </div>
+  </div>
 
 <table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' class="table list-overview" ng-show="vm.activities.length != 0">
     <thead>

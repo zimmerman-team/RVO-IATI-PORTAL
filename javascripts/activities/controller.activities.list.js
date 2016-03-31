@@ -9,12 +9,12 @@
     .module('oipa.activities')
     .controller('ActivityListController', ActivityListController);
 
-  ActivityListController.$inject = ['$scope', 'Activities', 'FilterSelection'];
+  ActivityListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function ActivityListController($scope, Activities, FilterSelection) {
+  function ActivityListController($scope, Activities, FilterSelection, homeUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
@@ -93,6 +93,11 @@
         console.warn('error getting data on lazy loading');
       }
     };
+
+    vm.download = function(format){
+      var url = homeUrl + '/export/?type=activity-list&format='+format+'&filters=' + encodeURIComponent(vm.filterSelection.selectionString);
+      window.open(url);
+    }
 
     activate();
   }

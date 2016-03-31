@@ -603,7 +603,7 @@ ZzSunburst = (function() {
 
   function CustomTooltip(tooltipId, width){
     var tooltipId = tooltipId;
-    $("#openaid-main").append("<div class='zz_tooltip' id='"+tooltipId+"'></div>");
+    $("#rvo-main").append("<div class='zz_tooltip' id='"+tooltipId+"'></div>");
     
     if(width){
       $("#"+tooltipId).css("width", width);

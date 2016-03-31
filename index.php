@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <navbar></navbar>
-<div id="openaid-main" ui-view></div>
+<div id="rvo-main" ui-view></div>
 
 <a href="#" id="toTop">
   <span class="fa-stack fa-lg">

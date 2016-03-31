@@ -15,7 +15,7 @@ and will be used across all viewports.
   opacity: 0;
 }
 
-#openaid-main{
+#rvo-main{
   min-height: 800px;
 }
 
@@ -67,6 +67,10 @@ h1,h2,h3,h4,h5,h6 {
   color: $rvo-donkerblauw;
   font-family: $heading;
   font-weight: 400;
+}
+
+h1{
+  font-size: 2.1em;
 }
 
 a {
@@ -586,7 +590,7 @@ Sorteren
   color:$rvo-blauw;
   text-transform: uppercase;
   font-weight: 700;
-  padding:0 15px;
+  padding:0 30px;
   margin-top: 10px;
   .sort-item {
     margin-right: 15px;
@@ -611,6 +615,18 @@ Sorteren
     }
     .total {
       color:$rvo-groen;
+    }
+  }
+  .download-list{
+    margin-top: 10px; 
+    float: right;
+
+    a{
+      cursor: pointer;
+
+      i{
+        margin-right: 3px;
+      }
     }
   }
   .custom-select {
@@ -1021,7 +1037,7 @@ table {
 }
 .detailview {
   .sort {
-    padding:0;
+    padding:0 15px;
   }
    .table.list-overview {
       td, th {
