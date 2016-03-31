@@ -27,26 +27,21 @@
 		<?php // or, set /favicon.ico for IE10 win ?>
 		<meta name="msapplication-TileColor" content="#f01d4f">
 		<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/library/images/win8-tile-icon.png">
-            <meta name="theme-color" content="#121212">
+        <meta name="theme-color" content="#121212">
 
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/font-awesome.min.css">
-
 		
 		<?php // wordpress head functions ?>
 		<?php wp_head(); ?>
+		<?php include( 'constants.php' ); ?> 
 		<?php // end of wordpress head ?>
 		<base href="<?php echo home_url() . '/'; ?>" />
 		<script>
 			var home_url = '<?php echo home_url(); ?>';
 			var template_url = '<?php echo get_template_directory_uri(); ?>';
-			var oipa_url = 'https://rvo.oipa.nl/api';
-			// var oipa_url = 'http://localhost:8000/api';
+			var oipa_url = '<?php echo OIPA_URL; ?>';
             var upload_url = '<?php $upload_dir = wp_upload_dir(); echo $upload_dir["baseurl"]; ?>';
-			// var oipa_url = 'http://localhost:8000/api';
-
-			
-			
 			var reporting_organisation_id = 'NL-KVK-27378529';
 			<?php $customFields = get_post_custom(); ?>
 			var customFields = <?php echo json_encode($customFields); ?>;

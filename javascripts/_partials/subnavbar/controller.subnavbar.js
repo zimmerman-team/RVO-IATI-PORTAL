@@ -28,8 +28,6 @@
     vm.openTab = function(id){
       $scope.selectedTab = id;
       var path = $state.current.url;
-      console.log($state);
-      console.log(path);
       $location.search('tab', id);
       // $location.search('tab', id);
 

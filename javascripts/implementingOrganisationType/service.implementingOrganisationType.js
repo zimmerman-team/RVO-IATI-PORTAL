@@ -26,7 +26,6 @@
 		};
 
 		function getParticipatingOrgTypes(org_types) {
-            console.log(org_types);
 
             var url = oipaUrl + '/activities/aggregations/?format=json&group_by=participating_organisation_type&aggregations=count';
             if(reportingOrganisationId){

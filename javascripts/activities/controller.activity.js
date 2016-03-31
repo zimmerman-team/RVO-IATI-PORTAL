@@ -144,7 +144,7 @@
     };
 
     vm.download = function(format){
-      var url = homeUrl + '/export/?format=json&detail='+vm.activityId+'&filters=';
+      var url = homeUrl + '/export/?format='+format+'&detail='+vm.activityId+'&filters=';
       window.open(url);
     }
 

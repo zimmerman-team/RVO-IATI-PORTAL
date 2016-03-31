@@ -59,3 +59,4 @@ temp/
 *.scssc
 
 bower_components/*
+constants.php
