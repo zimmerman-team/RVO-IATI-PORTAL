@@ -108,54 +108,56 @@
     vm.reformatData = function(data){
       var values = [];
 
-      if(vm.groupBy == 'sector'){
+      // if(vm.groupBy == 'sector'){
 
-        var newData = [];
+      //   var newData = [];
 
-        var sectors = {
-          "11": "Education",
-          "12": "Health",
-          "13": "Population policies / programmes and reproductive health",
-          "14": "Water and sanitation",
-          "15": "Government and civil society",
-          "16": "Other social infrastructure and services",
-          "2": "Economic sectors",
-          "3": "Productive sectors",
-          "4": " Multisector / cross-cutting", 
-          "5": "Commodity aid and general programme assistance",
-          "60": "Action relating to debt",
-          "7": "Humanitarian aid",
-          "91": "Administrative costs of donors",
-          "92": "Support to Non- governmental organisations",
-          "93": "Refugees in donor countries",
-          "99": "Unallocated / Unspecified",
-        }
+      //   var sectors = {
+      //     "11": "Education",
+      //     "12": "Health",
+      //     "13": "Population policies / programmes and reproductive health",
+      //     "14": "Water and sanitation",
+      //     "15": "Government and civil society",
+      //     "16": "Other social infrastructure and services",
+      //     "2": "Economic sectors",
+      //     "3": "Productive sectors",
+      //     "4": " Multisector / cross-cutting", 
+      //     "5": "Commodity aid and general programme assistance",
+      //     "60": "Action relating to debt",
+      //     "7": "Humanitarian aid",
+      //     "91": "Administrative costs of donors",
+      //     "92": "Support to Non- governmental organisations",
+      //     "93": "Refugees in donor countries",
+      //     "99": "Unallocated / Unspecified",
+      //   }
 
-        var filledSectors = {};
+      //   var filledSectors = {};
 
-        for(var i = 0;i < data.length;i++){
-          var dac2 = data[i].sector.code.substring(0,2);
+      //   for(var i = 0;i < data.length;i++){
+      //     var dac2 = data[i].sector.code.substring(0,2);
 
-          if(sectors[dac2] == undefined){
-            dac2 = dac2.substring(0,1);
-          }
+      //     if(sectors[dac2] == undefined){
+      //       dac2 = dac2.substring(0,1);
+      //     }
 
-          if(filledSectors[dac2] == undefined){
-            filledSectors[dac2] = {};
-            filledSectors[dac2].sector = {'code':dac2,  'name': sectors[dac2] };
-            filledSectors[dac2]['incoming_fund'] = data[i]['incoming_fund'];
-            filledSectors[dac2]['count'] = data[i]['count'];
-          } else {
-            filledSectors[dac2]['incoming_fund'] += data[i]['incoming_fund'];
-            filledSectors[dac2]['count'] += data[i]['count'];
-          }
-        }
+      //     if(filledSectors[dac2] == undefined){
+      //       filledSectors[dac2] = {};
+      //       filledSectors[dac2].sector = {'code':dac2,  'name': sectors[dac2] };
+      //       filledSectors[dac2]['incoming_fund'] = data[i]['incoming_fund'];
+      //       filledSectors[dac2]['count'] = data[i]['count'];
+      //     } else {
+      //       filledSectors[dac2]['incoming_fund'] += data[i]['incoming_fund'];
+      //       filledSectors[dac2]['count'] += data[i]['count'];
+      //     }
+      //   }
 
-        data = [];
-        for(var code in filledSectors){
-          data.push(filledSectors[code]);
-        }
-      }
+      //   data = [];
+      //   for(var code in filledSectors){
+      //     data.push(filledSectors[code]);
+      //   }
+
+        
+      // }
 
       if(vm.groupBy == 'related_activity'){
         for (var i = 0; i < data.length;i++){
