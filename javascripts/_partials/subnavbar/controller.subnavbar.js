@@ -30,6 +30,10 @@
         var parameters = $location.search();
         if(parameters['tab'] != undefined && parameters['tab'] != $scope.selectedTab){
           $scope.selectedTab = parameters['tab'];
+
+          setTimeout(function(){
+            window.dispatchEvent(new Event('resize'));
+          }, 10);
         }
       });
     }
