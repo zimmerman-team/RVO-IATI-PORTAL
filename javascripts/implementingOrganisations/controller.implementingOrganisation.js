@@ -24,6 +24,8 @@
     vm.pageUrlDecoded = $location.absUrl();
     vm.part_org_activities = '';
     vm.loading = true;
+    vm.budget = null;
+    vm.disbursements = null;
 
     vm.tabs = [
       {'id': 'summary', 'name': 'Summary', 'count': -1},
@@ -96,11 +98,8 @@
     }
 
     vm.download = function(format){
-      var url = homeUrl + '/export/?format=json&filters='+encodeURIComponent(FilterSelection.selectionString);
+      var url = homeUrl + '/export/?type=implementing-org-detail&detail=' + vm.organisation_id + '&format='+format+'&budget=' + vm.budget + '&expenditure=' + vm.disbursements;
       window.open(url);
     }
-
-    
-
   }
 })();

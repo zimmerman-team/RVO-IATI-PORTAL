@@ -130,10 +130,9 @@ var sectorLayoutTest = null;
     }
 
     vm.download = function(format){
-      var url = homeUrl + '/export/?format=json&filters='+encodeURIComponent(FilterSelection.selectionString);
+      var url = homeUrl + '/export/?type=sector-detail&detail=' + vm.sector_id + '&format='+format+'&sector_name='+encodeURIComponent(vm.sector.name)+'&budget=' + vm.budget + '&expenditure=' + vm.expenditure;
       window.open(url);
     }
-
     activate();
 
   }

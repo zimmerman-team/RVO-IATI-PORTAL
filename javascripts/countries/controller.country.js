@@ -103,11 +103,11 @@
     }
 
     vm.download = function(format){
-      var url = oipaUrl + 'countries/' + vm.country.code +'/?format=json';
+
+      var url = homeUrl + '/export/?type=country-detail&detail=' + vm.country_id + '&format='+format+'&endpoint=countries&fields=code,name&budget=' + vm.budget + '&expenditure=' + vm.disbursements;
       window.open(url);
     }
 
     activate();
-
   }
 })();

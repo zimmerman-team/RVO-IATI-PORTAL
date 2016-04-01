@@ -104,7 +104,7 @@
     }
 
     vm.download = function(format){
-      var url = homeUrl + '/export/?format=json&detail='+vm.programmeId+'&filters=';
+      var url = homeUrl + '/export/?type=activity-detail&format='+format+'&detail='+vm.programmeId;
       window.open(url);
     }
 
