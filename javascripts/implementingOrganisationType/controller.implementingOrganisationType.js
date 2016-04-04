@@ -36,7 +36,7 @@
       }
       filterString = filterString.join('&');
 
-      Aggregations.aggregation('participating_organisation_type', 'count', filterString, 'participating_organisation_type', 999, 1).then(successFn, errorFn);
+      Aggregations.aggregation('participating_organisation_type', 'distinct_count', filterString + '&hierarchy=2', 'participating_organisation_type', 999, 1).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.totalCount = data.data.count;
