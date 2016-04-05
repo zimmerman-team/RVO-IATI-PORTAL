@@ -9,12 +9,12 @@
     .module('oipa.programmes')
     .controller('ProgrammeController', ProgrammeController);
 
-  ProgrammeController.$inject = ['Activities', '$stateParams', 'FilterSelection', 'templateBaseUrl', 'Programmes', 'homeUrl', '$location'];
+  ProgrammeController.$inject = ['Activities', '$stateParams', 'FilterSelection', 'templateBaseUrl', 'Programmes', 'homeUrl'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ProgrammeController(Activities, $stateParams, FilterSelection, templateBaseUrl, Programmes, homeUrl, $location) {
+  function ProgrammeController(Activities, $stateParams, FilterSelection, templateBaseUrl, Programmes, homeUrl) {
     var vm = this;
     vm.activity = null;
     vm.programmeId = $stateParams.programme_id;
@@ -39,7 +39,6 @@
       "NL-KVK-27378529-25717": "http://english.rvo.nl/subsidies-programmes/ghana-wash-window",
     }
     vm.programmeUrl = null;
-    vm.pageUrlDecoded = $location.absUrl();
     vm.budgetLeft = 0;
     vm.progressStyle = {};
     vm.loading = true;
@@ -80,9 +79,6 @@
         console.log("getting activity failed");
         vm.loading = false;
       }
-      vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
-      vm.shareDescription = encodeURIComponent('View the aid projects of the RVO on ' + vm.pageUrlDecoded);
-
     }
 
     vm.setBudgetLeft = function(){

@@ -144,6 +144,10 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'controller.subnavbar', get_stylesheet_directory_uri() . '/javascripts/_partials/subnavbar/controller.subnavbar.js', array('oipa'), '', true );
 		wp_register_script( 'directive.subnavbar', get_stylesheet_directory_uri() . '/javascripts/_partials/subnavbar/directive.subnavbar.js', array('oipa'), '', true );
 
+		wp_register_script( 'controller.sharelinks', get_stylesheet_directory_uri() . '/javascripts/_partials/sharelinks/controller.sharelinks.js', array('oipa'), '', true );
+		wp_register_script( 'directive.sharelinks', get_stylesheet_directory_uri() . '/javascripts/_partials/sharelinks/directive.sharelinks.js', array('oipa'), '', true );
+
+
 		wp_register_script( 'controller.totalsbar', get_stylesheet_directory_uri() . '/javascripts/_partials/totals/controller.totals.js', array('oipa'), '', true );
 		wp_register_script( 'directive.totalsbar', get_stylesheet_directory_uri() . '/javascripts/_partials/totals/directive.totals.js', array('oipa'), '', true );
 		
@@ -369,6 +373,8 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'directive.topnavbar' );
 		wp_enqueue_script( 'controller.subnavbar' );
 		wp_enqueue_script( 'directive.subnavbar' );
+		wp_enqueue_script( 'controller.sharelinks' );
+		wp_enqueue_script( 'directive.sharelinks' );
 		wp_enqueue_script( 'controller.totalsbar' );
 		wp_enqueue_script( 'directive.totalsbar' );
 

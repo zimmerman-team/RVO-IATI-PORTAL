@@ -10,19 +10,18 @@ var sectorLayoutTest = null;
     .module('oipa.sectors')
     .controller('SectorController', SectorController);
 
-  SectorController.$inject = ['$scope', 'Sectors', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'sectorMapping', 'homeUrl', '$location'];
+  SectorController.$inject = ['$scope', 'Sectors', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'sectorMapping', 'homeUrl'];
 
   /**
   * @namespace CountriesController
   */
-  function SectorController($scope, Sectors, templateBaseUrl, $stateParams, FilterSelection, Aggregations, sectorMapping, homeUrl, $location) {
+  function SectorController($scope, Sectors, templateBaseUrl, $stateParams, FilterSelection, Aggregations, sectorMapping, homeUrl) {
     var vm = this;
     vm.sector = null;
     vm.sector_id = parseInt($stateParams.sector_id);
     vm.sector_digit = 0;
     vm.filterSelection = FilterSelection;
     vm.selectedTab = 'summary';
-    vm.pageUrlDecoded = $location.absUrl();
     vm.aggregated_transactions = null;
 
     vm.tabs = [
@@ -86,8 +85,6 @@ var sectorLayoutTest = null;
         $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
           vm.update(selectionString);
         }, true);
-        vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
-        vm.shareDescription = encodeURIComponent('View the aid projects of the RVO on ' + vm.pageUrlDecoded);
       }
     }
 

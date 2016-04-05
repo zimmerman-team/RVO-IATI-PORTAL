@@ -9,12 +9,12 @@
     .module('oipa.countries')
     .controller('CountryController', CountryController);
 
-  CountryController.$inject = ['$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'countryPageUrls', 'homeUrl', '$location', 'uploadBaseUrl', 'oipaUrl'];
+  CountryController.$inject = ['$rootScope', '$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'countryPageUrls', 'homeUrl', '$location', 'uploadBaseUrl', 'oipaUrl'];
 
   /**
   * @namespace CountryController
   */
-  function CountryController($scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations, countryPageUrls, homeUrl, $location, uploadBaseUrl, oipaUrl) {
+  function CountryController($rootScope, $scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations, countryPageUrls, homeUrl, $location, uploadBaseUrl, oipaUrl) {
     var vm = this;
     vm.country = null;
     vm.country_id = $stateParams.country_id;
@@ -26,7 +26,6 @@
     vm.budgetLeft = 0;
     vm.progressStyle = {};
     vm.templateBaseUrl = templateBaseUrl;
-    vm.pageUrlDecoded = $location.absUrl();
     vm.loading = true;
     vm.uploadBaseUrl = uploadBaseUrl;
     vm.aggregated_transactions = {};
@@ -57,16 +56,12 @@
       // for each active country, get the results
       Countries.getCountry(vm.country_id).then(successFn, errorFn);
     
-
       function successFn(data, status, headers, config) {
         vm.country = data.data;
         Countries.selectedCountries.push({'count': 0, 'recipient_country': {'code':vm.country.code,'name':vm.country.name}});
         FilterSelection.save();
         vm.loading = false;
       }
-
-      vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
-      vm.shareDescription = encodeURIComponent('View the aid projects of the RVO on ' + vm.pageUrlDecoded);
     }
 
     function errorFn(data, status, headers, config) {

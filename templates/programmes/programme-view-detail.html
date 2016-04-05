@@ -117,10 +117,7 @@
                             <tr>
                                 <td>Share:</td>
                                 <td>
-                                    <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}"><i class="fa fa-twitter-square"></i></a>
-                                    <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}"><i class="fa fa-facebook-square"></i></a>
-                                    <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}"><i class="fa fa-linkedin-square"></i></a>
-                                    <a href="mailto:?&subject={{vm.shareDescription}}&body={{vm.pageUrl}}"><i class="fa fa-envelope-square"></i></a>
+                                    <share-links></share-links>
                                 </td>
                             </tr>
                         </table>

@@ -9,19 +9,18 @@
     .module('oipa.implementingOrganisations')
     .controller('ImplementingOrganisationController', ImplementingOrganisationController);
 
-  ImplementingOrganisationController.$inject = ['$scope', '$stateParams', 'ImplementingOrganisations', 'FilterSelection', 'Aggregations', 'homeUrl', '$location'];
+  ImplementingOrganisationController.$inject = ['$scope', '$stateParams', 'ImplementingOrganisations', 'FilterSelection', 'Aggregations', 'homeUrl'];
 
   /**
   * @namespace CountriesController
   */
-  function ImplementingOrganisationController($scope, $stateParams, ImplementingOrganisations, FilterSelection, Aggregations, homeUrl, $location) {
+  function ImplementingOrganisationController($scope, $stateParams, ImplementingOrganisations, FilterSelection, Aggregations, homeUrl) {
     var vm = this;
     vm.organisation = null;
     vm.organisation_id = $stateParams.organisation_id;
     vm.filterSelection = FilterSelection;
     vm.selectionString = '';
     vm.selectedTab = 'summary';
-    vm.pageUrlDecoded = $location.absUrl();
     vm.part_org_activities = '';
     vm.loading = true;
     vm.budget = null;

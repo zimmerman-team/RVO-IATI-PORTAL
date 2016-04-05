@@ -9,12 +9,12 @@
     .module('oipa.activities')
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl', '$location','programmesMapping', '$sce'];
+  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl','programmesMapping', '$sce'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, $location, programmesMapping, $sce) {
+  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, programmesMapping, $sce) {
     var vm = this;
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
@@ -25,7 +25,6 @@
     vm.start_actual = null;
     vm.end_planned = null;
     vm.end_actual = null;
-    vm.pageUrlDecoded = $location.absUrl();
     vm.loading = true;
     vm.selectedTab = 'summary';
 
@@ -102,9 +101,6 @@
         console.log("getting activity failed");
         vm.loading = false;
       }
-
-      vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
-      vm.shareDescription = encodeURIComponent('View the aid projects of the RVO on ' + vm.pageUrlDecoded);
     }
 
     vm.transactionChartData = [];
