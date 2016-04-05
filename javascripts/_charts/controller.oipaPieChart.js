@@ -5,12 +5,12 @@
     .module('oipa.charts')
     .controller('OipaPieChartController', OipaPieChartController);
 
-  OipaPieChartController.$inject = ['$scope', 'FilterSelection', 'Aggregations','$filter','templateBaseUrl', 'programmesMapping'];
+  OipaPieChartController.$inject = ['$scope', 'FilterSelection', 'Aggregations','$filter','templateBaseUrl', 'programmesMapping', '$state'];
 
   /**
   * @namespace ActivitiesController
   */
-  function OipaPieChartController($scope, FilterSelection, Aggregations, $filter,templateBaseUrl, programmesMapping) {
+  function OipaPieChartController($scope, FilterSelection, Aggregations, $filter,templateBaseUrl, programmesMapping, $state) {
     
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
@@ -47,6 +47,22 @@
         showLegend: false,
         growOnHover: false,
         noData: '',
+        pie: {
+          dispatch: {
+            elementClick: function(e){
+              var item = e.data[0];
+              if(item.recipient_country != undefined){
+                $state.go('country', { country_id: item.recipient_country.code });
+              } else if(item.sector != undefined){
+                $state.go('sector', { sector_id: item.sector.code });
+              } else if(item.related_activity != undefined){
+                $state.go('programme', { programme_id: item.related_activity.code });
+              } else if(item.recipient_region != undefined){
+                $state.go('region', { region_id: item.recipient_region.code });
+              }
+            }
+          }
+        },
         tooltip: {
           contentGenerator: function(key, date, e, graph){
             var name = key.data[0][vm.groupBy].name;
