@@ -453,8 +453,12 @@ ZzSunburst = (function() {
       var legendItems = testpartition(d.parent);
     }
 
+    legendItems = _.filter(legendItems, function(item){
+      return item.value > 0; 
+    });
+
     var legendItem = this.legend.selectAll("g.legendItem")
-        .data(legendItems, function(d) { return d.id; });
+        .data(legendItems, function(d) { if(d.value > 0) { return d.id; }});
 
     var legendItemEnter = legendItem.enter().append("g")
         .attr("class", "legendItem")
