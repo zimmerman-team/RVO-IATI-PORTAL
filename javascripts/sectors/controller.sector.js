@@ -120,7 +120,7 @@ var sectorLayoutTest = null;
 
       if (selectionString.indexOf("sector") < 0){ return false;}
 
-      Aggregations.aggregation('sector', 'sector_percentage_weighted_disbursement,sector_percentage_weighted_expenditure,sector_percentage_weighted_incoming_fund', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('sector', 'sector_percentage_weighted_disbursement,sector_percentage_weighted_expenditure,sector_percentage_weighted_incoming_fund', selectionString + '&hierarchy=2').then(function(data, status, headers, config){
         vm.aggregated_transactions = data.data.results;
         vm.setBudgetLeft();
       }, errorFn);

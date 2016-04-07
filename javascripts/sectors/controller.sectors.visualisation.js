@@ -42,7 +42,7 @@
         }
 
         vm.activateSunburst = function(){
-            Aggregations.aggregation('sector', 'count,sector_percentage_weighted_incoming_fund', vm.selectionString).then(successFn, errorFn);
+            Aggregations.aggregation('sector', 'count,sector_percentage_weighted_incoming_fund', vm.selectionString + '&hierarchy=2').then(successFn, errorFn);
 
             function successFn(data, status, headers, config) {
                 vm.reformatSunburstData(data.data.results);

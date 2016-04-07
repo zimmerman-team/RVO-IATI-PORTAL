@@ -95,7 +95,7 @@
     };
 
     vm.loadData = function(filterString){
-      Aggregations.aggregation(vm.groupBy, vm.aggregations, filterString).then(succesFn, errorFn);
+      Aggregations.aggregation(vm.groupBy, vm.aggregations, filterString + '&hierarchy=2').then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.chartData = vm.reformatData(data.data.results);

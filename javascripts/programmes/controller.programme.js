@@ -85,14 +85,14 @@
       vm.expenditure = 0;
 
       if(vm.activity.aggregations.activity_children.expenditure_value != null){
-        vm.expenditure += vm.activity.aggregations.activity_children.expenditure_value;
+        vm.expenditure += vm.activity.aggregations.children.expenditure_value;
       }
 
       if(vm.activity.aggregations.activity_children.disbursement_value != null){
-        vm.expenditure += vm.activity.aggregations.activity_children.disbursement_value;
+        vm.expenditure += vm.activity.aggregations.children.disbursement_value;
       }
 
-      vm.budgetLeft = Math.round(vm.expenditure / vm.activity.aggregations.activity_children.incoming_funds_value * 100);
+      vm.budgetLeft = Math.round(vm.expenditure / vm.activity.aggregations.children.incoming_funds_value * 100);
       if (isNaN(vm.budgetLeft) || !isFinite(vm.budgetLeft)) {
         vm.budgetLeft = 0;
       }

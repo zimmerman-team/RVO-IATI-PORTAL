@@ -24,7 +24,7 @@
 
       var selectionString = '';
 
-      Aggregations.aggregation('recipient_country', 'count', selectionString, 'recipient_country', 1).then(function(data, status, headers, config){
+      Aggregations.aggregation('recipient_country', 'count', selectionString + '&hierarchy=2', 'recipient_country', 1).then(function(data, status, headers, config){
         vm.countryCount = data.data.count;
       }, errorFn);
 
@@ -32,7 +32,7 @@
         vm.activityCount = data.data.count;
       }, errorFn);
 
-      Aggregations.aggregation('reporting_organisation', 'incoming_fund').then(function(data, status, headers, config){
+      Aggregations.aggregation('reporting_organisation', 'incoming_fund', '&hierarchy=2').then(function(data, status, headers, config){
         vm.budget = data.data.results[0].incoming_fund;
       }, errorFn);
 
