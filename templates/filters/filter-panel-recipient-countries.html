@@ -30,7 +30,8 @@
 
 					    <tr 
 					    	dir-paginate="item in vm.recipientCountries | itemsPerPage: 4" 
-					    	total-items="vm.totalCount"  
+					    	total-items="vm.totalCount" 
+					    	current-page="pagination.current"  
 					    	pagination-id="recipientCountries">
 					    	<td>
 					    		<div class="checkbox">

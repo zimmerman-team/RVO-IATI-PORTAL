@@ -10,13 +10,17 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<td class="th-first">Select one or more statuses</td>
+							<td class="th-first">Select one or more types</td>
 							<td>Projects</td>
 						</tr>
 					</thead>
 					<tbody>
 
-					    <tr dir-paginate="item in vm.implementingOrganisationTypes | itemsPerPage: 4"  pagination-id="activityStatuses">
+						<tr 
+					    	dir-paginate="item in vm.implementingOrganisationTypes | itemsPerPage: 4" 
+					    	total-items="vm.totalCount" 
+					    	current-page="pagination.current"  
+					    	pagination-id="implementingOrganisationTypes">
 					    	<td>
 					    		<div class="checkbox">
 						    		<label class="switch">
@@ -35,6 +39,9 @@
 			</div>
 			<div class="col-md-12 text-center">
 				<button class="btn btn-default btn-save btn-openaid" ng-click="vm.save()">Save</button>
+				<dir-pagination-controls 
+					pagination-id="implementingOrganisationTypes" 
+					on-page-change="vm.pageChanged(newPageNumber)"></dir-pagination-controls>
 			</div>
 		</div>
 	</div>
