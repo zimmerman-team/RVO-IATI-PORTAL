@@ -52,13 +52,13 @@
             elementClick: function(e){
               var item = e.data[0];
               if(item.recipient_country != undefined){
-                $state.go('country', { country_id: item.recipient_country.code });
+                $state.go('country', { country_id: item.recipient_country.code, tab: 'summary' });
               } else if(item.sector != undefined){
-                $state.go('sector', { sector_id: item.sector.code });
+                $state.go('sector', { sector_id: item.sector.code, tab: 'summary' });
               } else if(item.related_activity != undefined){
-                $state.go('programme', { programme_id: item.related_activity.code });
+                $state.go('programme', { programme_id: item.related_activity.code, tab: 'summary' });
               } else if(item.recipient_region != undefined){
-                $state.go('region', { region_id: item.recipient_region.code });
+                $state.go('region', { region_id: item.recipient_region.code, tab: 'summary' });
               }
             }
           }

@@ -70,52 +70,10 @@
     <tbody>
         <tr
             ng-repeat="item in vm.countries">
-            <td><a ui-sref="country({ country_id: item.recipient_country.code })"><span class="flag-icon flag-icon-{{item.recipient_country.code | lowercase }} "></span>{{ item.recipient_country.name }}</a></td>
+            <td><a ui-sref="country({ country_id: item.recipient_country.code, tab: 'summary' })"><span class="flag-icon flag-icon-{{item.recipient_country.code | lowercase }} "></span>{{ item.recipient_country.name }}</a></td>
             <td>{{item.count}} projects</td>
             <!-- <td>xx programmes</td> -->
             <td>{{item.incoming_fund  | shortcurrency :'€'}}</td>
         </tr>
     </tbody>
 </table>
-
-<!-- <div class="row" infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1'>
-    <div class="activity-list-item col-sm-12">
-        <div class="panel no-margin-bottom header">
-            <div class="row">
-                <div class="col-sm-2">
-                    &nbsp;
-                </div>
-                <div class="col-sm-5">
-                    <h4 class="no-margin">Country</h4>
-                </div>
-                <div class="col-sm-3">
-                    <h4 class="no-margin">Total budget</h4>
-                </div>
-                <div class="col-sm-2">
-                    <h4 class="no-margin">Total projects</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="countries activity-list-item col-sm-12" 
-        ng-show="vm.countries.length != 0"
-        ng-repeat="item in vm.countries">
-        <div class="panel country">
-            <div class="row">
-                <div class="col-sm-2">
-                    <div class="image" style="">
-                    </div>
-                </div>
-                <div class="col-sm-5">
-                    <h3 class="no-margin"><a ui-sref="country({ country_id: item.country_id })"><span class="flag-icon flag-icon-{{item.country_id | lowercase }} "></span>{{ item.name }}</a></h3>
-                </div>
-                <div class="col-sm-3">
-                    <h3 class="no-margin">{{item.total_disbursements  | shortcurrency :'€'}}</h3>
-                </div>
-                <div class="col-sm-2">
-                    <h3 class="no-margin">{{item.activity_count}} projecten</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->

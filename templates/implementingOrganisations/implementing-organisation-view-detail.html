@@ -100,7 +100,7 @@
                             </tr>
                             <tr>
                                 <td width="130">Projects</td>
-                                <td><a ng-repeat="item in vm.part_org_activities" ui-sref="activiteit({ activity_id: item.iati_identifier })">{{ item.title.narratives[0].text }}{{$last ? '' : ', '}}</a></td>
+                                <td><a ng-repeat="item in vm.part_org_activities" ui-sref="activiteit({ activity_id: item.iati_identifier, tab: 'summary' })">{{ item.title.narratives[0].text }}{{$last ? '' : ', '}}</a></td>
                             </tr>
                         </table>
                     </div>

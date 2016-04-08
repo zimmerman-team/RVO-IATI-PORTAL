@@ -53,7 +53,7 @@
         })
         .state({
             name:        'activiteit',
-            url:         '/projects/:activity_id/',
+            url:         '/projects/:activity_id/?tab',
             controller:  'ActivityController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/activities/activity-view-detail.html',

@@ -48,7 +48,7 @@
         <tr
             ng-repeat="item in vm.activities">
             <td>
-              <a ui-sref="activiteit({ activity_id: item.id })">
+              <a ui-sref="activiteit({ activity_id: item.id, tab: 'summary' })">
                 {{ item.title.narratives[0].text }}
               </a>
             </td>
@@ -56,7 +56,7 @@
               {{item.activity_status.name}}
             </td>
             <td>
-              <a ng-repeat="recipient_country in item.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">
+              <a ng-repeat="recipient_country in item.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code, tab: 'summary' })">
                 {{recipient_country.country.name}}{{$last ? '' : ', '}}
               </a>
             </td>

@@ -44,7 +44,7 @@
     <tbody>
         <tr
             ng-if="item.name != ''" ng-repeat="item in vm.organisations">
-            <td><a ui-sref="organisation({ organisation_id:item.name})">{{ item.name }}<span ng-if="item.name == ''">Unknown</span></a></td>
+            <td><a ui-sref="organisation({ organisation_id:item.name, tab: 'summary' })">{{ item.name }}<span ng-if="item.name == ''">Unknown</span></a></td>
             <td>{{item.count}} projects</td>
         </tr>
     </tbody>

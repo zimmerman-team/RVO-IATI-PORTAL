@@ -1,32 +1,34 @@
 <div class="filter-panel budget">
-	<div class="extra-padding">
-		<div class="checkbox">
-			<label class="switch">
-				<input type="checkbox" ng-model="vm.on"><i></i>
-				<span>Select activity budget</span>
-			</label>
-		</div>
+    <div class="container">
+		<div class="extra-padding">
+			<div class="checkbox">
+				<label class="switch">
+					<input type="checkbox" ng-model="vm.on"><i></i>
+					<span>Select activity budget</span>
+				</label>
+			</div>
 
-		<div class="slide" ng-class="{ 'active' : vm.on }">	
-			<slider slider-id="time-slider"
-		        ng-model="vm.budgetValue"
-		        value="[0, 30000000]"
-		        min="0"
-		        max="30000000"
-		        step="1"
-		        range="true"
-		        precision="0"
-		        reversed="false"
-		        orientation="horizontal"
-		        handle="round"
-		        enabled="true"
-		        ng-disabled="false"
-		        naturalarrowkeys="false"
-		        selection="before"
-		        tooltip="always"
-		        tooltipsplit="true">
-			</slider>
+			<div class="slide" ng-class="{ 'active' : vm.on }">	
+				<slider slider-id="time-slider"
+			        ng-model="vm.budgetValue"
+			        value="[0, 30000000]"
+			        min="0"
+			        max="30000000"
+			        step="1"
+			        range="true"
+			        precision="0"
+			        reversed="false"
+			        orientation="horizontal"
+			        handle="round"
+			        enabled="true"
+			        ng-disabled="false"
+			        naturalarrowkeys="false"
+			        selection="before"
+			        tooltip="always"
+			        tooltipsplit="true">
+				</slider>
+			</div>
+			<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
 		</div>
-		<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
 	</div>
  </div>

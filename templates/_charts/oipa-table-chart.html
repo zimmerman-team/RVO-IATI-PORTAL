@@ -50,7 +50,7 @@
      -->        <td>
                 	<span class="no">{{$index + 1}}.</span>
 
-                	<!-- <a ui-sref="country({ country_id: item.country_id })"> -->
+                	<!-- <a ui-sref="country({ country_id: item.country_id, tab: 'summary' })"> -->
                     <a ng-href="{{vm.homeUrl+'/'+groupSref+'/'+item.id+'/'}}">
     	            	<span ng-if="item.country_id" class="flag-icon flag-icon-{{item.country_id | lowercase }}"></span><span>{{item.name}}</span>
                 	</a>
