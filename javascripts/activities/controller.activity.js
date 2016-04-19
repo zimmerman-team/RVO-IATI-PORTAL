@@ -237,7 +237,9 @@
           else if (documents[i].format.code == 'application/vnd.oasis.opendocument.text') { fileType = 'Open Office'; }
           else { fileType = 'Other'; }
           obj.filetype = fileType;
-          obj.language = documents[i].title[0].narratives[0].language.name;
+          if(documents[i].title.length > 0){
+            obj.language = documents[i].title[0].narratives[0].language.name;
+          }
           obj.categories = documents[i].categories;
           obj.url = documents[i].url;
           vm.relatedDocuments.push(obj);
