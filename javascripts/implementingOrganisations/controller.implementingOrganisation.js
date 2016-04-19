@@ -37,6 +37,8 @@
     activate();
 
     function activate() {
+      FilterSelection.reset();
+      
       ImplementingOrganisations.selectedImplementingOrganisations.push({'organisation_id': vm.organisation_id, 'name': ''});
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
@@ -81,7 +83,9 @@
 
       vm.budget = 0;
       vm.disbursements = 0;
-      Aggregations.aggregation('transaction_receiver_org_narrative', 'transaction_value', '&transaction_receiver_organisation_name=' + encodeURIComponent(vm.organisation_id)).then(function(data, status, headers, config){
+
+      var adjustedSelectionString = selectionString.replace('participating_organisation_name', 'transaction_receiver_organisation_name');
+      Aggregations.aggregation('transaction_receiver_org_narrative', 'transaction_value', adjustedSelectionString).then(function(data, status, headers, config){
 
         for(var i = 0; i < data.data.results.length;i++){
           if((data.data.results[i].transaction_type == '3' || data.data.results[i].transaction_type == '4') && data.data.results[i].name == vm.organisation_id){

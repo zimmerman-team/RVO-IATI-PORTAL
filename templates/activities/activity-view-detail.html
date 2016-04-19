@@ -16,10 +16,11 @@
     <div class="container extra">
 
         <div class="detailview white no-margin-bottom no-padding-bottom">
-
             <div ng-repeat="recipient_country in vm.activity.recipient_countries"  style="display:inline-block;margin: 10px 10px 0 0;">
-                <h4><span class="flag-icon flag-icon-{{recipient_country.country.code | lowercase }} detail-flag"></span>
-                {{recipient_country.country.name}}</h4>
+                <h4>
+                    <span class="flag-icon flag-icon-{{recipient_country.country.code | lowercase }} detail-flag"></span>
+                    {{recipient_country.country.name}}
+                </h4>
             </div>
             <h1 style="margin-top:0" class="no-margin-bottom">{{vm.activity.title.narratives[0].text}}</h1>         
         </div>
