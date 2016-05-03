@@ -47,6 +47,16 @@
       function successFn(data, status, headers, config) {
         vm.activity = data.data;
 
+        vm.activity.participating_organisations = vm.activity.participating_organisations.sort(function(a,b){
+          if(a.role.code < b.role.code){
+            return -1;
+          }
+          if(a.role.code > b.role.code){
+            return 1;
+          }
+          return 0;
+        });
+
         vm.loading = false;
         vm.description = null;
         vm.sortDocs(vm.activity.document_links);
@@ -93,8 +103,19 @@
       }
 
       function procesTransactions(data, status, headers, config){
-        vm.transactionData = data.data.results;
-        vm.reformatTransactionData(data.data.results);
+
+        var results = data.data.results.sort(function(a, b){
+          if(a.transaction_type.code < b.transaction_type.code){
+            return -1;
+          }
+          if(a.transaction_type.code > b.transaction_type.code){
+            return 1;
+          }
+          return 0;
+        });
+
+        vm.transactionData = results;
+        vm.reformatTransactionData(results);
       }
 
       function errorFn(data, status, headers, config) {
@@ -118,7 +139,7 @@
         y: function(d){ return d[1]; },
         color: d3.scale.category10().range(),
         transitionDuration: 300,
-        useInteractiveGuideline: true,
+        useInteractiveGuideline: false,
         clipVoronoi: false,
         interpolate: 'step',
         xAxis: {
