@@ -104,18 +104,42 @@
 
       function procesTransactions(data, status, headers, config){
 
-        var results = data.data.results.sort(function(a, b){
-          if(a.transaction_type.code < b.transaction_type.code){
-            return -1;
-          }
-          if(a.transaction_type.code > b.transaction_type.code){
-            return 1;
-          }
-          return 0;
-        });
+        var results = data.data.results;
+        var incoming_funds = [];
+        var commitments = [];
+        var disbursements_expenditures = [];
 
-        vm.transactionData = results;
-        vm.reformatTransactionData(results);
+        var transactionDateSort = function(a, b){
+          a = new Date(a.value_date);
+          b = new Date(b.value_date);
+          return a>b ? 1 : a<b ? -1 : 0;
+        };
+
+        for(var i = 0;i < results.length;i++){
+          switch(results[i].transaction_type.code){
+            case '1':
+              incoming_funds.push(results[i]);
+              break;
+            case '2':
+              commitments.push(results[i]);
+              break;
+            case '3':
+              disbursements_expenditures.push(results[i]);
+              break;
+            case '4':
+              disbursements_expenditures.push(results[i]);
+              break;
+          }
+        }
+
+        incoming_funds = incoming_funds.sort(transactionDateSort)
+        commitments = commitments.sort(transactionDateSort)
+        disbursements_expenditures = disbursements_expenditures.sort(transactionDateSort)
+
+        var orderedTransactions = incoming_funds.concat(commitments).concat(disbursements_expenditures)
+
+        vm.transactionData = orderedTransactions
+        vm.reformatTransactionData(orderedTransactions)
       }
 
       function errorFn(data, status, headers, config) {
