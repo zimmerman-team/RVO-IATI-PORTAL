@@ -9,12 +9,12 @@
     .module('oipa.countries')
     .controller('ResultsController', ResultsController);
 
-  ResultsController.$inject = ['$scope', 'Aggregations', 'Results', 'FilterSelection', 'templateBaseUrl'];
+  ResultsController.$inject = ['$scope', 'Aggregations', 'Results', 'FilterSelection', 'templateBaseUrl', '$sce'];
 
   /**
   * @namespace ResultsController
   */
-  function ResultsController($scope, Aggregations, Results, FilterSelection, templateBaseUrl) {
+  function ResultsController($scope, Aggregations, Results, FilterSelection, templateBaseUrl, $sce) {
     var vm = this;
     // vm.templateBaseUrl = templateBaseUrl;
     // vm.recipientCountries = [];
@@ -31,6 +31,15 @@
     * @desc Actions to be performed when this controller is instantiated
     * @memberOf oipa.countries.controllers.ResultsController
     */
+
+    vm.indicatorTitle = $sce.trustAsHtml("Number of jobs supported");
+    vm.indicatorDescription = $sce.trustAsHtml("Definite (DCED): 0a. Number of jobs supported (direct/indirect; male/female)<br>&nbsp;<br>Number of direct and indirect jobs in the companies, sector or value chain targeted by the intervention at the end of the reporting period (2015), converted in full-time equivalent. Report direct and indirect (e.g. outgrower) jobs separately. Disaggregate by gender. Convert in Full Time Equivalents (FTE) pro rata, based on local definition of a working week. According to DCED definition. For RVO programmes for start-ups (PSI, DGGF), count jobs at end of reporting period as verified during RVO mission.");
+    
+    vm.clickCheckbox = function(){
+      vm.indicatorTitle = $sce.trustAsHtml("Number of companies with supported plans to invest or trade");
+      vm.indicatorDescription = $sce.trustAsHtml("Aantal bedrijven dat betrokken is (geweest) en dat vanuit het project financiering/subsidie/betaling/opdrachten heeft ontvangen. <br>&nbsp;<br>Kunnen dubbel tellingen in zitten: bedrijven die in meerdere projecten (en programma’s) supported worden, deze tellen dan dus voor elk project apart mee. Bij partners kan aantal projecten per bedrijf worden gevonden. Alle bedrijven <50% state owned. Alleen hoofdaannemer/bedrijf waaraan betaald wordt: er kan ook nog sprake zijn van onderaannemers");
+    }
+
     function activate() {
 
       // vm.update();
