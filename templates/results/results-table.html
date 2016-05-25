@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="white">
+
+			<script type="text/ng-template" id="tree">
+			    <div ng-if="item.children" class="row parent collapsed">
+			        <div class="col-xs-6">
+			            <div class="wrap">
+			                <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span>
+			                    <span><input type="checkbox" style="margin-right: 10px;">{{ item.indicatorName }}</span>
+			            </div>
+			        </div>
+			    </div>
+
+			    <div ng-if="!item.children" class="row">
+			        <div class="col-xs-6">
+			            <div class="wrap">
+			                <span>{{ item.indicatorName }}</span>
+			            </div>
+			        </div>
+			    </div>
+
+			    <div ng-if="item.children" class="children">
+			        <div collapse="vm.isCollapsed" ng-repeat="item in item.children" ng-include="'tree'"></div>
+			    </div>
+			</script>
+
+			<div class="fake-table" ng-show="vm.resultIndicators.length != 0">
+
+				<div class="row head">
+			        <div class="col-xs-12"><div class="wrap">Select result indicators</div></div>
+			    </div>
+
+			    <div class="body" 
+			        ng-repeat="item in vm.resultIndicators"
+			        ng-include="'tree'"
+			        ng-if="item.count != 0">
+			    </div>
+			</div>
+        </div>
+    </div>
+</div>

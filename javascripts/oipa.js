@@ -21,6 +21,7 @@
             'oipa.toolbar',
             'oipa.aggregations',
             'oipa.countries',
+            'oipa.results',
             'oipa.programmes',
             'oipa.locations',
             'oipa.sectors',

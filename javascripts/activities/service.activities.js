@@ -15,6 +15,7 @@
             get: get,
             getTransactions: getTransactions,
             list: list,
+            resultList: resultList,
             locations: locations
         };
 
@@ -34,6 +35,29 @@
         function list(filters, page_size, order_by, page){
             var url = oipaUrl + '/activities/?format=json'
             url += '&fields=id,title,related_activities,recipient_countries,aggregations'
+
+            if(reportingOrganisationId){
+                url += '&reporting_organisation=' + reportingOrganisationId
+            }
+            if(filters !== undefined){
+                url += filters;
+            }
+            if(order_by !== undefined){
+                url += '&ordering=' + order_by;
+            }
+            if(page !== undefined){ 
+                url += '&page=' + page;
+            }
+            if(page_size !== undefined){
+                url += '&page_size=' + page_size;
+            }
+
+            return $http.get(url, { cache: true });
+        }
+
+        function resultList(filters, page_size, order_by, page){
+            var url = oipaUrl + '/activities/?format=json'
+            url += '&fields=id,title,related_activities,results'
 
             if(reportingOrganisationId){
                 url += '&reporting_organisation=' + reportingOrganisationId
