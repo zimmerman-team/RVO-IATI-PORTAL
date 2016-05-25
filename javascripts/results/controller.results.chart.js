@@ -139,6 +139,37 @@
               color: '#abc371'  
           },
       ];
+
+      data = [        
+          {
+              values: [
+              	['Total', 10],
+              	['Female', 30],
+              	['Young (15-25)', 20],
+              	['Rural', 3],
+              	['Urban', 12],
+              	['Vulnerable groups', 20],
+              	['Fragile states', 12],
+              	['Senior positions', 6]
+              ],      //values - represents the array of {x,y} data points
+              key: 'Direct', 
+              color: '#6296c7'
+          },
+          {
+              values: [
+              	['Total', 15],
+              	['Female', 0],
+              	['Young (15-25)', 0],
+              	['Rural', 0],
+              	['Urban', 0],
+              	['Vulnerable groups', 0],
+              	['Fragile states', 0],
+              	['Senior positions', 0]
+              ],      //values - represents the array of {x,y} data points
+              key: 'Indirect', 
+              color: '#cc6761'
+          },
+      ];
       // console.log(d3.max(data, function(x) { 
       // 	var total = 0;
       // 	for (var i = 0;i < x.values.length;i++){
