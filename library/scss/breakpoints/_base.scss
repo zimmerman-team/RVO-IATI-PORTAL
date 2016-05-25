@@ -1709,6 +1709,12 @@ table.no-format {
   }
 }
 
+table.small-headers {
+  th {
+    font-size: 12px;
+  }
+}
+
 table.finance {
   width: 100%;
   border:0;

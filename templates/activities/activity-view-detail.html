@@ -56,16 +56,20 @@
 
                     <div class="panel lightblue no-margin-bottom with-table" ng-repeat="result in vm.activity.results" ng-if="vm.activity.results.length != 0">
                         <h4>{{result.title.narratives[0].text}}</h4>
-                        <p style="margin-bottom:10px;">{{result.description.narratives[0].text}}</p>
+                        <p style="margin-bottom:5px;">{{result.description.narratives[0].text ? result.description.narratives[0].text : 'ORIO finances part of the project budget. The local government (Applicant) has to provide the other part of the budget, which may also be financed through a commercial loan (financial instutions) or other donors.'}}</p>
+                        <p style="margin-bottom:10px;"><a><i class="fa fa-line-chart" aria-hidden="true" style="margin-right:3px;"></i> View development in chart</a></p>
+                        <div class="line-chart">
+                            
+                        </div>
                         <div class="table-responsive">
-                            <table class="finance no-blue no-margin" ng-if="vm.activity.results.length != 0">
+                            <table class="finance no-blue no-margin small-headers" ng-if="vm.activity.results.length != 0">
                                 <thead>
                                     <tr>
-                                        <th width="200">Unit of result</th>
-                                        <th>Period start</th>
-                                        <th>Period end</th>
-                                        <th>Planned result</th>
-                                        <th>Obtained result</th>
+                                        <th width="100">Unit of result</th>
+                                        <th>Baseline value (year)</th>
+                                        <th>Actual value (year)</th>
+                                        <th>Target value (year)</th>
+                                        <th width="300">Comment</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,16 +78,18 @@
                                             {{result.indicator[0].title.narratives[0].text ? result.indicator[0].title.narratives[0].text : 'Data to be added'}}
                                         </td>
                                          <td>
-                                            {{result.indicator[0].period[0].period_start ? result.indicator[0].period[0].period_start : 'Data to be added' | date : 'dd-MM-yyyy'}}
+                                            {{result.indicator[0].baseline.value ? result.indicator[0].baseline.value : 'Data to be added'}} ({{result.indicator[0].baseline.year ? result.indicator[0].baseline.year : 'n/a'}})
                                         </td>
                                          <td>
-                                            {{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : 'Data to be added' | date : 'dd-MM-yyyy'}}
+                                            {{result.indicator[0].period[0].actual.value ? result.indicator[0].period[0].actual.value : '0'}}
+                                            ({{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : 'n/a' | date : 'yyyy'}})
                                         </td>
                                         <td>
                                             {{result.indicator[0].period[0].target.value ? result.indicator[0].period[0].target.value : 'Data to be added'}}
+                                            ({{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : 'n/a' | date : 'yyyy'}})
                                         </td>
                                         <td>
-                                            {{result.indicator[0].period[0].actual.value ? result.indicator[0].period[0].actual.value : 'Data to be added'}}
+                                            Data to be added
                                         </td>
                                     </tr>
                                 </tbody>
