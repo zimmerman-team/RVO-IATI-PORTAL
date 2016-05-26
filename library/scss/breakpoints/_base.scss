@@ -43,6 +43,16 @@ oipa-table-chart .table tbody tr td.colour {
   display: none;
 }
 
+#project-list-results{
+  &.table.list-overview th{
+    font-size:15px;
+  }
+
+  &.table.list-overview td{
+    font-size: 14px;
+  }
+}
+
 /*********************
 GLOBAL EN HELPERS
 *********************/

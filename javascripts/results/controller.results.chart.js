@@ -18,12 +18,12 @@
       chart: {
         type: 'multiBarChart',
         stacked: true,
-        height: 450,
+        height: 350,
         margin : {
             top: 20,
-            right: 0,
+            right: 20,
             bottom: 60,
-            left: 75
+            left: 40
         },
         x: function(d){ return d[0]; },
         y: function(d){ return d[1]; },
