@@ -38,6 +38,7 @@
       {'id': 'summary', 'name': 'Summary', 'count': -1},
       {'id': 'detailedreport', 'name': 'Detailed report', 'count': -1},
       {'id': 'mediapage', 'name': 'Media', 'count': -1},
+      {'id': 'results', 'name': 'Goals & results', 'count': -1},
     ]
 
     function activate() {

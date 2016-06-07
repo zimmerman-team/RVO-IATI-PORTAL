@@ -46,7 +46,7 @@
         vm.countryCount = data.data.count;
       }, errorFn);
 
-      Aggregations.aggregation('related_activity', 'count', selectionString, 'activity_id', 1).then(function(data, status, headers, config){
+      Aggregations.aggregation('related_activity', 'count', selectionString, 'related_activity', 1).then(function(data, status, headers, config){
         vm.programmeCount = data.data.count;
       }, errorFn);
 

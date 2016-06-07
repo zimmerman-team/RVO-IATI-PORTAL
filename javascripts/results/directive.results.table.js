@@ -13,7 +13,10 @@
       controller: 'ResultsTableController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {},
+      scope: {
+        indicators: '=',
+        selectedGroup: '='
+      },
       templateUrl: templateBaseUrl + '/templates/results/results-table.html'
     };
 

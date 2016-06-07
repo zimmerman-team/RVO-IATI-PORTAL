@@ -46,7 +46,7 @@
       "NL-KVK-27378529-IM201601C": "PFW - Contracts",
       "NL-KVK-27378529-IM201601G": "PFW - Grants"
     }
-
+2
     angular
     	.module('oipa.constants')
 		.constant("templateBaseUrl", template_url)

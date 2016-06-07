@@ -4,45 +4,55 @@
 
     <div class="container extra">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="white">
                     <h3>Results</h3>
                     <p>
-                       Niet alle indicatoren voor alle programma’s/projecten bijgehouden (zie # projects achter indicator) – hangt af van afspraken tussen MinBuZa en RVO per programma – hangt af van afspraken tussen MinBuZa en RVO per programma. Andersom zijn dit lang niet alle (relevante) indicatoren en voor veel programma’s ook niet de belangrijkste: eerste slag in opnemen van indicatoren, meer zullen later volgen. Sommige indicatoren op programma of project niveau ook niet aggregeerbaar.<br>&nbsp;<br>
-                        Alles cummulatief. Resultaat van een jaar kan evt door verschil tussen jaar en jaar ervoor te bekijken.
+                       This page shows the aggregated results of development aid projects executed by the Netherlands Enterprise Agency and funded by the Dutch Ministry of Foreign Affairs. Please note that this does not show all indicators reported by the Netherlands Enterprise Agency: on project and programme level other indicators may be reported which are not in the list of aggregated results. The aggregated results shown here do therefore not give the complete picture of the results, and may not show the most relevant indicators for some programmes and/or projects. Furthermore, only a few first indicators are included here, more indicators will follow in due time.<br>&nbsp;<br>
+                        The results are reported cumulatively over time for each project, the results  per reporting period can be explored by using a time filter (e.g. to explore the difference from one year to another). The reporting period may differ between programmes and project. Please note that results are reported from 2016 onwards (therefore only allowing for time series reporting after 2016). <br>&nbsp;<br>
+                        The result targets may be overly optimistic, as they are given by the applicants of projects. Furthermore, it is generally assumed that one out of three projects will be cancelled before completion due to the insecure context in which these projects take place. 
                     </p>
                 </div>
             </div>
-            <div class="col-md-4 ">
-            <h3>Disclaimer</h3>
-            Kwaliteit van de data; opgeleverd door aanvragers; kan over optimistisch zijn; bovendien wordt meestal uitgegaan van 1/3 uitval van projecten.
-            </div>
         </div>
     </div>
 
-    <div class="row" style="margin-top: 16px;">
-        <div class="col-sm-12">
-            <div class="front-callout" style="color: #fff; padding: 4px 0;">
-                <h3 style="color: #fff" ng-click="vm.clickCheckbox()" ng-bind-html="vm.indicatorTitle"></h3>
-                <p ng-bind-html="vm.indicatorDescription">
-                    
-                </p>
-            </div>
-        </div>
-    </div>
+    <hr class="darkblue" style="margin-top: 30px;">
 
-    <div style="background-color: #f2f8fc; margin-top: -10px;">
-        <div class="container extra" style="padding-top: 30px;">
+    <div class="row">
+        <div class="col-md-6">
+            <results-table selected-group="vm.selectedGroup" indicators="vm.indicators"></results-table>
+        </div>
+        <div class="col-md-6">
             <results-chart></results-chart>
         </div>
     </div>
 
+<!--     <div style="background-color: #f2f8fc; margin-top: -10px;">
+        <div class="container extra" style="padding-top: 30px;">
+            
+        </div>
+    </div>
+ -->
+
+    <div class="row" style="margin-top: 16px;">
+        <div class="col-sm-12">
+            <div class="front-callout" style="color: #fff; padding: 4px 0; min-height: 136px; font-weight: 300">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <h3 style="color: #fff" ng-bind-html="vm.indicatorTitle"></h3>
+                        <p ng-bind-html="vm.indicatorDescription"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     
 
-    <results-table></results-table>
-
-    <hr class="darkblue" style="margin-top: 30px;">
-
+    
+    <!-- Result table: TO DO -->
     <results-project-list></results-project-list>
 
 </div>

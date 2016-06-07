@@ -10,12 +10,12 @@
     .module('oipa.countries')
     .controller('CountriesMapController', CountriesMapController);
 
-  CountriesMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$sce', '$filter'];
+  CountriesMapController.$inject = ['$scope', 'leafletData', 'TransactionAggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$sce', '$filter'];
 
   /**
   * @namespace CountriesMapController
   */
-  function CountriesMapController($scope, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection, $sce, $filter) {
+  function CountriesMapController($scope, leafletData, TransactionAggregations, templateBaseUrl, homeUrl, FilterSelection, $sce, $filter) {
     var vm = this;
     vm.mapHeight = $scope.mapHeight;
     vm.templateBaseUrl = templateBaseUrl;
@@ -75,7 +75,7 @@
 
     vm.updateMap = function(){
 
-        Aggregations.aggregation('recipient_country', 'count,recipient_country_percentage_weighted_incoming_fund', vm.selectionString).then(countrySuccessFn, errorFn);
+        TransactionAggregations.aggregation('recipient_country', 'activity_count,incoming_fund', vm.selectionString).then(countrySuccessFn, errorFn);
         
         function countrySuccessFn(data, status, headers, config) {
             vm.countryMarkerData = data.data.results;
@@ -112,7 +112,7 @@
        
         var message = '<h4><span class="flag-icon flag-icon-'+vm.countryMarkerData[i].recipient_country.code.toLowerCase()+'"></span>'+vm.countryMarkerData[i].recipient_country.name+'</h4>'+
               '<hr>'+
-              '<p><i class="icon lightbulb"></i><b>Projects:</b> '+vm.countryMarkerData[i]['count']+'</p>'+
+              '<p><i class="icon lightbulb"></i><b>Projects:</b> '+vm.countryMarkerData[i]['activity_count']+'</p>'+
               '<p><i class="icon euro"></i><b>Total budget:</b> '+ $filter('shortcurrency')(vm.countryMarkerData[i]['incoming_fund'],'€') +'</p>'+
               // '<p><i class="icon medal"></i><b>Sectors:</b> '+ vm.countryMarkerData[i]['sector_count'] +'</p>'+
               '<hr>'+

@@ -276,6 +276,7 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'directive.filters.recipientcountries.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.recipientcountries.js', array('oipa'), '', true );
 
 		wp_register_script( 'service.transactionYear', get_stylesheet_directory_uri() . '/javascripts/transactions/service.transactionYear.js', array('oipa'), '', true );
+		wp_register_script( 'service.transaction.aggregations', get_stylesheet_directory_uri() . '/javascripts/transactions/service.transaction.aggregations.js', array('oipa'), '', true );
 		wp_register_script( 'controller.transactionYear', get_stylesheet_directory_uri() . '/javascripts/transactions/controller.transactionYear.js', array('oipa'), '', true );
 		wp_register_script( 'directive.filters.transactionYear.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.transactionYear.js', array('oipa'), '', true );
 
@@ -502,6 +503,7 @@ function bones_scripts_and_styles() {
 		
 		wp_enqueue_script( 'module.filters' );
 		wp_enqueue_script( 'service.transactionYear');
+		wp_enqueue_script( 'service.transaction.aggregations' );
 		wp_enqueue_script( 'controller.transactionYear' );
 		wp_enqueue_script( 'controller.filters' );
 		wp_enqueue_script( 'controller.filters.selection' );

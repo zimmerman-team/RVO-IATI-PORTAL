@@ -92,10 +92,10 @@
                     <div class="panel lightblue with-pie">
                         <h3>Projects per country</h3>
                         <hr>
-                        <oipa-pie-chart group-by="recipient_country" aggregation-key="count" aggregations="count,recipient_country_percentage_weighted_incoming_fund" has-to-contain="related_activity"></oipa-pie-chart>
+                        <oipa-pie-chart group-by="recipient_country" aggregation-key="activity_count" aggregations="activity_count,incoming_fund" has-to-contain="related_activity"></oipa-pie-chart>
                         <h3>Projects per sector</h3>
                         <hr>
-                        <oipa-pie-chart group-by="sector" aggregation-key="count" aggregations="count,sector_percentage_weighted_incoming_fund" has-to-contain="related_activity"></oipa-pie-chart>
+                        <oipa-pie-chart group-by="sector" aggregation-key="activity_count" aggregations="activity_count,incoming_fund" has-to-contain="related_activity"></oipa-pie-chart>
                     </div>
                     <div class="panel lightblue" ng-show="vm.programmeUrl">
                         <h3>More information</h3>

@@ -5,12 +5,12 @@
     .module('oipa.charts')
     .controller('OipaPieChartController', OipaPieChartController);
 
-  OipaPieChartController.$inject = ['$scope', 'FilterSelection', 'Aggregations','$filter','templateBaseUrl', 'programmesMapping', '$state'];
+  OipaPieChartController.$inject = ['$scope', 'FilterSelection', 'TransactionAggregations','$filter','templateBaseUrl', 'programmesMapping', '$state'];
 
   /**
   * @namespace ActivitiesController
   */
-  function OipaPieChartController($scope, FilterSelection, Aggregations, $filter,templateBaseUrl, programmesMapping, $state) {
+  function OipaPieChartController($scope, FilterSelection, TransactionAggregations, $filter,templateBaseUrl, programmesMapping, $state) {
     
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
@@ -72,7 +72,7 @@
             }
             var content = '<h4>'+flag+name+'</h4>'+
                           '<hr>'+
-                          '<p><i class="icon lightbulb"></i><b>Projects:</b>'+key.data[0].count+'</p>'+
+                          '<p><i class="icon lightbulb"></i><b>Projects:</b>'+key.data[0].activity_count+'</p>'+
                           '<p><i class="icon euro"></i><b>Total budget:</b>'+ $filter('shortcurrency')(key.data[0].incoming_fund,'€') +'</p>';
             return content;
           }
@@ -95,7 +95,8 @@
     };
 
     vm.loadData = function(filterString){
-      Aggregations.aggregation(vm.groupBy, vm.aggregations, filterString + '&hierarchy=2').then(succesFn, errorFn);
+
+      TransactionAggregations.aggregation(vm.groupBy, vm.aggregations, filterString + '&hierarchy=2').then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.chartData = vm.reformatData(data.data.results);
@@ -124,60 +125,9 @@
     vm.reformatData = function(data){
       var values = [];
 
-      // if(vm.groupBy == 'sector'){
-
-      //   var newData = [];
-
-      //   var sectors = {
-      //     "11": "Education",
-      //     "12": "Health",
-      //     "13": "Population policies / programmes and reproductive health",
-      //     "14": "Water and sanitation",
-      //     "15": "Government and civil society",
-      //     "16": "Other social infrastructure and services",
-      //     "2": "Economic sectors",
-      //     "3": "Productive sectors",
-      //     "4": " Multisector / cross-cutting", 
-      //     "5": "Commodity aid and general programme assistance",
-      //     "60": "Action relating to debt",
-      //     "7": "Humanitarian aid",
-      //     "91": "Administrative costs of donors",
-      //     "92": "Support to Non- governmental organisations",
-      //     "93": "Refugees in donor countries",
-      //     "99": "Unallocated / Unspecified",
-      //   }
-
-      //   var filledSectors = {};
-
-      //   for(var i = 0;i < data.length;i++){
-      //     var dac2 = data[i].sector.code.substring(0,2);
-
-      //     if(sectors[dac2] == undefined){
-      //       dac2 = dac2.substring(0,1);
-      //     }
-
-      //     if(filledSectors[dac2] == undefined){
-      //       filledSectors[dac2] = {};
-      //       filledSectors[dac2].sector = {'code':dac2,  'name': sectors[dac2] };
-      //       filledSectors[dac2]['incoming_fund'] = data[i]['incoming_fund'];
-      //       filledSectors[dac2]['count'] = data[i]['count'];
-      //     } else {
-      //       filledSectors[dac2]['incoming_fund'] += data[i]['incoming_fund'];
-      //       filledSectors[dac2]['count'] += data[i]['count'];
-      //     }
-      //   }
-
-      //   data = [];
-      //   for(var code in filledSectors){
-      //     data.push(filledSectors[code]);
-      //   }
-
-        
-      // }
-
       if(vm.groupBy == 'related_activity'){
         for (var i = 0; i < data.length;i++){
-          data[i][vm.groupBy] = {'code': data[i]['activity_id'], 'name': programmesMapping[data[i]['activity_id']] }
+          data[i][vm.groupBy] = {'code': data[i]['related_activity'], 'name': programmesMapping[data[i]['related_activity']] }
         }
       }
 
