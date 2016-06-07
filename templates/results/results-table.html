@@ -1,16 +1,14 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="white">
 
 			<script type="text/ng-template" id="tree">
 			    <div ng-if="item.children.length" class="row parent collapsed">
 			        <div class="col-xs-12">
-			            <div class="wrap">
+			        	<div class="wrap">
 			                <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span>
 			                <span>
 			                <input 
 			                	type="checkbox" 
-			                	style="margin-right: 10px;" 
 			                	ng-click="vm.setGroup(item)"
 			                	value="{{item.indicatorName}}"
 			                	ng-class="{'': item.children.length}">
@@ -28,11 +26,10 @@
 
 			    <div ng-if="!item.children.length" class="row">
 			        <div class="col-xs-12">
-			            <div class="wrap">
+			        	<div class="wrap">
 			                <span class="noexpand">
 			                <input 
 			                	type="checkbox" 
-			                	style="margin-right: 10px;" 
 			                	ng-click="vm.setGroup(item)" 
 			                	ng-class="{'': item.children.length}">
 			                	
@@ -43,7 +40,7 @@
 			                		{{ item.indicatorName + ' (' + vm.indicators[item.indicatorName].activity_count + ' projects)' }}
 			                	</span>
 			                </span>
-			            </div>
+		                </div>
 			        </div>
 			    </div>
 
@@ -54,10 +51,10 @@
 
 			<div class="fake-table" ng-show="vm.resultIndicators.length != 0">
 
-				<div class="row head">
-			        <div class="col-xs-12"><div class="wrap"><h3>Select result indicators</h3></div></div>
+				<div class="row results head">
+			        <div class="col-xs-12"><h3>Select result indicators</h3></div>
 			    </div>
-			    <div class="body" 
+			    <div class="results body" 
 			        ng-repeat="item in vm.resultIndicators"
 			        ng-include="'tree'"
 			        ng-if="item.count != 0">
@@ -65,5 +62,4 @@
 
 			</div>
         </div>
-    </div>
 </div>

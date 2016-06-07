@@ -273,6 +273,12 @@ Subnavbar tabs
       @extend .icon;
     }
   }            
+  .results {
+    a {
+      @extend .icon.check;
+      @extend .icon;
+    }
+  }
 
 }
 
@@ -1172,20 +1178,22 @@ table {
   .body:nth-of-type(2n) {
     background:$rvo-footerblauw;
   }
-  .children {
-    .expandme {
-      padding-left:20px;
-    }
-  }
+  // .children {
+  //   .expandme {
+  //     padding-left:20px;
+  //   }
+  // }
   .parent {
+    + .children {
+      transition:opacity .5s ease-in-out, max-height .5s ease-in-out;
+      overflow: hidden;
+      @extend .clearfix;
+      padding-left:25px;
+    }
     &.collapsed {
       + .children {
         opacity: 0;
         max-height: 0;
-        visibility: hidden;
-        transition:all .5s ease-in-out;
-        overflow: hidden;
-        @extend .clearfix;
       }
     }
     &.expanded {
@@ -1193,9 +1201,6 @@ table {
         opacity: 1;
         max-height:2000px;
         visibility: visible;
-        transition:all .5s ease-in-out;
-        overflow: hidden;
-        @extend .clearfix;
       }
     }
   }
@@ -1781,6 +1786,48 @@ table.finance {
   }
 }
 
+/* 
+RESULTS PAGE
+ */
+
+.results {
+  .front-callout {
+    font-weight: 400;
+    color:$white;
+    padding-bottom:10px;
+  }
+  .container {
+    &.xlight {
+      background:$rvo-xlichtblauw;
+      padding-top:5px;
+    }
+  }
+  .fake-table {
+    .head {
+      // h3 {
+      //   background:$rvo-footerblauw;
+      //   margin:0 0 1px 0;
+      //   padding: 10px 15px;
+      // }
+    }
+    .body {
+      // background:$rvo-xlichtblauw;
+      border-bottom:1px solid #e5e5e5;
+      &:nth-of-type(2n) {
+        background:none;
+      }
+      &:last-of-type {
+        border-bottom:0;
+      }
+      .wrap {
+        padding:10px 0;
+      }
+      input[type="checkbox"] {
+        margin-right: 5px;
+      }
+    }
+  }
+}
 
 /*********************
 FOOTER
@@ -2224,6 +2271,11 @@ Icons
   &.film {
     &:before {
       content: '\e602';
+    }
+  }
+  &.check {
+    &:before {
+      content: '\e61c';
     }
   }
 }

@@ -1,32 +1,36 @@
-<div id="main-content" class="activity">
+<div id="main-content" class="results">
     
     <filter-bar views="[]" current-page="themas"></filter-bar>
 
     <div class="container extra">
         <div class="row">
-            <div class="col-md-10">
-                <div class="white">
-                    <h3>Results</h3>
-                    <p>
-                       This page shows the aggregated results of development aid projects executed by the Netherlands Enterprise Agency and funded by the Dutch Ministry of Foreign Affairs. Please note that this does not show all indicators reported by the Netherlands Enterprise Agency: on project and programme level other indicators may be reported which are not in the list of aggregated results. The aggregated results shown here do therefore not give the complete picture of the results, and may not show the most relevant indicators for some programmes and/or projects. Furthermore, only a few first indicators are included here, more indicators will follow in due time.<br>&nbsp;<br>
-                        The results are reported cumulatively over time for each project, the results  per reporting period can be explored by using a time filter (e.g. to explore the difference from one year to another). The reporting period may differ between programmes and project. Please note that results are reported from 2016 onwards (therefore only allowing for time series reporting after 2016). <br>&nbsp;<br>
-                        The result targets may be overly optimistic, as they are given by the applicants of projects. Furthermore, it is generally assumed that one out of three projects will be cancelled before completion due to the insecure context in which these projects take place. 
+            <div class="col-sm-12">
+                <h2>Results</h2>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+                    <p>This page shows the aggregated results of development aid projects executed by the Netherlands Enterprise Agency and funded by the Dutch Ministry of Foreign Affairs. Please note that this does not show all indicators reported by the Netherlands Enterprise Agency: on project and programme level other indicators may be reported which are not in the list of aggregated results. The aggregated results shown here do therefore not give the complete picture of the results, and may not show the most relevant indicators for some programmes and/or projects. Furthermore, only a few first indicators are included here, more indicators will follow in due time.</p>
+                </div>
+                <div class="col-sm-12 col-lg-6">
+                    <p>The results are reported cumulatively over time for each project, the results  per reporting period can be explored by using a time filter (e.g. to explore the difference from one year to another). The reporting period may differ between programmes and project. Please note that results are reported from 2016 onwards (therefore only allowing for time series reporting after 2016).</p>
+                    <p>The result targets may be overly optimistic, as they are given by the applicants of projects. Furthermore, it is generally assumed that one out of three projects will be cancelled before completion due to the insecure context in which these projects take place.</p>
                     </p>
+            </div>
+        </div>
+        <!-- <hr class="darkblue"> -->
+    </div>
+
+    <!-- <div class="panel lightblue clearfix no-margin-bottom"> -->
+        <div class="row">
+            <div class="container xlight">
+                <div class="col-md-6">
+                    <results-table selected-group="vm.selectedGroup" indicators="vm.indicators"></results-table>
+                </div>
+                <div class="col-md-6">
+                    <results-chart></results-chart>
                 </div>
             </div>
         </div>
-    </div>
-
-    <hr class="darkblue" style="margin-top: 30px;">
-
-    <div class="row">
-        <div class="col-md-6">
-            <results-table selected-group="vm.selectedGroup" indicators="vm.indicators"></results-table>
-        </div>
-        <div class="col-md-6">
-            <results-chart></results-chart>
-        </div>
-    </div>
+    <!-- </div> -->
 
 <!--     <div style="background-color: #f2f8fc; margin-top: -10px;">
         <div class="container extra" style="padding-top: 30px;">
@@ -35,9 +39,9 @@
     </div>
  -->
 
-    <div class="row" style="margin-top: 16px;">
+    <div class="row">
         <div class="col-sm-12">
-            <div class="front-callout" style="color: #fff; padding: 4px 0; min-height: 136px; font-weight: 300">
+            <div class="front-callout">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2">
                         <h3 style="color: #fff" ng-bind-html="vm.indicatorTitle"></h3>
