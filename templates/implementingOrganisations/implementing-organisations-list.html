@@ -8,8 +8,8 @@
                         ng-model="vm.order_by"
                         ng-change="vm.toggleOrder()">
                         <option value="">Sort by...</option>
-                        <option value="name">Name (A - Z)</option>
-                        <option value="-name">Name (Z - A)</option>
+                        <option value="participating_organisation">Name (A - Z)</option>
+                        <option value="-participating_organisation">Name (Z - A)</option>
                         <option value="count">Project count (ascending)</option>
                         <option value="-count">Project count (descending)</option>
                     </select>
@@ -44,7 +44,7 @@
     <tbody>
         <tr
             ng-if="item.name != ''" ng-repeat="item in vm.organisations">
-            <td><a ui-sref="organisation({ organisation_id:item.name, tab: 'summary' })">{{ item.name }}<span ng-if="item.name == ''">Unknown</span></a></td>
+            <td><a ui-sref="organisation({ organisation_id:item.name, tab: 'summary' })">{{ item.participating_organisation }}<span ng-if="item.name == ''">Unknown</span></a></td>
             <td>{{item.count}} projects</td>
         </tr>
     </tbody>

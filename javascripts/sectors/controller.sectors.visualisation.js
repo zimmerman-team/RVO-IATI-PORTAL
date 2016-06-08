@@ -9,12 +9,12 @@
     .module('oipa.sectors')
     .controller('SectorsVisualisationController', SectorsVisualisationController);
 
-    SectorsVisualisationController.$inject = ['$scope', 'FilterSelection', 'Aggregations', 'sectorMapping'];
+    SectorsVisualisationController.$inject = ['$scope', 'FilterSelection', 'TransactionAggregations', 'sectorMapping'];
 
     /**
      * @namespace SectorsVisualisationController
      */
-    function SectorsVisualisationController($scope, FilterSelection, Aggregations, sectorMapping) {
+    function SectorsVisualisationController($scope, FilterSelection, TransactionAggregations, sectorMapping) {
         var vm = this;
         vm.filterSelection = FilterSelection;
         vm.selectionString = '';
@@ -42,7 +42,7 @@
         }
 
         vm.activateSunburst = function(){
-            Aggregations.aggregation('sector', 'count,sector_percentage_weighted_incoming_fund', vm.selectionString + '&hierarchy=2').then(successFn, errorFn);
+            TransactionAggregations.aggregation('sector', 'activity_count,incoming_fund', vm.selectionString + '&hierarchy=2').then(successFn, errorFn);
 
             function successFn(data, status, headers, config) {
                 vm.reformatSunburstData(data.data.results);
@@ -57,7 +57,7 @@
 
             var sector5 = {};
             for(var i = 0;i < data.length;i++){
-                sector5[data[i].sector.code] = {'incoming_fund':data[i].incoming_fund, 'count': data[i].count};
+                sector5[data[i].sector.code] = {'incoming_fund':data[i].incoming_fund, 'count': data[i].activity_count};
             }
 
             var mapping = angular.copy(sectorMapping);

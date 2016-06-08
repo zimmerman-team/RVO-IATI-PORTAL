@@ -31,7 +31,7 @@
 
       var count = 0;
       if(vm.currentPage != 'country'){ count += vm.selectedCountries.length; }
-      if(vm.currentPage != 'programmes'){ count += vm.selectedProgrammes.length; }
+      if(vm.currentPage != 'programme'){ count += vm.selectedProgrammes.length; }
       if(vm.currentPage != 'sector'){ count += vm.selectedSectors.length; }
       if(vm.currentPage != 'organisation'){ count += vm.selectedImplementingOrganisations.length; }
       count += vm.selectedImplementingOrganisationTypes.length;
@@ -143,7 +143,7 @@
         for(var i = 0;i < related_activity_ids.length; i++){
 
           if(programmesMapping[related_activity_ids[i]] != undefined){
-            vm.selectedProgrammes.push({'activity_id': related_activity_ids[i], 'name': programmesMapping[related_activity_ids[i]]}); 
+            vm.selectedProgrammes.push({'related_activity': related_activity_ids[i], 'name': programmesMapping[related_activity_ids[i]]}); 
           }
           
         }

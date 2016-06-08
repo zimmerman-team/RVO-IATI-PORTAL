@@ -9,12 +9,12 @@
     .module('oipa.sectors')
     .controller('SectorListController', SectorListController);
 
-  SectorListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'sectorMapping', 'homeUrl'];
+  SectorListController.$inject = ['$scope', 'TransactionAggregations', 'FilterSelection', 'sectorMapping', 'homeUrl'];
 
   /**
   * @namespace SectorListController
   */
-  function SectorListController($scope, Aggregations, FilterSelection, sectorMapping, homeUrl) {
+  function SectorListController($scope, TransactionAggregations, FilterSelection, sectorMapping, homeUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.sectors = [];
@@ -68,7 +68,7 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
-      Aggregations.aggregation('sector', 'sector_percentage_weighted_incoming_fund,count', vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=2', 'sector').then(succesFn, errorFn);
+      TransactionAggregations.aggregation('sector', 'activity_count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=2', 'sector').then(succesFn, errorFn);
 
       function replaceDac5(arr){
         for (var i = 0;i < arr.length;i++){
@@ -91,7 +91,7 @@
 
       function updateTransactions(sector) { 
         if(!sector.hasOwnProperty('children')) {
-          return [sector.incoming_fund, sector.count];
+          return [sector.incoming_fund, sector.activity_count];
         }
         var incoming_fund = 0;
         var count = 0;
@@ -155,7 +155,7 @@
     }
 
     vm.download = function(format){
-      var aggregation_url = Aggregations.prepare_url('sector', 'sector_percentage_weighted_incoming_fund,count', vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=2', 'sector');
+      var aggregation_url = TransactionAggregations.prepare_url('sector', 'sector_percentage_weighted_incoming_fund,count', vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=2', 'sector');
       var url = homeUrl + '/export/?type=aggregated-list&format='+format+'&aggregation_group=sector&aggregation_url=' + encodeURIComponent(aggregation_url);
       window.open(url);
     }

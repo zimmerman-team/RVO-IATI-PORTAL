@@ -5,8 +5,8 @@
                 <div class="col-sm-3 col-sm-offset-3 chart">
                     <oipa-pie-chart 
                         group-by="recipient_country" 
-                        aggregation-key="count" 
-                        aggregations="count,recipient_country_percentage_weighted_incoming_fund"
+                        aggregation-key="activity_count" 
+                        aggregations="activity_count,incoming_fund"
                         aggregation-filters="vm.filterSelection"></oipa-pie-chart>
                     <h4>Project distribution</h4>
                 </div>
@@ -14,7 +14,7 @@
                     <oipa-pie-chart 
                         group-by="recipient_country" 
                         aggregation-key="incoming_fund" 
-                        aggregations="count,recipient_country_percentage_weighted_incoming_fund"
+                        aggregations="activity_count,incoming_fund"
                         aggregation-filters="vm.filterSelection"></oipa-pie-chart>
                     <h4>Budget distribution</h4>
                 </div>
@@ -71,9 +71,9 @@
         <tr
             ng-repeat="item in vm.countries">
             <td><a ui-sref="country({ country_id: item.recipient_country.code, tab: 'summary' })"><span class="flag-icon flag-icon-{{item.recipient_country.code | lowercase }} "></span>{{ item.recipient_country.name }}</a></td>
-            <td>{{item.count}} projects</td>
+            <td>{{item.activity_count}} projects</td>
             <!-- <td>xx programmes</td> -->
-            <td>{{item.incoming_fund  | shortcurrency :'€'}}</td>
+            <td>{{item.incoming_fund | shortcurrency :'€'}}</td>
         </tr>
     </tbody>
 </table>

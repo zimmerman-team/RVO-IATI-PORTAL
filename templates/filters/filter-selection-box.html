@@ -7,8 +7,8 @@
 					<a 
 						class="selected filter-selected-button selectedProgrammes" 
 						ng-repeat="item in vm.selectedProgrammes" 
-						ng-click="vm.removeFilter(vm.selectedProgrammes, 'activity_id', item.activity_id)" 
-						ng-if="vm.currentPage != 'programmes'">
+						ng-click="vm.removeFilter(vm.selectedProgrammes, 'related_activity', item.related_activity)" 
+						ng-if="vm.currentPage != 'programme'">
 						{{item.name}}
 					</a>
 
@@ -31,9 +31,9 @@
 					<a 
 						class="selected filter-selected-button selectedImplementingOrganisations" 
 						ng-repeat="item in vm.selectedImplementingOrganisations" 
-						ng-click="vm.removeFilter(vm.selectedImplementingOrganisations, '', item.name)" 
+						ng-click="vm.removeFilter(vm.selectedImplementingOrganisations, '', item.participating_organisation)" 
 						ng-if="vm.currentPage != 'organisation'">
-						{{item.name}}
+						{{item.participating_organisation}}
 					</a>
 
 					<a 

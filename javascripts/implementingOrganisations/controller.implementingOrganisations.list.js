@@ -19,7 +19,7 @@
     vm.filterSelection = FilterSelection;
     vm.organisations = [];
     vm.totalOrganisations = 0;
-    vm.order_by = 'name';
+    vm.order_by = 'participating_organisation';
     vm.page = 1;
     vm.pageSize = 15;
     vm.busy = false;

@@ -5,10 +5,10 @@
     .module('oipa.charts')
     .controller('FinancialsLinechartController', FinancialsLinechartController);
 
-  FinancialsLinechartController.$inject = ['$scope', 'Aggregations', 'FilterSelection', '$filter'];
+  FinancialsLinechartController.$inject = ['$scope', 'TransactionAggregations', 'FilterSelection', '$filter'];
 
 
-  function FinancialsLinechartController($scope, Aggregations, FilterSelection, $filter) {
+  function FinancialsLinechartController($scope, TransactionAggregations, FilterSelection, $filter) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     var loadedCount = 0;
@@ -70,7 +70,7 @@
         console.log(data);
       }
 
-      Aggregations.aggregation('transaction_date_year', 'disbursement,incoming_fund,expenditure', selectionString, 'year').then(function(data, status, headers, config){
+      TransactionAggregations.aggregation('transaction_date_year', 'disbursement,incoming_fund,expenditure', selectionString, 'transaction_date_year').then(function(data, status, headers, config){
         vm.data_by_year = data.data.results;
         vm.reformatTransactionData();
       }, errorFn);
@@ -84,7 +84,7 @@
               key: 'Budget', 
               color: '#2077B4'  
           },
-          {
+          { 
               values: [],
               key: 'Expenditure',
               color: '#FF7F0E'
@@ -93,17 +93,15 @@
       var values = [];
       for (var i = 0;i < vm.data_by_year.length;i++){
         data[0].values.push([
-          vm.data_by_year[i].year, 
+          vm.data_by_year[i].transaction_date_year, 
           vm.data_by_year[i].incoming_fund])
 
         data[1].values.push([
-          vm.data_by_year[i].year, 
+          vm.data_by_year[i].transaction_date_year, 
           (vm.data_by_year[i].disbursement + vm.data_by_year[i].expenditure)])
       }
       
       vm.transactionData = data;
     }
-
-
   }
 })();

@@ -14,10 +14,10 @@
 			                	ng-class="{'': item.children.length}">
 			                	
 			                	<span ng-if="vm.indicators[item.indicatorName].header">
-			                		{{ item.indicatorName }}
+			                		{{ item.displayName }}
 			                	</span>
 			                	<span ng-if="!vm.indicators[item.indicatorName].header">
-			                		{{ item.indicatorName + ' (' + vm.indicators[item.indicatorName].activity_count + ' projects)' }}
+			                		{{ item.displayName + ' (' + vm.indicators[item.indicatorName].activity_count + ' projects)' }}
 			                	</span>
 			                </span>
 			            </div>
@@ -34,10 +34,10 @@
 			                	ng-class="{'': item.children.length}">
 			                	
 			                	<span ng-if="vm.indicators[item.indicatorName].header">
-			                		{{ item.indicatorName }}
+			                		{{ item.displayName }}
 			                	</span>
 			                	<span ng-if="!vm.indicators[item.indicatorName].header">
-			                		{{ item.indicatorName + ' (' + vm.indicators[item.indicatorName].activity_count + ' projects)' }}
+			                		{{ item.displayName + ' (' + vm.indicators[item.indicatorName].activity_count + ' projects)' }}
 			                	</span>
 			                </span>
 		                </div>

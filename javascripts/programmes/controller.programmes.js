@@ -67,13 +67,13 @@
       }
       filterString = filterString.join('&');
       
-      Aggregations.aggregation('related_activity', 'count', filterString, 'activity_id', vm.pageSize, vm.currentPage).then(successFn, errorFn);
+      Aggregations.aggregation('related_activity', 'count', filterString, 'related_activity', vm.pageSize, vm.currentPage).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
 
         var results = data.data.results;
         for(var i = 0;i < results.length;i++){
-          results[i].name = programmesMapping[results[i].activity_id];
+          results[i].name = programmesMapping[results[i].related_activity];
         }
         vm.totalCount = data.data.count;
         vm.programmes_list = results;

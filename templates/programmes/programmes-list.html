@@ -25,8 +25,8 @@
                       ng-change="vm.toggleOrder()">
                       <option value="title">Title (A-Z)</option>
                       <option value="-title">Title (Z-A)</option>
-                      <option value="budget">Budget (increasing)</option>
-                      <option value="-budget">Budget (decreasing)</option>
+                      <option value="incoming_fund">Budget (increasing)</option>
+                      <option value="-incoming_fund">Budget (decreasing)</option>
                     </select>
                 </div>
             <span class="results">Results: <span class="total">{{vm.totalActivities}}</span></span>
@@ -61,8 +61,8 @@
     <tbody>
         <tr
             ng-repeat="item in vm.activities">
-            <td><a ui-sref="programme({ programme_id: item.activity_id, tab: 'summary' })">{{ item.name }}</a></td>
-            <td>{{item.count ? item.count : '0'}} projects</td>
+            <td><a ui-sref="programme({ programme_id: item.related_activity, tab: 'summary' })">{{ item.name }}</a></td>
+            <td>{{item.activity_count ? item.activity_count : '0'}} projects</td>
             <!-- <td>XX countries</td> -->
             <!-- <td>XX sectors</td> -->
             <td>{{item.incoming_fund ? item.incoming_fund : 0 | shortcurrency :'€'}}</td>

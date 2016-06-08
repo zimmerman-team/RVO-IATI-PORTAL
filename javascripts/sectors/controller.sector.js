@@ -10,12 +10,12 @@ var sectorLayoutTest = null;
     .module('oipa.sectors')
     .controller('SectorController', SectorController);
 
-  SectorController.$inject = ['$scope', 'Sectors', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'sectorMapping', 'homeUrl'];
+  SectorController.$inject = ['$scope', 'Sectors', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'TransactionAggregations', 'sectorMapping', 'homeUrl'];
 
   /**
   * @namespace CountriesController
   */
-  function SectorController($scope, Sectors, templateBaseUrl, $stateParams, FilterSelection, Aggregations, sectorMapping, homeUrl) {
+  function SectorController($scope, Sectors, templateBaseUrl, $stateParams, FilterSelection, TransactionAggregations, sectorMapping, homeUrl) {
     var vm = this;
     vm.sector = null;
     vm.sector_id = parseInt($stateParams.sector_id);
@@ -120,7 +120,7 @@ var sectorLayoutTest = null;
 
       if (selectionString.indexOf("sector") < 0){ return false;}
 
-      Aggregations.aggregation('sector', 'sector_percentage_weighted_disbursement,sector_percentage_weighted_expenditure,sector_percentage_weighted_incoming_fund', selectionString + '&hierarchy=2').then(function(data, status, headers, config){
+      TransactionAggregations.aggregation('sector', 'disbursement,expenditure,incoming_fund', selectionString + '&hierarchy=2').then(function(data, status, headers, config){
         vm.aggregated_transactions = data.data.results;
         vm.setBudgetLeft();
       }, errorFn);

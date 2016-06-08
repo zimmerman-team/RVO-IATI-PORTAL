@@ -78,25 +78,23 @@
       		
 			var selectList = [
 			m.selectArrayToString('recipient_country', 'code', m.selectedCountries),
-			// m.selectArrayToString('sector', 'code', m.selectedSectors),
-			// m.selectArrayToString('participating_organisations__organisation__code', 'name', m.selectedImplementingOrganisations),
 			m.selectArrayToString('activity_status', 'code', m.selectedActivityStatuses),
 			m.selectArrayToString('participating_organisation_type', 'code', m.selectedImplementingOrganisationTypes),
 			];
 
 			selectList.push(m.getSectors());
-
+			
 			if(m.selectedProgrammes.length){
 				var list = [];
 				for(var i = 0; i < m.selectedProgrammes.length; i++){
-				    list.push(m.selectedProgrammes[i]['activity_id']);
+				    list.push(m.selectedProgrammes[i]['related_activity']);
 				}
 
 				selectList.push('&related_activity_id=' + list.join(','));
 			}
 
 			if(m.selectedImplementingOrganisations.length){
-				selectList.push("&participating_organisation_name=" + _.pluck(m.selectedImplementingOrganisations, 'name').map(function(name) {
+				selectList.push("&participating_organisation_name=" + _.pluck(m.selectedImplementingOrganisations, 'participating_organisation').map(function(name) {
 					return encodeURIComponent(name)
 				}).join(','));
 			}

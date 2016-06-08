@@ -9,12 +9,12 @@
     .module('oipa.countries')
     .controller('CountriesListController', CountriesListController);
 
-  CountriesListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'homeUrl'];
+  CountriesListController.$inject = ['$scope', 'TransactionAggregations', 'FilterSelection', 'homeUrl'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function CountriesListController($scope, Aggregations, FilterSelection, homeUrl) {
+  function CountriesListController($scope, TransactionAggregations, FilterSelection, homeUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.countries = [];
@@ -71,7 +71,7 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
-      Aggregations.aggregation('recipient_country', 'count,recipient_country_percentage_weighted_incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
+      TransactionAggregations.aggregation('recipient_country', 'activity_count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.countries = data.data.results;
@@ -89,7 +89,7 @@
 
       vm.busy = true;
       vm.page += 1;
-      Aggregations.aggregation('recipient_country', 'count,recipient_country_percentage_weighted_incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
+      TransactionAggregations.aggregation('recipient_country', 'activity_count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.countries = vm.countries.concat(data.data.results);
@@ -102,7 +102,7 @@
     };
 
     vm.download = function(format){
-      var aggregation_url = Aggregations.prepare_url('recipient_country', 'count,recipient_country_percentage_weighted_incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by);
+      var aggregation_url = TransactionAggregations.prepare_url('recipient_country', 'activity_count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by);
       var url = homeUrl + '/export/?type=aggregated-list&format='+format+'&aggregation_group=recipient_country&aggregation_url=' + encodeURIComponent(aggregation_url);
       window.open(url);
     }

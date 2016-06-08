@@ -10,14 +10,14 @@
     function TransactionAggregations($http, oipaUrl, reportingOrganisationId) {
 
         var TransactionAggregations = {
-            aggregation: aggregation
+            aggregation: aggregation,
+            prepare_url: prepare_url,
         };
 
         return TransactionAggregations;
 
-        function aggregation(group_by, aggregations, filters, order_by, page_size, page){
-            
-            var url = oipaUrl + '/transactions/aggregations/?format=json&group_by='+group_by+'&aggregations='+aggregations
+        function prepare_url(group_by, aggregations, filters, order_by, page_size, page){
+            var url = 'aggregations/?format=json&group_by='+group_by+'&aggregations='+aggregations
             if(reportingOrganisationId){
                 url += '&reporting_organisation=' + reportingOrganisationId
             }
@@ -34,7 +34,12 @@
             if(page !== undefined){
                 url += '&page=' + page;
             }
-            
+            return url;
+        }
+
+        function aggregation(group_by, aggregations, filters, order_by, page_size, page){
+
+            var url = oipaUrl + '/transactions/' + prepare_url(group_by, aggregations, filters, order_by, page_size, page);
             return $http.get(url, { cache: true });
         }
     }

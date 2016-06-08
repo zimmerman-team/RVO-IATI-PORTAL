@@ -9,16 +9,16 @@
     .module('oipa.programmes')
     .controller('ProgrammeListController', ProgrammeListController);
 
-  ProgrammeListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'Aggregations', 'programmesMapping', 'homeUrl'];
+  ProgrammeListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'TransactionAggregations', 'programmesMapping', 'homeUrl'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function ProgrammeListController($scope, Activities, FilterSelection, Aggregations, programmesMapping, homeUrl) {
+  function ProgrammeListController($scope, Activities, FilterSelection, TransactionAggregations, programmesMapping, homeUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
-    vm.order_by = 'title';
+    vm.order_by = 'related_activity';
     vm.page_size = 50;
     vm.page = 1;
     vm.totalActivities = 0;
@@ -77,13 +77,13 @@
 
       vm.page = 1;
 
-      Aggregations.aggregation('related_activity', 'count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(aggregationSuccessFn, errorFn);
+      TransactionAggregations.aggregation('related_activity', 'activity_count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(aggregationSuccessFn, errorFn);
 
       function aggregationSuccessFn(data, status, headers, config){
         var results = data.data.results;
 
         for(var i = 0;i < results.length;i++){
-          results[i].name = programmesMapping[results[i].activity_id];
+          results[i].name = programmesMapping[results[i].related_activity];
         }
 
         vm.activities = results;
@@ -98,7 +98,7 @@
     }
 
     vm.download = function(format){
-      var aggregation_url = Aggregations.prepare_url('related_activity', 'count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by);
+      var aggregation_url = TransactionAggregations.prepare_url('related_activity', 'activity_count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by);
       var url = homeUrl + '/export/?type=aggregated-list&format='+format+'&aggregation_group=programme&aggregation_url=' + encodeURIComponent(aggregation_url);
       window.open(url);
     }

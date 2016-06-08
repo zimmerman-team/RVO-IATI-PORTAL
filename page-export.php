@@ -20,6 +20,8 @@ switch ($_GET['type']) {
         $url = $oipa_url . '?format=' . $format . '&id=' . $_GET['detail'] . '&fields=all';
         break;
     case 'aggregated-list':
+        $oipa_url = str_replace('activities', 'transactions', $oipa_url);
+        
         // get the json, if format = csv re-format to csv here
         $aggregation_url  = $_GET['aggregation_url'];
         $url = $oipa_url . urldecode($aggregation_url);
@@ -34,33 +36,25 @@ switch ($_GET['type']) {
             $group_by = $_GET['aggregation_group'];
 
             if($group_by == 'programme'){
-                $programme_names = array(
-                  "NL-KVK-27378529-23408"=>"Private Sector Investment programme (PSI)",
-                  "NL-KVK-27378529-26663"=>"Dutch Good Growth Fund (DGGF)",
-                  "NL-KVK-27378529-19390"=>"Facility for Infrastructure Development (ORIO)",
-                  "NL-KVK-27378529-25403"=>"Centre for the Promotion of Imports from developing countries (CBI)",
-                  "NL-KVK-27378529-26225"=>"Life Sciences and Health for Development (LS&H4D)",
-                  "NL-KVK-27378529-23188"=>"Transition Facility (TF)",
-                  "NL-KVK-27378529-23310"=>"Pilot 2g@there-OS (2getthere-OS)",
-                  "NL-KVK-27378529-26067"=>"PSD Apps",
-                  "NL-KVK-27378529-26742"=>"Demonstration projects. Feasibility studies and Knowledge acquisition projects (DHKF)",
-                  "NL-KVK-27378529-18232"=>"Daey Ouwens Fund - Kleinschalige hernieuwbare energieprojecten (KHED)",
-                  "NL-KVK-27378529-25588"=>"Dutch Risk Reduction Team (DRR-Team)",
-                  "NL-KVK-27378529-27115"=>"Dutch Surge Support (DSS Water)",
-                  "NL-KVK-27378529-23877"=>"Facility for Sustainable Entrepreneurship and Food Security (FDOV)",
-                  "NL-KVK-27378529-23710"=>"Sustainable Water Fund",
-                  "NL-KVK-27378529-25717"=>"Ghana WASH Window (GWW-FDW)",
-                  "NL-KVK-27378529-27528"=>"Product Development Partnerships III Fund"
-                );
+
+                $prog_url = OIPA_URL . '/activities/?format=json&page_size=100&reporting_organisation=NL-KVK-27378529&hierarchy=1&fields=id,title';
+                $prog_json_str = file_get_contents($prog_url);
+                $prog_json_obj = json_decode($prog_json_str, true);
+                $prog_results = $prog_json_obj['results'];
+
+                $programme_names = array();
+                foreach($prog_results as $prog){
+                    $programme_names[$prog['id']] = $prog['title']['narratives'][0]['text'];
+                }
 
                 // init csv with headers
                 $csv = array("code,name,count,budget\n");
 
                 // add csv data
                 foreach ($json_obj['results'] as $row) {
-                    $code = maybeEncodeCSVField($row['activity_id']);
-                    $name = maybeEncodeCSVField($programme_names[$row['activity_id']]);
-                    $count = maybeEncodeCSVField($row['count']);
+                    $code = maybeEncodeCSVField($row['related_activity']);
+                    $name = maybeEncodeCSVField($programme_names[$row['related_activity']]);
+                    $count = maybeEncodeCSVField($row['activity_count']);
                     $incoming_fund = maybeEncodeCSVField($row['incoming_fund']);
 
                     $row_arr = array();

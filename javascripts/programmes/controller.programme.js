@@ -65,7 +65,7 @@
 
       function successFn(data, status, headers, config) {
         vm.activity = data.data;
-        Programmes.selectedProgrammes.push({'activity_id': vm.activity.id, 'count': 0, 'name': vm.activity.title.narratives[0].text});
+        Programmes.selectedProgrammes.push({'related_activity': vm.activity.id, 'count': 0, 'name': vm.activity.title.narratives[0].text});
         FilterSelection.save();
         vm.setBudgetLeft();
         vm.loading = false;
