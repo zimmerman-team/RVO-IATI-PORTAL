@@ -53,7 +53,7 @@
         })
         .state({
             name:         'results',
-            url:          '/results/',
+            url:          '/results/' + filters,
             reloadOnSearch: false,
             controller:   'ResultsController',
             controllerAs: 'vm',

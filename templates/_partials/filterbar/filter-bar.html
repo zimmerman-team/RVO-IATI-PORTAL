@@ -53,8 +53,18 @@
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('transaction_year')" 
                 ng-class="{'active': vm.isOpenedHeader('transaction_year')}"
-                ng-show="vm.isIncludedFilter('transaction_year')">
+                ng-show="vm.isIncludedFilter('transaction_year')"
+                ng-if="vm.pageName != 'results'">
               Time range
+            </span>
+
+            <span
+                class="filter-pop"
+                ng-click="vm.toggleOpenPanel('result_indicator_period_end_year')" 
+                ng-class="{'active': vm.isOpenedHeader('result_indicator_period_end_year')}"
+                ng-show="vm.isIncludedFilter('result_indicator_period_end_year')"
+                ng-if="vm.pageName == 'results'">
+              Result time range
             </span>
 
             <span
@@ -106,6 +116,7 @@
             <filter-panel-budget ng-show="vm.isOpenedHeader('budget')" class="ng-hide slideDown"></filter-panel-budget>
             <filter-panel-sectors ng-show="vm.isOpenedHeader('sectors')" class="ng-hide slideDown"></filter-panel-sectors>
             <filter-panel-transaction-year ng-show="vm.isOpenedHeader('transaction_year')" class="ng-hide slideDown"></filter-panel-transaction-year>
+            <filter-panel-result-period-end-year ng-show="vm.isOpenedHeader('result_indicator_period_end_year')" class="ng-hide slideDown"></filter-panel-result-period-end-year>
             <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('recipient_implementing_organisations')" class="ng-hide slideDown"></filter-panel-implementing-organisations>
             <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')" class="ng-hide slideDown"></filter-panel-activity-status>
             <filter-panel-implementing-organisation-type ng-show="vm.isOpenedHeader('recipient_implementing_organisation_types')" class="ng-hide slideDown"></filter-panel-implementing-organisation-type>

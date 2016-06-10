@@ -9,8 +9,10 @@
 			                <span>
 			                <input 
 			                	type="checkbox" 
-			                	ng-click="vm.setGroup(item)"
+			                	name="selectedIndicator[]"
+			                	ng-click="vm.setSelected(item)" 
 			                	value="{{item.indicatorName}}"
+			                	ng-checked={{selectedIndicators[item.indicatorName]}}
 			                	ng-class="{'': item.children.length}">
 			                	
 			                	<span ng-if="vm.indicators[item.indicatorName].header">
@@ -30,7 +32,10 @@
 			                <span class="noexpand">
 			                <input 
 			                	type="checkbox" 
-			                	ng-click="vm.setGroup(item)" 
+			                	name="selectedIndicator[]"
+			                	ng-click="vm.setSelected(item)" 
+			                	value="{{item.indicatorName}}"
+			                	ng-checked={{selectedIndicators[item.indicatorName]}}
 			                	ng-class="{'': item.children.length}">
 			                	
 			                	<span ng-if="vm.indicators[item.indicatorName].header">

@@ -71,6 +71,13 @@
 						Transaction date year: {{vm.selectedTransactionYear.value}}
 					</a>
 
+					<a 
+						class="selected filter-selected-button selectedActivityStatuses" 
+						ng-show="vm.selectedResultPeriodEndYear.on" 
+						ng-click="vm.removeResultPeriodEndYearFilter()">
+						Indicator period year: {{vm.selectedResultPeriodEndYear.value}}
+					</a>
+
 					<div style="margin-bottom:4px;" ng-show="!vm.filterCount">
 						No filters selected
 					</div>

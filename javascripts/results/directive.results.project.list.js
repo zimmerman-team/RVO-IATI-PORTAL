@@ -13,7 +13,9 @@
       controller: 'ResultsProjectListController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {},
+      scope: {
+        selectedIndicators: '=',
+      },
       templateUrl: templateBaseUrl + '/templates/results/results-project-list.html'
     };
 

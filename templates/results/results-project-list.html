@@ -9,82 +9,101 @@
     </div>
 </div> -->
 
-  <div class="row">
-      <div class="col-md-12">
-          <div class="sort">
-              <span class="sort-by">Sort by: </span>
-              <div class="custom-select ff-hack">
-                  <select
-                    ng-model="vm.order_by"
-                    ng-change="vm.toggleOrder()">
-                        <option value="title">Title (A-Z)</option>
-                        <option value="-title">Title (Z-A)</option>
-                  </select>
-              </div>
-              <span class="results">Results: <span class="total">{{vm.activities.length}}</span></span>
-              
-              <!-- <span class="download-list">
-                <a ng-click="vm.download('json')"><i class="fa fa-download"></i>JSON</a>
-                &nbsp;&nbsp;&nbsp;
-                <a ng-click="vm.download('csv')"><i class="fa fa-download"></i>CSV</a>
-              </span> -->
-          </div>
-      </div>
-  </div>
-
-<div ng-if='vm.totalActivities == 0' class="row">
-    <div class="col-sm-12">
-        <div class="no-results">
-            <h2>Nothing found</h2>
-            <p>Please select some different filters.</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="sort">
+            <!-- <span class="sort-by">Sort by: </span>
+            <div class="custom-select ff-hack">
+                <select
+                  ng-model="vm.order_by"
+                  ng-change="vm.toggleOrder()">
+                      <option value="title">Title (A-Z)</option>
+                      <option value="-title">Title (Z-A)</option>
+                </select>
+            </div> -->
+            <!-- <span class="results">Results: <span class="total">{{vm.activities.length}}</span></span> -->
+            
+            <!-- <span class="download-list">
+              <a ng-click="vm.download('json')"><i class="fa fa-download"></i>JSON</a>
+              &nbsp;&nbsp;&nbsp;
+              <a ng-click="vm.download('csv')"><i class="fa fa-download"></i>CSV</a>
+            </span> -->
         </div>
     </div>
 </div>
 
-<table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' id="project-list-results" class="table list-overview" ng-show="vm.activities.length != 0">
+<div ng-if='vm.totalActivities == 0' class="row">
+    <div class="col-sm-12">
+        <div class="no-results">
+            <h3>Loading...</h3>
+            <!-- <p>Please select some different filters.</p> -->
+        </div>
+    </div>
+</div>
+
+<table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' id="project-list-results" class="table list-overview" ng-show="vm.rows.length != 0">
     <thead>
         <tr>
             <th>Project title</th>
             <th>Programme</th>
             <th>Result type</th>
-            <th>Result indicator title</th>
-            <th>Result indictor description</th>
+            <th width="20%">Result indicator title</th>
+            <th width="15%">Result indictor description</th>
             <th>Baseline value (year)</th>
-            <th>Actual value (year)</th>
-            <th>Target value (year)</th>
+            <th width="8%">Actual value (year)</th>
+            <th width="8%">Target value (year)</th>
         </tr>
     </thead>
     <tbody>
-        <tr
-            ng-repeat="item in vm.activities">
+        <tr ng-repeat="item in vm.rows">
             <td>
-              <a ui-sref="activiteit({ activity_id: item.id, tab: 'summary' })">
-                {{ item.title.narratives[0].text }}
+              <a ui-sref="activiteit({ activity_id: item.activity_id, tab: 'summary' })">
+                {{item.title}}
               </a>
             </td>
             <td>
-              Programme name
+              {{item.programme_afk}}
             </td>
             <td>
-              Output
+              {{item.result_type}}
             </td>
             <td>
-              Number of direct jobs supported -  Total FTE 
+              {{item.result_indicator_title}}
             </td>
             <td>
-              Total number of direct jobs created 
+            {{item.result_indicator_description_short}}
+            <a 
+              ng-if="item.result_indicator_description_short.length == 45" 
+              ng-href="#" 
+              ng-click="item.result_indicator_description_short = item.result_indicator_description">
+              ... More
+            </a>
             </td>
             <td>
-              0 (2014)
+              {{item.baseline_value}} ( {{item.baseline_year}} )
             </td>
-            <td>
+
+            <td ng-if="item.period_actual_value != null">
+              {{item.period_actual_value | number : 0}}
+              ({{item.period_target_year | date : 'yyyy'}})
+              <span ng-if="item.period_actual_comment != null" class="comment"></span>
             </td>
-            <td>
-              30 (2017)
+            <td ng-if="item.period_actual_value == null">
+              Data to be added
             </td>
+
+            <td ng-if="item.period_target_value != null">
+              {{item.period_target_value | number : 0}}
+              ({{item.period_target_year | date : 'yyyy'}})
+              <span ng-if="item.period_target_comment != null" class="comment"></span>
+            </td>
+            <td ng-if="item.period_target_value == null">
+              Data to be added
+            </td>
+
         </tr>
     </tbody>
-</table>
+</table>  
 
 
 

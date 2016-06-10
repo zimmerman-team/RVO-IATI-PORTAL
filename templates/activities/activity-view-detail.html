@@ -546,12 +546,14 @@
                             <tr ng-repeat="result in vm.activity.results">
                                 <td>{{result.type.name ? result.type.name : 'Data to be added'}}</td>
                                 <td>{{result.indicator[0].title.narratives[0].text ? result.indicator[0].title.narratives[0].text : 'Data to be added'}}</td>
-                                <td>{{result.indicator[0].description ? result.indicator[0].description : 'Data to be added'}}</td>
+                                <td>{{result.indicator[0].description ? result.indicator[0].description.narratives[0].text : 'Data to be added'}}</td>
                                 <td>{{result.indicator[0].baseline.value ? result.indicator[0].baseline.value : 'Data to be added'}} ({{result.indicator[0].baseline.year ? result.indicator[0].baseline.year : 'n/a'}})</td>
-                                <td>{{result.indicator[0].period[0].actual.value ? result.indicator[0].period[0].actual.value : '0'}}
+                                <td ng-if="result.indicator[0].period[0].actual.value">{{result.indicator[0].period[0].actual.value | number : 0}}
                                     ({{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : 'n/a' | date : 'yyyy'}})</td>
-                                <td>{{result.indicator[0].period[0].target.value ? result.indicator[0].period[0].target.value : 'Data to be added'}}
+                                <td ng-if="!result.indicator[0].period[0].actual.value">Data to be added</td>
+                                <td ng-if="result.indicator[0].period[0].target.value">{{result.indicator[0].period[0].target.value | number : 0}}
                                     ({{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : 'n/a' | date : 'yyyy'}})</td>
+                                <td ng-if="!result.indicator[0].period[0].target.value">Data to be added</td>
                             </tr>
                         </tbody>
                     </table>

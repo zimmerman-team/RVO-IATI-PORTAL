@@ -16,29 +16,17 @@
                     </p>
             </div>
         </div>
-        <!-- <hr class="darkblue"> -->
     </div>
-
-    <!-- <div class="panel lightblue clearfix no-margin-bottom"> -->
-        <div class="row">
+    <div class="row">
             <div class="container xlight">
                 <div class="col-md-6">
-                    <results-table selected-group="vm.selectedGroup" indicators="vm.indicators"></results-table>
+                    <results-table selected-group="vm.selectedGroup" indicators="vm.indicators" selected-indicators="vm.selectedIndicators"></results-table>
                 </div>
                 <div class="col-md-6">
-                    <results-chart></results-chart>
+                    <results-chart indicators="vm.indicators" selected-indicators="vm.selectedIndicators"></results-chart>
                 </div>
             </div>
         </div>
-    <!-- </div> -->
-
-<!--     <div style="background-color: #f2f8fc; margin-top: -10px;">
-        <div class="container extra" style="padding-top: 30px;">
-            
-        </div>
-    </div>
- -->
-
     <div class="row">
         <div class="col-sm-12">
             <div class="front-callout">
@@ -52,12 +40,6 @@
         </div>
     </div>
 
-
-    
-
-    
-    <!-- Result table: TO DO -->
-    <results-project-list></results-project-list>
-
+    <results-project-list selected-indicators="vm.selectedIndicators"></results-project-list>
 </div>
 

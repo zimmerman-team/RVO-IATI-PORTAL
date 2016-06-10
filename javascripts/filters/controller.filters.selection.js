@@ -9,9 +9,25 @@
     .module('oipa.filters')
     .controller('FiltersSelectionController', FiltersSelectionController);
 
-  FiltersSelectionController.$inject = ['$scope', '$state', '$stateParams', '$location', 'FilterSelection', 'Programmes', 'Countries', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ImplementingOrganisationType', 'ActivityStatus', 'Search', 'programmesMapping'];
+  FiltersSelectionController.$inject = [
+  '$scope', 
+  '$state', 
+  '$stateParams', 
+  '$location', 
+  'FilterSelection', 
+  'Programmes', 
+  'Countries', 
+  'Budget', 
+  'Sectors', 
+  'Transaction', 
+  'ImplementingOrganisations', 
+  'ImplementingOrganisationType', 
+  'ActivityStatus', 
+  'Search', 
+  'programmesMapping',
+  'Results'];
 
-  function FiltersSelectionController($scope, $state, $stateParams, $location, FilterSelection, Programmes, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ImplementingOrganisationType, ActivityStatus, Search, programmesMapping) {
+  function FiltersSelectionController($scope, $state, $stateParams, $location, FilterSelection, Programmes, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ImplementingOrganisationType, ActivityStatus, Search, programmesMapping, Results) {
     var vm = this;
     vm.selectedCountries = Countries.selectedCountries;
     vm.selectedSectors = Sectors.selectedSectors;
@@ -21,6 +37,7 @@
     vm.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
     vm.selectedBudget = Budget.budget;
     vm.selectedTransactionYear = Transaction.year;
+    vm.selectedResultPeriodEndYear = Results.year;
     vm.filterSelection = FilterSelection;
     vm.search = Search;
     vm.currentPage = null;
@@ -39,6 +56,7 @@
       count += vm.search.searchString.length;
       if(vm.selectedBudget.on){ count += 1; }
       if(vm.selectedTransactionYear.on){ count += 1; }
+      if(vm.selectedResultPeriodEndYear.on){ count += 1; }
       if(count != vm.filterCount){ vm.filterCount = count; }
     }
 
@@ -141,11 +159,9 @@
         var related_activity_ids = filter_obj['related_activity_id'].split(',');
 
         for(var i = 0;i < related_activity_ids.length; i++){
-
           if(programmesMapping[related_activity_ids[i]] != undefined){
             vm.selectedProgrammes.push({'related_activity': related_activity_ids[i], 'name': programmesMapping[related_activity_ids[i]]}); 
           }
-          
         }
       }
 
@@ -154,19 +170,21 @@
         Countries.getCountries(filter_obj['recipient_country']).then(function(data, status, headers, config){
 
           for(var i = 0;i < data.data.results.length; i++){
-            vm.selectedCountries.push(data.data.results[i]);
+            if(filter_obj['recipient_country'].indexOf(data.data.results[i].recipient_country.code) > -1){
+              vm.selectedCountries.push(data.data.results[i]);
+            }
           }
           vm.filterSelection.save();
         }, errorFn);
       }
 
-
       // add to filters under the right header (with the wrong name)
       if(filter_obj['sector'] != undefined && vm.selectedSectors.length == 0){
         Sectors.getSectors(filter_obj['sector']).then(function(data, status, headers, config){
-
           for(var i = 0;i < data.data.results.length; i++){
-            vm.selectedSectors.push(data.data.results[i]);
+            if(filter_obj['sector'].indexOf(data.data.results[i].sector.code) > -1){
+              vm.selectedSectors.push(data.data.results[i]);
+            }
           }
           vm.filterSelection.save();
         }, errorFn);
@@ -211,6 +229,11 @@
       if(filter_obj['transaction_date_year'] != undefined){
         vm.selectedTransactionYear.on = true;
         vm.selectedTransactionYear.value = filter_obj['transaction_date_year'];
+      }
+
+      if(filter_obj['result_indicator_period_end_year'] != undefined){
+        vm.selectedResultPeriodEndYear.on = true;
+        vm.selectedResultPeriodEndYear.value = filter_obj['result_indicator_period_end_year'];
       }
 
       // search filter
@@ -267,7 +290,14 @@
       vm.selectedTransactionYear.year = 2015;
       FilterSelection.save();
       Transaction.toReset = true;
-    }  
+    }
+
+    vm.removeResultPeriodEndYearFilter = function(){
+      vm.selectedResultPeriodEndYear.on = false;
+      vm.selectedResultPeriodEndYear.year = 2016;
+      FilterSelection.save();
+      Transaction.toReset = true;
+    }
 
 
     vm.removeSearch = function(){

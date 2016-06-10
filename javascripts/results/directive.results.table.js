@@ -15,7 +15,8 @@
       restrict: 'E',
       scope: {
         indicators: '=',
-        selectedGroup: '='
+        selectedGroup: '=',
+        selectedIndicators: '='
       },
       templateUrl: templateBaseUrl + '/templates/results/results-table.html'
     };

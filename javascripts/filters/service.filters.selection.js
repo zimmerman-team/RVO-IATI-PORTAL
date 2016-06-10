@@ -9,13 +9,13 @@
 		.module('oipa.filters')
 		.factory('FilterSelection', FilterSelection);
 
-	FilterSelection.$inject = ['$http', 'reportingOrganisationId', 'Programmes', 'Countries', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search', 'ImplementingOrganisationType'];
+	FilterSelection.$inject = ['$http', 'reportingOrganisationId', 'Programmes', 'Countries', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search', 'ImplementingOrganisationType', 'Results'];
 
 	/**
 	* @namespace Filters
 	* @returns {Factory}
 	*/
-	function FilterSelection($http, reportingOrganisationId, Programmes, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search, ImplementingOrganisationType) {
+	function FilterSelection($http, reportingOrganisationId, Programmes, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search, ImplementingOrganisationType, Results) {
 		var m = this;
 		m.selectedProgrammes = Programmes.selectedProgrammes;
 	    m.selectedCountries = Countries.selectedCountries;
@@ -25,6 +25,7 @@
 	    m.selectedImplementingOrganisationTypes = ImplementingOrganisationType.selectedImplementingOrganisationTypes;
 	    m.selectedBudget = Budget.budget;
 	    m.selectedTransactionYear = Transaction.year;
+	    m.selectedResultPeriodEndYear = Results.year;
 	    m.search = Search;
 		
 		m.selectionString = '';
@@ -105,6 +106,10 @@
 
 			if(m.selectedTransactionYear.on){
 				selectList.push('&transaction_date_year='+m.selectedTransactionYear.value);
+			}
+
+			if(m.selectedResultPeriodEndYear.on){
+				selectList.push('&result_indicator_period_end_year='+m.selectedResultPeriodEndYear.value);
 			}
 
 			if(Search.searchString != ''){

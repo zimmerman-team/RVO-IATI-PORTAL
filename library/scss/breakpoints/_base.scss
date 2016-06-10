@@ -35,6 +35,10 @@ TEMP
   }
 }
 
+.results rect.nv-bars {
+  width: 20px;
+}
+
 .glyphicon-info-sign{
   display: none !important;
 }
@@ -1791,6 +1795,15 @@ RESULTS PAGE
  */
 
 .results {
+  .comment{
+    &:before {
+      font-family: 'FontAwesome';
+      margin-right: 2px;
+      content:'\f075';
+      color:$rvo-groen;
+      transition: all .4s ease-in-out;
+    }
+  }
   .front-callout {
     font-weight: 400;
     color:$white;

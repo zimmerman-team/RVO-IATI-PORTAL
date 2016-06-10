@@ -13,7 +13,10 @@
       controller: 'ResultsChartController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {},
+      scope: {
+        indicators: '=',
+        selectedIndicators: '='
+      },
       templateUrl: templateBaseUrl + '/templates/results/results-chart.html'
     };
 

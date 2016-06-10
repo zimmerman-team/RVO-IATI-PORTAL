@@ -9,8 +9,15 @@
 
 	function Results($http, oipaUrl, reportingOrganisationId) {
 		var m = this;
+        m.year = {
+          on: false,
+          year: '2015'
+        };
+        m.toReset = false;
 
 		var Results = {
+            year: m.year,
+            toReset: m.toReset,
 			aggregation: aggregation
 		};
 
