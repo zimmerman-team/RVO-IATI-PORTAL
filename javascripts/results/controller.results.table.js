@@ -170,8 +170,6 @@
     		group = vm.indicators[item.indicatorName].parent
     	}
 
-    	console.log(vm.indicators);
-
     	// select group
     	selectedIndicators.push(group)
     	$scope.selectedGroup = group
