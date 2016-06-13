@@ -272,36 +272,48 @@
 
                 <div class="panel lightblue with-table">
 
-                    <h3>Related activities</h3>
-                    <hr>
-
-                    <table class="no-format">
-                        <tr>
-                            <td width="200">Related activity name:</td>
-                            <td>{{vm.activity.related_activities[0].name}}<span ng-if="!vm.activity.related_activities[0].name">Data to be added</span></td>
-                        </tr>
-                        <tr>
-                            <td>Related activity ref:</td>
-                            <td>{{vm.activity.related_activities[0].ref}}<span ng-if="!vm.activity.related_activities[0].ref">Data to be added</span></td>
-                        </tr>
-                        <tr>
-                            <td>Related activity type:</td>
-                            <td>{{vm.activity.related_activities[0].type.name}}<span ng-if="!vm.activity.related_activities[0].type.name">Data to be added</span></td>
-                        </tr>
-                    </table>
+                        <h3>Related activities</h3>
+                    <div class="table-responsive">
+                        <table class="finance no-blue" ng-if="vm.activity.related_activities">
+                            <thead>
+                                <tr>
+                                    <th>Related activity name</th>
+                                    <th>Related activity ref</th>
+                                    <th>Related activity type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="related_activity in vm.activity.related_activities">
+                                    <td>
+                                        {{vm.activity.related_activities[0].name}}<span ng-if="!vm.activity.related_activities[0].name">Data to be added</span>
+                                    </td>
+                                    <td>
+                                        {{vm.activity.related_activities[0].ref}}<span ng-if="!vm.activity.related_activities[0].ref">Data to be added</span>
+                                    </td>
+                                    <td>
+                                        {{vm.activity.related_activities[0].type.name}}<span ng-if="!vm.activity.related_activities[0].type.name">Data to be added</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ng-if="!vm.activity.related_activities">
+                        <hr>
+                        <p style="padding-left:15px;padding-bottom:10px;">Data to be added</p>
+                    </div>
                 </div>
 
                 <div class="panel lightblue with-table">
 
-                    <h3>Related organisations</h3>
+                    <h3>Participating organisations</h3>
                     <div class="table-responsive">
                         <table class="finance no-blue" ng-if="vm.activity.participating_organisations">
                             <thead>
                                 <tr>
-                                    <th>Participating org.</th>
-                                    <th>Participating org. role</th>
-                                    <th>Participating org. ref.</th>
-                                    <th>Participating org. type</th>
+                                    <th>Organisation name</th>
+                                    <th>Role</th>
+                                    <th>Ref</th>
+                                    <th>Type</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -333,15 +345,14 @@
 
                 <div class="panel lightblue with-table">
 
-                    <h3>Related countries</h3>
+                    <h3>Recipient countries</h3>
                     <div class="table-responsive">
                         <table class="finance no-blue" ng-if="vm.activity.recipient_countries.length != 0">
                             <thead>
                                 <tr>
                                     <th>Country</th>
-                                    <th>Region</th>
-                                    <th>Latitude</th>
-                                    <th>Longitude</th>
+                                    <th width="30%">Country code (iso2)</th>
+                                    <th width="30%">Percentage</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -350,16 +361,10 @@
                                         {{country.country.name}}
                                     </td>
                                     <td>
-                                        {{country.region}}
-                                        <span ng-if="!country.region">-</span>
+                                        {{country.country.code}}
                                     </td>
                                     <td>
-                                        {{country.latitude}}
-                                        <span ng-if="!country.latitude">-</span>
-                                    </td>
-                                    <td>
-                                        {{country.longitude}}
-                                        <span ng-if="!country.longitude">-</span>
+                                        {{country.percentage}}%
                                     </td>
                                 </tr>
                             </tbody>
@@ -374,13 +379,47 @@
 
                 <div class="panel lightblue with-table">
 
+                    <h3>Geographical locations</h3>
+                    <div class="table-responsive">
+                        <table class="finance no-blue" ng-if="vm.activity.locations.length != 0">
+                            <thead>
+                                <tr><th>Ref</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="location in vm.activity.locations">
+                                    <td>
+                                        {{location.ref}}
+                                    </td>
+                                    <td>
+                                        {{location.point.pos.latitude}}
+                                    </td>
+                                    <td>
+                                        {{location.point.pos.longitude}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ng-if="vm.activity.locations.length == 0">
+                        <hr>
+                        <p style="padding-left:15px;padding-bottom:10px;">Data to be added</p>
+                    </div>
+
+                </div>
+
+                <div class="panel lightblue with-table">
+
                     <h3>Related sectors</h3>
                     
                     <table class="finance no-blue" ng-if="vm.activity.sectors.length != 0">
                         <thead>
                             <tr>
                                 <th>Sector</th>
-                                <th>Policy marker</th>
+                                <th width="30%">Code</th>
+                                <th width="30%">Percentage</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -389,8 +428,10 @@
                                     {{sector.sector.name}}
                                 </td>
                                 <td>
-                                    {{sector.marker}}
-                                    <span ng-if="!sector.marker">-</span>
+                                    {{sector.sector.code}}
+                                </td>
+                                <td>
+                                    {{sector.percentage}}%
                                 </td>
                             </tr>
                         </tbody>
@@ -401,6 +442,39 @@
                         <p style="padding-left:15px;padding-bottom:10px;">Data to be added</p>
                     </div>
 
+                </div>
+
+                <div class="panel lightblue with-table">
+                    <h3>Policy markers</h3>
+                    <table class="finance no-blue">
+                        <thead>
+                            <tr>
+                                <th>Marker</th>
+                                <th width="20%" class="text-center">Principal objective</th>
+                                <th width="20%" class="text-center">Significant objective</th>
+                                <th width="20%" class="text-center">Not targeted</th>
+                            </tr>
+                        </thead>
+                         <tbody>
+                            <tr ng-repeat="marker in vm.activity.policy_markers">
+                                <td>{{marker.code.name}}</td>
+                                <td class="text-center">
+                                    <span ng-if="marker.significance.code == 2"><i class="fa fa-check"></i></span>
+                                </td>
+                                <td class="text-center">
+                                    <span ng-if="marker.significance.code == 1"><i class="fa fa-check"></i></span>
+                                </td>
+                                <td class="text-center">
+                                    <span ng-if="marker.significance.code == 0"><i class="fa fa-check"></i></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div ng-if="vm.activity.policy_markers.length == 0">
+                        <hr>
+                        <p style="padding-left:15px;padding-bottom:10px;">Data to be added</p>
+                    </div>
                 </div>
 
            
