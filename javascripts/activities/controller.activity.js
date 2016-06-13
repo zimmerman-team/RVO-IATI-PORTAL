@@ -66,7 +66,6 @@
         if(vm.activity.descriptions.length){
 
           for (var i = 0; i < vm.activity.descriptions.length;i++){
-            console.log(vm.activity.descriptions[i].type);
             if(vm.activity.descriptions[i].type.code == '1'){
               desc += vm.activity.descriptions[i].narratives[0].text;
             }
