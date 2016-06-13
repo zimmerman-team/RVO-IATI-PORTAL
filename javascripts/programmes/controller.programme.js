@@ -50,6 +50,7 @@
       {'id': 'countries', 'name': 'Countries', 'count': -1},
       {'id': 'sectors', 'name': 'Sectors', 'count': -1},
       {'id': 'implementing-organisations', 'name': 'Project partners', 'count': -1},
+      {'id': 'results', 'name': 'Goals & Results', 'count': -1},
     ]
 
     activate();

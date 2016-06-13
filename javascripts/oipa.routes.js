@@ -55,9 +55,9 @@
             name:         'results',
             url:          '/results/' + filters,
             reloadOnSearch: false,
-            controller:   'ResultsController',
+            controller:   'ResultsPageController',
             controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/results/results.html',
+            templateUrl:  templateBaseUrl + '/templates/results/results-page.html',
         })
         .state({
             name:        'activiteit',
@@ -130,6 +130,7 @@
         .state({
             name:        'programme',
             url:         '/programmes/:programme_id/?tab',
+            reloadOnSearch: false,
             controller:  'ProgrammeController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/programmes/programme-view-detail.html'

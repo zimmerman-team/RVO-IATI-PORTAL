@@ -136,7 +136,7 @@
               disbursements_expenditures.push(results[i]);
               break;
             default:
-               other_transactions.push(results[i]);
+              other_transactions.push(results[i]);
           }
         }
 
@@ -145,7 +145,7 @@
         disbursements_expenditures = disbursements_expenditures.sort(transactionDateSort)
 
         var orderedTransactions = incoming_funds.concat(commitments).concat(disbursements_expenditures).concat(other_transactions)
-  
+
         vm.transactionData = orderedTransactions
         vm.reformatTransactionData(orderedTransactions)
       }

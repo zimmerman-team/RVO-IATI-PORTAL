@@ -155,7 +155,8 @@
     };
 
     vm.download = function(format){
-      var url = homeUrl + '/export/?type=activity-list&format='+format+'&filters=' + encodeURIComponent(vm.filterSelection.selectionString);
+      var resultAddition = '&indicator_title=' + vm.selectedIndicators.join(',');
+      var url = homeUrl + '/export/?type=results-list&format='+format+'&filters=' + encodeURIComponent(vm.filterSelection.selectionString)+'&indicator_title='+resultAddition;
       window.open(url);
     }
 

@@ -254,6 +254,100 @@ switch ($_GET['type']) {
             }
         }
         break;
+    case 'results-list':
+        // get the json, if format = csv re-format to csv here
+        $oipa_filter  = $_GET['filters'];
+        $indicator_title  = '&indicator_title=' . $_GET['indicator_title'];
+        $url = OIPA_URL . '/activities/?format=json&page_size=100&fields=id,title,related_activities,results&reporting_organisation=NL-KVK-27378529' . urldecode($oipa_filter) . '&indicator_title=' . rawurlencode($_GET['indicator_title']);
+
+        $indicator_titles = urldecode($_GET['indicator_title']);
+        $indicator_titles = explode(',', $indicator_titles);
+
+        $json_str = file_get_contents($url);
+        $json_obj = json_decode($json_str, true);
+        $activities = $json_obj['results'];
+
+        $rows = array();
+        $activity_count = count($activities);
+
+        $programmaAfkortingen = array(
+          'NL-KVK-27378529-18232'=>'KHED',
+          'NL-KVK-27378529-19390'=>'ORIO',
+          'NL-KVK-27378529-23188'=>'TF',
+          'NL-KVK-27378529-23310'=>'2getthere-OS',
+          'NL-KVK-27378529-23408'=>'PSI',
+          'NL-KVK-27378529-23710'=>'FDW',
+          'NL-KVK-27378529-23877'=>'FDOV',
+          'NL-KVK-27378529-25403'=>'CBI',
+          'NL-KVK-27378529-25588'=>'DRR-Team',
+          'NL-KVK-27378529-25717'=>'GWW-FDW',
+          'NL-KVK-27378529-26067'=>'PSD',
+          'NL-KVK-27378529-26225'=>'LS&H4D',
+          'NL-KVK-27378529-26663'=>'DGGF',
+          'NL-KVK-27378529-26742'=>'DHKF',
+          'NL-KVK-27378529-27115'=>'DSS',
+          'NL-KVK-27378529-27528'=>'PDP III',
+        );
+
+
+        for ($i = 0; $i < $activity_count; $i++) {
+            $results_length = count($activities[$i]['results']);
+            for ($x = 0; $x < $results_length; $x++) {
+                $indicator_length = count($activities[$i]['results'][$x]['indicator']);
+                for ($y = 0; $y < $indicator_length; $y++) {
+                    if (!in_array($activities[$i]['results'][$x]['indicator'][$y]['title']['narratives'][0]['text'], $indicator_titles)) {
+                        continue;
+                    }
+                    $indicator_period_count = count($activities[$i]['results'][$x]['indicator'][$y]['period']);
+                    for ($z = 0; $z < $indicator_period_count; $z++) {
+                        
+
+                        $result_indicator_description = '';
+                        $result_indicator_description_short = '';
+                        if ($activities[$i]['results'][$x]['indicator'][$y]['description'] != null){
+                            $result_indicator_description = $activities[$i]['results'][$x]['indicator'][$y]['description']['narratives'][0]['text'];
+                            $result_indicator_description_short = mb_substr($result_indicator_description, 0, 45);
+                        }
+
+                        array_push($rows, array(
+                            'activity_id'=> $activities[$i]['id'],
+                            'title'=> $activities[$i]['title']['narratives'][0]['text'],
+                            'programme'=> $activities[$i]['related_activities'][0]['ref'],
+                            'programme_afkorting'=>$programmaAfkortingen[$activities[$i]['related_activities'][0]['ref']],
+                            'result_type'=>$activities[$i]['results'][$x]['type']['name'],
+                            'result_indicator_title'=>$activities[$i]['results'][$x]['indicator'][$y]['title']['narratives'][0]['text'],
+                            'result_indicator_description'=>$result_indicator_description,
+                            'result_indicator_description_short'=>$result_indicator_description_short,
+                            'baseline_value'=>$activities[$i]['results'][$x]['indicator'][$y]['baseline']['value'],
+                            'baseline_year'=>$activities[$i]['results'][$x]['indicator'][$y]['baseline']['year'],
+                            'period_target_value'=>$activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['target']['value'],
+                            'period_target_year'=>$activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['period_end'],
+                            'period_target_comment'=>$activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['target']['comment'],
+                            'period_actual_value'=>$activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['actual']['value'],
+                            'period_actual_year'=>$activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['period_end'],
+                            'period_actual_comment'=>$activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['actual']['comment'],
+                        ));
+
+
+                    }
+                }
+            }
+        } 
+
+        if($format == 'json'){
+            header("Content-Type: application/octet-stream");
+            header("Content-Disposition: attachment; filename=export.json");
+            echo json_encode($rows);
+            exit();
+        }
+        if($format == 'csv'){
+            header("Content-type: text/csv");
+            header("Content-Disposition: attachment; filename=export.csv");
+            header("Pragma: no-cache");
+            header("Expires: 0");
+            echo implode('', $rows);
+            exit();
+        }
 }
 $filename = 'export.' . $format;
 header("Content-Type: application/octet-stream");

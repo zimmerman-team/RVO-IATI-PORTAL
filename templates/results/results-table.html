@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
 
-			<script type="text/ng-template" id="tree">
+			<script type="text/ng-template" id="result-tree">
 			    <div ng-if="item.children.length" class="row parent collapsed">
 			        <div class="col-xs-12">
 			        	<div class="wrap">
@@ -50,7 +50,7 @@
 			    </div>
 
 			    <div ng-if="item.children.length" class="children">
-			        <div collapse="vm.isCollapsed" ng-repeat="item in item.children" ng-include="'tree'"></div>
+			        <div collapse="vm.isCollapsed" ng-repeat="item in item.children" ng-include="'result-tree'"></div>
 			    </div>
 			</script>
 
@@ -61,7 +61,7 @@
 			    </div>
 			    <div class="results body" 
 			        ng-repeat="item in vm.resultIndicators"
-			        ng-include="'tree'"
+			        ng-include="'result-tree'"
 			        ng-if="item.count != 0">
 			    </div>
 

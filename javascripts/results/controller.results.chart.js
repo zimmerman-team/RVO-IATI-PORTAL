@@ -27,8 +27,8 @@
             bottom: 60,
             left: 60
         },
-        x: function(d){ return d[0]; },
-        y: function(d){ return d[1].actual; },
+        x: function(d){ return d[0].short_name; },
+        y: function(d){ return d[0].actual; },
         color: d3.scale.category10().range(),
         transitionDuration: 300,
         // useInteractiveGuideline: true,
@@ -74,7 +74,9 @@
       var values = [];
 
       for(var i = 0; i < vm.selectedIndicators.length;i++){
-        values.push([vm.selectedIndicators[i], vm.indicators[vm.selectedIndicators[i]]]);
+        if(vm.indicators[vm.selectedIndicators[i]].actual > 0){
+          values.push([vm.indicators[vm.selectedIndicators[i]]]);
+        }
       }
 
       var data = [{ values: values, color: '#6296c7'},];

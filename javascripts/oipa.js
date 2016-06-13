@@ -11,6 +11,7 @@
             'nvd3',
             'leaflet-directive',
             'infinite-scroll',
+            '720kb.tooltips',
             'oipa.constants',
             'oipa.config',
             'oipa.routes',
