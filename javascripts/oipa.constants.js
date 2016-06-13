@@ -19,9 +19,11 @@
       "NL-KVK-27378529-25588": "Dutch Risk Reduction Team (DRR-Team)",
       "NL-KVK-27378529-27115": "Dutch Surge Support (DSS Water)",
       "NL-KVK-27378529-23877": "Facility for Sustainable Entrepreneurship and Food Security (FDOV)",
-      "NL-KVK-27378529-23710": "Sustainable Water Fund",
+      "NL-KVK-27378529-23710": "Sustainable Water Fund (FDW)",
       "NL-KVK-27378529-25717": "Ghana WASH Window (GWW-FDW)",
-      "NL-KVK-27378529-27528": "Product Development Partnerships III Fund"
+      "NL-KVK-27378529-27528": "Product Development Partnerships III Fund",
+      "NL-KVK-27378529-IM201601C": "Partners for Water - Contracts",
+      "NL-KVK-27378529-IM201601G": "Partners for Water - Grants"
     }
 
     angular

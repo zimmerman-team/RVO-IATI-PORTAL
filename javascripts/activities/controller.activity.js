@@ -108,6 +108,7 @@
         var incoming_funds = [];
         var commitments = [];
         var disbursements_expenditures = [];
+        var other_transactions = [];
 
         var transactionDateSort = function(a, b){
           a = new Date(a.value_date);
@@ -129,6 +130,8 @@
             case '4':
               disbursements_expenditures.push(results[i]);
               break;
+            default:
+               other_transactions.push(results[i]);
           }
         }
 
@@ -136,8 +139,8 @@
         commitments = commitments.sort(transactionDateSort)
         disbursements_expenditures = disbursements_expenditures.sort(transactionDateSort)
 
-        var orderedTransactions = incoming_funds.concat(commitments).concat(disbursements_expenditures)
-
+        var orderedTransactions = incoming_funds.concat(commitments).concat(disbursements_expenditures).concat(other_transactions)
+  
         vm.transactionData = orderedTransactions
         vm.reformatTransactionData(orderedTransactions)
       }
