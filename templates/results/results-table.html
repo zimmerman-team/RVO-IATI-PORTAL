@@ -5,14 +5,16 @@
 			    <div ng-if="item.children.length" class="row parent collapsed">
 			        <div class="col-xs-12">
 			        	<div class="wrap">
-			                <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span>
+			                <!-- <span ng-click="vm.toggleHideChildren($event)"></span> -->
 			                <span>
-			                <input 
+			                <label class="indicator-selector-label" ng-class="{'indicator-header': vm.indicators[item.indicatorName].header}">
+			                <input
+			                	ng-if="vm.indicators[item.indicatorName].header" 
 			                	type="checkbox" 
 			                	name="selectedIndicator[]"
-			                	ng-click="vm.setSelected(item)" 
+			                	ng-click="vm.setSelected(item, $event)" 
 			                	value="{{item.indicatorName}}"
-			                	ng-checked={{selectedIndicators[item.indicatorName]}}
+			                	ng-checked="selectedIndicators.indexOf(item.indicatorName) > -1" 
 			                	ng-class="{'': item.children.length}">
 			                	
 			                	<span ng-if="vm.indicators[item.indicatorName].header">
@@ -21,6 +23,7 @@
 			                	<span ng-if="!vm.indicators[item.indicatorName].header">
 			                		{{ item.displayName + ' (' + vm.indicators[item.indicatorName].activity_count + ' projects)' }}
 			                	</span>
+			                </label>
 			                </span>
 			            </div>
 			        </div>
@@ -28,29 +31,29 @@
 
 			    <div ng-if="!item.children.length" class="row">
 			        <div class="col-xs-12">
-			        	<div class="wrap">
-			                <span class="noexpand">
-			                <input 
+			        	<div class="wrap">	
+			                <!--<span class="noexpand">
+			                 <input 
 			                	type="checkbox" 
 			                	name="selectedIndicator[]"
 			                	ng-click="vm.setSelected(item)" 
 			                	value="{{item.indicatorName}}"
 			                	ng-checked={{selectedIndicators[item.indicatorName]}}
-			                	ng-class="{'': item.children.length}">
+			                	ng-class="{'': item.children.length}"> -->
 			                	
-			                	<span ng-if="vm.indicators[item.indicatorName].header">
-			                		{{ item.displayName }}
-			                	</span>
-			                	<span ng-if="!vm.indicators[item.indicatorName].header">
-			                		{{ item.displayName + ' (' + vm.indicators[item.indicatorName].activity_count + ' projects)' }}
-			                	</span>
-			                </span>
+			                	<!-- <span ng-if="vm.indicators[item.indicatorName].header"> -->
+			                		<!-- {{ item.displayName }} -->
+			                	<!-- </span> -->
+			                	<!-- <span ng-if="!vm.indicators[item.indicatorName].header"> -->
+			                	{{ item.displayName + ' (' + vm.indicators[item.indicatorName].activity_count + ' projects)' }}
+			                	<!-- </span> 
+			                </span>-->
 		                </div>
 			        </div>
 			    </div>
 
 			    <div ng-if="item.children.length" class="children">
-			        <div collapse="vm.isCollapsed" ng-repeat="item in item.children" ng-include="'result-tree'"></div>
+			        <div ng-repeat="item in item.children" ng-include="'result-tree'"></div>
 			    </div>
 			</script>
 

@@ -9,7 +9,7 @@
 
   function ResultsTableController($scope) {
     var vm = this;
-    vm.isCollapsed = false;
+    // vm.isCollapsed = true;
     vm.indicators = $scope.indicators;
     vm.selectedGroup = $scope.selectedGroup;
     vm.selectedIndicators = $scope.selectedIndicators;
@@ -23,7 +23,7 @@
 	    	children: [
 	    		{
 			    	indicatorName: "Number of full-time (equivalent) direct jobs supported - Total",
-			    	displayName: "Number of full-time (equivalent) direct jobs supported - Total",
+			    	displayName: "Full-time (equivalent) direct jobs supported - Total",
 			    	children: [
 			    		{
 					    	indicatorName: "Number of full-time (equivalent) direct jobs supported - Female",
@@ -64,7 +64,7 @@
 			    },
 			    {
 			    	indicatorName: "Number of full-time (equivalent) indirect jobs supported - Total",
-			    	displayName: "Number of full-time (equivalent) indirect jobs supported - Total",
+			    	displayName: "Full-time (equivalent) indirect jobs supported - Total",
 			    	children: []
 			    },
 	    	]
@@ -159,7 +159,13 @@
 	    },
     ];
 
-    vm.setSelected = function(item){
+    vm.setSelected = function(item, $event){
+    	$('.fake-table .expanded').addClass('collapsed').removeClass('expanded')
+    	console.log($($event.target))
+    	var parent = $($event.target).closest('.results')
+    	console.log(parent)
+	    parent.find('.parent').removeClass('collapsed').addClass('expanded')
+
     	var selectedIndicators = [];
     	var group = '';
 
@@ -208,6 +214,13 @@
 
 	    indicators = removeEmpty(indicatorTree, indicators);
 	    vm.resultIndicators = indicators
+
+	    if(vm.first){
+	    	setTimeout(function(){ 
+	    		vm.setSelected({indicatorName: "Number of jobs supported", header: true}, {'target': $('input[value="Number of jobs supported"]')})
+				vm.first = false;
+	    	}, 200);
+		}
     }
 
     vm.toggleHideChildren = function($event) {
@@ -222,11 +235,7 @@
     		console.log(indicators);
     		if(indicators != undefined){
     			vm.indicators = indicators;
-    			if(vm.first){
-    				vm.setSelected({indicatorName: "Number of jobs supported", header: true})
-    				vm.first = false;
-    			}
-				vm.updateTable();
+    			vm.updateTable();
     		}
 		}, true);
     }

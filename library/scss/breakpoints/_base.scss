@@ -1795,6 +1795,18 @@ RESULTS PAGE
  */
 
 .results {
+  .indicator-selector-label{
+    cursor: pointer;
+    font-weight: normal;
+    
+    &.indicator-header{
+      font-weight: bold;
+    }
+
+    input{
+      cursor: pointer;
+    }
+  }
   .comment{
     &:before {
       font-family: 'FontAwesome';
