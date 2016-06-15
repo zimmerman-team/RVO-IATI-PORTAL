@@ -9,12 +9,12 @@
     .module('oipa.countries')
     .controller('CountryController', CountryController);
 
-  CountryController.$inject = ['$rootScope', '$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'countryPageUrls', 'homeUrl', '$location', 'uploadBaseUrl', 'oipaUrl'];
+  CountryController.$inject = ['$rootScope', '$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'TransactionAggregations', 'countryPageUrls', 'homeUrl', '$location', 'uploadBaseUrl', 'oipaUrl'];
 
   /**
   * @namespace CountryController
   */
-  function CountryController($rootScope, $scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations, countryPageUrls, homeUrl, $location, uploadBaseUrl, oipaUrl) {
+  function CountryController($rootScope, $scope, Countries, templateBaseUrl, $stateParams, FilterSelection, TransactionAggregations, countryPageUrls, homeUrl, $location, uploadBaseUrl, oipaUrl) {
     var vm = this;
     vm.country = null;
     vm.country_id = $stateParams.country_id;
@@ -77,6 +77,7 @@
 
       vm.budget = vm.aggregated_transactions['incoming_fund'];
       vm.disbursements = vm.aggregated_transactions['disbursement'] + vm.aggregated_transactions['expenditure'];
+      console.log(vm.disbursements);
 
       vm.budgetLeft = Math.round(vm.disbursements / vm.budget * 100);
       if (isNaN(vm.budgetLeft)) { vm.budgetLeft = 0; }
@@ -86,7 +87,7 @@
     vm.update = function(selectionString){
       if (selectionString.indexOf("recipient_country") < 0){ return false;}
       
-      Aggregations.aggregation('recipient_country', 'recipient_country_percentage_weighted_disbursement,recipient_country_percentage_weighted_expenditure,recipient_country_percentage_weighted_incoming_fund', selectionString).then(function(data, status, headers, config){
+      TransactionAggregations.aggregation('recipient_country', 'disbursement,expenditure,incoming_fund', selectionString).then(function(data, status, headers, config){
 
         for(var i = 0;i < data.data.results.length;i++){
           if(data.data.results[i].recipient_country.code == vm.country_id){
