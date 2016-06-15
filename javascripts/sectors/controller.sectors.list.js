@@ -94,15 +94,15 @@
           return [sector.incoming_fund, sector.activity_count];
         }
         var incoming_fund = 0;
-        var count = 0;
+        var activity_count = 0;
         for (var i = 0; i < sector.children.length; i++) {
           var values = updateTransactions(sector.children[i])
           if (values[0]) incoming_fund += values[0];
-          if (values[1]) count += values[1];
+          if (values[1]) activity_count += values[1];
         }
         sector.incoming_fund = incoming_fund;
-        sector.count = count;
-        return [incoming_fund, count];
+        sector.activity_count = activity_count;
+        return [incoming_fund, activity_count];
       }
 
       function sortSectorChildren(sector, i, reverse) {

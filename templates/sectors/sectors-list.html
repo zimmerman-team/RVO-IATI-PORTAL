@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="tree">
-    <div ng-if="item.children && (item.count != 0)" class="row parent collapsed">
+    <div ng-if="item.children && (item.activity_count != 0)" class="row parent collapsed">
         <div class="col-xs-6">
             <div class="wrap">
                 <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span>
@@ -11,7 +11,7 @@
         </div>
         <div class="col-xs-3">
             <div class="wrap">
-                {{item.count || 0}} projects
+                {{item.activity_count || 0}} projects
             </div>
         </div>
         <div class="col-xs-3">
@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div ng-if="!item.children && item.count" class="row">
+    <div ng-if="!item.children && item.activity_count" class="row">
         <div class="col-xs-6">
             <div class="wrap">
                 <span class="expandme empty"></span>
@@ -33,7 +33,7 @@
         </div>
         <div class="col-xs-3">
             <div class="wrap">
-                {{item.count || 0}} projects
+                {{item.activity_count || 0}} projects
             </div>
         </div>
         <div class="col-xs-3">
