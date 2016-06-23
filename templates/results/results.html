@@ -1,21 +1,64 @@
 <div class="results">
-    <div class="container extra">
-        <div class="row">
-            <div class="col-sm-12">
-                <h2>Results</h2>
-            </div>
-            <div class="col-sm-12 col-lg-6">
-                    <p>This page shows the aggregated results of development aid projects executed by the Netherlands Enterprise Agency and funded by the Dutch Ministry of Foreign Affairs. Please note that this does not show all indicators reported by the Netherlands Enterprise Agency: on project and programme level other indicators may be reported which are not in the list of aggregated results. The aggregated results shown here do therefore not give the complete picture of the results, and may not show the most relevant indicators for some programmes and/or projects. Furthermore, only a few first indicators are included here, more indicators will follow in due time.</p>
+    <div class="row home-header">
+      <div class="col-md-12 pic">
+        <div class="panel">
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="panel transparent">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Results</h1>
                 </div>
-                <div class="col-sm-12 col-lg-6">
-                    <p>The results are reported cumulatively over time for each project, the results  per reporting period can be explored by using a time filter (e.g. to explore the difference from one year to another). The reporting period may differ between programmes and project. Please note that results are reported from 2016 onwards (therefore only allowing for time series reporting after 2016).</p>
-                    <p>The result targets may be overly optimistic, as they are given by the applicants of projects. Furthermore, it is generally assumed that one out of three projects will be cancelled before completion due to the insecure context in which these projects take place.</p>
+            </div>    
+            <div class="row">
+                <div class="col-md-6">
+                    <p>This page shows the aggregated results of development aid projects executed by the Netherlands Enterprise Agency and funded by the Dutch Ministry of Foreign Affairs. 
                     </p>
+                    <br>
+                    <p>Please note that this does not show all indicators reported by the Netherlands Enterprise Agency: on project and programme level other indicators may be reported which are not in the list of aggregated results. The aggregated results shown here do therefore not give the complete picture of the results, and may not show the most relevant indicators for some programmes and/or projects. Furthermore, only a few first indicators are included here, more indicators will follow in due time.</p>
+                </div>
+                <div class="col-md-6">
+                    <p>The results are reported cumulatively over time for each project, the results  per reporting period can be explored by using a time filter (e.g. to explore the difference from one year to another). The reporting period may differ between programmes and project. Please note that results are reported from 2016 onwards (therefore only allowing for time series reporting after 2016).
+                    </p>
+                    <br>
+                    <p>
+                    The result targets may be overly optimistic, as they are given by the applicants of projects. Furthermore, it is generally assumed that one out of three projects will be cancelled before completion due to the insecure context in which these projects take place.</p>
+                    </p>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel right">
+            <h1>About results</h1>
+            <p>For more questions or a press release about this results page, please contact the Aid Data RVO Team.</p>
+            <p><a href="mailto:iati@rvo.nl"><i class="fa fa-envelope"></i>iati@rvo.nl</a></p>
+            <p><a href="https://twitter.com/AiddataRVO" target="_blank"><i class="icon twitter"></i>@AiddataRVO</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row select-header">
+        <div class="container">
+            <div class="col-xs-12">
+                <h3>Select result indicators</h3>
+            </div>
+        </div>
+    </div>
+    <hr class="rvo-grey no-margin-top no-margin-bottom">
+    <div class="row head">
+        <div class="container xlight">
+            <div class="col-xs-12">
+                
+                <filter-bar views="[]" current-page="results"></filter-bar>
+
             </div>
         </div>
     </div>
     <div class="row">
-            <div class="container xlight">
+            <div class="container xlight bottom-hr">
                 <div class="col-md-6">
                     <results-table selected-group="vm.selectedGroup" indicators="vm.indicators" selected-indicators="vm.selectedIndicators"></results-table>
                 </div>
@@ -24,7 +67,7 @@
                 </div>
             </div>
         </div>
-    <div class="row">
+<!--     <div class="row">
         <div class="col-sm-12">
             <div class="front-callout">
                 <div class="row">
@@ -36,7 +79,7 @@
             </div>
         </div>
     </div>
-
+ -->
     <results-project-list selected-indicators="vm.selectedIndicators"></results-project-list>
 
 </div>

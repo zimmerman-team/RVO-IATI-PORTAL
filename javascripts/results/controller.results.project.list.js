@@ -5,9 +5,9 @@
     .module('oipa.results')
     .controller('ResultsProjectListController', ResultsProjectListController);
 
-  ResultsProjectListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl'];
+  ResultsProjectListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl', 'templateBaseUrl'];
 
-  function ResultsProjectListController($scope, Activities, FilterSelection, homeUrl) {
+  function ResultsProjectListController($scope, Activities, FilterSelection, homeUrl, templateBaseUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
@@ -20,6 +20,7 @@
     vm.extraSelectionString = '';
     vm.rows = [];
     vm.selectedIndicators = $scope.selectedIndicators;
+    vm.templateBaseUrl = templateBaseUrl;
     vm.programmaAfkortingen = {
       'NL-KVK-27378529-18232': 'KHED',
       'NL-KVK-27378529-19390': 'ORIO',
@@ -75,6 +76,8 @@
     vm.update = function(){
       if (!vm.hasContains()) return false;
 
+      vm.loading = true;
+
       vm.page = 1;
 
       var resultAddition = '&indicator_title=' + vm.selectedIndicators.join(',');
@@ -84,7 +87,8 @@
       function succesFn(data, status, headers, config){
         vm.reformatPerPeriod(data.data.results);
         vm.totalActivities = data.data.count;
-        $scope.count = vm.totalActivities;        
+        $scope.count = vm.totalActivities;
+        vm.loading = false;      
       }
 
       function errorFn(data, status, headers, config){
@@ -136,17 +140,17 @@
     }
 
     vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalActivities <= (vm.page * vm.pageSize))) return;
+      if (!vm.hasContains() || vm.loading || (vm.totalActivities <= (vm.page * vm.pageSize))) return;
 
       var resultAddition = '&indicator_title=' + vm.selectedIndicators.join(',');
 
-      vm.busy = true;
+      vm.loading = true;
       vm.page += 1;
       Activities.resultList(vm.filterSelection.selectionString + vm.extraSelectionString + resultAddition, vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.reformatPerPeriod(data.data.results);
-        vm.busy = false;   
+        vm.loading = false;   
       }
 
       function errorFn(data, status, headers, config){

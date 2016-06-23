@@ -10,42 +10,193 @@
   function ResultsController($scope, Results, FilterSelection, templateBaseUrl, $sce) {
     var vm = this;
     vm.filterSelection = FilterSelection;
+    vm.programmeId = $scope.programmeId;
 
     vm.job_indicators = {
-      'Number of jobs supported': {'header': true, 'actual': 0, 'activity_count': 0},
-      'Number of full-time (equivalent) direct and indirect jobs supported - Total': {'short_name': 'Total', 'actual': 0, 'activity_count': 0, 'parent': 'Number of jobs supported'},
-      'Number of full-time (equivalent) direct jobs supported - Total': {'short_name': 'Direct total', 'actual': 0, 'activity_count': 0, 'parent': 'Number of jobs supported'},
-      'Number of full-time (equivalent) direct jobs supported - Female': {'short_name': 'Female', 'actual': 0, 'activity_count': 0, 'parent': 'Number of jobs supported'},
-      'Number of full-time (equivalent) direct jobs supported - Young (15-25)': {'short_name': 'Young', 'actual': 0, 'activity_count': 0, 'parent': 'Number of jobs supported'},
-      'Number of full-time (equivalent) direct jobs supported - Rural': {'short_name': 'Rural', 'actual': 0, 'activity_count': 0, 'parent': 'Number of jobs supported'},
-      'Number of full-time (equivalent) direct jobs supported - Urban': {'short_name': 'Urban', 'actual': 0, 'activity_count': 0, 'parent': 'Number of jobs supported'},
-      'Number of full-time (equivalent) direct jobs supported - Vulnerable groups': {'short_name': 'Vulnerable groups', 'actual': 0, 'activity_count': 0, 'parent': 'Number of jobs supported'},
-      'Number of full-time (equivalent) direct jobs supported - Fragile states': {'short_name': 'Fragile states', 'actual': 0, 'activity_count': 0, 'parent': 'Number of jobs supported'},
-      'Number of full-time (equivalent) direct jobs supported - Senior positions': {'short_name': 'Senior positions', 'actual': 0, 'activity_count': 0, 'parent': 'Number of jobs supported'},
-      'Number of full-time (equivalent) indirect jobs supported - Total': {'short_name': 'Indirect total', 'actual': 0, 'activity_count': 0, 'parent': 'Number of jobs supported'},
-    } // alles in aparte bars, other
+      'Number of jobs supported': {
+        'level': 0, 
+        'actual': 0, 
+        'activity_count': 0},
+      'Number of full-time (equivalent) direct and indirect jobs supported - Total': {
+        'level': 1, 
+        'chart_name': 'Total', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of jobs supported'},
+      'Number of full-time (equivalent) direct jobs supported - Total': {
+        'level': 2, 
+        'chart_group': 'Direct jobs',
+        'chart_name': 'Total',
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of jobs supported'},
+      'Number of full-time (equivalent) direct jobs supported - Female': {
+        'level': 3, 
+        'chart_group': 'Direct jobs',
+        'chart_name': 'Female', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of jobs supported'},
+      'Number of full-time (equivalent) direct jobs supported - Young (15-25)': {
+        'level': 3, 
+        'chart_group': 'Direct jobs',
+        'chart_name': 'Young', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of jobs supported'},
+      'Number of full-time (equivalent) direct jobs supported - Rural': {
+        'level': 3, 
+        'chart_group': 'Direct jobs',
+        'chart_name': 'Rural', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of jobs supported'},
+      'Number of full-time (equivalent) direct jobs supported - Urban': {
+        'level': 3, 
+        'chart_group': 'Direct jobs',
+        'chart_name': 'Urban', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of jobs supported'},
+      'Number of full-time (equivalent) direct jobs supported - Vulnerable groups': {
+        'level': 3, 
+        'chart_group': 'Direct jobs',
+        'chart_name': 'Vulnerable groups', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of jobs supported'},
+      'Number of full-time (equivalent) direct jobs supported - Fragile states': {
+        'level': 3, 
+        'chart_group': 'Direct jobs',
+        'chart_name': 'Fragile states', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of jobs supported'},
+      'Number of full-time (equivalent) direct jobs supported - Senior positions': {
+        'level': 3, 
+        'chart_group': 'Direct jobs',
+        'chart_name': 'Senior positions', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of jobs supported'},
+      'Number of full-time (equivalent) indirect jobs supported - Total': {
+        'level': 2, 
+        'chart_group': 'Indirect jobs', 
+        'chart_name': 'Total', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of jobs supported'},
+    }
 
     vm.coi_indicators = {
-      'Amount of co-investment generated by ODA': {'header': true, 'actual': 0, 'activity_count': 0, 'parent': 'Amount of co-investment generated by ODA'},
-      'Amount of co-investment generated by ODA - Total': {'short_name': 'Total', 'actual': 0, 'activity_count': 0, 'parent': 'Amount of co-investment generated by ODA'},
-      'Amount of co-investment generated by ODA - by private sector/companies': {'short_name': 'by private sector/companies', 'actual': 0, 'activity_count': 0, 'parent': 'Amount of co-investment generated by ODA'},
-      'Amount of co-investment generated by ODA - by private sector/financial institutions': {'short_name': 'by private sector/financial institutions', 'actual': 0, 'activity_count': 0, 'parent': 'Amount of co-investment generated by ODA'},
-      'Amount of co-investment generated by ODA - by donors': {'short_name': 'by donors', 'actual': 0, 'activity_count': 0, 'parent': 'Amount of co-investment generated by ODA'},
-      'Amount of co-investment generated by ODA - by (local) government': {'short_name': 'by (local) government', 'actual': 0, 'activity_count': 0, 'parent': 'Amount of co-investment generated by ODA'},
-      'Amount of co-investment generated by ODA - by NGOs and foundations': {'short_name': 'by NGOs and foundations', 'actual': 0, 'activity_count': 0, 'parent': 'Amount of co-investment generated by ODA'},
-      'Amount of co-investment generated by ODA - by knowledge institutions': {'short_name': 'by knowledge institutions', 'actual': 0, 'activity_count': 0, 'parent': 'Amount of co-investment generated by ODA'}, 
-    } //gen other, niveau 1 optellen
+      'Amount of generated co-investment': {
+        'level': 0, 
+        'actual': 0, 
+        'activity_count': 0},
+      'Amount of co-investment generated by ODA - Total': {
+        'level': 1, 
+        'chart_name': 'Total', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Amount of generated co-investment'},
+      'Amount of co-investment generated by ODA - by private sector/companies': {
+        'level': 2, 
+        'chart_group': 'Private sector/companies',
+        'chart_name': 'Total',
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Amount of generated co-investment'},
+      'Amount of co-investment generated by ODA - by private sector/financial institutions': {
+        'level': 2, 
+        'chart_group': 'private sector/financial institutions',
+        'chart_name': 'Total', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Amount of generated co-investment'},
+      'Amount of co-investment generated by ODA - by donors': {
+        'level': 2, 
+        'chart_group': 'donors',
+        'chart_name': 'Total', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Amount of generated co-investment'},
+      'Amount of co-investment generated by ODA - by (local) government': {
+        'level': 2, 
+        'chart_group': '(local) government',
+        'chart_name': 'Total', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Amount of generated co-investment'},
+      'Amount of co-investment generated by ODA - by NGOs and foundations': {
+        'level': 2, 
+        'chart_group': 'NGOs and foundations', 
+        'chart_name': 'Total', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Amount of generated co-investment'},
+      'Amount of co-investment generated by ODA - by knowledge institutions': {
+        'level': 2, 
+        'chart_group': 'knowledge institutions', 
+        'chart_name': 'Total',
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Amount of generated co-investment'}, 
+    }
 
     vm.noc_indicators = {
-      'Number of companies with supported plans to invest or trade': {'header': true, 'actual': 0, 'activity_count': 0, 'parent': 'Number of companies with supported plans to invest or trade'},
-      'Number of companies with supported plans to invest or trade - Total': {'short_name': 'Total', 'actual': 0, 'activity_count': 0, 'parent': 'Number of companies with supported plans to invest or trade'},
-      'Number of companies with supported plans to invest or trade - Dutch companies': {'short_name': 'Dutch companies', 'actual': 0, 'activity_count': 0, 'parent': 'Number of companies with supported plans to invest or trade'},
-      'Number of companies with supported plans to invest or trade - Local companies': {'short_name': 'Local companies', 'actual': 0, 'activity_count': 0, 'parent': 'Number of companies with supported plans to invest or trade'},
-      'Number of companies with supported plans to invest or trade - Other companies': {'short_name': 'Other companies', 'actual': 0, 'activity_count': 0, 'parent': 'Number of companies with supported plans to invest or trade'},
-      'Number of companies with supported plans to invest or trade - Local female entrepreneurs': {'short_name': 'Local female entrepreneurs', 'actual': 0, 'activity_count': 0, 'parent': 'Number of companies with supported plans to invest or trade'},
-      'Number of companies with supported plans to invest or trade - Local young entrepreneurs <35 years': {'short_name': 'Local young entrepreneurs <35 years', 'actual': 0, 'activity_count': 0, 'parent': 'Number of companies with supported plans to invest or trade'},
-      'Number of companies with supported plans to invest or trade - Local entrepreneurs from fragile states': {'short_name': 'Local entrepreneurs from fragile states', 'actual': 0, 'activity_count': 0, 'parent': 'Number of companies with supported plans to invest or trade'},
-    } //gen other, niveau 1 optellen
+      'Number of companies': {
+        'level': 0, 
+        'actual': 0, 
+        'activity_count': 0},
+      'Number of companies with supported plans to invest or trade - Total': {
+        'level': 1, 
+        'chart_name': 'Total', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of companies'},
+      'Number of companies with supported plans to invest or trade - Dutch companies': {
+        'level': 2, 
+        'chart_group': 'Dutch companies',
+        'chart_name': 'Total', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of companies'},
+      'Number of companies with supported plans to invest or trade - Local companies': {
+        'level': 2, 
+        'chart_group': 'Local companies',
+        'chart_name': 'Total', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of companies'},
+      'Number of companies with supported plans to invest or trade - Other companies': {
+        'level': 2, 
+        'chart_group': 'Other companies', 
+        'chart_name': 'Total',
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of companies'},
+      'Number of companies with supported plans to invest or trade - Local female entrepreneurs': {
+        'level': 3, 
+        'chart_group': 'Other companies',
+        'chart_name': 'Local female entrepreneurs', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of companies'},
+      'Number of companies with supported plans to invest or trade - Local young entrepreneurs <35 years': {
+        'level': 3, 
+        'chart_group': 'Other companies',
+        'chart_name': 'Local young entrepreneurs <35 years', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of companies'},
+      'Number of companies with supported plans to invest or trade - Local entrepreneurs from fragile states': {
+        'level': 3, 
+        'chart_group': 'Other companies',
+        'chart_name': 'Local entrepreneurs from fragile states', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of companies'},
+    }
 
     // other companies = total - dutch - local
 
@@ -80,11 +231,11 @@
         'title': 'Number of jobs supported',
         'description': 'For the measurement of the number of jobs supported (direct/indirect; male/female, etc.) we follow the DCED definition: “Number of direct and indirect jobs in the companies, sector or value chain targeted by the intervention at the end of the reporting period, converted in full-time equivalent. Report direct and indirect (e.g. outgrower) jobs separately. Disaggregate by gender. Convert in Full Time Equivalents (FTE) pro rata, based on local definition of a working week.” However, some programmes (such as PSI) follow the former DCED definition and measure the number of additional (created) jobs. The exact definition on programme or project level can be found in the table below under ‘result indicator description’. '
       },
-      'Number of companies with supported plans to invest or trade': {
+      'Number of companies': {
         'title': 'Number of companies with supported plans to invest or trade',
         'description': 'The indicator ‘Number of companies with supported plans to invest or trade’ measures the number of companies which is or has been supported by means of a subsidy, financing or an assignment. In the case of an assignment, only the main contractor is included (companies which have signed a contract and/or received payments on behalf of the project). The total number of supported companies is thus larger in reality, because subcontractors may be hired (often local companies). State companies (more than 50% state owned) are not included under this indicator. The exact definition on programme or project level can be found in the table below under ‘result indicator description’. By aggregating the number of companies on project level, there may be some double counting since companies may be supported by more than one  project. The names of the companies are available on the project level under ‘project partners’. Under the project partners tab of this site, a list of all companies is available (project partner type: private sector), as well as information about the projects in which these companies are involved. '
       },
-      'Amount of co-investment generated by ODA': {
+      'Amount of generated co-investment': {
         'title': 'Amount of co-investment generated by ODA',
         'description': 'Most programmes executed by the Netherlands Enterprise Agency provide a part (percentage) of the total project costs and require a (private) co-investment by companies or financial institutions (e.g. commercial loans). In the case of PPPs or public (infrastructure) projects, co-financing might also be provided by a local government, knowledge institutions, NGOs and foundations or other donors. (Impact investors are included under financial institutions if they are privately funded and under donors if they are donor funded.) Co-financing is not reported for each reporting period (due to high management costs), instead the total co-financing is reported at project completion. '
       }
@@ -101,8 +252,11 @@
     }
 
     vm.update = function(){
-      console.log(vm.filterSelection.selectionString);
-      Results.aggregation('result_indicator_title', 'activity_count,actual', vm.filterSelection.selectionString + '&indicator_period_actual_not=0&indicator_period_actual_null=False', 'result_indicator_title').then(succesFn, errorFn);
+      var programme_addition = ''; 
+      if(vm.programmeId != undefined){
+        programme_addition = '&related_activity=' + vm.programmeId;
+      }
+      Results.aggregation('result_indicator_title', 'activity_count,actual', vm.filterSelection.selectionString + programme_addition + '&indicator_period_actual_not=0&indicator_period_actual_null=False', 'result_indicator_title').then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         var results = data.data.results;
@@ -116,7 +270,6 @@
             job_indicators[results[i].result_indicator_title].actual = results[i].actual;
             job_indicators[results[i].result_indicator_title].activity_count = results[i].activity_count;
           } else if (noc_indicators[results[i].result_indicator_title] != undefined){
-
             noc_indicators[results[i].result_indicator_title].actual = results[i].actual;
             noc_indicators[results[i].result_indicator_title].activity_count = results[i].activity_count;
           } else if (coi_indicators[results[i].result_indicator_title] != undefined){
@@ -125,25 +278,23 @@
           }
         }
 
-        var prefix = 'Number of companies with supported plans to invest or trade - ';
-        if (noc_indicators[prefix + 'Total'] != 0){
-          noc_indicators[prefix + 'Other companies'].actual = noc_indicators[prefix + 'Total'].actual - noc_indicators[prefix + 'Dutch companies'].actual - noc_indicators[prefix + 'Local companies'].actual;
-          noc_indicators[prefix + 'Other companies'].activity_count = noc_indicators[prefix + 'Total'].activity_count - noc_indicators[prefix + 'Dutch companies'].activity_count - noc_indicators[prefix + 'Local companies'].activity_count;
-        }
+        job_indicators['Number of full-time (equivalent) direct and indirect jobs supported - Total'].activity_count = _.reduce(job_indicators, function(memo, indicator){ 
+          var value;
+          (indicator.level == 2) ? value = memo : value = memo + indicator.activity_count;
+          return value;
+        }, 0);
 
-        prefix = 'Amount of co-investment generated by ODA - ';
-        coi_indicators[prefix + 'Total'].actual = _.reduce([
-          coi_indicators[prefix + 'by private sector/companies'].actual,
-          coi_indicators[prefix + 'by donors'].actual,
-          coi_indicators[prefix + 'by (local) government'].actual,
-          coi_indicators[prefix + 'by NGOs and foundations'].actual,
-          coi_indicators[prefix + 'by knowledge institutions'].actual], function(num){return num;});
-        coi_indicators[prefix + 'Total'].activity_count = _.reduce([
-          coi_indicators[prefix + 'by private sector/companies'].activity_count,
-          coi_indicators[prefix + 'by donors'].activity_count,
-          coi_indicators[prefix + 'by (local) government'].activity_count,
-          coi_indicators[prefix + 'by NGOs and foundations'].activity_count,
-          coi_indicators[prefix + 'by knowledge institutions'].activity_count], function(num){return num;});
+        noc_indicators['Number of companies with supported plans to invest or trade - Total'].activity_count = _.reduce(noc_indicators, function(memo, indicator){ 
+          var value;
+          (indicator.level == 2) ? value = memo : value = memo + indicator.activity_count;
+          return value;
+        }, 0);
+
+        coi_indicators['Amount of co-investment generated by ODA - Total'].activity_count = _.reduce(coi_indicators, function(memo, indicator){ 
+          var value;
+          (indicator.level == 2) ? value = memo : value = memo + indicator.activity_count;
+          return value;
+        }, 0);
 
         var indicators = job_indicators;
         for (var attrname in noc_indicators) { indicators[attrname] = noc_indicators[attrname]; }

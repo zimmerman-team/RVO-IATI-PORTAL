@@ -34,12 +34,33 @@
     vm.relatedDocuments = [];
     vm.featuredImage = vm.templateBaseUrl + '/images/Develop2Build header.jpg';
 
+    vm.resultRows = [];
+
     vm.tabs = [
       {'id': 'summary', 'name': 'Summary', 'count': -1},
       {'id': 'detailedreport', 'name': 'Detailed report', 'count': -1},
       {'id': 'mediapage', 'name': 'Media', 'count': -1},
-      {'id': 'results', 'name': 'Goals & results', 'count': -1},
+      {'id': 'results', 'name': 'Results', 'count': -1},
     ]
+
+    vm.programmaAfkortingen = {
+      'NL-KVK-27378529-18232': 'KHED',
+      'NL-KVK-27378529-19390': 'ORIO',
+      'NL-KVK-27378529-23188': 'TF',
+      'NL-KVK-27378529-23310': '2getthere-OS',
+      'NL-KVK-27378529-23408': 'PSI',
+      'NL-KVK-27378529-23710': 'FDW',
+      'NL-KVK-27378529-23877': 'FDOV',
+      'NL-KVK-27378529-25403': 'CBI',
+      'NL-KVK-27378529-25588': 'DRR-Team',
+      'NL-KVK-27378529-25717': 'GWW-FDW',
+      'NL-KVK-27378529-26067': 'PSD',
+      'NL-KVK-27378529-26225': 'LS&H4D',
+      'NL-KVK-27378529-26663': 'DGGF',
+      'NL-KVK-27378529-26742': 'DHKF',
+      'NL-KVK-27378529-27115': 'DSS',
+      'NL-KVK-27378529-27528': 'PDP III',
+    }
 
     function activate() {
       Activities.get(vm.activityId).then(successFn, errorFn);
@@ -104,6 +125,48 @@
         } else {
           vm.start_date = 'Data to be added';
         }
+
+        processResults(data.data);
+      }
+
+      function processResults(activity){
+        var results = activity.results;
+        var rows = [];
+        console.log(results);
+        for(var x = 0;x < results.length;x++){
+          for(var y = 0;y < results[x].indicator.length;y++){
+            for (var z = 0;z < results[x].indicator[y].period.length;z++){
+
+              var result_indicator_description = '';
+              var result_indicator_description_short = '';
+              if (results[x].indicator[y].description != null){
+                result_indicator_description = results[x].indicator[y].description.narratives[0].text;
+                result_indicator_description_short = result_indicator_description.substr(0, 75);
+              }
+              console.log(rows);
+              rows.push({
+                'activity_id': activity.id,
+                'title': activity.title.narratives[0].text,
+                'programme': activity.related_activities[0].ref,
+                'programme_afk': vm.programmaAfkortingen[activity.related_activities[0].ref],
+                'result_type': results[x].type.name,
+                'result_indicator_title': results[x].indicator[y].title.narratives[0].text,
+                'result_indicator_description': result_indicator_description,
+                'result_indicator_description_short': result_indicator_description_short,
+                'baseline_value': results[x].indicator[y].baseline.value,
+                'baseline_year': results[x].indicator[y].baseline.year,
+                'period_target_value': results[x].indicator[y].period[z].target.value,
+                'period_target_year': results[x].indicator[y].period[z].period_end,
+                'period_target_comment': results[x].indicator[y].period[z].target.comment,
+                'period_actual_value': results[x].indicator[y].period[z].actual.value,
+                'period_actual_year': results[x].indicator[y].period[z].period_end,
+                'period_actual_comment': results[x].indicator[y].period[z].actual.comment,
+              });
+            }
+          }
+        }
+
+        vm.resultRows = rows;
       }
 
       function procesTransactions(data, status, headers, config){

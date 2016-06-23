@@ -14,6 +14,7 @@
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
+        programmeId: '@',
         hasToContain: '@',
       },
       templateUrl: templateBaseUrl + '/templates/results/results.html'

@@ -49,11 +49,11 @@ oipa-table-chart .table tbody tr td.colour {
 
 #project-list-results{
   &.table.list-overview th{
-    font-size:15px;
+    font-size:18px;
   }
 
   &.table.list-overview td{
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
@@ -174,6 +174,11 @@ tr {
 
 .no-margin {
   margin-bottom:0 !important;
+}
+
+.loader{
+  margin: 40px 0;
+  text-align: center;
 }
 
 #toTop {
@@ -641,7 +646,9 @@ Sorteren
       color:$rvo-groen;
     }
   }
-  .download-list{
+}
+
+.download-list{
     margin-top: 10px; 
     float: right;
 
@@ -673,7 +680,6 @@ Sorteren
       width: auto;
     }
   }
-}
 
 .about-page {
   .intro {
@@ -834,40 +840,39 @@ Homepage
 .home-header {
   position:relative;
   font-size: 16px;
-  .col-sm-6 {
-    &.left {
-      .panel {
-        margin-bottom: 0;
-      }
-    }
+  
+  .left {
     .panel {
-      padding:25px 30px;
-      background:$rvo-xlichtblauw;
-      border:0;
-      border-radius:0;
+      margin-bottom: 0;
+    }
+  }
+  .panel {
+    padding:25px 30px;
+    background:$rvo-xlichtblauw;
+    border:0;
+    border-radius:0;
+    h1 {
+      margin-top:0;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    p {
+      margin-bottom: 0;
+    }
+    &.transparent {
+      background:rgba($rvo-donkerblauw, .8);
+      color:$white;
       h1 {
-        margin-top:0;
-        font-size: 24px;
-        margin-bottom: 8px;
-      }
-      p {
-        margin-bottom: 0;
-      }
-      &.transparent {
-        background:rgba($rvo-donkerblauw, .8);
-        color:$white;
-        h1 {
-          color: $white;
-        }
+        color: $white;
       }
     }
-    .right {
-      p {
-        margin-bottom: 7px;
-      }
-      i {
-        margin-right: 7px;
-      }
+  }
+  .right {
+    p {
+      margin-bottom: 7px;
+    }
+    i {
+      margin-right: 7px;
     }
   }
   .pic {
@@ -917,6 +922,18 @@ Homepage
     margin-right:7px;
   }
 }
+.container.extra.result-intro-text{
+  background-color: $rvo-blauw;
+  color: #fff;
+  padding-bottom: 16px;
+  font-weight: bold;
+
+  h2{
+    color: #fff;
+    font-weight: bold;
+  }
+}
+
 .front-callout {
   background:$rvo-blauw;
   text-align: center;
@@ -1623,6 +1640,10 @@ hr {
     border-color:$rvo-donkerblauw;
     margin:10px 0;
   }
+  &.rvo-grey{
+    border-color:#e5e5e5;
+    margin:10px 0;
+  }
 }
 
 .progress {
@@ -1795,18 +1816,47 @@ RESULTS PAGE
  */
 
 .results {
-  .indicator-selector-label{
-    cursor: pointer;
-    font-weight: normal;
-    
-    &.indicator-header{
-      font-weight: bold;
-    }
+  .nvd3 .nv-group rect[height="0"]{
+  display: none;
+  }
 
-    input{
-      cursor: pointer;
+  .home-header .panel.transparent {
+    margin-right: -30px;
+  }
+  
+  .pic {
+    padding-right: 30px;
+  }
+
+  .panel{
+    margin-bottom: 0;
+
+    &.right{
+      height: 100%;
     }
   }
+
+  .select-header{
+
+    h3{
+      margin-top: 13px;
+    }
+
+    .download-list{
+      margin-top: 18px;
+    }
+  }
+  .result-description-info{
+    &:before {
+      font-family: 'FontAwesome';
+      margin-right: 2px;
+      margin-left: 2px;
+      content:'\f05a';
+      color:$rvo-blauw;
+      transition: all .4s ease-in-out;
+    }
+  }
+
   .comment{
     &:before {
       font-family: 'FontAwesome';
@@ -1823,11 +1873,35 @@ RESULTS PAGE
   }
   .container {
     &.xlight {
-      background:$rvo-xlichtblauw;
+      background:#fff;
       padding-top:5px;
     }
   }
   .fake-table {
+    border: 1px solid #ccc;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(187,187,187,1);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(187,187,187,1);
+    box-shadow: 0px 3px 5px 0px rgba(187,187,187,1);
+    padding: 5px 5px 5px 10px;
+    min-height: 310px;
+    max-height: 310px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    .indicator-selector-label{
+      cursor: pointer;
+      font-weight: normal;
+      
+      &.indicator-header{
+        font-weight: bold;
+        padding-top: 13px;
+      }
+
+      input{
+        cursor: pointer;
+      }
+    }
+
     .head {
       // h3 {
       //   background:$rvo-footerblauw;
@@ -1836,16 +1910,26 @@ RESULTS PAGE
       // }
     }
     .body {
-      // background:$rvo-xlichtblauw;
+      font-size: 14px;
       border-bottom:1px solid #e5e5e5;
+
       &:nth-of-type(2n) {
         background:none;
       }
-      &:last-of-type {
-        border-bottom:0;
-      }
+      
       .wrap {
-        padding:10px 0;
+        padding: 0;
+        overflow: visible;
+
+        .indicator-tooltip{
+          white-space: normal;
+          
+          p{
+            min-width: 400px;
+            padding: 30px 0 20px;
+            margin: 0;
+          }
+        }
       }
       input[type="checkbox"] {
         margin-right: 5px;
@@ -1853,6 +1937,7 @@ RESULTS PAGE
     }
   }
 }
+
 
 /*********************
 FOOTER

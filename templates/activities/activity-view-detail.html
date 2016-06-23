@@ -532,36 +532,70 @@
 
         <div class="goalsresultspage" ng-if="vm.selectedTab == 'results'">
 
-            <div class="panel lightblue no-margin-bottom with-table">
-                <div class="table-responsive" ng-if="vm.activity.results.length != 0">
-                    <table class="finance no-blue no-margin" ng-if="vm.activity.results.length != 0">
-                        <thead>
-                            <tr>
-                                <th width="100">Result type</th>
-                                <th>Result indicator title</th>
-                                <th>Result indictor description</th>
-                                <th width="140">Baseline value (year)</th>
-                                <th width="140">Actual value (year)</th>
-                                <th width="140">Target value (year)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="result in vm.activity.results">
-                                <td>{{result.type.name ? result.type.name : 'Data to be added'}}</td>
-                                <td>{{result.indicator[0].title.narratives[0].text ? result.indicator[0].title.narratives[0].text : 'Data to be added'}}</td>
-                                <td>{{result.indicator[0].description ? result.indicator[0].description.narratives[0].text : 'Data to be added'}}</td>
-                                <td>{{result.indicator[0].baseline.value ? result.indicator[0].baseline.value : 'Data to be added'}} ({{result.indicator[0].baseline.year ? result.indicator[0].baseline.year : 'n/a'}})</td>
-                                <td ng-if="result.indicator[0].period[0].actual.value">{{result.indicator[0].period[0].actual.value | number : 0}}
-                                    ({{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : 'n/a' | date : 'yyyy'}})</td>
-                                <td ng-if="!result.indicator[0].period[0].actual.value">Data to be added</td>
-                                <td ng-if="result.indicator[0].period[0].target.value">{{result.indicator[0].period[0].target.value | number : 0}}
-                                    ({{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : 'n/a' | date : 'yyyy'}})</td>
-                                <td ng-if="!result.indicator[0].period[0].target.value">Data to be added</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>         
+            <table id="project-list-results" class="results table list-overview" ng-show="vm.resultRows.length != 0">
+                <thead>
+                    <tr>
+                        <th width="16%">Result type</th>
+                        <th width="30%">Result indicator title</th>
+                        <th width="30%">Result indictor description</th>
+                        <th width="8%">Baseline value (year)</th>
+                        <th width="8%">Actual value (year)</th>
+                        <th width="8%">Target value (year)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in vm.resultRows">
+                        <td>
+                          {{item.result_type}}
+                        </td>
+                        <td>
+                          {{item.result_indicator_title}}
+                        </td>
+                        <td>
+                          {{item.result_indicator_description_short}}
+                          <a 
+                            ng-if="item.result_indicator_description_short.length == 75" 
+                            ng-href="#" 
+                            ng-click="item.result_indicator_description_short = item.result_indicator_description">
+                            ... More
+                          </a>
+                          <a 
+                            ng-if="item.result_indicator_description_short.length > 75" 
+                            ng-href="#" 
+                            ng-click="item.result_indicator_description_short = item.result_indicator_description_short.substr(0,75)">
+                            ... Less
+                          </a>
+                        </td>
+
+                        <td ng-if="item.baseline_value != null">
+                          {{item.baseline_value | number : 0}}
+                          ({{item.baseline_year}})
+                        </td>
+                        <td ng-if="item.baseline_value == null">
+                      
+
+                        <td ng-if="item.period_actual_value != null">
+                          <span ng-if="item.result_indicator_title.indexOf('co-invest') > -1">&euro;</span>{{item.period_actual_value | number : 0}}
+                          ({{item.period_target_year | date : 'yyyy'}})
+                          <a class="comment" ng-if="item.period_actual_comment != null" tooltips tooltip-template="{{item.period_actual_comment.narratives[0].text}}"></a>
+                        </td>
+                        <td ng-if="item.period_actual_value == null">
+                          
+                        </td>
+
+                        <td ng-if="item.period_target_value != null">
+                        <span ng-if="item.result_indicator_title.indexOf('co-invest') > -1">&euro;</span>{{item.period_target_value | number : 0}}
+                          {{item.period_target_value | number : 0}}
+                          ({{item.period_target_year | date : 'yyyy'}})
+                          <a class="comment" ng-if="item.period_target_comment != null" tooltips tooltip-template="{{item.period_target_comment.narratives[0].text}}"></a>
+                        </td>
+                        <td ng-if="item.period_target_value == null">
+                          
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
             <div class="panel lightblue" ng-if="vm.activity.results.length == 0">
                 Data to be added
             </div>

@@ -1,42 +1,29 @@
-<!-- 
-<div class="container extra">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="white">
-                <h3>Results for selected indicators</h3>
-            </div>
-        </div>
-    </div>
-</div> -->
+<div class="">
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="sort">
-            <!-- <span class="sort-by">Sort by: </span>
-            <div class="custom-select ff-hack">
-                <select
-                  ng-model="vm.order_by"
-                  ng-change="vm.toggleOrder()">
-                      <option value="title">Title (A-Z)</option>
-                      <option value="-title">Title (Z-A)</option>
-                </select>
-            </div> -->
-            <!-- <span class="results">Results: <span class="total">{{vm.activities.length}}</span></span> -->
-            
-            <span class="download-list">
-              <a ng-click="vm.download('json')"><i class="fa fa-download"></i>JSON</a>
-              &nbsp;&nbsp;&nbsp;
-              <a ng-click="vm.download('csv')"><i class="fa fa-download"></i>CSV</a>
-            </span>
-        </div>
-    </div>
+  <hr class="rvo-grey no-margin-top no-margin-bottom">
+
+  <div class="row select-header">
+      <div class="container">
+          <div class="col-xs-12">
+              <h3 style="display: inline-block">Results within selected indicators</h3>
+
+              <span class="download-list">
+                <a ng-click="vm.download('json')"><i class="fa fa-download"></i>JSON</a>
+                &nbsp;&nbsp;&nbsp;
+                <a ng-click="vm.download('csv')"><i class="fa fa-download"></i>CSV</a>
+              </span>
+          </div>
+      </div>
+  </div>
+
+  <hr class="rvo-grey no-margin-top no-margin-bottom">
+
 </div>
 
-<div ng-if='vm.totalActivities == 0' class="row">
-    <div class="col-sm-12">
-        <div class="no-results">
-            <h3>Loading...</h3>
-            <!-- <p>Please select some different filters.</p> -->
+<div ng-if='vm.loading == false && vm.totalActivities == 0' class="row">
+    <div class="container">
+        <div class="col-xs-12">
+            <h3>No data found.</h3>
         </div>
     </div>
 </div>
@@ -44,14 +31,14 @@
 <table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' id="project-list-results" class="table list-overview" ng-show="vm.rows.length != 0">
     <thead>
         <tr>
-            <th>Project title</th>
-            <th>Programme</th>
-            <th>Result type</th>
-            <th width="20%">Result indicator title</th>
-            <th width="15%">Result indictor description</th>
-            <th>Baseline value (year)</th>
-            <th width="8%">Actual value (year)</th>
-            <th width="8%">Target value (year)</th>
+            <th width="20%">Project title</th>
+            <th width="10%">Programme</th>
+            <th width="5%">Type</th>
+            <th width="20%">Indicator title</th>
+            <th width="15%">Description</th>
+            <th width="10%">Baseline</th>
+            <th width="10%">Actual</th>
+            <th width="10%">Target</th>
         </tr>
     </thead>
     <tbody>
@@ -71,39 +58,51 @@
               {{item.result_indicator_title}}
             </td>
             <td>
-            {{item.result_indicator_description_short}}
-            <a 
-              ng-if="item.result_indicator_description_short.length == 45" 
-              ng-href="#" 
-              ng-click="item.result_indicator_description_short = item.result_indicator_description">
-              ... More
-            </a>
+              {{item.result_indicator_description_short}}
+              <a 
+                ng-if="item.result_indicator_description_short.length == 45" 
+                ng-href="#" 
+                ng-click="item.result_indicator_description_short = item.result_indicator_description">
+                ... More
+              </a>
+              <a 
+                ng-if="item.result_indicator_description_short.length > 45" 
+                ng-href="#" 
+                ng-click="item.result_indicator_description_short = item.result_indicator_description_short.substr(0,45)">
+                ... Less
+              </a>
             </td>
             <td>
               {{item.baseline_value}} ( {{item.baseline_year}} )
             </td>
 
             <td ng-if="item.period_actual_value != null">
-              {{item.period_actual_value | number : 0}}
+              <span ng-if="item.result_indicator_title.indexOf('co-invest') > -1">&euro;</span>{{item.period_actual_value | number : 0}}
               ({{item.period_target_year | date : 'yyyy'}})
               <a class="comment" ng-if="item.period_actual_comment != null" tooltips tooltip-template="{{item.period_actual_comment.narratives[0].text}}"></a>
             </td>
             <td ng-if="item.period_actual_value == null">
-              Data to be added
+              
             </td>
 
             <td ng-if="item.period_target_value != null">
-              {{item.period_target_value | number : 0}}
+              <span ng-if="item.result_indicator_title.indexOf('co-invest') > -1">&euro;</span>{{item.period_target_value | number : 0}}
               ({{item.period_target_year | date : 'yyyy'}})
               <a class="comment" ng-if="item.period_target_comment != null" tooltips tooltip-template="{{item.period_target_comment.narratives[0].text}}"></a>
             </td>
             <td ng-if="item.period_target_value == null">
-              Data to be added
+              
             </td>
 
         </tr>
     </tbody>
 </table>  
+
+<div ng-if='vm.loading == true' class="col-sm-12">
+    <div class="hp-block wit">
+        <h3 class="loader"><img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="25"> Fetching results, please wait...</h3>
+    </div>
+</div>
 
 
 
