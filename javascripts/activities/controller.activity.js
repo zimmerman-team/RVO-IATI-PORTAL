@@ -61,10 +61,14 @@
         vm.description = null;
         vm.sortDocs(vm.activity.document_links);
         var desc = '';
+
         if(vm.activity.descriptions.length){
 
-          for (var i = 0; i < vm.activity.descriptions[0].narratives.length;i++){
-            desc += vm.activity.descriptions[0].narratives[i].text + '<br>&nbsp<br>';
+          for (var i = 0; i < vm.activity.descriptions.length;i++){
+            console.log(vm.activity.descriptions[i].type);
+            if(vm.activity.descriptions[i].type.code == '1'){
+              desc += vm.activity.descriptions[i].narratives[0].text;
+            }
           }
 
           vm.description = $sce.trustAsHtml(desc.replace(/\\n/g, '<br>'));
