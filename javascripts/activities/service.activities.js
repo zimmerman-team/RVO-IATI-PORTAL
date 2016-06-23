@@ -33,7 +33,7 @@
 
         function list(filters, page_size, order_by, page){
             var url = oipaUrl + '/activities/?format=json'
-            url += '&fields=id,title,activity_status,recipient_countries,aggregations'
+            url += '&fields=id,title,related_activities,recipient_countries,aggregations'
 
             if(reportingOrganisationId){
                 url += '&reporting_organisation=' + reportingOrganisationId

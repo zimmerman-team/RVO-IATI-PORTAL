@@ -26,6 +26,27 @@
       "NL-KVK-27378529-IM201601G": "Partners for Water - Grants"
     }
 
+    var programmaAfkortingen = {
+      'NL-KVK-27378529-18232': 'KHED',
+      'NL-KVK-27378529-19390': 'ORIO',
+      'NL-KVK-27378529-23188': 'TF',
+      'NL-KVK-27378529-23310': '2getthere-OS',
+      'NL-KVK-27378529-23408': 'PSI',
+      'NL-KVK-27378529-23710': 'FDW',
+      'NL-KVK-27378529-23877': 'FDOV',
+      'NL-KVK-27378529-25403': 'CBI',
+      'NL-KVK-27378529-25588': 'DRR-Team',
+      'NL-KVK-27378529-25717': 'GWW-FDW',
+      'NL-KVK-27378529-26067': 'PSD',
+      'NL-KVK-27378529-26225': 'LS&H4D',
+      'NL-KVK-27378529-26663': 'DGGF',
+      'NL-KVK-27378529-26742': 'DHKF',
+      'NL-KVK-27378529-27115': 'DSS',
+      'NL-KVK-27378529-27528': 'PDP III',
+      "NL-KVK-27378529-IM201601C": "PFW - Contracts",
+      "NL-KVK-27378529-IM201601G": "PFW - Grants"
+    }
+
     angular
     	.module('oipa.constants')
 		.constant("templateBaseUrl", template_url)
@@ -36,6 +57,7 @@
         .constant("regionMapping", regionMapping)
         .constant("sectorMapping", sectorMapping)
         .constant("countryPageUrls", countryPageUrls)
-        .constant("programmesMapping", programmesMapping);
+        .constant("programmesMapping", programmesMapping)
+        .constant("programmaAfkortingen", programmaAfkortingen);
 
 })();

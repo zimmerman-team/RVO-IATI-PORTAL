@@ -9,12 +9,12 @@
     .module('oipa.activities')
     .controller('ActivityListController', ActivityListController);
 
-  ActivityListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl'];
+  ActivityListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl', 'programmaAfkortingen'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function ActivityListController($scope, Activities, FilterSelection, homeUrl) {
+  function ActivityListController($scope, Activities, FilterSelection, homeUrl, programmaAfkortingen) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
@@ -25,6 +25,7 @@
     vm.hasToContain = $scope.hasToContain;
     vm.busy = false;
     vm.extraSelectionString = '';
+    vm.programmaAfkortingen = programmaAfkortingen;
 
     function activate() {
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString) {

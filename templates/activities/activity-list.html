@@ -53,7 +53,9 @@
               </a>
             </td>
             <td>
-              {{item.activity_status.name}}
+              <a ui-sref="programme({ programme_id: item.related_activities[0].ref, tab: 'summary' })">
+                {{vm.programmaAfkortingen[item.related_activities[0].ref]}}
+              </a>
             </td>
             <td>
               <a ng-repeat="recipient_country in item.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code, tab: 'summary' })">
