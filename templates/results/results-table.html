@@ -1,53 +1,52 @@
 <div class="row">
     <div class="col-md-12">
 
-			<script type="text/ng-template" id="result-tree">
-			    <div class="row parent collapsed">
-			        <div class="col-xs-12">
-			        	<div class="wrap">
-			                <span>
-			                <label class="indicator-selector-label" ng-class="{'indicator-header': vm.indicators[item.indicatorName].level == 0}">
-			                <input
-			                	ng-if="vm.indicators[item.indicatorName].level != 3" 
-			                	type="checkbox" 
-			                	name="selectedIndicator[]"
-			                	ng-click="vm.setSelected(item, $event)" 
-			                	value="{{item.indicatorName}}"
-			                	ng-checked="selectedIndicators.indexOf(item.indicatorName) > -1">
-			                	
-			                	<span ng-if="vm.indicators[item.indicatorName].level < 1">
-			                		{{ item.displayName }}
+		<script type="text/ng-template" id="result-tree">
+		    <div class="row parent" ng-class="vm.indicators[item.indicatorName].parent == vm.selectedGroup ? 'expanded' : 'collapsed'">
+		        <div class="col-xs-12">
+		        	<div class="wrap">
+		                <span>
+		                <label class="indicator-selector-label" ng-class="{'indicator-header': vm.indicators[item.indicatorName].level == 0}">
+		                <input
+		                	ng-if="vm.indicators[item.indicatorName].level != 3" 
+		                	type="checkbox" 
+		                	name="selectedIndicator[]"
+		                	ng-click="vm.setSelected(item, $event)" 
+		                	value="{{item.indicatorName}}"
+		                	ng-checked="selectedIndicators.indexOf(item.indicatorName) > -1">
+		                	
+		                	<span ng-if="vm.indicators[item.indicatorName].level < 1">
+		                		{{ item.displayName }}
+		                		<a 
+		                			ng-if="vm.indicators[item.indicatorName].level == 0"
+		                			class="result-description-info" 
+		                			tooltips 
+		                			tooltip-template="<p>{{vm.indicatorMeta[item.indicatorName].description}}</p>"
+		                			tooltip-class="indicator-tooltip"
+		                			tooltip-append-to-body="true"></a>
+		                	</span>
+		                	<span ng-if="vm.indicators[item.indicatorName].level > 0">
+		                		{{ item.displayName + ' (' + vm.indicators[item.indicatorName].activity_count + ' projects)' }}
+		                	</span>
+		                </label>
+		                </span>
+		            </div>
+		        </div>
+		    </div>
+		 
+		    <div ng-if="item.children.length" class="children">
+		        <div ng-repeat="item in item.children" ng-include="'result-tree'"></div>
+		    </div>
+		</script>
 
-			                		<a 
-			                			ng-if="vm.indicators[item.indicatorName].level == 0"
-			                			class="result-description-info" 
-			                			tooltips 
-			                			tooltip-template="<p>{{vm.indicatorMeta[item.indicatorName].description}}</p>"
-			                			tooltip-class="indicator-tooltip"
-			                			tooltip-append-to-body="true"></a>
-			                	</span>
-			                	<span ng-if="vm.indicators[item.indicatorName].level > 0">
-			                		{{ item.displayName + ' (' + vm.indicators[item.indicatorName].activity_count + ' projects)' }}
-			                	</span>
-			                </label>
-			                </span>
-			            </div>
-			        </div>
-			    </div>
-			 
-			    <div ng-if="item.children.length" class="children">
-			        <div ng-repeat="item in item.children" ng-include="'result-tree'"></div>
-			    </div>
-			</script>
+		<div class="fake-table" ng-show="vm.resultIndicators.length != 0">
 
-			<div class="fake-table" ng-show="vm.resultIndicators.length != 0">
+		    <div class="results body" 
+		        ng-repeat="item in vm.resultIndicators"
+		        ng-include="'result-tree'"
+		        ng-if="item.count != 0">
+		    </div>
 
-			    <div class="results body" 
-			        ng-repeat="item in vm.resultIndicators"
-			        ng-include="'result-tree'"
-			        ng-if="item.count != 0">
-			    </div>
-
-			</div>
-        </div>
+		</div>
+    </div>
 </div>

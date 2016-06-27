@@ -1,0 +1,1 @@
+Activity.objects.filter(last_updated_datetime__lte='2016-05-17', hierarchy=2).update(last_updated_datetime='2016-05-17')

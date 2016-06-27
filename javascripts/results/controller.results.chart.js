@@ -165,6 +165,22 @@
         })
       );
 
+      // create dummy bars to prevent too wide bars
+      if(data.length > 0){
+        var cur_length = data[0].values.length;
+
+        _.each([0,1,2,3], function(num){
+
+          if(cur_length > num){
+            return false;
+          }
+
+          for(var i = 0; i < data.length;i++){
+            data[i].values.push({'actual': 0, 'activity_count': 0, chart_name: ''});
+          }
+        });
+      }
+
       if(actuals.length){
         var roundedMax = vm.roundMax(maxValue);
         vm.transactionChartOptions.chart.yDomain = [0, roundedMax]

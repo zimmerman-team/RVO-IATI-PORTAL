@@ -5,9 +5,13 @@
     .module('oipa.results')
     .controller('ResultsPageController', ResultsPageController);
 
-  ResultsPageController.$inject = [];
+  ResultsPageController.$inject = ['FilterSelection'];
 
-  function ResultsPageController() {
-    
+  function ResultsPageController(FilterSelection) {
+  	function activate() {
+    	FilterSelection.reset();
+    }
+
+    activate();
   }
 })();

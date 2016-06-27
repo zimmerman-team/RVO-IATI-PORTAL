@@ -11,7 +11,7 @@
     var vm = this;
     // vm.isCollapsed = true;
     vm.indicators = $scope.indicators;
-    vm.selectedGroup = $scope.selectedGroup;
+    vm.selectedGroup = 'Number of jobs supported';
     vm.selectedIndicators = $scope.selectedIndicators;
     vm.first = true;
 
@@ -29,7 +29,6 @@
         'description': 'Most programmes executed by the Netherlands Enterprise Agency provide a part (percentage) of the total project costs and require a (private) co-investment by companies or financial institutions (e.g. commercial loans). In the case of PPPs or public (infrastructure) projects, co-financing might also be provided by a local government, knowledge institutions, NGOs and foundations or other donors. (Impact investors are included under financial institutions if they are privately funded and under donors if they are donor funded.) Co-financing is not reported for each reporting period (due to high management costs), instead the total co-financing is reported at project completion. '
       }
     }
-
 
     vm.resultIndicatorsSource = [
         {
@@ -211,15 +210,11 @@
 
         // if header, select all underlying
         if(item.level == 0){
-            $('.fake-table .expanded').addClass('collapsed').removeClass('expanded')
-            var parent = $($event.target).closest('.results')
-            parent.find('.parent').removeClass('collapsed').addClass('expanded')
-
             var group = item.indicatorName;
-            
+            vm.selectedGroup = group;
+
             // select group
             selectedIndicators.push(group)
-            $scope.selectedGroup = group
 
             // select underlying indicators
             _.each(vm.indicators, function(value, key, obj) { 
@@ -230,7 +225,7 @@
         } else {
             // if not header, check if the user checked or unchecked the indicator
             var checked = ($scope.selectedIndicators.indexOf(item.indicatorName) > -1) ? false : true;
-
+            
             // get all underlying
             function getNames(tree, names){
 
@@ -245,7 +240,6 @@
             }
 
             var namesList = getNames(item.children, [item.indicatorName]);
-            console.log(namesList);
             var currentSelected = angular.copy($scope.selectedIndicators);
             
             // if unchecked remove all underlying
@@ -301,12 +295,6 @@
                 vm.first = false;
             }, 200);
         }
-    }
-
-    vm.toggleHideChildren = function($event) {
-      var parent = $($event.target).closest('.parent') 
-      var children = parent.next()
-      parent.toggleClass('expanded').toggleClass('collapsed')
     }
 
     function activate() {
