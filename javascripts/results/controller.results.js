@@ -301,7 +301,6 @@
     function activate() {
 
       $scope.$watch('vm.filterSelection.selectionString', function(valueNew, valueOld){
-        console.log(valueNew)
         vm.update();
       }, true);
     }
