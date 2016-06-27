@@ -74,7 +74,6 @@
 
     vm.update = function(){
       if (!vm.hasContains()) return false;
-
       vm.page = 1;
 
       TransactionAggregations.aggregation('related_activity', 'activity_count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(aggregationSuccessFn, errorFn);

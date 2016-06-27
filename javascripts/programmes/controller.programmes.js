@@ -26,11 +26,6 @@
     vm.q = '';
     vm.filterSelection = FilterSelection;
 
-    /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.sectors.controllers.SectorsController
-    */
     function activate() {
 
       vm.offset = 0;
