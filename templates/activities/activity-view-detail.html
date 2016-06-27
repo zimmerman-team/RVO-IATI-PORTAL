@@ -1,4 +1,4 @@
-<div id="main-content" ng-if="!vm.activity && !vm.loading">
+<div id="main-content" ng-if="!vm.activity && !vm.busy">
 
     <div class="container extra">
 
@@ -22,7 +22,7 @@
                     {{recipient_country.country.name}}
                 </h4>
             </div>
-            <h1 style="margin-top:0" class="no-margin-bottom">{{vm.activity.title.narratives[0].text}}</h1>         
+            <h1 class="no-margin-top no-margin-bottom">{{vm.activity.title.narratives[0].text}}</h1>         
         </div>
 
         <hr class="darkblue no-margin-bottom">
@@ -180,7 +180,7 @@
         </div>
 
         <!-- detailed report page -->
-        <div class="row detailview" ng-if="vm.selectedTab == 'detailedreport'">
+        <div class="row detailview" ng-show="vm.selectedTab == 'detailedreport'">
 
             <div class="col-md-12">
 
@@ -232,7 +232,7 @@
 
                     <h3>Related activities</h3>
                     <div class="table-responsive">
-                        <table class="finance no-blue" ng-if="vm.activity.related_activities">
+                        <table class="finance no-blue" ng-show="vm.activity.related_activities">
                             <thead>
                                 <tr>
                                     <th>Related activity name</th>
@@ -266,7 +266,7 @@
 
                     <h3>Participating organisations</h3>
                     <div class="table-responsive">
-                        <table class="finance no-blue" ng-if="vm.activity.participating_organisations">
+                        <table class="finance no-blue" ng-show="vm.activity.participating_organisations">
                             <thead>
                                 <tr>
                                     <th>Organisation name</th>
@@ -602,7 +602,7 @@
         </div>
 
 
-        <div class="mediapage" ng-if="vm.selectedTab == 'mediapage'">
+        <div class="mediapage" ng-show="vm.selectedTab == 'mediapage'">
             <div class="row">
 
                 <div class="col-md-12">

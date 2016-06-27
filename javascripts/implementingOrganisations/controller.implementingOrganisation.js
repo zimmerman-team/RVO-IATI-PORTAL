@@ -9,12 +9,12 @@
     .module('oipa.implementingOrganisations')
     .controller('ImplementingOrganisationController', ImplementingOrganisationController);
 
-  ImplementingOrganisationController.$inject = ['$scope', '$stateParams', 'ImplementingOrganisations', 'FilterSelection', 'Aggregations', 'homeUrl'];
+  ImplementingOrganisationController.$inject = ['$scope', '$stateParams', 'ImplementingOrganisations', 'FilterSelection', 'TransactionAggregations', 'homeUrl'];
 
   /**
   * @namespace CountriesController
   */
-  function ImplementingOrganisationController($scope, $stateParams, ImplementingOrganisations, FilterSelection, Aggregations, homeUrl) {
+  function ImplementingOrganisationController($scope, $stateParams, ImplementingOrganisations, FilterSelection, TransactionAggregations, homeUrl) {
     var vm = this;
     vm.organisation = null;
     vm.organisation_id = $stateParams.organisation_id;
@@ -22,7 +22,7 @@
     vm.selectionString = '';
     vm.selectedTab = 'summary';
     vm.part_org_activities = '';
-    vm.loading = true;
+    vm.busy = true;
     vm.budget = null;
     vm.disbursements = null;
 
@@ -39,28 +39,23 @@
     function activate() {
       FilterSelection.reset();
       
-      ImplementingOrganisations.selectedImplementingOrganisations.push({'organisation_id': vm.organisation_id, 'name': ''});
+      ImplementingOrganisations.selectedImplementingOrganisations.push({'organisation_id': vm.organisation_id, 'name': vm.organisation_id, 'participating_organisation': vm.organisation_id });
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);
       }, true);
 
-      vm.organisation_id = vm.organisation_id;
-
       ImplementingOrganisations.getActivities(encodeURIComponent(vm.organisation_id)).then(successFnActivities, errorFn);
 
       function successFnActivities(data, status, headers, config) {
         vm.part_org_activities = data.data.results;
-        vm.loading = false;
+        vm.busy = false;
       }
 
       function errorFn(data, status, headers, config) {
         console.log("getting implementing organisation or its activities failed");
-        vm.loading = false;
+        vm.busy = false;
       }
-
-      ImplementingOrganisations.selectedImplementingOrganisations[0] = {'organisation_id':vm.organisation_id,'name':vm.organisation_id};
-      vm.filterSelection.save();
 
       vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
       vm.shareDescription = encodeURIComponent('View the aid projects of the RVO on ' + vm.pageUrlDecoded);
@@ -84,18 +79,10 @@
       vm.budget = 0;
       vm.disbursements = 0;
 
-      var adjustedSelectionString = selectionString.replace('participating_organisation_name', 'transaction_receiver_organisation_name');
-      Aggregations.aggregation('transaction_receiver_org_narrative', 'transaction_value', adjustedSelectionString).then(function(data, status, headers, config){
-
-        for(var i = 0; i < data.data.results.length;i++){
-          if((data.data.results[i].transaction_type == '3' || data.data.results[i].transaction_type == '4') && data.data.results[i].name == vm.organisation_id){
-            vm.disbursements += data.data.results[i].value;
-          }
-          if(data.data.results[i].transaction_type == '2' && data.data.results[i].name == vm.organisation_id){
-            vm.budget += data.data.results[i].value;
-          }
-        }
-
+      var adjustedSelectionString = selectionString.replace('participating_organisation_name', 'receiver_organisation_name');
+      TransactionAggregations.aggregation('receiver_org', 'commitment,disbursement,expenditure', adjustedSelectionString).then(function(data, status, headers, config){
+        vm.disbursements = data.data.results[0].disbursement + data.data.results[0].expenditure;
+        vm.budget = data.data.results[0].commitment;
         vm.setBudgetLeft();
       }, errorFn);
     }

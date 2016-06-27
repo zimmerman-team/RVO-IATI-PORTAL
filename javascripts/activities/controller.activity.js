@@ -25,7 +25,7 @@
     vm.start_actual = null;
     vm.end_planned = null;
     vm.end_actual = null;
-    vm.loading = true;
+    vm.busy = true;
     vm.selectedTab = 'summary';
 
     vm.relatedVimeo = [];
@@ -79,7 +79,7 @@
           return 0;
         });
 
-        vm.loading = false;
+        vm.busy = false;
         vm.description = null;
         vm.sortDocs(vm.activity.document_links);
         var desc = '';
@@ -132,7 +132,6 @@
       function processResults(activity){
         var results = activity.results;
         var rows = [];
-        console.log(results);
         for(var x = 0;x < results.length;x++){
           for(var y = 0;y < results[x].indicator.length;y++){
             for (var z = 0;z < results[x].indicator[y].period.length;z++){
@@ -143,7 +142,6 @@
                 result_indicator_description = results[x].indicator[y].description.narratives[0].text;
                 result_indicator_description_short = result_indicator_description.substr(0, 75);
               }
-              console.log(rows);
               rows.push({
                 'activity_id': activity.id,
                 'title': activity.title.narratives[0].text,
@@ -214,7 +212,7 @@
 
       function errorFn(data, status, headers, config) {
         console.log("getting activity failed");
-        vm.loading = false;
+        vm.busy = false;
       }
     }
 
@@ -321,10 +319,9 @@
       for (var i =0; i < documents.length;i++){
         var obj = {};
 
-        if(documents[i].title.length){
-            obj.title = documents[i].title[0].narratives[0].text;
-          }
-
+        if(documents[i].title){
+          obj.title = documents[i].title.narratives[0].text;
+        }
 
         if ( documents[i].format.code == 'text/html' && documents[i].url.indexOf('vimeo') != -1 ) {
           obj.url = $sce.trustAsResourceUrl(documents[i].url);
@@ -352,8 +349,8 @@
           else if (documents[i].format.code == 'application/vnd.oasis.opendocument.text') { fileType = 'Open Office'; }
           else { fileType = 'Other'; }
           obj.filetype = fileType;
-          if(documents[i].title.length > 0){
-            obj.language = documents[i].title[0].narratives[0].language.name;
+          if(documents[i].title){
+            obj.language = documents[i].title.narratives[0].language.name;
           }
           obj.categories = documents[i].categories;
           obj.url = documents[i].url;

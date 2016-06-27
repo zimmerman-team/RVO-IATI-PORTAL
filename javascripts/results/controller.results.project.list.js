@@ -76,7 +76,7 @@
     vm.update = function(){
       if (!vm.hasContains()) return false;
 
-      vm.loading = true;
+      vm.busy = true;
 
       vm.page = 1;
 
@@ -88,7 +88,7 @@
         vm.reformatPerPeriod(data.data.results);
         vm.totalActivities = data.data.count;
         $scope.count = vm.totalActivities;
-        vm.loading = false;      
+        vm.busy = false;      
       }
 
       function errorFn(data, status, headers, config){
@@ -140,17 +140,17 @@
     }
 
     vm.nextPage = function(){
-      if (!vm.hasContains() || vm.loading || (vm.totalActivities <= (vm.page * vm.pageSize))) return;
+      if (!vm.hasContains() || vm.busy || (vm.totalActivities <= (vm.page * vm.pageSize))) return;
 
       var resultAddition = '&indicator_title=' + vm.selectedIndicators.join(',');
 
-      vm.loading = true;
+      vm.busy = true;
       vm.page += 1;
       Activities.resultList(vm.filterSelection.selectionString + vm.extraSelectionString + resultAddition, vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.reformatPerPeriod(data.data.results);
-        vm.loading = false;   
+        vm.busy = false;   
       }
 
       function errorFn(data, status, headers, config){

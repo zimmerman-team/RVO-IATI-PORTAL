@@ -20,7 +20,7 @@
 
 </div>
 
-<div ng-if='vm.loading == false && vm.totalActivities == 0' class="row">
+<div ng-if='vm.busy == false && vm.totalActivities == 0' class="row">
     <div class="container">
         <div class="col-xs-12">
             <h3>No data found.</h3>
@@ -98,7 +98,7 @@
     </tbody>
 </table>  
 
-<div ng-if='vm.loading == true' class="col-sm-12">
+<div ng-if='vm.busy == true' class="col-sm-12">
     <div class="hp-block wit">
         <h3 class="loader"><img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="25"> Fetching results, please wait...</h3>
     </div>

@@ -26,7 +26,7 @@
     vm.budgetLeft = 0;
     vm.progressStyle = {};
     vm.templateBaseUrl = templateBaseUrl;
-    vm.loading = true;
+    vm.busy = true;
     vm.uploadBaseUrl = uploadBaseUrl;
     vm.aggregated_transactions = {};
 
@@ -60,13 +60,13 @@
         vm.country = data.data;
         Countries.selectedCountries.push({'count': 0, 'recipient_country': {'code':vm.country.code,'name':vm.country.name}});
         FilterSelection.save();
-        vm.loading = false;
+        vm.busy = false;
       }
     }
 
     function errorFn(data, status, headers, config) {
       console.log("getting country failed");
-      vm.loading = false;
+      vm.busy = false;
     }
 
     vm.setBudgetLeft = function(){
@@ -77,7 +77,6 @@
 
       vm.budget = vm.aggregated_transactions['incoming_fund'];
       vm.disbursements = vm.aggregated_transactions['disbursement'] + vm.aggregated_transactions['expenditure'];
-      console.log(vm.disbursements);
 
       vm.budgetLeft = Math.round(vm.disbursements / vm.budget * 100);
       if (isNaN(vm.budgetLeft)) { vm.budgetLeft = 0; }

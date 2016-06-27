@@ -41,7 +41,7 @@
     vm.programmeUrl = null;
     vm.budgetLeft = 0;
     vm.progressStyle = {};
-    vm.loading = true;
+    vm.busy = true;
     vm.expenditure = 'Data to be added';
 
     vm.tabs = [
@@ -69,7 +69,7 @@
         Programmes.selectedProgrammes.push({'related_activity': vm.activity.id, 'count': 0, 'name': vm.activity.title.narratives[0].text});
         FilterSelection.save();
         vm.setBudgetLeft();
-        vm.loading = false;
+        vm.busy = false;
       }
 
       function procesTransactions(data, status, headers, config){
@@ -78,7 +78,7 @@
 
       function errorFn(data, status, headers, config) {
         console.log("getting activity failed");
-        vm.loading = false;
+        vm.busy = false;
       }
     }
 
