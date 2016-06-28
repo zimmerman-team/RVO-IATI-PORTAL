@@ -40,6 +40,7 @@
       {'id': 'summary', 'name': 'Summary', 'count': -1},
       {'id': 'detailedreport', 'name': 'Detailed report', 'count': -1},
       {'id': 'mediapage', 'name': 'Media', 'count': -1},
+      {'id': 'results', 'name': 'Results', 'count': -1},
     ]
 
     vm.programmaAfkortingen = {
@@ -141,6 +142,7 @@
                 result_indicator_description = results[x].indicator[y].description.narratives[0].text;
                 result_indicator_description_short = result_indicator_description.substr(0, 75);
               }
+              
               rows.push({
                 'activity_id': activity.id,
                 'title': activity.title.narratives[0].text,
@@ -162,7 +164,7 @@
             }
           }
         }
-
+        console.log(rows);
         vm.resultRows = rows;
       }
 

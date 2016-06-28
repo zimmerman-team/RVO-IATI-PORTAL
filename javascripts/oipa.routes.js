@@ -170,6 +170,14 @@
             templateUrl: templateBaseUrl + '/templates/pages/pages.html'
         })
         .state({
+            name:         'results',
+            url:          '/results/' + filters,
+            reloadOnSearch: false,
+            controller:   'ResultsPageController',
+            controllerAs: 'vm',
+            templateUrl:  templateBaseUrl + '/templates/results/results-page.html',
+        })
+        .state({
             name:        'search',
             url:         '/search/?search&tab&filters',
             controller:  'SearchPageController',
