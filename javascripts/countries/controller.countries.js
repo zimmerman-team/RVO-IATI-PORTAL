@@ -66,7 +66,7 @@
       filterString = filterString.join('&');
       
       if(vm.q != ''){
-        filterString += '&q=' + vm.q;
+        filterString += '&recipient_country_name=' + vm.q;
       }
 
       Aggregations.aggregation('recipient_country', 'count', filterString, 'recipient_country', vm.page_size, vm.currentPage).then(successFn, errorFn);

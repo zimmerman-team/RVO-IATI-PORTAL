@@ -250,25 +250,19 @@
       vm.filterSelection.save();
     }
 
-    vm.removeFilter = function(selectedArr, name, item_id) {
+    vm.removeFilter = function(selectedArr, name, item_id, useCode) {
 
       for (var i = 0; i < selectedArr.length;i++){
-        if(name == 'activity_id'){
-          if(selectedArr[i]['activity_id'] == item_id){
-            selectedArr.splice(i, 1);
-            break;
-          }
-        }
-        //mooier maken? lelijk voor org filter 
-        else if(typeof selectedArr[i][name] != 'undefined') {
+        if(useCode){
           if(selectedArr[i][name].code == item_id){
             selectedArr.splice(i, 1);
             break;
           }
-        }
-        else if(selectedArr[i].name == item_id){
-          selectedArr.splice(i, 1);
-          break;
+        } else {
+          if(selectedArr[i][name] == item_id){
+            selectedArr.splice(i, 1);
+            break;
+          }
         }
       }
       FilterSelection.save();

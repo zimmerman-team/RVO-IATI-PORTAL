@@ -67,16 +67,13 @@ switch ($_GET['type']) {
                 }
             } else if($group_by == 'participating_organisation'){
                 // init csv with headers
-                $csv = array("code,name,count\n");
-
+                $csv = array("name,count\n");
                 // add csv data
                 foreach ($json_obj['results'] as $row) {
-                    $code = maybeEncodeCSVField($row['ref']);
-                    $name = maybeEncodeCSVField($row['name']);
+                    $name = maybeEncodeCSVField($row['participating_organisation']);
                     $count = maybeEncodeCSVField($row['count']);
 
                     $row_arr = array();
-                    array_push($row_arr, $code);
                     array_push($row_arr, $name);
                     array_push($row_arr, $count);
                     $row_str = implode(",", $row_arr) . "\n";
@@ -85,12 +82,12 @@ switch ($_GET['type']) {
             } else {
                 // init csv with headers
                 $csv = array("code,name,count,budget\n");
-
+                
                 // add csv data
                 foreach ($json_obj['results'] as $row) {
                     $code = maybeEncodeCSVField($row[$group_by]['code']);
                     $name = maybeEncodeCSVField($row[$group_by]['name']);
-                    $count = maybeEncodeCSVField($row['count']);
+                    $count = maybeEncodeCSVField($row['activity_count']);
                     $incoming_fund = maybeEncodeCSVField($row['incoming_fund']);
 
                     $row_arr = array();

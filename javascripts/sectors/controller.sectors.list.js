@@ -47,7 +47,7 @@
       // do not prefetch when the list is hidden
       if($scope.shown != undefined){
         $scope.$watch("shown", function (shown) {
-          vm.busy = !shown ? true : false;
+          vm.busy = !$scope.shown;
         }, true);
       }
 
@@ -155,7 +155,7 @@
     }
 
     vm.download = function(format){
-      var aggregation_url = TransactionAggregations.prepare_url('sector', 'sector_percentage_weighted_incoming_fund,count', vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=2', 'sector');
+      var aggregation_url = TransactionAggregations.prepare_url('sector', 'incoming_fund,activity_count', vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=2', 'sector');
       var url = homeUrl + '/export/?type=aggregated-list&format='+format+'&aggregation_group=sector&aggregation_url=' + encodeURIComponent(aggregation_url);
       window.open(url);
     }

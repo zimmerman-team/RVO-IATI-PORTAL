@@ -69,7 +69,7 @@
       filterString = filterString.join('&');
 
       if(vm.q != ''){
-        filterString += '&q=' + vm.q;
+        filterString += '&sector_name=' + vm.q;
       }
       
       Aggregations.aggregation('sector', 'count', filterString, 'sector', vm.pageSize, vm.currentPage).then(successFn, errorFn);

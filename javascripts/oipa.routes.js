@@ -52,14 +52,6 @@
             }
         })
         .state({
-            name:         'results',
-            url:          '/results/' + filters,
-            reloadOnSearch: false,
-            controller:   'ResultsPageController',
-            controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/results/results-page.html',
-        })
-        .state({
             name:        'activiteit',
             url:         '/projects/:activity_id/?tab',
             controller:  'ActivityController',

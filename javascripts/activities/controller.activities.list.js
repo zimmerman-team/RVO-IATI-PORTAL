@@ -9,12 +9,12 @@
     .module('oipa.activities')
     .controller('ActivityListController', ActivityListController);
 
-  ActivityListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl', 'programmaAfkortingen'];
+  ActivityListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl', 'programmaAfkortingen', 'templateBaseUrl'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function ActivityListController($scope, Activities, FilterSelection, homeUrl, programmaAfkortingen) {
+  function ActivityListController($scope, Activities, FilterSelection, homeUrl, programmaAfkortingen, templateBaseUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
@@ -26,6 +26,7 @@
     vm.busy = false;
     vm.extraSelectionString = '';
     vm.programmaAfkortingen = programmaAfkortingen;
+    vm.templateBaseUrl = templateBaseUrl;
 
     function activate() {
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString) {
@@ -41,7 +42,7 @@
       // do not prefetch when the list is hidden
       if($scope.shown != undefined){
         $scope.$watch("shown", function (shown) {
-            vm.busy = !shown ? true : false;
+            vm.busy = !shown;
         }, true);
       }
     }
@@ -64,13 +65,15 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
+      vm.busy = true;
 
       Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=2', vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.activities = data.data.results;
         vm.totalActivities = data.data.count;
-        $scope.count = vm.totalActivities;        
+        $scope.count = vm.totalActivities;
+        vm.busy = ($scope.shown != undefined) ? !$scope.shown : false; 
       }
 
       function errorFn(data, status, headers, config){

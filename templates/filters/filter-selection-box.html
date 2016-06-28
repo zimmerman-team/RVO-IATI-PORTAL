@@ -7,15 +7,16 @@
 					<a 
 						class="selected filter-selected-button selectedProgrammes" 
 						ng-repeat="item in vm.selectedProgrammes" 
-						ng-click="vm.removeFilter(vm.selectedProgrammes, 'related_activity', item.related_activity)" 
+						ng-click="vm.removeFilter(vm.selectedProgrammes, 'related_activity', item.related_activity, false)" 
 						ng-if="vm.currentPage != 'programme'">
 						{{item.name}}
+						{{item}}
 					</a>
 
 					<a 
 						class="selected filter-selected-button selectedCountries" 
 						ng-repeat="item in vm.selectedCountries" 
-						ng-click="vm.removeFilter(vm.selectedCountries, 'recipient_country', item.recipient_country.code)" 
+						ng-click="vm.removeFilter(vm.selectedCountries, 'recipient_country', item.recipient_country.code, true)" 
 						ng-if="vm.currentPage != 'country'">
 						{{item.recipient_country.name}}
 					</a>
@@ -23,7 +24,7 @@
 					<a 
 						class="selected filter-selected-button selectedSectors" 
 						ng-repeat="item in vm.selectedSectors" 
-						ng-click="vm.removeFilter(vm.selectedSectors, 'sector', item.sector.code)" 
+						ng-click="vm.removeFilter(vm.selectedSectors, 'sector', item.sector.code, true)" 
 						ng-if="vm.currentPage != 'sector'">
 						{{item.sector.name}}
 					</a>
@@ -31,7 +32,7 @@
 					<a 
 						class="selected filter-selected-button selectedImplementingOrganisations" 
 						ng-repeat="item in vm.selectedImplementingOrganisations" 
-						ng-click="vm.removeFilter(vm.selectedImplementingOrganisations, '', item.participating_organisation)" 
+						ng-click="vm.removeFilter(vm.selectedImplementingOrganisations, 'participating_organisation', item.participating_organisation, false)" 
 						ng-if="vm.currentPage != 'organisation'">
 						{{item.participating_organisation}}
 					</a>
@@ -39,14 +40,14 @@
 					<a 
 						class="selected filter-selected-button selectedImplementingOrganisationTypes" 
 						ng-repeat="item in vm.selectedImplementingOrganisationTypes" 
-						ng-click="vm.removeFilter(vm.selectedImplementingOrganisationTypes, '', item.code)" >
+						ng-click="vm.removeFilter(vm.selectedImplementingOrganisationTypes, 'participating_organisation_type', item.participating_organisation_type.code, true)" >
 						{{item.participating_organisation_type.name}}
 					</a>
 
 					<a 
 						class="selected filter-selected-button selectedActivityStatuses" 
 						ng-repeat="item in vm.selectedActivityStatuses" 
-						ng-click="vm.removeFilter(vm.selectedActivityStatuses, 'activity_status', item.activity_status.code)">
+						ng-click="vm.removeFilter(vm.selectedActivityStatuses, 'activity_status', item.activity_status.code, true)">
 						{{item.activity_status.name}}
 					</a>
 

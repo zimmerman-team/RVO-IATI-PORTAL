@@ -45,7 +45,7 @@
       // do not prefetch when the list is hidden
       if($scope.shown != undefined){
         $scope.$watch("shown", function (shown) {
-          vm.busy = !shown ? true : false;
+          vm.busy = !shown;
         }, true);
       }
 
@@ -70,12 +70,14 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
+      vm.busy = true;
       Aggregations.aggregation('participating_organisation', 'count', vm.filterSelection.selectionString + '&participating_organisation_role=2,4' + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.organisations = data.data.results;
         vm.totalOrganisations = data.data.count;
         $scope.count = vm.totalOrganisations;
+        vm.busy = ($scope.shown != undefined) ? !$scope.shown : false; 
       }
 
       function errorFn(data, status, headers, config){

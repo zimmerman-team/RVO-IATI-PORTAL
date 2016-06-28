@@ -30,7 +30,6 @@
         else if (['organisations', 'organisation'].indexOf(name) >= 0) { vm.stateName = 'organisations'; }
         else if (['search'].indexOf(name) >= 0) { vm.stateName = 'search'; }
         else if (['about'].indexOf(name) >= 0) { vm.stateName = 'about'; }
-        else if (['results'].indexOf(name) >= 0) { vm.stateName = 'results'; }
         else { vm.stateName = 'home'; }
 
         $("html, body").animate({

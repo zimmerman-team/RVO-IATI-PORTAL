@@ -26,7 +26,7 @@
       </div>
   </div>
 
-  <div ng-if='vm.totalActivities == 0' class="row">
+  <div ng-if='vm.totalActivities == 0 && vm.busy == false' class="row">
       <div class="col-sm-12">
           <div class="no-results">
               <h2>Nothing found</h2>
@@ -68,3 +68,9 @@
         </tr>
     </tbody>
 </table>
+
+<div ng-if='vm.busy == true' class="col-sm-12">
+    <div class="hp-block wit">
+        <h3 class="loader"><img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="25"> Fetching results, please wait...</h3>
+    </div>
+</div>

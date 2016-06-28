@@ -45,20 +45,23 @@
       }
     }
 
-    vm.toggleOrder = function(){
-      if(vm.order_by.indexOf('budget') > -1){
-        var descending = false;
+    vm.changeOrderBy = function(){
+      
+      var descending = false;
 
-        if(vm.order_by.charAt(0) == '-'){
-          descending = true;
-        }
-
-        vm.activities = _.sortBy(vm.activities, function(obj){ return +obj.budget; });
-        if(descending){
-          vm.activities.reverse();
-        }
+      if(vm.order_by.charAt(0) == '-'){
+        descending = true;
+      }
+      // by budget
+      if(vm.order_by.indexOf('incoming_fund') > -1){
+        vm.activities = _.sortBy(vm.activities, 'incoming_fund');
       } else {
-        vm.update(vm.filterSelection.selectionString);
+      // by title
+        vm.activities = _.sortBy(vm.activities, 'name');
+      }
+
+      if(descending){
+        vm.activities.reverse();
       }
     }
 
@@ -88,6 +91,7 @@
         vm.activities = results;
         vm.totalActivities = data.data.count;
         $scope.count = vm.totalActivities;
+        vm.changeOrderBy();
 
       }
 

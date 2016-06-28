@@ -22,9 +22,9 @@
                 <div class="custom-select ff-hack">
                     <select
                       ng-model="vm.order_by"
-                      ng-change="vm.toggleOrder()">
-                      <option value="title">Title (A-Z)</option>
-                      <option value="-title">Title (Z-A)</option>
+                      ng-change="vm.changeOrderBy()">
+                      <option value="related_activity">Title (A-Z)</option>
+                      <option value="-related_activity">Title (Z-A)</option>
                       <option value="incoming_fund">Budget (increasing)</option>
                       <option value="-incoming_fund">Budget (decreasing)</option>
                     </select>

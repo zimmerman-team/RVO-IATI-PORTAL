@@ -110,7 +110,7 @@
 			}
 
 			if(Search.searchString != ''){
-				selectList.push('&q='+Search.searchString);
+				selectList.push('&q_lookup=startswith&q='+Search.searchString);
 			}
 
 			FilterSelection.selectionString = selectList.join('');

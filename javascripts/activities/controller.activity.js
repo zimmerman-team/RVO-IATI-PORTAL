@@ -40,7 +40,6 @@
       {'id': 'summary', 'name': 'Summary', 'count': -1},
       {'id': 'detailedreport', 'name': 'Detailed report', 'count': -1},
       {'id': 'mediapage', 'name': 'Media', 'count': -1},
-      {'id': 'results', 'name': 'Results', 'count': -1},
     ]
 
     vm.programmaAfkortingen = {

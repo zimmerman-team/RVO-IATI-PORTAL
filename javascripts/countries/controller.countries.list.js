@@ -9,12 +9,12 @@
     .module('oipa.countries')
     .controller('CountriesListController', CountriesListController);
 
-  CountriesListController.$inject = ['$scope', 'TransactionAggregations', 'FilterSelection', 'homeUrl'];
+  CountriesListController.$inject = ['$scope', 'TransactionAggregations', 'FilterSelection', 'homeUrl', 'templateBaseUrl'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function CountriesListController($scope, TransactionAggregations, FilterSelection, homeUrl) {
+  function CountriesListController($scope, TransactionAggregations, FilterSelection, homeUrl, templateBaseUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.countries = [];
@@ -25,6 +25,7 @@
     vm.busy = false;
     vm.perPage = 15;
     vm.extraSelectionString = '';
+    vm.templateBaseUrl = templateBaseUrl;
 
     function activate() {
       // use predefined filters or the filter selection
@@ -45,7 +46,7 @@
       // do not prefetch when the list is hidden
       if($scope.shown != undefined){
         $scope.$watch("shown", function (shown) {
-          vm.busy = !shown ? true : false;
+          vm.busy = !$scope.shown;
         }, true);
       }
 
@@ -71,12 +72,14 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
+      vm.busy = true;
       TransactionAggregations.aggregation('recipient_country', 'activity_count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.countries = data.data.results;
         vm.totalCountries = data.data.count;
         $scope.count = vm.totalCountries;
+        vm.busy = ($scope.shown != undefined) ? !$scope.shown : false; 
       }
 
       function errorFn(data, status, headers, config){

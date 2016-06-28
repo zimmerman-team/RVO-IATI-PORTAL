@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <div ng-if='vm.totalCountries == 0' class="row">
+    <div ng-if='vm.totalCountries == 0 && vm.busy == false' class="row">
         <div class="col-sm-12">
             <div class="no-results">
                 <h2>Nothing found</h2>
@@ -58,7 +58,7 @@
     </div>
 </div>
 
-<table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' class="table list-overview" ng-show="vm.countries.length != 0">
+<table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' class="table list-overview" ng-show="vm.countries.length">
     <thead>
         <tr>
             <th>Country</th>
@@ -77,3 +77,9 @@
         </tr>
     </tbody>
 </table>
+
+<div ng-if='vm.busy == true' class="col-sm-12">
+    <div class="hp-block wit">
+        <h3 class="loader"><img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="25"> Fetching results, please wait...</h3>
+    </div>
+</div>
