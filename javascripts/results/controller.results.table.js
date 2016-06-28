@@ -29,7 +29,7 @@
         'description': 'Most programmes executed by the Netherlands Enterprise Agency provide a part (percentage) of the total project costs and require a (private) co-investment by companies or financial institutions (e.g. commercial loans). In the case of PPPs or public (infrastructure) projects, co-financing might also be provided by a local government, knowledge institutions, NGOs and foundations or other donors. (Impact investors are included under financial institutions if they are privately funded and under donors if they are donor funded.) Co-financing is not reported for each reporting period (due to high management costs), instead the total co-financing is reported at project completion. '
       }
     }
-
+    vm.resultIndicators = [];
     vm.resultIndicatorsSource = [
         {
             indicatorName: "Number of jobs supported",
@@ -264,8 +264,6 @@
         vm.selectedIndicators = selectedIndicators;
     }
 
-    vm.resultIndicators = angular.copy(vm.resultIndicatorsSource)
-
     vm.updateTable = function(){
 
         function removeEmpty(tree, indicators){
@@ -287,14 +285,7 @@
         var indicatorTree = angular.copy(vm.resultIndicatorsSource)
 
         indicators = removeEmpty(indicatorTree, indicators);
-        vm.resultIndicators = indicators
-
-        if(vm.first){
-            setTimeout(function(){ 
-                vm.setSelected({indicatorName: "Number of jobs supported", level: 0}, {'target': $('input[value="Number of jobs supported"]')})
-                vm.first = false;
-            }, 200);
-        }
+        vm.resultIndicators = indicators;
     }
 
     function activate() {
@@ -303,6 +294,13 @@
             if(indicators != undefined){
                 vm.indicators = indicators;
                 vm.updateTable();
+            }
+        }, true);
+
+        $scope.$watch("vm.resultIndicators", function (newArr, oldArr) {
+            if(newArr.length > 0 && oldArr.length == 0){
+                vm.setSelected({indicatorName: "Number of jobs supported", level: 0}, {'target': $('input[value="Number of jobs supported"]')})
+                vm.first = false;
             }
         }, true);
     }

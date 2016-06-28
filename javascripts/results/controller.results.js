@@ -200,35 +200,7 @@
         'activity_count': 0,
         'parent': 'Number of companies'},
     }
-
-    // other companies = total - dutch - local
-
-    /*
-    - CHECK De result area wordt samengesteld door het IATI veld Result title – Result description. Dit is nu nog maar een result area, maar in de toekomst zullen er meer result areas toegevoegd worden. (zie resultatenrapportage BZ)
-    - CHECK De result group is in feite alleen een titel boven de (hoofd)indicator (niveau 1). Hier kan men op klikken om de hoofdindicator + alle subs uit te vouwen.
-    - Er zijn 3 indicator niveaus: 
-    1. CHECK  Er kan maar 1 indicator (result group) tegelijk in de grafiek worden weergegeven. Je kunt op indicator niveau 1 dus niks bij elkaar optellen: Ja kan alleen iets uit A of uit B of uit C kiezen. 
-    Sommige niveau 1 indicatoren staan niet in OIPA/IATI, en moeten gegenereerd worden  door de optelling van de niveau 2 indicatoren: A = A1 + A2.
-    2.  CHECK Niveau 2 telt op tot het totaal van niveau 1: A1 + A2 = A. 
-    Indien de niveau 1 indicator wel ingevuld staat (bijv. B), en de optelling van de niveau 2 indicatoren niet uitkomt, dan moet er een “other” worden gegenereerd: bijvoorbeeld: “Other companies” = B – (B1+B2) 
-    Als B2 =10 en B2 = 10 en B = 100 dan dient in de tabel weergegeven te worden als:
-    B1: Dutch companies = 10
-    B1: Local Companies = 10
-    Other Companies = 80
-    3.  TO DO Het 3e niveau mag en kan niet bij elkaar worden opgeteld. Deze informatie kan alleen in aparte staven worden weergegeven. Bijv. female, young, senior jobs, etc. dit kan namelijk overlappen en dubbel geteld worden. 
-    - Via een selectieveld kies je de indicatoren waarvan het resultaat in het staafdiagram dient te komen. Een selectieveld kan geplaatst worden op alle nivo’s vanaf het nivo 1 en lager.
-    Als het een groep  geselecteerd is, dan komen alle niveau 1 en 2 indicatoren in het diagram te staan die onder de groep vallen vallen, dus:
-    o Number of full-time (equivalent) direct and indirect jobs supported - Total
-    o Number of full-time (equivalent) direct jobs supported -  Total
-    o Number of full-time (equivalent) indirect jobs supported – Total
-    ??? Als het nivo A geselecteerd is, dan kunnen de nivo’s B en C niet meer geselecteerd worden, ook niet afzonderlijke indicatoren uit B en C.
-    TO DO Niveau 3 indicatoren worden niet automatisch geselecteerd (omdat hier veel overlap in zit, en de grafiek ingewikkeld/onoverzichtelijk maakt). Mensen kunnen deze wel actief selecteren.
-    - Als het gewenst is om uit C maar twee indicatoren in het diagram te zien, dan kan eerst C gekozen worden (waardoor de niveau 1 en 2 indicatoren onder C geselecteerd zijn). Vervolgens kunnen de individuele indicatoren gedeselecteerd worden.
-    - Later komen er nog een extra onderwerpen (Result Title) bij naast ‘Sustainable trade and investment’ – deze kunnen onderaan de lijst worden toegevoegd.
-    - TO DO Achter elke indicator komt te staan (x Projects). x is het aantal projecten waarbij bij de indicator de actual waarde is ingevuld met een waarde anders dan 0 en niet leeg is.
-    - Als een indicator 0 projecten heeft dan niet tonen (dus ook niet in de selectie-lijst naast de grafiek)
-    */
-
+    
     vm.indicatorMeta = {
       'Number of jobs supported': {
         'title': 'Number of jobs supported',
