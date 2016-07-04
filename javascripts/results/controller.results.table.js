@@ -204,6 +204,36 @@
         },
     ];
 
+    function selectUnderlyingIndicators(value, key, obj) { 
+        if(obj[key].parent == vm.selectedGroup && obj[key].activity_count > 0){
+            return key;
+        } else {
+            return false
+        }
+    }
+
+    function removeUnderlyingIndicators(name){
+        if(namesList.indexOf(name) > -1){
+            return false;
+        }
+        return name;
+    }
+
+    function getNames(tree, names){
+        _.each(tree, function(item){
+            names.push(item.indicatorName);
+            if(item.children.length){
+                names = getNames(item.children, names);
+            }
+        });
+
+        return names;
+    }
+
+    function addAllUnderlyingIndicators(name){
+        currentSelected.push(name);        
+    }
+
     vm.setSelected = function(item, $event){
 
         var selectedIndicators = [];
@@ -217,44 +247,24 @@
             selectedIndicators.push(group)
 
             // select underlying indicators
-            _.each(vm.indicators, function(value, key, obj) { 
-                if(obj[key].parent == group && obj[key].activity_count > 0){
-                    selectedIndicators.push(key);
-                }
+            var selectedIndicators = _.filter(vm.indicators, selectUnderlyingIndicators);
+            selectedIndicators = _.map(vm.indicators, function(value, key, obj){
+                return key;
             });
         } else {
             // if not header, check if the user checked or unchecked the indicator
             var checked = ($scope.selectedIndicators.indexOf(item.indicatorName) > -1) ? false : true;
             
             // get all underlying
-            function getNames(tree, names){
-
-                _.each(tree, function(item){
-                    names.push(item.indicatorName);
-                    if(item.children.length){
-                        names = getNames(item.children, names);
-                    }
-                });
-
-                return names;
-            }
-
             var namesList = getNames(item.children, [item.indicatorName]);
             var currentSelected = angular.copy($scope.selectedIndicators);
             
             // if unchecked remove all underlying
             if(!checked){
-                selectedIndicators = _.filter(currentSelected, function(name){
-                    if(namesList.indexOf(name) > -1){
-                        return false;
-                    }
-                    return name;
-                });
+                selectedIndicators = _.filter(currentSelected, removeUnderlyingIndicators);
             } else{
                 // if checked, add all underlying
-                _.each(namesList, function(name){
-                    currentSelected.push(name);
-                });
+                _.each(namesList, addAllUnderlyingIndicators);
 
                 selectedIndicators = currentSelected;
             }
