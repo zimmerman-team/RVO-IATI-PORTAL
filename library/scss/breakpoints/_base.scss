@@ -1824,16 +1824,21 @@ RESULTS PAGE
     margin-right: -30px;
   }
   
-  .pic {
+  /* .pic {
     padding-right: 30px;
-  }
+  } */
 
   .panel{
     margin-bottom: 0;
 
-    &.right{
+    /* &.right{
       height: 100%;
-    }
+    } */
+  }
+
+  .flex {
+    display: flex;
+    flex:1;
   }
 
   .select-header{
