@@ -215,15 +215,6 @@
         return names;
     }
 
-    function addNameToIndicators(value, key) {
-        value.name = key;
-        return value;
-    }
-
-    function addAllUnderlyingIndicators(name){
-        currentSelected.push(name);        
-    }
-
     vm.setSelected = function(item, $event){
 
         var selectedIndicators = [];
@@ -238,7 +229,11 @@
 
             // select underlying indicators
             var indicators = angular.copy(vm.indicators);
-            indicators = _.each(indicators, addNameToIndicators);
+            indicators = _.each(indicators, function(value, key) {
+                    value.name = key;
+                    return value;
+                }
+            );
             var selectedIndicators = _.filter(indicators, function(value, key, obj) {
                 if(obj[key].parent == vm.selectedGroup && obj[key].activity_count > 0){
                     return key;
@@ -269,7 +264,9 @@
                 });
             } else{
                 // if checked, add all underlying
-                _.each(namesList, addAllUnderlyingIndicators);
+                _.each(namesList, function(name){
+                    currentSelected.push(name);        
+                });
 
                 selectedIndicators = currentSelected;
             }
