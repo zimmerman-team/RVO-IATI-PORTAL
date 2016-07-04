@@ -58,7 +58,7 @@
               {{item.result_indicator_title}}
             </td>
             <td>
-              <span ng-if="item.short">
+              <span ng-if="item.short && item.result_indicator_description_short.length">
                 {{item.result_indicator_description_short}}
                  <a ng-href="#" ng-click="item.short = false">... More</a>
               </span>

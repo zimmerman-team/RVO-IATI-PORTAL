@@ -204,21 +204,6 @@
         },
     ];
 
-    function selectUnderlyingIndicators(value, key, obj) { 
-        if(obj[key].parent == vm.selectedGroup && obj[key].activity_count > 0){
-            return key;
-        } else {
-            return false
-        }
-    }
-
-    function removeUnderlyingIndicators(name){
-        if(namesList.indexOf(name) > -1){
-            return false;
-        }
-        return name;
-    }
-
     function getNames(tree, names){
         _.each(tree, function(item){
             names.push(item.indicatorName);
@@ -228,6 +213,11 @@
         });
 
         return names;
+    }
+
+    function addNameToIndicators(value, key) {
+        value.name = key;
+        return value;
     }
 
     function addAllUnderlyingIndicators(name){
@@ -247,9 +237,19 @@
             selectedIndicators.push(group)
 
             // select underlying indicators
-            var selectedIndicators = _.filter(vm.indicators, selectUnderlyingIndicators);
-            selectedIndicators = _.map(vm.indicators, function(value, key, obj){
-                return key;
+            var indicators = angular.copy(vm.indicators);
+            indicators = _.each(indicators, addNameToIndicators);
+            var selectedIndicators = _.filter(indicators, function(value, key, obj) {
+                if(obj[key].parent == vm.selectedGroup && obj[key].activity_count > 0){
+                    return key;
+                } else if(vm.selectedGroup == key){
+                    return key;
+                } else {
+                    return false
+                }
+            });
+            selectedIndicators = _.map(selectedIndicators, function(value, key){
+                return value.name;
             });
         } else {
             // if not header, check if the user checked or unchecked the indicator
@@ -261,7 +261,12 @@
             
             // if unchecked remove all underlying
             if(!checked){
-                selectedIndicators = _.filter(currentSelected, removeUnderlyingIndicators);
+                selectedIndicators = _.filter(currentSelected, function(name){
+                    if(namesList.indexOf(name) > -1){
+                        return false;
+                    }
+                    return name;
+                });
             } else{
                 // if checked, add all underlying
                 _.each(namesList, addAllUnderlyingIndicators);
