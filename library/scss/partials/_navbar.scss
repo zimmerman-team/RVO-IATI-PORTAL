@@ -21,7 +21,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   #primary-navigation {
     .navbar-header {
         float: none;
@@ -144,6 +144,23 @@
 }
 
 @media (min-width: 768px) {
+  #main-menu {
+    &.collapse {
+      opacity: 0;
+      visibility: hidden;
+    }
+    &.collapsing {
+      opacity: 1;
+      visibility: visible;
+    }
+    &.collapse.in {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+@media (min-width: 992px) {
   #primary-navigation {
     .navbar-header {
       display: none;
@@ -152,6 +169,8 @@
       display: block !important;
       border:0;
       box-shadow:none;
+      opacity: 1;
+      visibility: visible;
     }
   }
   #main-menu-links {

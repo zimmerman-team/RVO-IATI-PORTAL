@@ -28,69 +28,71 @@
     </div>
 </div>
 
-<table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' id="project-list-results" class="table list-overview" ng-show="vm.rows.length != 0">
-    <thead>
-        <tr>
-            <th width="20%">Project title</th>
-            <th width="10%">Programme</th>
-            <th width="5%">Type</th>
-            <th width="20%">Indicator title</th>
-            <th width="15%">Description</th>
-            <th width="10%">Baseline</th>
-            <th width="10%">Actual</th>
-            <th width="10%">Target</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="item in vm.rows">
-            <td>
-              <a ui-sref="activiteit({ activity_id: item.activity_id, tab: 'summary' })">
-                {{item.title}}
-              </a>
-            </td>
-            <td>
-              {{item.programme_afk}}
-            </td>
-            <td>
-              {{item.result_type}}
-            </td>
-            <td>
-              {{item.result_indicator_title}}
-            </td>
-            <td>
-              <span ng-if="item.short">
-                {{item.result_indicator_description_short}}
-                 <a ng-href="#" ng-click="item.short = false">... More</a>
-              </span>
-              <span ng-if="!item.short">
-                {{item.result_indicator_description}}
-                <a ng-href="#" ng-click="item.short = true">... Less
-              </span>
-              </a>
-            </td>
-            <td>
-              {{item.baseline_value}} ( {{item.baseline_year}} )
-            </td>
+<div class="table-responsive">
+  <table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' id="project-list-results" class="table list-overview" ng-show="vm.rows.length != 0">
+      <thead>
+          <tr>
+              <th>Project title</th>
+              <th>Programme</th>
+              <th>Type</th>
+              <th>Indicator title</th>
+              <th>Description</th>
+              <th>Baseline</th>
+              <th>Actual</th>
+              <th>Target</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr ng-repeat="item in vm.rows">
+              <td>
+                <a ui-sref="activiteit({ activity_id: item.activity_id, tab: 'summary' })">
+                  {{item.title}}
+                </a>
+              </td>
+              <td>
+                {{item.programme_afk}}
+              </td>
+              <td>
+                {{item.result_type}}
+              </td>
+              <td>
+                {{item.result_indicator_title}}
+              </td>
+              <td>
+                <span ng-if="item.short">
+                  {{item.result_indicator_description_short}}
+                   <a ng-href="#" ng-click="item.short = false">... More</a>
+                </span>
+                <span ng-if="!item.short">
+                  {{item.result_indicator_description}}
+                  <a ng-href="#" ng-click="item.short = true">... Less
+                </span>
+                </a>
+              </td>
+              <td>
+                {{item.baseline_value}} ( {{item.baseline_year}} )
+              </td>
 
-            <td ng-if="item.period_actual_value != null">
-              {{item.period_actual_value}}
-              <a class="comment" ng-if="item.period_actual_comment != null" tooltips tooltip-template="{{item.period_actual_comment.narratives[0].text}}"></a>
-            </td>
-            <td ng-if="item.period_actual_value == null">
-              
-            </td>
+              <td ng-if="item.period_actual_value != null">
+                {{item.period_actual_value}}
+                <a class="comment" ng-if="item.period_actual_comment != null" tooltips tooltip-template="{{item.period_actual_comment.narratives[0].text}}"></a>
+              </td>
+              <td ng-if="item.period_actual_value == null">
+                
+              </td>
 
-            <td ng-if="item.period_target_value != null">
-              {{item.period_target_value}}
-              <a class="comment" ng-if="item.period_target_comment != null" tooltips tooltip-template="{{item.period_target_comment.narratives[0].text}}"></a>
-            </td>
-            <td ng-if="item.period_target_value == null">
-              
-            </td>
+              <td ng-if="item.period_target_value != null">
+                {{item.period_target_value}}
+                <a class="comment" ng-if="item.period_target_comment != null" tooltips tooltip-template="{{item.period_target_comment.narratives[0].text}}"></a>
+              </td>
+              <td ng-if="item.period_target_value == null">
+                
+              </td>
 
-        </tr>
-    </tbody>
-</table>  
+          </tr>
+      </tbody>
+  </table>  
+</div>
 
 <div ng-if='vm.busy == true' class="col-sm-12">
     <div class="hp-block wit">

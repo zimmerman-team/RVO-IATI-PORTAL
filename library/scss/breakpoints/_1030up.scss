@@ -25,6 +25,23 @@ be seen on the Desktop.
 // 	}
 // }
 
+#primary-navigation {
+  padding: 17px 0 0;
+  .navbar-header, .navbar-collapse {
+    margin-left:0;
+    margin-right: 0;
+  }
+}
+
+//navbar alignment, want menu wat breed
+.navbar-header {
+  margin:0 auto;
+}
+
+.navbar-collapse {
+  padding:0;
+}
+
 .filters-fixed {
 	&.fixed {
 		top:0;
@@ -56,4 +73,14 @@ be seen on the Desktop.
 	.pic {
    		display: flex;
    	}
+}
+
+.results {
+  .home-header .panel.transparent {
+    margin-right: -30px;
+  }
+  .flex {
+      display: flex;
+      flex:1;
+  }
 }

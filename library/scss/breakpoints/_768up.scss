@@ -56,10 +56,6 @@ come into play. Have fun!
 	margin-bottom: 30px;
 }
 
-#primary-navigation {
-	padding: 17px 0 0;
-}
-
 .actions {
 	.filters {
 		span {
@@ -225,16 +221,14 @@ come into play. Have fun!
   }
 }
 
+#primary-navigation {
+	.navbar-header, .navbar-collapse {
+		margin-left:-15px;
+		margin-right: -15px;
+	}
+}
+
 .search-suggest-box{
-}
-
-//navbar alignment, want menu wat breed
-.navbar-header {
-	margin:0 auto;
-}
-
-.navbar-collapse {
-	padding:0;
 }
 
 .filters-fixed {
