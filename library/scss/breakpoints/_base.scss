@@ -2414,3 +2414,16 @@ Mobile only fix
     overflow:hidden;
   }
 }
+
+
+/*********************
+Safari 6.1+ (9.0 is the latest version of Safari at this time)
+*********************/
+
+
+.visualize:not(:root:root), .cirkle-vis:not(:root:root) {
+  svg {
+    -webkit-filter: none;
+    filter: none;
+  }
+}
