@@ -20,6 +20,37 @@
     vm.state = $state;
     activate();
 
+    function loadScrollListener(){
+      var eTop = 0;
+
+      if(document.getElementById('filter-bar') !== null) {
+        eTop = $('#filter-bar').offset().top-5;
+        $(window).resize(function() {
+          eTop = $('#filter-bar').offset().top-5;
+        })
+
+        $(window).unbind('scroll');
+
+        $(window).scroll(function() {
+          var height = $(window).scrollTop();
+          var $fixedbar = $('.filters-fixed');
+
+          if(height  > eTop ) {
+              var barHeight = $('.filters-fixed').height()+5;
+              $fixedbar.addClass('fixed');
+              $('.pad-helper').css('height',barHeight);
+              $("#toTop").fadeIn();
+          }
+          if (height < eTop ) {
+             $fixedbar.removeClass('fixed');
+             $('.pad-helper').css('height',0);
+             $("#toTop").fadeOut();
+          }
+        });
+      }
+    
+    }
+
     function activate(){
 
       $scope.$watch('vm.state.current.name', function(name){
@@ -36,35 +67,12 @@
         $("html, body").animate({
           scrollTop:0
         },400);
+
+        loadScrollListener();
       }, true);
 
-      var eTop = 0;
-
-        $(window).load(function() {
-          if(document.getElementById('filter-bar') !== null) {
-            eTop = $('#filter-bar').offset().top;
-            $(window).resize(function() {
-              eTop = $('#filter-bar').offset().top;
-            })
-
-            $(window).scroll(function() {
-              var height = $(window).scrollTop();
-              var $fixedbar = $('.filters-fixed');
-
-              if(height  > eTop ) {
-                  var barHeight = $('.filters-fixed').height();
-                  $fixedbar.addClass('fixed');
-                  $('.pad-helper').css('height',barHeight);
-                  $("#toTop").fadeIn();
-              }
-              if (height < eTop ) {
-                 $fixedbar.removeClass('fixed');
-                 $('.pad-helper').css('height',0);
-                 $("#toTop").fadeOut();
-              }
-            });
-          }
-        });
+      
+      $(window).load(loadScrollListener);
 
       // $('.nav a.mobi').on('click', function(){
       //   $('.navbar-toggle').click();
