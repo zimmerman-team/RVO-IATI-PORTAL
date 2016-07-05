@@ -204,6 +204,17 @@
         },
     ];
 
+    function getNames(tree, names){
+        _.each(tree, function(item){
+            names.push(item.indicatorName);
+            if(item.children.length){
+                names = getNames(item.children, names);
+            }
+        });
+
+        return names;
+    }
+
     vm.setSelected = function(item, $event){
 
         var selectedIndicators = [];
@@ -217,28 +228,29 @@
             selectedIndicators.push(group)
 
             // select underlying indicators
-            _.each(vm.indicators, function(value, key, obj) { 
-                if(obj[key].parent == group && obj[key].activity_count > 0){
-                    selectedIndicators.push(key);
+            var indicators = angular.copy(vm.indicators);
+            indicators = _.each(indicators, function(value, key) {
+                    value.name = key;
+                    return value;
                 }
+            );
+            var selectedIndicators = _.filter(indicators, function(value, key, obj) {
+                if(obj[key].parent == vm.selectedGroup && obj[key].activity_count > 0){
+                    return key;
+                } else if(vm.selectedGroup == key){
+                    return key;
+                } else {
+                    return false
+                }
+            });
+            selectedIndicators = _.map(selectedIndicators, function(value, key){
+                return value.name;
             });
         } else {
             // if not header, check if the user checked or unchecked the indicator
             var checked = ($scope.selectedIndicators.indexOf(item.indicatorName) > -1) ? false : true;
             
             // get all underlying
-            function getNames(tree, names){
-
-                _.each(tree, function(item){
-                    names.push(item.indicatorName);
-                    if(item.children.length){
-                        names = getNames(item.children, names);
-                    }
-                });
-
-                return names;
-            }
-
             var namesList = getNames(item.children, [item.indicatorName]);
             var currentSelected = angular.copy($scope.selectedIndicators);
             
@@ -253,7 +265,7 @@
             } else{
                 // if checked, add all underlying
                 _.each(namesList, function(name){
-                    currentSelected.push(name);
+                    currentSelected.push(name);        
                 });
 
                 selectedIndicators = currentSelected;
