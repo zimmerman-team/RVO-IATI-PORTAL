@@ -72,22 +72,15 @@
               <td>
                 {{item.baseline_value}} ( {{item.baseline_year}} )
               </td>
-              <td ng-if="item.period_actual_value != null">
+              <td>
                 {{item.period_actual_value}}
                 <a class="comment" ng-if="item.period_actual_comment != null" tooltips tooltip-template="{{item.period_actual_comment.narratives[0].text}}"></a>
               </td>
-              <td ng-if="item.period_actual_value == null">
-                
-              </td>
 
-              <td ng-if="item.period_target_value != null">
+              <td>
                 {{item.period_target_value}}
                 <a class="comment" ng-if="item.period_target_comment != null" tooltips tooltip-template="{{item.period_target_comment.narratives[0].text}}"></a>
               </td>
-              <td ng-if="item.period_target_value == null">
-                
-              </td>
-
           </tr>
       </tbody>
   </table>  

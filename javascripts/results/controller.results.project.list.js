@@ -5,9 +5,9 @@
     .module('oipa.results')
     .controller('ResultsProjectListController', ResultsProjectListController);
 
-  ResultsProjectListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl', 'templateBaseUrl'];
+  ResultsProjectListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl', 'templateBaseUrl', '$filter'];
 
-  function ResultsProjectListController($scope, Activities, FilterSelection, homeUrl, templateBaseUrl) {
+  function ResultsProjectListController($scope, Activities, FilterSelection, homeUrl, templateBaseUrl, $filter) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
@@ -124,7 +124,7 @@
                   period_actual_value += '€';
                 }
                 var actual_value = activities[i].results[x].indicator[y].period[z].actual.value;
-                period_actual_value += Math.round(actual_value);
+                period_actual_value += $filter('thousandsSeparator')(Math.round(actual_value));
                 period_actual_value += ' (' + activities[i].results[x].indicator[y].period[z].period_end.substr(0,4) + ')';
               }
 
@@ -134,9 +134,8 @@
                 if(indicatorTitle.indexOf('co-invest') > -1){
                   period_target_value += '€';
                 }
-
                 var target_value = activities[i].results[x].indicator[y].period[z].target.value;
-                period_target_value += Math.round(target_value);
+                period_target_value += $filter('thousandsSeparator')(Math.round(target_value));
                 period_target_value += ' (' + activities[i].results[x].indicator[y].period[z].period_end.substr(0,4) + ')';
               }
 

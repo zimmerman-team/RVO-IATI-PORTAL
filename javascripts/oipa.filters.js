@@ -46,6 +46,35 @@ angular.module('oipa').filter('cut', function () {
         return curSymbol + out;
       }
     }
+}).filter('thousandsSeparator', function(numberFilter){
+
+    return function(input) {
+      var decPlaces = 0;
+      var thouSep = ".";
+      var decSep = ",";
+
+      // Check for invalid inputs
+      var out = isNaN(input) || input === '' || input === null ? 0.0 : input;
+
+      //Deal with the minus (negative numbers)
+      var minus = input < 0;
+      out = Math.abs(out);
+      out = numberFilter(out, decPlaces);
+
+      // Replace the thousand and decimal separators.  
+      // This is a two step process to avoid overlaps between the two
+      out = out.replace(/\,/g, "T");
+      out = out.replace(/\./g, "D");
+      out = out.replace(/T/g, thouSep);
+      out = out.replace(/D/g, decSep);
+
+      // Add the minus and the symbol
+      if(minus){
+        return "-" + out;
+      }else{
+        return out;
+      }
+    }
 }).filter('shortcurrency', function(){
 
     return function(input, curSymbol) {
