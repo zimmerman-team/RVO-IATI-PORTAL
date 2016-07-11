@@ -713,17 +713,19 @@ Sorteren
 }
 
 .download-list{
-    margin-top: 10px; 
-    float: right;
+  margin-top: 10px; 
+  float: right;
 
-    a{
-      cursor: pointer;
+  a{
+    cursor: pointer;
 
-      i{
-        margin-right: 3px;
-      }
+    i{
+      margin-right: 3px;
     }
   }
+}
+
+.list-view-wrapper{
   .custom-select {
     margin-top:0;
     width: 200px;
@@ -744,6 +746,7 @@ Sorteren
       width: auto;
     }
   }
+}
 
 .about-page {
   .intro {

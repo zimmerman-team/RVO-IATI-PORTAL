@@ -7,7 +7,6 @@
 
   ResultsChartController.$inject = ['$scope', 'Aggregations', 'FilterSelection', '$filter'];
 
-
   function ResultsChartController($scope, Aggregations, FilterSelection, $filter) {
     var vm = this;
     vm.filterSelection = FilterSelection;
@@ -25,7 +24,7 @@
             top: 20,
             right: 20,
             bottom: 60,
-            left: 60
+            left: 70
         },
         x: function(d){ return d.chart_name; },
         y: function(d){ return d.actual; },
@@ -43,12 +42,21 @@
         yAxis: {
             axisLabel: '',
             tickFormat: function(d){
-            	return d;
+            	return $filter('thousandsSeparator')(d);
             },
             axisLabelDistance: 20,
             ticks: 4
         },
-        
+        tooltip: {
+          contentGenerator: function(key, date, e, graph){
+            var valuePrefix = (key.data.parent == "Amount of generated co-investment") ? '€': '';
+            var content = '<h4>'+key.data.chart_group+' - '+key.data.chart_name+'</h4>'+
+                          '<hr>'+
+                          '<p><b>Projects: </b>'+key.data.activity_count+'</p>'+
+                          '<p><b>Value:</b>'+valuePrefix+ ' ' + $filter('thousandsSeparator')(Math.round(key.data.actual)) +'</p>';
+            return content;
+          }
+        },
       }
     };
 
@@ -184,9 +192,9 @@
       if(actuals.length){
         var roundedMax = vm.roundMax(maxValue);
         vm.transactionChartOptions.chart.yDomain = [0, roundedMax]
-        $scope.data = data;
+        $scope.data = data
       } else {
-        $scope.data = [];
+        $scope.data = []
       }
     }
 
