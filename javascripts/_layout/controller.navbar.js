@@ -25,13 +25,15 @@
 
       if(document.getElementById('filter-bar') !== null) {
         eTop = $('#filter-bar').offset().top-5;
-        $(window).resize(function() {
+
+        $(window).unbind('resize.filterBar');
+        $(window).bind('resize.filterBar', function() {
           eTop = $('#filter-bar').offset().top-5;
         })
 
-        $(window).unbind('scroll');
+        $(window).unbind('scroll.filterBar');
 
-        $(window).scroll(function() {
+        $(window).bind("scroll.filterBar", function() {
           var height = $(window).scrollTop();
           var $fixedbar = $('.filters-fixed');
 

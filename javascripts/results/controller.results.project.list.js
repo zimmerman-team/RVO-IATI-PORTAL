@@ -160,10 +160,8 @@
           }
         }
       }
-
-      var new_rows = angular.copy(vm.rows);
-      new_rows = new_rows.concat(rows);
-      vm.rows = new_rows;
+      
+      vm.rows = vm.rows.concat(rows);
     }
 
     vm.nextPage = function(){

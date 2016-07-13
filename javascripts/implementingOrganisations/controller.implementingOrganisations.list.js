@@ -9,12 +9,12 @@
     .module('oipa.implementingOrganisations')
     .controller('ImplementingOrganisationsListController', ImplementingOrganisationsListController);
 
-  ImplementingOrganisationsListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'homeUrl'];
+  ImplementingOrganisationsListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'homeUrl', 'templateBaseUrl'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function ImplementingOrganisationsListController($scope, Aggregations, FilterSelection, homeUrl) {
+  function ImplementingOrganisationsListController($scope, Aggregations, FilterSelection, homeUrl, templateBaseUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.organisations = [];
@@ -25,6 +25,7 @@
     vm.busy = false;
     vm.extraSelectionString = '&';
     vm.hasToContain = $scope.hasToContain;
+    vm.templateBaseUrl = templateBaseUrl;
 
     function activate() {
       // use predefined filters or the filter selection
@@ -37,7 +38,7 @@
       $scope.$watch("searchValue", function (searchValue, oldSearchValue) {
         if(searchValue == undefined) return;
         if(searchValue !== oldSearchValue){
-          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
+          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_field=participating_org&q='+searchValue;
           vm.update();
         }
       }, true);
@@ -87,13 +88,12 @@
 
     vm.nextPage = function(){
       if (!vm.hasContains() || vm.busy || (vm.totalOrganisations <= (vm.page * vm.pageSize))) return;
-
       vm.busy = true;
       vm.page += 1;
       Aggregations.aggregation('participating_organisation', 'count', vm.filterSelection.selectionString + '&participating_organisation_role=2,4' + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        vm.organisations = vm.organisations.concat(data.data.results);
+        vm.organisations = vm.organisations.concat(data.data.results)
         vm.busy = false;
       }
 

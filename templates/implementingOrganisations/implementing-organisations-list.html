@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div ng-if='vm.totalOrganisations == 0' class="row">
+    <div ng-if='vm.totalOrganisations == 0 && vm.busy == false' class="row">
         <div class="col-sm-12">
             <div class="no-results">
                 <h2>Nothing found</h2>
@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' class="table list-overview" ng-show="vm.organisations.length != 0">
+<table infinite-scroll="vm.nextPage()" infinite-scroll-disabled='vm.busy' infinite-scroll-distance='2' class="table list-overview" ng-show="vm.organisations.length">
     <thead>
         <tr>
             <th>Project partners</th>
@@ -49,3 +49,9 @@
         </tr>
     </tbody>
 </table>
+
+<div ng-if='vm.busy == true' class="col-sm-12">
+    <div class="hp-block wit">
+        <h3 class="loader"><img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="25"> Fetching results, please wait...</h3>
+    </div>
+</div>
