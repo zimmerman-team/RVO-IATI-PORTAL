@@ -15,7 +15,8 @@
                 class="filter-pop"
                 ng-click="vm.toggleOpenPanel('programmes')" 
                 ng-class="{'active': vm.isOpenedHeader('programmes')}"
-                ng-show="vm.isIncludedFilter('programmes')">
+                ng-show="vm.isIncludedFilter('programmes')"
+                ng-if="vm.pageName != 'programme'">
               Programmes
             </span>
             <span 
