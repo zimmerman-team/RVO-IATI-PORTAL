@@ -1965,12 +1965,23 @@ RESULTS PAGE
       
       &.indicator-header{
         font-weight: bold;
-        padding-top: 13px;
+        margin-top: 10px;
+        margin-bottom: 10px;
       }
 
       input{
         cursor: pointer;
       }
+    }
+
+    .parent.expanded {
+      .indicator-selector-label.indicator-header {
+        margin-bottom: 5px;
+      }
+    }
+
+    .table-head {
+      margin-bottom: 2px;
     }
 
     .head {
@@ -1987,6 +1998,10 @@ RESULTS PAGE
       &:nth-of-type(2n) {
         background:none;
       }
+
+      &:last-of-type {
+        border-bottom:0;
+      }
       
       .wrap {
         padding: 0;
@@ -1994,11 +2009,17 @@ RESULTS PAGE
 
         .indicator-tooltip{
           white-space: normal;
-          
+          padding:10px 15px;
+          min-width: 400px;
+          text-align: left;
+          max-width:600px;
+          line-height: 1.4;
+          font-weight: 400;
           p{
-            min-width: 400px;
-            padding: 30px 0 20px;
             margin: 0;
+            &:last-of-type {
+              padding-bottom:20px;
+            }
           }
         }
       }
