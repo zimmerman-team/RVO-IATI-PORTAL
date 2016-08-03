@@ -164,14 +164,14 @@
           }
         }
       }
-      
+
       var new_rows = angular.copy(vm.rows);
       new_rows = new_rows.concat(rows);
       vm.rows = new_rows;
     }
 
     vm.nextPage = function(){
-      console.log(vm.busy);
+      console.log('nextPage');
       if (!vm.hasContains() || vm.busy || (vm.totalActivities <= (vm.page * vm.pageSize))) return;
       var resultAddition = '&indicator_title=' + vm.selectedIndicators.join(',');
 
