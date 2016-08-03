@@ -11,7 +11,7 @@
 		var m = this;
         m.year = {
           on: false,
-          year: '2015'
+          value: '2015'
         };
         m.toReset = false;
 
@@ -23,7 +23,7 @@
 
         function aggregation(group_by, aggregations, filters, order_by){
 
-            var url = oipaUrl + '/results/aggregations/?format=json&group_by='+group_by+'&aggregations='+aggregations
+            var url = oipaUrl + '/results/aggregations/?format=json&result_indicator_period_end_year=2015&group_by='+group_by+'&aggregations='+aggregations
             if(reportingOrganisationId){
                 url += '&reporting_organisation=' + reportingOrganisationId
             }

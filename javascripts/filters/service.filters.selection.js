@@ -76,9 +76,9 @@
 		m.updateSelectionString = function(){
       		
 			var selectList = [
-			m.selectArrayToString('recipient_country', 'code', m.selectedCountries),
-			m.selectArrayToString('activity_status', 'code', m.selectedActivityStatuses),
-			m.selectArrayToString('participating_organisation_type', 'code', m.selectedImplementingOrganisationTypes),
+				m.selectArrayToString('recipient_country', 'code', m.selectedCountries),
+				m.selectArrayToString('activity_status', 'code', m.selectedActivityStatuses),
+				m.selectArrayToString('participating_organisation_type', 'code', m.selectedImplementingOrganisationTypes),
 			];
 
 			selectList.push(m.getSectors());

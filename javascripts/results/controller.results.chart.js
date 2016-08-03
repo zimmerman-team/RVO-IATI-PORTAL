@@ -192,7 +192,9 @@
       if(actuals.length){
         var roundedMax = vm.roundMax(maxValue);
         vm.transactionChartOptions.chart.yDomain = [0, roundedMax]
-        $scope.data = data
+        // console.log(roundedMax)
+        $scope.data = data;
+        $scope.api.refresh();
       } else {
         $scope.data = []
       }

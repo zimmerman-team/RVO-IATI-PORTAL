@@ -19,3 +19,15 @@ for ro in TransactionReceiver.objects.filter(primary_name=''):
     if ro.narratives.all().count() > 0:
         ro.primary_name = ro.narratives.all()[0].content.strip()
         ro.save()
+
+
+
+
+correct_string = "Number of companies with supported plans to invest or trade - Dutch companies"
+
+for r in ResultIndicatorTitle.objects.filter(primary_name="Number of companies with supported plans to invest or trade -  Dutch companies"):
+    nar = r.narratives.all()[0]
+    nar.content = correct_string
+    nar.save()
+    r.primary_name = correct_string
+    r.save()

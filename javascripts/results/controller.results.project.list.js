@@ -12,7 +12,7 @@
     vm.filterSelection = FilterSelection;
     vm.activities = [];
     vm.order_by = 'title';
-    vm.pageSize = 10;
+    vm.pageSize = 20;
     vm.page = 1;
     vm.totalActivities = 0;
     vm.hasToContain = $scope.hasToContain;
@@ -108,6 +108,10 @@
 
             for (var z = 0;z < activities[i].results[x].indicator[y].period.length;z++){
 
+              if(activities[i].results[x].indicator[y].period[z].actual.value == null || activities[i].results[x].indicator[y].period[z].actual.value == 0 || activities[i].results[x].indicator[y].period[z].period_end.substr(0,4) != '2015'){
+                continue;
+              }
+
               var result_indicator_description = '';
               var result_indicator_description_short = '';
               if (activities[i].results[x].indicator[y].description != null){
@@ -160,13 +164,14 @@
           }
         }
       }
-
+      
       var new_rows = angular.copy(vm.rows);
       new_rows = new_rows.concat(rows);
       vm.rows = new_rows;
     }
 
     vm.nextPage = function(){
+      console.log(vm.busy);
       if (!vm.hasContains() || vm.busy || (vm.totalActivities <= (vm.page * vm.pageSize))) return;
       var resultAddition = '&indicator_title=' + vm.selectedIndicators.join(',');
 

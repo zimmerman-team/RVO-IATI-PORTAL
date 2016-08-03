@@ -233,6 +233,7 @@
 
         // Co-investment indicators
         for(var i = 0;i < results.length;i++){
+
           if (job_indicators[results[i].result_indicator_title] != undefined){
             job_indicators[results[i].result_indicator_title].actual = results[i].actual;
             job_indicators[results[i].result_indicator_title].activity_count = results[i].activity_count;
