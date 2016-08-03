@@ -12,7 +12,7 @@
     vm.filterSelection = FilterSelection;
     vm.activities = [];
     vm.order_by = 'title';
-    vm.pageSize = 20;
+    vm.pageSize = 25;
     vm.page = 1;
     vm.totalActivities = 0;
     vm.hasToContain = $scope.hasToContain;
@@ -165,13 +165,19 @@
         }
       }
 
-      var new_rows = angular.copy(vm.rows);
-      new_rows = new_rows.concat(rows);
-      vm.rows = new_rows;
+      if(rows.length == 0){
+        vm.nextPage();
+      } else {
+        var new_rows = angular.copy(vm.rows);
+        new_rows = new_rows.concat(rows);
+        vm.rows = new_rows;
+        if(rows.length < 5){
+          vm.nextPage();
+        }
+      }
     }
 
     vm.nextPage = function(){
-      console.log('nextPage');
       if (!vm.hasContains() || vm.busy || (vm.totalActivities <= (vm.page * vm.pageSize))) return;
       var resultAddition = '&indicator_title=' + vm.selectedIndicators.join(',');
 
