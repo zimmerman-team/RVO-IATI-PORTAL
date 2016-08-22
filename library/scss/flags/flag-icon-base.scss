@@ -4,6 +4,15 @@
   background-repeat: no-repeat;
 }
 
+@mixin flag-icon($country) {
+  .flag-icon-#{$country} {
+    background-image: url(#{$flag-icon-css-path}#{$flag-icon-rect-path}/#{$country}.svg);
+    &.flag-icon-squared {
+      background-image: url(#{$flag-icon-css-path}#{$flag-icon-square-path}/#{$country}.svg);
+    }
+  }
+}
+
 .flag-icon {
   @include flag-icon-background();
   position: relative;
@@ -15,14 +24,5 @@
   }
   &.flag-icon-squared {
     width: 1em;
-  }
-}
-
-@mixin flag-icon($country) {
-  .flag-icon-#{$country} {
-    background-image: url(#{$flag-icon-css-path}#{$flag-icon-rect-path}/#{$country}.svg);
-    &.flag-icon-squared {
-      background-image: url(#{$flag-icon-css-path}#{$flag-icon-square-path}/#{$country}.svg);
-    }
   }
 }
