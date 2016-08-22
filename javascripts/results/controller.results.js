@@ -12,6 +12,8 @@
     vm.filterSelection = FilterSelection;
     vm.programmeId = $scope.programmeId;
 
+    vm.resultsYear = Results.year;
+
     vm.job_indicators = {
       'Number of jobs supported': {
         'level': 0, 
