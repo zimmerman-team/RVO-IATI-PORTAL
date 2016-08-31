@@ -57,7 +57,7 @@
         filterString += '&q=' + vm.q;
       }
 
-      Aggregations.aggregation('participating_organisation_type', 'count', filterString + '&hierarchy=2', 'participating_organisation_type', vm.page_size, vm.currentPage).then(successFn, errorFn);
+      Aggregations.aggregation('participating_organisation_type', 'count_distinct', filterString + '&hierarchy=2', 'participating_organisation_type', vm.page_size, vm.currentPage).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.totalCount = data.data.count;

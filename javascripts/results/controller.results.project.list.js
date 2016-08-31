@@ -5,9 +5,9 @@
     .module('oipa.results')
     .controller('ResultsProjectListController', ResultsProjectListController);
 
-  ResultsProjectListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl', 'templateBaseUrl', '$filter'];
+  ResultsProjectListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl', 'templateBaseUrl', '$filter', 'Results'];
 
-  function ResultsProjectListController($scope, Activities, FilterSelection, homeUrl, templateBaseUrl, $filter) {
+  function ResultsProjectListController($scope, Activities, FilterSelection, homeUrl, templateBaseUrl, $filter, Results) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
@@ -99,6 +99,10 @@
 
     vm.reformatPerPeriod = function(activities){
       var rows = [];
+      var yearShouldBe = 'all';
+      if(Results.year.on == true){
+        yearShouldBe = Results.year.value; 
+      }
       // lol
       for(var i = 0;i < activities.length;i++){
         for(var x = 0;x < activities[i].results.length;x++){
@@ -108,8 +112,13 @@
 
             for (var z = 0;z < activities[i].results[x].indicator[y].period.length;z++){
 
-              if(activities[i].results[x].indicator[y].period[z].actual.value == null || activities[i].results[x].indicator[y].period[z].actual.value == 0 || activities[i].results[x].indicator[y].period[z].period_end.substr(0,4) != '2015'){
+              if(activities[i].results[x].indicator[y].period[z].actual.value == null || activities[i].results[x].indicator[y].period[z].actual.value == 0){
                 continue;
+              }
+              if(yearShouldBe != 'all'){
+                if(activities[i].results[x].indicator[y].period[z].period_end.substr(0,4) != yearShouldBe){
+                  continue;
+                }
               }
 
               var result_indicator_description = '';
@@ -192,7 +201,7 @@
 
       function errorFn(data, status, headers, config){
         console.warn('error getting data on lazy loading');
-        vm.totalActivities = 1;
+        // vm.totalActivities = 1;
         vm.busy = false;
       }
     };
