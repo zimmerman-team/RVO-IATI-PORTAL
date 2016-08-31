@@ -49,11 +49,11 @@
         },
         tooltip: {
           contentGenerator: function(key, date, e, graph){
-            var valuePrefix = (key.data.parent == "Amount of generated co-investment") ? '€': '';
+            var valuePrefix = (key.data.parent == "Amount of generated co-investment in EUR") ? '€': '';
             var content = '<h4>'+key.data.chart_group+' - '+key.data.chart_name+'</h4>'+
                           '<hr>'+
                           '<p><b>Projects: </b>'+key.data.activity_count+'</p>'+
-                          '<p><b>Value:</b>'+valuePrefix+ ' ' + $filter('thousandsSeparator')(Math.round(key.data.actual)) +'</p>';
+                          '<p><b>Value:</b> '+valuePrefix + $filter('thousandsSeparator')(Math.round(key.data.actual)) +'</p>';
             return content;
           }
         },
