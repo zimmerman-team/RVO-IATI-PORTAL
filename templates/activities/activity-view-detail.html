@@ -42,7 +42,7 @@
                     <div class="white">
                         <h3 ng-if="vm.featuredImage">Description</h3>
                         <h3 ng-if="!vm.featuredImage" class="no-margin-top">Description</h3>
-                        <p ng-bind-html="vm.description"></p>              
+                        <pre ng-bind-html="vm.description"></pre>              
                     </div>
                     <div class="white no-margin-bottom no-padding-bottom">
                         <h3>Location</h3>
@@ -242,7 +242,7 @@
                         </tr>
                         <tr>
                             <td>Description:</td>
-                            <td>{{vm.activity.descriptions[0].narratives[0].text}}</td>
+                            <td><pre>{{vm.activity.descriptions[0].narratives[0].text}}</pre></td>
                         </tr>
                         <tr>
                             <td>Description type:</td>

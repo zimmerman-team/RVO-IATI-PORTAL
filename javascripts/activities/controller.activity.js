@@ -92,7 +92,7 @@
             }
           }
 
-          vm.description = $sce.trustAsHtml(desc.replace(/\\n/g, '<br>'));
+          vm.description = $sce.trustAsHtml(desc);
         }
 
         for(var i = 0;i < vm.activity.activity_dates.length;i++){
