@@ -100,8 +100,8 @@ def set_or_update_result_indicator(row, activity, result):
 
 def set_or_update_result_indicator_period(row, activity, result_indicator):
     # get or create result_indicator_period_id
-    print row['result_period_start_date']
-    print row['result_period_end_date']
+    # print row['result_period_start_date']
+    # print row['result_period_end_date']
     period_start = data_parser.parse(row['result_period_start_date'], ignoretz=True)
     period_end = data_parser.parse(row['result_period_end_date'], ignoretz=True)
     result_period_target = row['result_period_target']
@@ -141,7 +141,7 @@ def set_or_update_result_indicator_period(row, activity, result_indicator):
     return rip
 
 
-with open('rvo_results_v2.csv') as csvfile:
+with open('rvo_results_15_09_v5.csv') as csvfile:
     reader = csv.DictReader(csvfile, delimiter=';')
     #
     previous_row = None
@@ -156,7 +156,7 @@ with open('rvo_results_v2.csv') as csvfile:
         # check if valid row
         # required fields; result title, indicator title, 
         if not row['result_title'] or not row['result_indicator_title'] or not row['result_period_start_date'] or not row['result_period_end_date']:
-            print 'invalid row, line ' + str(index+2)
+            print 'skipped row, line ' + str(index+2)
             continue
         #
         print 'line ' + str(index+2)
