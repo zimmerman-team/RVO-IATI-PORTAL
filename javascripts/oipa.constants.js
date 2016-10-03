@@ -37,14 +37,14 @@
       'NL-KVK-27378529-25403': 'CBI',
       'NL-KVK-27378529-25588': 'DRR-Team',
       'NL-KVK-27378529-25717': 'GWW-FDW',
-      'NL-KVK-27378529-26067': 'PSD',
+      'NL-KVK-27378529-26067': 'PSD Apps',
       'NL-KVK-27378529-26225': 'LS&H4D',
       'NL-KVK-27378529-26663': 'DGGF',
-      'NL-KVK-27378529-26742': 'DHKF',
+      'NL-KVK-27378529-26742': 'DHK',
       'NL-KVK-27378529-27115': 'DSS',
       'NL-KVK-27378529-27528': 'PDP III',
-      "NL-KVK-27378529-IM201601C": "PFW - Contracts",
-      "NL-KVK-27378529-IM201601G": "PFW - Grants"
+      "NL-KVK-27378529-IM201601C": "PvW-contracts",
+      "NL-KVK-27378529-IM201601G": "PvW-grants"
     }
 
     angular
