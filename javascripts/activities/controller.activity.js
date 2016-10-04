@@ -5,6 +5,14 @@
 (function () {
   'use strict';
 
+  // General comparison function for convenience
+  function compare(x, y) {
+    if (x === y) {
+      return 0;
+    }
+    return x > y ? 1 : -1;
+  }
+
   angular
     .module('oipa.activities')
     .controller('ActivityController', ActivityController);
@@ -164,7 +172,24 @@
             }
           }
         }
-        console.log(rows);
+
+        vm.resultRows = rows.sort(function(x, y) {
+          var rtx = x.result_type;
+          var rty = y.result_type;
+          if (rtx !== rty) {
+            return compare(rtx, rty);
+          }
+          var ritx = x.result_indicator_title;
+          var rity = y.result_indicator_title;
+          if (ritx !== rity) {
+            return compare(ritx, rity);
+          }
+          return compare(x.period_actual_year, y.period_actual_year);
+        });
+
+
+
+        _.sortBy(rows, function(row){ return row.result_type; });
         vm.resultRows = rows;
       }
 
