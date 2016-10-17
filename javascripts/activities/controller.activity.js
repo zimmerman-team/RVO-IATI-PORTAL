@@ -9,12 +9,12 @@
     .module('oipa.activities')
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl','programmesMapping', '$sce'];
+  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl', 'programmaAfkortingen', 'programmesMapping', '$sce'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, programmesMapping, $sce) {
+  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, programmaAfkortingen, programmesMapping, $sce) {
     var vm = this;
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
@@ -42,25 +42,6 @@
       {'id': 'mediapage', 'name': 'Media', 'count': -1},
       // {'id': 'results', 'name': 'Results', 'count': -1},
     ]
-
-    vm.programmaAfkortingen = {
-      'NL-KVK-27378529-18232': 'KHED',
-      'NL-KVK-27378529-19390': 'ORIO',
-      'NL-KVK-27378529-23188': 'TF',
-      'NL-KVK-27378529-23310': '2getthere-OS',
-      'NL-KVK-27378529-23408': 'PSI',
-      'NL-KVK-27378529-23710': 'FDW',
-      'NL-KVK-27378529-23877': 'FDOV',
-      'NL-KVK-27378529-25403': 'CBI',
-      'NL-KVK-27378529-25588': 'DRR-Team',
-      'NL-KVK-27378529-25717': 'GWW-FDW',
-      'NL-KVK-27378529-26067': 'PSD',
-      'NL-KVK-27378529-26225': 'LS&H4D',
-      'NL-KVK-27378529-26663': 'DGGF',
-      'NL-KVK-27378529-26742': 'DHKF',
-      'NL-KVK-27378529-27115': 'DSS',
-      'NL-KVK-27378529-27528': 'PDP III',
-    }
 
     function activate() {
       Activities.get(vm.activityId).then(successFn, errorFn);
@@ -147,7 +128,7 @@
                 'activity_id': activity.id,
                 'title': activity.title.narratives[0].text,
                 'programme': activity.related_activities[0].ref,
-                'programme_afk': vm.programmaAfkortingen[activity.related_activities[0].ref],
+                'programme_afk': programmaAfkortingen[activity.related_activities[0].ref],
                 'result_type': results[x].type.name,
                 'result_indicator_title': results[x].indicator[y].title.narratives[0].text,
                 'result_indicator_description': result_indicator_description,

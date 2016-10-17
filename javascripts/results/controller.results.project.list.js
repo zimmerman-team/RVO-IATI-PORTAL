@@ -5,9 +5,9 @@
     .module('oipa.results')
     .controller('ResultsProjectListController', ResultsProjectListController);
 
-  ResultsProjectListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl', 'templateBaseUrl', '$filter'];
+  ResultsProjectListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl', 'programmaAfkortingen', 'templateBaseUrl', '$filter'];
 
-  function ResultsProjectListController($scope, Activities, FilterSelection, homeUrl, templateBaseUrl, $filter) {
+  function ResultsProjectListController($scope, Activities, FilterSelection, homeUrl, programmaAfkortingen, templateBaseUrl, $filter) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
@@ -21,24 +21,7 @@
     vm.rows = [];
     vm.selectedIndicators = $scope.selectedIndicators;
     vm.templateBaseUrl = templateBaseUrl;
-    vm.programmaAfkortingen = {
-      'NL-KVK-27378529-18232': 'KHED',
-      'NL-KVK-27378529-19390': 'ORIO',
-      'NL-KVK-27378529-23188': 'TF',
-      'NL-KVK-27378529-23310': '2getthere-OS',
-      'NL-KVK-27378529-23408': 'PSI',
-      'NL-KVK-27378529-23710': 'FDW',
-      'NL-KVK-27378529-23877': 'FDOV',
-      'NL-KVK-27378529-25403': 'CBI',
-      'NL-KVK-27378529-25588': 'DRR-Team',
-      'NL-KVK-27378529-25717': 'GWW-FDW',
-      'NL-KVK-27378529-26067': 'PSD',
-      'NL-KVK-27378529-26225': 'LS&H4D',
-      'NL-KVK-27378529-26663': 'DGGF',
-      'NL-KVK-27378529-26742': 'DHKF',
-      'NL-KVK-27378529-27115': 'DSS',
-      'NL-KVK-27378529-27528': 'PDP III',
-    }
+
 
     function activate() {
       $scope.$watch("selectedIndicators", function (selectedIndicators) {
@@ -143,7 +126,7 @@
                 'activity_id': activities[i].id,
                 'title': activities[i].title.narratives[0].text,
                 'programme': activities[i].related_activities[0].ref,
-                'programme_afk': vm.programmaAfkortingen[activities[i].related_activities[0].ref],
+                'programme_afk': programmaAfkortingen[activities[i].related_activities[0].ref],
                 'result_type': activities[i].results[x].type.name,
                 'result_indicator_title': indicatorTitle,
                 'result_indicator_description': result_indicator_description,
