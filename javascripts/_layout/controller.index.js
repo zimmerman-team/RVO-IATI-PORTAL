@@ -40,7 +40,7 @@
       }, errorFn);
 
       $http.get(home_url + "/wp-admin/admin-ajax.php?action=dateupdated", { cache: true }).then(function(data, status, headers, config){
-        vm.date_updated = $filter('date')(new Date(data.data.date_updated),'dd-MM-yyyy');
+        vm.date_updated = $filter('date')(new Date(data.data.date_updated.substring(0, 10)),'dd-MM-yyyy');
       }, errorFn);
 
       function errorFn(data,status,heders,config){
