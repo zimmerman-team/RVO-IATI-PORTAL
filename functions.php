@@ -93,3 +93,30 @@ function add_rewrite_rules( $wp_rewrite )
   $wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
 }
 add_action('generate_rewrite_rules', 'add_rewrite_rules');
+
+
+
+
+add_action( 'wp_ajax_nopriv_dateupdated', 'dateupdated' );
+add_action( 'wp_ajax_dateupdated', 'dateupdated' );
+ 
+function dateupdated() {
+
+  $json = file_get_contents('https://iatiregistry.org/api/3/action/package_show?id=rvo-01');
+  $obj = json_decode($json, true);
+  $extras = $obj['result']['extras'];
+  $date_updated = '2016-01-01 12:00';
+  
+  for ($i = 0; $i < count($extras); $i++){
+    if ($extras[$i]['key'] == 'data_updated'){
+      $date_updated = $extras[$i]['value'];
+      break;
+    }
+  }
+
+  $response = json_encode( array( 'date_updated' => $date_updated ) );
+
+  header( "Content-Type: application/json" );
+  echo $response;
+  exit;
+}

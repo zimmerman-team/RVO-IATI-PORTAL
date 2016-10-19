@@ -39,17 +39,9 @@
         vm.budget = data.data.results[0].incoming_fund;
       }, errorFn);
 
-      $http.get("https://iatiregistry.org/api/3/action/package_show?id=rvo-01", { cache: true }).then(function(data, status, headers, config){
-        var extras = data.data.result.extras
-        for (var i = 0; i < extras.length;i++){
-          if (extras[i].key == 'data_updated'){
-            vm.date_updated = $filter('date')(new Date(extras[i].value),'dd-MM-yyyy');
-            break;
-          }
-        }
+      $http.get(home_url + "/wp-admin/admin-ajax.php?action=dateupdated", { cache: true }).then(function(data, status, headers, config){
+        vm.date_updated = $filter('date')(new Date(data.data.date_updated),'dd-MM-yyyy');
       }, errorFn);
-
-      
 
       function errorFn(data,status,heders,config){
         
