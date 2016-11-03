@@ -138,19 +138,129 @@
       }
 
       function processResults(activity){
+        vm.activity = data.data;
+
+        vm.activity.participating_organisations = vm.activity.participating_organisations.sort(function(a,b){
+          if(a.role.code < b.role.code){
+            return -1;
+          }
+          if(a.role.code > b.role.code){
+            return 1;
+          }
+          return 0;
+        });
+
+        vm.busy = false;
+        vm.description = null;
+        vm.sortDocs(vm.activity.document_links);
+        var desc = '';
+
+        if(vm.activity.descriptions.length){
+
+          for (var i = 0; i < vm.activity.descriptions.length;i++){
+            if(vm.activity.descriptions[i].type.code == '1'){
+              desc += vm.activity.descriptions[i].narratives[0].text;
+            }
+          }
+
+          vm.description = $sce.trustAsHtml(desc.replace(/\\n/g, '<br>'));
+        }
+
+        for(var i = 0;i < vm.activity.activity_dates.length;i++){
+          if(vm.activity.activity_dates[i].type.code == 1){
+            vm.start_planned = vm.activity.activity_dates[i].iso_date;
+          } else if(vm.activity.activity_dates[i].type.code == 2){
+            vm.start_actual = vm.activity.activity_dates[i].iso_date;
+          } else if(vm.activity.activity_dates[i].type.code == 3){
+            vm.end_planned = vm.activity.activity_dates[i].iso_date;
+          } else if(vm.activity.activity_dates[i].type.code == 4){
+            vm.end_actual = vm.activity.activity_dates[i].iso_date;
+          }
+        }
+        for (var i = 0; i < vm.activity.related_activities.length;i++){
+          vm.activity.related_activities[i].name = programmesMapping[vm.activity.related_activities[i].ref];
+        }
+
+        if(vm.end_actual != null){
+          vm.end_date = vm.end_actual;
+        } else if(vm.end_planned != null){
+          vm.end_date = vm.end_planned;
+        } else {
+          vm.end_date = 'Data to be added';
+        }
+
+        if(vm.start_actual != null){
+          vm.start_date = vm.start_actual;
+        } else if(vm.start_planned != null){
+          vm.start_date = vm.start_planned;
+        } else {
+          vm.start_date = 'Data to be added';
+        }
+
+        processResults(data.data);
+      }
+
+      function processResults(activity){
         var results = activity.results;
+
+        var curX = -1;
+        var curY = -1; // = result indicator counter
+        var lastActual = '0000-00-00';
+        var updated = false;
+
         var rows = [];
         for(var x = 0;x < results.length;x++){
           for(var y = 0;y < results[x].indicator.length;y++){
             for (var z = 0;z < results[x].indicator[y].period.length;z++){
 
+              var period_actual_value = results[x].indicator[y].period[z].actual.value;
+              var period_actual_year = results[x].indicator[y].period[z].period_end;
+              var period_actual_comment = results[x].indicator[y].period[z].actual.comment;
+              
+              var period_target_value = results[x].indicator[y].period[z].target.value;
+              var period_target_year = results[x].indicator[y].period[z].period_end;
+              var period_target_comment = results[x].indicator[y].period[z].target.comment;
+
+              if(curY == y && curX == x){
+
+                var curIndex = rows.length - 1;
+
+                // check if target in here
+                if(period_target_year != null){
+                  rows[curIndex].period_target_value = period_target_value;
+                  rows[curIndex].period_target_year = period_target_year;
+                  rows[curIndex].period_target_comment = period_target_comment;
+                }
+
+                // check if actual in here
+                if(period_actual_year != null && period_actual_value != null && lastActual.substr(0,4) < period_actual_year.substr(0,4)){
+                  // update actual
+                  rows[curIndex].period_actual_value = period_actual_value;
+                  rows[curIndex].period_actual_year = period_actual_year;
+                  rows[curIndex].period_actual_comment = period_actual_comment;
+                }
+
+                updated = true;
+              }
+
+              curX = x;
+              curY = y;
+              lastActual = results[x].indicator[y].period[z].period_end;
+
+              // update
+              if(updated == true){
+                updated = false
+                continue;
+              }
+
+
+              // add
               var result_indicator_description = '';
               var result_indicator_description_short = '';
               if (results[x].indicator[y].description != null){
                 result_indicator_description = results[x].indicator[y].description.narratives[0].text;
                 result_indicator_description_short = result_indicator_description.substr(0, 75);
               }
-              
               rows.push({
                 'activity_id': activity.id,
                 'title': activity.title.narratives[0].text,
@@ -162,16 +272,17 @@
                 'result_indicator_description_short': result_indicator_description_short,
                 'baseline_value': results[x].indicator[y].baseline.value,
                 'baseline_year': results[x].indicator[y].baseline.year,
-                'period_target_value': results[x].indicator[y].period[z].target.value,
-                'period_target_year': results[x].indicator[y].period[z].period_end,
-                'period_target_comment': results[x].indicator[y].period[z].target.comment,
-                'period_actual_value': results[x].indicator[y].period[z].actual.value,
-                'period_actual_year': results[x].indicator[y].period[z].period_end,
-                'period_actual_comment': results[x].indicator[y].period[z].actual.comment,
+                'period_target_value': period_target_value,
+                'period_target_year': period_target_year,
+                'period_target_comment': period_target_comment,
+                'period_actual_value': period_actual_value,
+                'period_actual_year': period_actual_year,
+                'period_actual_comment': period_actual_comment,
               });
             }
           }
         }
+
 
         vm.resultRows = rows.sort(function(x, y) {
           var rtx = x.result_type;

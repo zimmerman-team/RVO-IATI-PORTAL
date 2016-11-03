@@ -40,6 +40,20 @@
         'actual': 0, 
         'activity_count': 0,
         'parent': 'Number of jobs supported'},
+      'Number of full-time (equivalent) direct jobs supported - Male': {
+        'level': 3, 
+        'chart_group': 'Direct jobs',
+        'chart_name': 'Male', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of jobs supported'},
+      'Number of full-time (equivalent) direct jobs supported - Unspecified': {
+        'level': 3, 
+        'chart_group': 'Direct jobs',
+        'chart_name': 'Unspecified', 
+        'actual': 0, 
+        'activity_count': 0,
+        'parent': 'Number of jobs supported'},
       'Number of full-time (equivalent) direct jobs supported - Young (15-25)': {
         'level': 3, 
         'chart_group': 'Direct jobs',
@@ -253,6 +267,11 @@
           (indicator.level == 2) ? value = memo + indicator.activity_count: value = memo;
           return value;
         }, 0);
+        
+        
+        job_indicators['Number of full-time (equivalent) direct jobs supported - Unspecified'].activity_count = job_indicators['Number of full-time (equivalent) direct jobs supported - Total'].activity_count - job_indicators['Number of full-time (equivalent) direct jobs supported - Female'].activity_count;
+        job_indicators['Number of full-time (equivalent) direct jobs supported - Unspecified'].actual = job_indicators['Number of full-time (equivalent) direct jobs supported - Total'].actual - job_indicators['Number of full-time (equivalent) direct jobs supported - Female'].actual - job_indicators['Number of full-time (equivalent) direct jobs supported - Male'].actual;
+
 
         noc_indicators['Number of companies with supported plans to invest or trade - Total'].activity_count = _.reduce(noc_indicators, function(memo, indicator){ 
           var value;

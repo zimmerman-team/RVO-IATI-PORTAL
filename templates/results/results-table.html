@@ -24,7 +24,10 @@
 		                			tooltip-class="indicator-tooltip"
 		                			tooltip-append-to-body="true"></a>
 		                	</span>
-		                	<span ng-if="vm.indicators[item.indicatorName].level > 0">
+		                	<span ng-if="vm.indicators[item.indicatorName].level == 1">
+		                		{{ item.displayName }}
+		                	</span>
+		                	<span ng-if="vm.indicators[item.indicatorName].level > 1">
 		                		{{ item.displayName + ' (' + vm.indicators[item.indicatorName].activity_count + ' projects)' }}
 		                	</span>
 		                </label>

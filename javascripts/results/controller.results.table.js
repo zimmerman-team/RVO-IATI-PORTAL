@@ -53,6 +53,18 @@
                                     children: []
                                 },
                                 {
+                                    indicatorName: "Number of full-time (equivalent) direct jobs supported - Male",
+                                    displayName: "Male",
+                                    level: 3,
+                                    children: []
+                                },
+                                {
+                                    indicatorName: "Number of full-time (equivalent) direct jobs supported - Unspecified",
+                                    displayName: "Unspecified",
+                                    level: 3,
+                                    children: []
+                                },
+                                {
                                     indicatorName: "Number of full-time (equivalent) direct jobs supported - Young (15-25)",
                                     displayName: "Young (15-25)",
                                     level: 3,
@@ -102,7 +114,7 @@
         },
         {
             indicatorName: "Number of companies",
-            displayName: "Number of companies",
+            displayName: "Number of companies supported",
             level: 0,
             children: [
                 {

@@ -97,12 +97,34 @@
       }
     }
 
+    vm.getPeriodValue = function(indicatorTitle, periodActualValue, periodActualYear){
+
+      if(periodActualValue != null){
+        var value = Math.round(periodActualValue);
+
+        if(indicatorTitle.indexOf('co-invest') > -1){
+          periodActualValue += '€';
+        }
+        periodActualValue = $filter('thousandsSeparator')(value);
+        periodActualValue += ' (' + periodActualYear.substr(0,4) + ')';
+      }
+      return periodActualValue;
+    }
+
     vm.reformatPerPeriod = function(activities){
+
       var rows = [];
+
+      var curX = -1;
+      var curY = -1; // = result indicator counter
+      var lastActual = '0000-00-00';
+      var updated = false;
+      
       var yearShouldBe = 'all';
       if(Results.year.on == true){
         yearShouldBe = Results.year.value; 
       }
+
       // lol
       for(var i = 0;i < activities.length;i++){
         for(var x = 0;x < activities[i].results.length;x++){
@@ -112,13 +134,54 @@
 
             for (var z = 0;z < activities[i].results[x].indicator[y].period.length;z++){
 
-              if(activities[i].results[x].indicator[y].period[z].actual.value == null || activities[i].results[x].indicator[y].period[z].actual.value == 0){
+              var period_actual_value = activities[i].results[x].indicator[y].period[z].actual.value;
+              var period_actual_year = activities[i].results[x].indicator[y].period[z].period_end;
+              var period_actual_comment = activities[i].results[x].indicator[y].period[z].actual.comment;
+              
+              var period_target_value = activities[i].results[x].indicator[y].period[z].target.value;
+              var period_target_year = activities[i].results[x].indicator[y].period[z].period_end;
+              var period_target_comment = activities[i].results[x].indicator[y].period[z].target.comment;
+
+              if(period_actual_value == null || period_actual_value == 0){
                 continue;
               }
+
               if(yearShouldBe != 'all'){
-                if(activities[i].results[x].indicator[y].period[z].period_end.substr(0,4) != yearShouldBe){
+                if(period_actual_year.substr(0,4) != yearShouldBe){
                   continue;
                 }
+              }
+
+              if(curY == y && curX == x){
+
+                var curIndex = rows.length - 1;
+
+                // check if target in here
+                if(period_target_year != null){
+                  rows[curIndex].period_target_value = period_target_value;
+                  rows[curIndex].period_target_year = period_target_year;
+                  rows[curIndex].period_target_comment = period_target_comment;
+                }
+
+                // check if actual in here
+                if(period_actual_year != null && period_actual_value != null && lastActual.substr(0,4) < period_actual_year.substr(0,4)){
+                  // update actual
+                  rows[curIndex].period_actual_value = period_actual_value;
+                  rows[curIndex].period_actual_year = period_actual_year;
+                  rows[curIndex].period_actual_comment = period_actual_comment;
+                }
+
+                updated = true;
+              }
+
+              curX = x;
+              curY = y;
+              lastActual = activities[i].results[x].indicator[y].period[z].period_end;
+
+              // update
+              if(updated == true){
+                updated = false
+                continue;
               }
 
               var result_indicator_description = '';
@@ -130,27 +193,8 @@
 
               var indicatorTitle = activities[i].results[x].indicator[y].title.narratives[0].text;
 
-              var period_actual_value = '';
-              if(activities[i].results[x].indicator[y].period[z].actual.value != null){
-
-                if(indicatorTitle.indexOf('co-invest') > -1){
-                  period_actual_value += '€';
-                }
-                var actual_value = activities[i].results[x].indicator[y].period[z].actual.value;
-                period_actual_value += $filter('thousandsSeparator')(Math.round(actual_value));
-                period_actual_value += ' (' + activities[i].results[x].indicator[y].period[z].period_end.substr(0,4) + ')';
-              }
-
-              var period_target_value = '';
-              if(activities[i].results[x].indicator[y].period[z].target.value != null){
-
-                if(indicatorTitle.indexOf('co-invest') > -1){
-                  period_target_value += '€';
-                }
-                var target_value = activities[i].results[x].indicator[y].period[z].target.value;
-                period_target_value += $filter('thousandsSeparator')(Math.round(target_value));
-                period_target_value += ' (' + activities[i].results[x].indicator[y].period[z].period_end.substr(0,4) + ')';
-              }
+              period_actual_value = vm.getPeriodValue(indicatorTitle, period_actual_value, period_actual_year)
+              period_target_value = vm.getPeriodValue(indicatorTitle, period_target_value, period_target_year)
 
               rows.push({
                 'activity_id': activities[i].id,
