@@ -195,29 +195,6 @@ with open('samengevoegd_v4_csv.csv') as csvfile:
 
 
 
-
-
-
-
-
-
-for ri in ResultIndicator.objects.filter(resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Female"):
-    # if result does not have "... - Male" indicator, add. 
-
-    # only for actual year 2016?
-
-    # get "... - Total"
-
-    # if does not have total, print error 
-    
-    # create new resultindicator with value Total - Female
-
-
-
-
-
-
-
 # upgrade issues
 from iati.parser import post_save
 
