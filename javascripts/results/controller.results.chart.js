@@ -111,7 +111,7 @@
 
       var values = [];
       var colors = ['#6296c7', '#aac76d', '#c86361', '#c7c26d']
-      var subColors = ['#4177AC', '26619A', '8CB6DF']
+      var subColors = ['#4177AC', '#26619A', '#8CB6DF']
       var categories = {};
       var valueNames = [];
       var actuals = [];
@@ -130,12 +130,11 @@
           value.chart_name = 'Total'
 
           var color = colors[color_count]
-
           if(level == 3){
             color = subColors[sub_color_count]
-            sub_color_count++;
+            sub_color_count++
           } else {
-            color_count++;
+            color_count++
           }
           
           // TODO: remove level 2 indicator if exists

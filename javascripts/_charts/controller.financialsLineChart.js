@@ -36,7 +36,7 @@
             axisLabel: '',
             tickFormat: function(d) {
                 return d3.format('r')(d);
-                return d3.time.format('%Y-%m-%d')(new Date(d))
+                // return d3.time.format('%Y-%m-%d')(new Date(d))
             },
             showMaxMin: false,
             staggerLabels: true

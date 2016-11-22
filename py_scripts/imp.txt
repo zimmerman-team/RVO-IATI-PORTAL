@@ -141,7 +141,7 @@ def set_or_update_result_indicator_period(row, activity, result_indicator):
     return rip
 
 
-with open('samengevoegd_v4_csv.csv') as csvfile:
+with open('samengevoegd_v4_final.csv') as csvfile:
     reader = csv.DictReader(csvfile, dialect=csv.excel)
     #
     previous_row = None
