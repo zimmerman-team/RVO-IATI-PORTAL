@@ -30,7 +30,7 @@
         y: function(d){ return d.actual; },
         transitionDuration: 300,
         showControls: false,
-        showLegend: false, 
+        showLegend: true, 
         xAxis: {
             axisLabel: '',
             tickFormat: function(d) {

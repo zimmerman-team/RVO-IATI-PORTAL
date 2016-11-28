@@ -253,14 +253,15 @@
                 continue;
               }
 
-
               // add
               var result_indicator_description = '';
               var result_indicator_description_short = '';
+
               if (results[x].indicator[y].description != null){
                 result_indicator_description = results[x].indicator[y].description.narratives[0].text;
                 result_indicator_description_short = result_indicator_description.substr(0, 75);
               }
+
               rows.push({
                 'activity_id': activity.id,
                 'title': activity.title.narratives[0].text,
@@ -353,7 +354,7 @@
       }
     }
 
-    vm.transactionChartData = [];
+    vm.transactionChartData = []
     vm.transactionChartOptions = {
       chart: {
         type: 'lineChart',
@@ -387,7 +388,7 @@
             axisLabelDistance: 20
         }
       }
-    };
+    }
 
     vm.download = function(format){
       var url = homeUrl + '/export/?type=activity-detail&format='+format+'&detail='+vm.activityId;

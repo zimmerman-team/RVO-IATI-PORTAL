@@ -97,24 +97,26 @@
       }
     }
 
-    vm.getPeriodValue = function(indicatorTitle, periodActualValue, periodActualYear){
+    vm.getPeriodValue = function(indicatorTitle, periodValue, periodYear){
+      if(periodValue != null){
+        var value = Math.round(periodValue);
 
-      if(periodActualValue != null){
-        var value = Math.round(periodActualValue);
-
-        if(indicatorTitle.indexOf('co-invest') > -1){
-          periodActualValue += '€';
+        if(indicatorTitle.indexOf('co-investment') > -1){
+          periodValue = '€';
+        } else {
+          periodValue = '';
         }
-        periodActualValue = $filter('thousandsSeparator')(value);
-        periodActualValue += ' (' + periodActualYear.substr(0,4) + ')';
+        periodValue += $filter('thousandsSeparator')(value);
+        periodValue += ' (' + periodYear.substr(0,4) + ')';
       }
-      return periodActualValue;
+      return periodValue;
     }
 
     vm.reformatPerPeriod = function(activities){
 
       var rows = [];
 
+      var curI = -1;
       var curX = -1;
       var curY = -1; // = result indicator counter
       var lastActual = '0000-00-00';
@@ -152,9 +154,18 @@
                 }
               }
 
-              if(curY == y && curX == x){
+              var indicatorTitle = activities[i].results[x].indicator[y].title.narratives[0].text;
+
+              period_actual_value = vm.getPeriodValue(indicatorTitle, period_actual_value, period_actual_year)
+              period_target_value = vm.getPeriodValue(indicatorTitle, period_target_value, period_target_year)
+
+              if(curI == i && curY == y && curX == x){
 
                 var curIndex = rows.length - 1;
+
+                if(rows[curIndex].period_target_value == null){
+
+                }
 
                 // check if target in here
                 if(period_target_year != null){
@@ -176,6 +187,7 @@
 
               curX = x;
               curY = y;
+              curI = i;
               lastActual = activities[i].results[x].indicator[y].period[z].period_end;
 
               // update
@@ -190,11 +202,6 @@
                 result_indicator_description = activities[i].results[x].indicator[y].description.narratives[0].text;
                 result_indicator_description_short = result_indicator_description.substr(0, 45);
               }
-
-              var indicatorTitle = activities[i].results[x].indicator[y].title.narratives[0].text;
-
-              period_actual_value = vm.getPeriodValue(indicatorTitle, period_actual_value, period_actual_year)
-              period_target_value = vm.getPeriodValue(indicatorTitle, period_target_value, period_target_year)
 
               rows.push({
                 'activity_id': activities[i].id,
