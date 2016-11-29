@@ -19,3 +19,36 @@ for ro in TransactionReceiver.objects.filter(primary_name=''):
     if ro.narratives.all().count() > 0:
         ro.primary_name = ro.narratives.all()[0].content.strip()
         ro.save()
+
+
+
+
+# correct_string = "Number of companies with supported plans to invest or trade - Dutch companies"
+
+# for r in ResultIndicatorTitle.objects.filter(primary_name="Number of companies with supported plans to invest or trade -  Dutch companies"):
+#     nar = r.narratives.all()[0]
+#     nar.content = correct_string
+#     nar.save()
+#     r.primary_name = correct_string
+#     r.save()
+
+
+
+
+
+
+# upgrade issues
+# from iati.parser import post_save
+
+# for activity in Activity.objects.all():
+#     post_save.set_related_activities(activity)
+#     post_save.set_transaction_provider_receiver_activity(activity)
+#     post_save.set_derived_activity_dates(activity)
+#     post_save.set_activity_aggregations(activity)
+#     post_save.update_activity_search_index(activity)
+#     post_save.set_country_region_transaction(activity)
+#     post_save.set_sector_transaction(activity)
+
+# for p in ActivityParticipatingOrganisation.objects.all():
+#     if not p.primary_name:
+#         p.primary_name = p.narratives.all()[0].content

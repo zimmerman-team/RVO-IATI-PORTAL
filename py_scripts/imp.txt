@@ -28,7 +28,7 @@ def update_narrative(text, model, activity):
         narrative.save()
     else:
         # add narrative
-        n = add_narrative(self, text, model, activity)
+        n = add_narrative(text, model, activity)
         n.save()
     return model
 
@@ -67,6 +67,8 @@ def set_or_update_result_indicator(row, activity, result):
     if row['result_indicator_id']:
         # update
         ri = ResultIndicator.objects.get(pk=row['result_indicator_id'])
+        ri.baseline_year = row['result_baseline_year']
+        ri.baseline_value = row['result_baseline_value']
         try:
             ri.resultindicatortitle.primary_name = row['result_indicator_title']
             ri.resultindicatortitle.save()
@@ -140,8 +142,7 @@ def set_or_update_result_indicator_period(row, activity, result_indicator):
         ripac.save()
     return rip
 
-
-with open('samengevoegd_csv3.csv') as csvfile:
+with open('samengevoegd_v4_csv_final.csv') as csvfile:
     reader = csv.DictReader(csvfile, dialect=csv.excel)
     #
     previous_row = None
@@ -190,6 +191,7 @@ with open('samengevoegd_csv3.csv') as csvfile:
         previous_result_indicator = result_indicator
         previous_result_indicator_period = result_indicator_period
         first_row = False
+
 
 
 

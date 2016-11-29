@@ -28,9 +28,9 @@
         },
         x: function(d){ return d.chart_name; },
         y: function(d){ return d.actual; },
-        color: d3.scale.category10().range(),
         transitionDuration: 300,
         showControls: false,
+        showLegend: true, 
         xAxis: {
             axisLabel: '',
             tickFormat: function(d) {
@@ -49,11 +49,12 @@
         },
         tooltip: {
           contentGenerator: function(key, date, e, graph){
-            var valuePrefix = (key.data.parent == "Amount of generated co-investment") ? '€': '';
-            var content = '<h4>'+key.data.chart_group+' - '+key.data.chart_name+'</h4>'+
+            var valuePrefix = (key.data.parent == "Amount of generated co-investment in EUR") ? '€': '';
+            var sub = key.data.key.split(' - ')[1]
+            var content = '<h4>'+key.data.chart_group+' - '+sub+'</h4>'+
                           '<hr>'+
                           '<p><b>Projects: </b>'+key.data.activity_count+'</p>'+
-                          '<p><b>Value:</b>'+valuePrefix+ ' ' + $filter('thousandsSeparator')(Math.round(key.data.actual)) +'</p>';
+                          '<p><b>Value:</b> '+valuePrefix + $filter('thousandsSeparator')(Math.round(key.data.actual)) +'</p>';
             return content;
           }
         },
@@ -110,45 +111,49 @@
 
       var values = [];
       var colors = ['#6296c7', '#aac76d', '#c86361', '#c7c26d']
+      var subColors = ['#4177AC', '#26619A', '#8CB6DF']
       var categories = {};
       var valueNames = [];
       var actuals = [];
+      var categoryNames = [];
 
+      var color_count = 0;
+      var sub_color_count = 0;
       for(var i = 0; i < vm.selectedIndicators.length;i++){
-        if(vm.indicators[vm.selectedIndicators[i]].actual > 0 && vm.indicators[vm.selectedIndicators[i]].level == 2){
-          categories[vm.indicators[vm.selectedIndicators[i]].chart_group] = {'name': vm.indicators[vm.selectedIndicators[i]].chart_group, values: []}
-        }
-      }
 
-      for(var i = 0; i < vm.selectedIndicators.length;i++){
-        if(vm.indicators[vm.selectedIndicators[i]].actual > 0 && vm.indicators[vm.selectedIndicators[i]].level > 1){
-          valueNames.push(vm.indicators[vm.selectedIndicators[i]].chart_name);
-          actuals.push(vm.indicators[vm.selectedIndicators[i]].actual);
-          categories[vm.indicators[vm.selectedIndicators[i]].chart_group].values.push(vm.indicators[vm.selectedIndicators[i]]);
-        }
-      }
+        var level = vm.indicators[vm.selectedIndicators[i]].level;
+        var actual = vm.indicators[vm.selectedIndicators[i]].actual;
 
-      valueNames = _.uniq(valueNames);
+        if(actual > 0 && level > 1){
 
-      _.each(categories, function(category){
-        var setValueNames = _.map(category.values, function(value){
-          return value.chart_name;
-        });
+          var value = vm.indicators[vm.selectedIndicators[i]];
+          value.chart_name = 'Total'
 
-        _.each(valueNames, function(value_name){
-          if(setValueNames.indexOf(value_name) == -1){
-            category.values.push({'actual': 0, 'chart_name': value_name});
+          var color = colors[color_count]
+          if(level == 3){
+            color = subColors[sub_color_count]
+            sub_color_count++
+          } else {
+            color_count++
           }
-        });
-      });
+          
+          // TODO: remove level 2 indicator if exists
+          if(vm.selectedIndicators[i] == 'Number of full-time (equivalent) direct jobs supported - Total'){
+            value.actual = 1;
+          }
+          categories[vm.selectedIndicators[i]] =  {key: vm.selectedIndicators[i], values: [value], color: color}
+
+          valueNames.push('Total');
+          actuals.push(actual);
+        }
+      }
 
       var data = [];
-      var color_count = 0;
-
       _.each(categories, function(category){
-        data.push({key: category.name, values: category.values, color: colors[color_count]});
+        data.push(category);
         color_count++;
       });
+
 
       // calculate max y row
       var yRows = {};
@@ -167,32 +172,30 @@
         });
       }
 
-      var maxValue = _.max(_.map(yRows, function(row){
-          var rowValue = _.reduce(row, function(memo, num){ return memo + num; }, 0);
-          return rowValue;
-        })
-      );
-
+      var maxValue = 0
+      _.each(yRows, function(row){
+        var rowValue = _.reduce(row, function(memo, num){ return memo + num; }, 0);
+        maxValue += rowValue
+      });
       // create dummy bars to prevent too wide bars
       if(data.length > 0){
-        var cur_length = data[0].values.length;
+        var valuesToBeAdded = 3 - data[0].values.length;
 
-        _.each([0,1,2,3], function(num){
-
-          if(cur_length > num){
-            return false;
+        var chart_name = '';
+        for(var i = 0; i < data.length;i++){
+          chart_name = '';
+          for (var y = 0; y < valuesToBeAdded;y++){
+            chart_name += ' ';
+            data[i].values.push({'actual': 0, 'activity_count': 0, chart_name: chart_name});
           }
-
-          for(var i = 0; i < data.length;i++){
-            data[i].values.push({'actual': 0, 'activity_count': 0, chart_name: ''});
-          }
-        });
+        }
       }
 
       if(actuals.length){
         var roundedMax = vm.roundMax(maxValue);
         vm.transactionChartOptions.chart.yDomain = [0, roundedMax]
-        $scope.data = data
+        $scope.data = data;
+        $scope.api.refresh();
       } else {
         $scope.data = []
       }

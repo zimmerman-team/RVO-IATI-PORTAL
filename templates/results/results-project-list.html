@@ -29,14 +29,14 @@
 </div>
 
 <div class="table-responsive">
-  <table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' id="project-list-results" class="table list-overview" ng-show="vm.rows.length != 0">
+  <table infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='2' id="project-list-results" class="table list-overview" ng-show="vm.rows.length != 0">
       <thead>
           <tr>
               <th>Project title</th>
               <th>Programme</th>
               <th>Type</th>
               <th>Indicator title</th>
-              <th>Description</th>
+              <th width="15%">Description</th>
               <th>Baseline</th>
               <th>Actual</th>
               <th>Target</th>
@@ -70,7 +70,7 @@
                 </a>
               </td>
               <td>
-                {{item.baseline_value}} ( {{item.baseline_year}} )
+                {{item.baseline_value}} ({{item.baseline_year}})
               </td>
               <td>
                 {{item.period_actual_value}}

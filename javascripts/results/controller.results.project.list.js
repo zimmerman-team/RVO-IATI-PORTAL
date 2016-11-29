@@ -5,14 +5,15 @@
     .module('oipa.results')
     .controller('ResultsProjectListController', ResultsProjectListController);
 
-  ResultsProjectListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl', 'programmaAfkortingen', 'templateBaseUrl', '$filter'];
+  ResultsProjectListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'homeUrl', 'programmaAfkortingen', 'templateBaseUrl', '$filter', 'Results'];
 
-  function ResultsProjectListController($scope, Activities, FilterSelection, homeUrl, programmaAfkortingen, templateBaseUrl, $filter) {
+  function ResultsProjectListController($scope, Activities, FilterSelection, homeUrl, programmaAfkortingen, templateBaseUrl, $filter, Results) {
+
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
     vm.order_by = 'title';
-    vm.pageSize = 10;
+    vm.pageSize = 25;
     vm.page = 1;
     vm.totalActivities = 0;
     vm.hasToContain = $scope.hasToContain;
@@ -80,8 +81,36 @@
       }
     }
 
+    vm.getPeriodValue = function(indicatorTitle, periodValue, periodYear){
+      if(periodValue != null){
+        var value = Math.round(periodValue);
+
+        if(indicatorTitle.indexOf('co-investment') > -1){
+          periodValue = '€';
+        } else {
+          periodValue = '';
+        }
+        periodValue += $filter('thousandsSeparator')(value);
+        periodValue += ' (' + periodYear.substr(0,4) + ')';
+      }
+      return periodValue;
+    }
+
     vm.reformatPerPeriod = function(activities){
+
       var rows = [];
+
+      var curI = -1;
+      var curX = -1;
+      var curY = -1; // = result indicator counter
+      var lastActual = '0000-00-00';
+      var updated = false;
+      
+      var yearShouldBe = 'all';
+      if(Results.year.on == true){
+        yearShouldBe = Results.year.value; 
+      }
+
       // lol
       for(var i = 0;i < activities.length;i++){
         for(var x = 0;x < activities[i].results.length;x++){
@@ -91,35 +120,71 @@
 
             for (var z = 0;z < activities[i].results[x].indicator[y].period.length;z++){
 
+              var period_actual_value = activities[i].results[x].indicator[y].period[z].actual.value;
+              var period_actual_year = activities[i].results[x].indicator[y].period[z].period_end;
+              var period_actual_comment = activities[i].results[x].indicator[y].period[z].actual.comment;
+              
+              var period_target_value = activities[i].results[x].indicator[y].period[z].target.value;
+              var period_target_year = activities[i].results[x].indicator[y].period[z].period_end;
+              var period_target_comment = activities[i].results[x].indicator[y].period[z].target.comment;
+
+              if(period_actual_value == null || period_actual_value == 0){
+                continue;
+              }
+
+              if(yearShouldBe != 'all'){
+                if(period_actual_year.substr(0,4) != yearShouldBe){
+                  continue;
+                }
+              }
+
+              var indicatorTitle = activities[i].results[x].indicator[y].title.narratives[0].text;
+
+              period_actual_value = vm.getPeriodValue(indicatorTitle, period_actual_value, period_actual_year)
+              period_target_value = vm.getPeriodValue(indicatorTitle, period_target_value, period_target_year)
+
+              if(curI == i && curY == y && curX == x){
+
+                var curIndex = rows.length - 1;
+
+                if(rows[curIndex].period_target_value == null){
+
+                }
+
+                // check if target in here
+                if(period_target_year != null){
+                  rows[curIndex].period_target_value = period_target_value;
+                  rows[curIndex].period_target_year = period_target_year;
+                  rows[curIndex].period_target_comment = period_target_comment;
+                }
+
+                // check if actual in here
+                if(period_actual_year != null && period_actual_value != null && lastActual.substr(0,4) < period_actual_year.substr(0,4)){
+                  // update actual
+                  rows[curIndex].period_actual_value = period_actual_value;
+                  rows[curIndex].period_actual_year = period_actual_year;
+                  rows[curIndex].period_actual_comment = period_actual_comment;
+                }
+
+                updated = true;
+              }
+
+              curX = x;
+              curY = y;
+              curI = i;
+              lastActual = activities[i].results[x].indicator[y].period[z].period_end;
+
+              // update
+              if(updated == true){
+                updated = false
+                continue;
+              }
+
               var result_indicator_description = '';
               var result_indicator_description_short = '';
               if (activities[i].results[x].indicator[y].description != null){
                 result_indicator_description = activities[i].results[x].indicator[y].description.narratives[0].text;
                 result_indicator_description_short = result_indicator_description.substr(0, 45);
-              }
-
-              var indicatorTitle = activities[i].results[x].indicator[y].title.narratives[0].text;
-
-              var period_actual_value = '';
-              if(activities[i].results[x].indicator[y].period[z].actual.value != null){
-
-                if(indicatorTitle.indexOf('co-invest') > -1){
-                  period_actual_value += '€';
-                }
-                var actual_value = activities[i].results[x].indicator[y].period[z].actual.value;
-                period_actual_value += $filter('thousandsSeparator')(Math.round(actual_value));
-                period_actual_value += ' (' + activities[i].results[x].indicator[y].period[z].period_end.substr(0,4) + ')';
-              }
-
-              var period_target_value = '';
-              if(activities[i].results[x].indicator[y].period[z].target.value != null){
-
-                if(indicatorTitle.indexOf('co-invest') > -1){
-                  period_target_value += '€';
-                }
-                var target_value = activities[i].results[x].indicator[y].period[z].target.value;
-                period_target_value += $filter('thousandsSeparator')(Math.round(target_value));
-                period_target_value += ' (' + activities[i].results[x].indicator[y].period[z].period_end.substr(0,4) + ')';
               }
 
               rows.push({
@@ -143,8 +208,17 @@
           }
         }
       }
-      
-      vm.rows = vm.rows.concat(rows);
+
+      if(rows.length == 0){
+        vm.nextPage();
+      } else {
+        var new_rows = angular.copy(vm.rows);
+        new_rows = new_rows.concat(rows);
+        vm.rows = new_rows;
+        if(rows.length < 5){
+          vm.nextPage();
+        }
+      }
     }
 
     vm.nextPage = function(){
@@ -162,7 +236,7 @@
 
       function errorFn(data, status, headers, config){
         console.warn('error getting data on lazy loading');
-        vm.totalActivities = 1;
+        vm.totalActivities = 30;
         vm.busy = false;
       }
     };

@@ -27,7 +27,7 @@
 
 		function getParticipatingOrgTypes(org_types) {
 
-            var url = oipaUrl + '/activities/aggregations/?format=json&group_by=participating_organisation_type&aggregations=count';
+            var url = oipaUrl + '/activities/aggregations/?format=json&group_by=participating_organisation_type&aggregations=count_distinct';
             if(reportingOrganisationId){
                 url += '&reporting_organisation=' + reportingOrganisationId;
             }

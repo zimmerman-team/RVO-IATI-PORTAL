@@ -11,7 +11,7 @@
 		var m = this;
         m.year = {
           on: false,
-          year: '2015'
+          value: '2015'
         };
         m.toReset = false;
 
