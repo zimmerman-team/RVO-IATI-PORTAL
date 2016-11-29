@@ -24,7 +24,8 @@
       "NL-KVK-27378529-27528": "Product Development Partnerships III Fund",
       "NL-KVK-27378529-IM201601C": "Partners for Water - Contracts",
       "NL-KVK-27378529-IM201601G": "Partners for Water - Grants",
-      "NL-KVK-27378529-27416": "Water Program Myanmar"
+      "NL-KVK-27378529-27416": "Water Program Myanmar",
+      "NL-KVK-27378529-23583": "Jakarta Coastal Defence Strategy",
     }
 
     var programmaAfkortingen = {
@@ -46,7 +47,8 @@
       'NL-KVK-27378529-27528': 'PDP III',
       "NL-KVK-27378529-IM201601C": "PvW-contracts",
       "NL-KVK-27378529-IM201601G": "PvW-grants",
-      "NL-KVK-27378529-27416": "PvW Myanmar"
+      "NL-KVK-27378529-27416": "PvW Myanmar",
+      "NL-KVK-27378529-23583": "JCDS",
     }
 
     angular

@@ -40,7 +40,8 @@
       "NL-KVK-27378529-27528": null,
       "NL-KVK-27378529-IM201601C": null,
       "NL-KVK-27378529-IM201601G": null,
-      "NL-KVK-27378529-27416": null
+      "NL-KVK-27378529-27416": null,
+      "NL-KVK-27378529-23583": null,
     }
     vm.programmeUrl = null;
     vm.budgetLeft = 0;
