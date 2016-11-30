@@ -442,7 +442,9 @@
           obj.title = documents[i].title.narratives[0].text;
         }
 
-        if ( documents[i].format.code == 'text/html' && documents[i].url.indexOf('vimeo') != -1 ) {
+        if (documents[i].format == null){
+          vm.relatedImages.push(obj);
+        }else if (documents[i].format.code == 'text/html' && documents[i].url.indexOf('vimeo') != -1 ) {
           obj.url = $sce.trustAsResourceUrl(documents[i].url);
           vm.relatedVimeo.push(obj);
         }
