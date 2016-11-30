@@ -449,7 +449,7 @@
           vm.relatedVimeo.push(obj);
         }
         else if (documents[i].format.code == 'text/html' && documents[i].url.indexOf('youtube') != -1 ) {
-          obj.url = $sce.trustAsResourceUrl(documents[i].url);
+          obj.url = $sce.trustAsResourceUrl(documents[i].url.replace('watch', 'embed'));
           vm.relatedYoutube.push(obj);
         }
         else if (documents[i].format.code == 'image/jpeg' || documents[i].format.code == 'image/png') {
