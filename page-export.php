@@ -312,14 +312,14 @@ switch ($_GET['type']) {
 
                         $period_actual_comment = $activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['actual']['comment'];
 
-                        if(is_array($period_actual_comment)){
-                            $period_actual_comment = $period_actual_comment[0]['narratives'][0]['text'];
+                        if(is_array($period_actual_comment) && count($period_actual_comment)){
+                            $period_actual_comment = $period_actual_comment['narratives'][0]['text'];
                         }
 
                         $period_target_comment = $activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['target']['comment'];
 
-                        if(is_array($period_target_comment)){
-                            $period_target_comment = $period_target_comment[0]['narratives'][0]['text'];
+                        if(is_array($period_target_comment) && count($period_target_comment)){
+                            $period_target_comment = $period_target_comment['narratives'][0]['text'];
                         }
 
                         array_push($rows, array(
@@ -352,10 +352,10 @@ switch ($_GET['type']) {
         }
         if($format == 'csv'){
 
-            // header("Content-type: text/csv");
-            // header("Content-Disposition: attachment; filename=export.csv");
-            // header("Pragma: no-cache");
-            // header("Expires: 0");
+            header("Content-type: text/csv");
+            header("Content-Disposition: attachment; filename=export.csv");
+            header("Pragma: no-cache");
+            header("Expires: 0");
 
             $headers = array(
                 'activity_id',
@@ -377,14 +377,13 @@ switch ($_GET['type']) {
             $output = fopen("php://output", "w");
             fputcsv($output, $headers);
             foreach ($rows as $row){
-                var_dump($row);
-                // fputcsv($output, $row);
+                fputcsv($output, $row);
             }
-            // fclose($output);
-            // exit();
+            fclose($output);
+            exit();
         }
 }
-// $filename = 'export.' . $format;
-// header("Content-Type: application/octet-stream");
-// header("Content-Disposition: attachment; filename=" . $filename);
-// readfile($url);
+$filename = 'export.' . $format;
+header("Content-Type: application/octet-stream");
+header("Content-Disposition: attachment; filename=" . $filename);
+readfile($url);
