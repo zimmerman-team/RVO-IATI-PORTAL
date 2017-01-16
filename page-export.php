@@ -1,4 +1,7 @@
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 include( 'constants.php' );
 $format  = $_GET['format'];
 $oipa_url = OIPA_URL . '/activities/';
@@ -307,31 +310,40 @@ switch ($_GET['type']) {
                             $result_indicator_description_short = mb_substr($result_indicator_description, 0, 45);
                         }
 
+                        $period_actual_comment = $activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['actual']['comment'];
+
+                        if(is_array($period_actual_comment)){
+                            $period_actual_comment = $period_actual_comment[0]['narratives'][0]['text'];
+                        }
+
+                        $period_target_comment = $activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['target']['comment'];
+
+                        if(is_array($period_target_comment)){
+                            $period_target_comment = $period_target_comment[0]['narratives'][0]['text'];
+                        }
+
                         array_push($rows, array(
                             'activity_id'=> $activities[$i]['id'],
                             'title'=> $activities[$i]['title']['narratives'][0]['text'],
                             'programme'=> $activities[$i]['related_activities'][0]['ref'],
-                            'programme_afkorting'=>$programmaAfkortingen[$activities[$i]['related_activities'][0]['ref']],
                             'result_type'=>$activities[$i]['results'][$x]['type']['name'],
                             'result_indicator_title'=>$activities[$i]['results'][$x]['indicator'][$y]['title']['narratives'][0]['text'],
                             'result_indicator_description'=>$result_indicator_description,
-                            'result_indicator_description_short'=>$result_indicator_description_short,
                             'baseline_value'=>$activities[$i]['results'][$x]['indicator'][$y]['baseline']['value'],
                             'baseline_year'=>$activities[$i]['results'][$x]['indicator'][$y]['baseline']['year'],
                             'period_target_value'=>$activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['target']['value'],
                             'period_target_year'=>$activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['period_end'],
-                            'period_target_comment'=>$activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['target']['comment'],
+                            'period_target_comment'=>$period_target_comment,
                             'period_actual_value'=>$activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['actual']['value'],
                             'period_actual_year'=>$activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['period_end'],
-                            'period_actual_comment'=>$activities[$i]['results'][$x]['indicator'][$y]['period'][$z]['actual']['comment'],
+                            'period_actual_comment'=>$period_actual_comment,
                         ));
 
 
                     }
                 }
             }
-        } 
-
+        }
         if($format == 'json'){
             header("Content-Type: application/octet-stream");
             header("Content-Disposition: attachment; filename=export.json");
@@ -339,15 +351,40 @@ switch ($_GET['type']) {
             exit();
         }
         if($format == 'csv'){
-            header("Content-type: text/csv");
-            header("Content-Disposition: attachment; filename=export.csv");
-            header("Pragma: no-cache");
-            header("Expires: 0");
-            echo implode('', $rows);
-            exit();
+
+            // header("Content-type: text/csv");
+            // header("Content-Disposition: attachment; filename=export.csv");
+            // header("Pragma: no-cache");
+            // header("Expires: 0");
+
+            $headers = array(
+                'activity_id',
+                'title',
+                'programme',
+                'result_type',
+                'result_indicator_title',
+                'result_indicator_description',
+                'baseline_value',
+                'baseline_year',
+                'period_target_value',
+                'period_target_year',
+                'period_target_comment',
+                'period_actual_value',
+                'period_actual_year',
+                'period_actual_comment',
+            );
+
+            $output = fopen("php://output", "w");
+            fputcsv($output, $headers);
+            foreach ($rows as $row){
+                var_dump($row);
+                // fputcsv($output, $row);
+            }
+            // fclose($output);
+            // exit();
         }
 }
-$filename = 'export.' . $format;
-header("Content-Type: application/octet-stream");
-header("Content-Disposition: attachment; filename=" . $filename);
-readfile($url);
+// $filename = 'export.' . $format;
+// header("Content-Type: application/octet-stream");
+// header("Content-Disposition: attachment; filename=" . $filename);
+// readfile($url);
