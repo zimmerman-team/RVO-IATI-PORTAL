@@ -1,7 +1,4 @@
 <?php 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 include( 'constants.php' );
 $format  = $_GET['format'];
 $oipa_url = OIPA_URL . '/activities/';
