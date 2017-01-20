@@ -49,7 +49,7 @@ def set_or_update_result(row, activity):
         # create
         result = Result(
             activity=activity,
-            aggregation_status=True)
+            aggregation_status=row['aggregation_status'])
         rt = add_narrative(row['result_title'], ResultTitle(), activity)
         rd = add_narrative(row['result_description'], ResultDescription(), activity)
     #
@@ -142,7 +142,7 @@ def set_or_update_result_indicator_period(row, activity, result_indicator):
         ripac.save()
     return rip
 
-with open('samengevoegd_v4_csv_final.csv') as csvfile:
+with open('18-01-2017-rvo-all-openoffice.csv') as csvfile:
     reader = csv.DictReader(csvfile, dialect=csv.excel)
     #
     previous_row = None
@@ -163,7 +163,7 @@ with open('samengevoegd_v4_csv_final.csv') as csvfile:
         row['result_title'] =row['result_title'].strip()
         row['result_indicator_title'] =row['result_indicator_title'].strip()
         #
-        # print 'line ' + str(index+2)
+        print 'line ' + str(index+2)
         activity = Activity.objects.get(pk=row['activity_id'])
         #
         if not first_row and previous_row['activity_id'] is row['activity_id'] and previous_row['result_title'] is row['result_title'] and previous_row['result_indicator_title'] is row['result_indicator_title']:
