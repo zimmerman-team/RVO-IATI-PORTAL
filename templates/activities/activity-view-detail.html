@@ -89,9 +89,8 @@
                             </tr>
                             <tr>
                                 <td width="130">Sectors: </td>
-                                <td><a ui-sref="sector({ sector_id: vm.activity.sectors[0].sector.code, tab: 'summary' })">
-                                    {{vm.activity.sectors[0].sector.name}}
-                                </a><span ng-show='!vm.activity.sectors.length'>Data to be added</span></td>
+
+                                <td><a ng-repeat="sector in vm.activity.sectors | filter:{vocabulary: {code: '1'}}" ui-sref="sector({ sector_id: sector.sector.code, tab: 'summary' })">{{sector.sector.name}}{{$last ? '' : ', '}}</a><span ng-if='vm.activity.sectors.length == 0'>Data to be added</span> </td>
                             </tr>
                             <tr>
                                 <td>Programme:</td>
@@ -383,7 +382,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="(key, sector) in vm.activity.sectors">
+                            <tr ng-repeat="(key, sector) in vm.activity.sectors | filter:{vocabulary: {code: '1'}}">
                                 <td>
                                     {{sector.sector.name}}
                                 </td>

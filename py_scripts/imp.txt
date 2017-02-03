@@ -49,7 +49,7 @@ def set_or_update_result(row, activity):
         # create
         result = Result(
             activity=activity,
-            aggregation_status=row['aggregation_status'])
+            aggregation_status=row['result_aggregation_status'])
         rt = add_narrative(row['result_title'], ResultTitle(), activity)
         rd = add_narrative(row['result_description'], ResultDescription(), activity)
     #
@@ -142,7 +142,7 @@ def set_or_update_result_indicator_period(row, activity, result_indicator):
         ripac.save()
     return rip
 
-with open('18-01-2017-rvo-all-openoffice.csv') as csvfile:
+with open('final_merged_18_01.csv') as csvfile:
     reader = csv.DictReader(csvfile, dialect=csv.excel)
     #
     previous_row = None
