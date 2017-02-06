@@ -37,7 +37,8 @@
             	return d;
             },
             showMaxMin: false,
-            staggerLabels: false
+            staggerLabels: false,
+            width: 0.1
         },
         yAxis: {
             axisLabel: '',
@@ -46,6 +47,9 @@
             },
             axisLabelDistance: 20,
             ticks: 4
+        },
+        multibar: {
+            xRange: [0,160]
         },
         tooltip: {
           contentGenerator: function(key, date, e, graph){
@@ -177,19 +181,20 @@
         var rowValue = _.reduce(row, function(memo, num){ return memo + num; }, 0);
         maxValue += rowValue
       });
-      // create dummy bars to prevent too wide bars
-      if(data.length > 0){
-        var valuesToBeAdded = 3 - data[0].values.length;
 
-        var chart_name = '';
-        for(var i = 0; i < data.length;i++){
-          chart_name = '';
-          for (var y = 0; y < valuesToBeAdded;y++){
-            chart_name += ' ';
-            data[i].values.push({'actual': 0, 'activity_count': 0, chart_name: chart_name});
-          }
-        }
-      }
+      // create dummy bars to prevent too wide bars
+      // if(data.length > 0){
+      //   var valuesToBeAdded = 3 - data[0].values.length;
+
+      //   var chart_name = '';
+      //   for(var i = 0; i < data.length;i++){
+      //     chart_name = '';
+      //     for (var y = 0; y < valuesToBeAdded;y++){
+      //       chart_name += ' ';
+      //       data[i].values.push({'actual': 0, 'activity_count': 0, chart_name: chart_name});
+      //     }
+      //   }
+      // }
 
       if(actuals.length){
         var roundedMax = vm.roundMax(maxValue);
