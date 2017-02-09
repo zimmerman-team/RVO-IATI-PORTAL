@@ -36,7 +36,7 @@
          */
         function all() {
 
-            var url = oipaUrl + '/aggregate/?format=json&group_by=sector&aggregation_key=iati-identifier';
+            var url = oipaUrl + '/aggregate/?format=json&sector_vocabulary=1&group_by=sector&aggregation_key=iati-identifier';
             if(reportingOrganisationId){
                 url += '&reporting_organisation__in=' + reportingOrganisationId;
             }
@@ -45,7 +45,7 @@
 
         function getSectors(sectors) {
 
-            var url = oipaUrl + '/activities/aggregations/?format=json&group_by=sector&aggregations=count';
+            var url = oipaUrl + '/activities/aggregations/?format=json&sector_vocabulary=1&group_by=sector&aggregations=count';
             if(reportingOrganisationId){
                 url += '&reporting_organisation__in=' + reportingOrganisationId;
             }

@@ -1,5 +1,5 @@
 /**
-* SectorsController
+* SdgsController
 * @namespace oipa.sectors.controllers
 */
 (function () {
@@ -7,14 +7,14 @@
 
   angular
     .module('oipa.sectors')
-    .controller('SectorsController', SectorsController);
+    .controller('SdgsController', SdgsController);
 
-  SectorsController.$inject = ['$scope', 'Aggregations', 'Sectors', 'FilterSelection', 'templateBaseUrl'];
+  SdgsController.$inject = ['$scope', 'Aggregations', 'Sectors', 'FilterSelection', 'templateBaseUrl'];
 
   /**
   * @namespace SectorsController
   */
-  function SectorsController($scope, Aggregations, Sectors, FilterSelection, templateBaseUrl) {
+  function SdgsController($scope, Aggregations, Sectors, FilterSelection, templateBaseUrl) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
     vm.recipientSectors = [];
@@ -72,7 +72,7 @@
         filterString += '&sector_name=' + vm.q;
       }
       
-      Aggregations.aggregation('sector', 'count', filterString + '&sector_vocabulary=1', 'sector', vm.pageSize, vm.currentPage).then(successFn, errorFn);
+      Aggregations.aggregation('sector', 'count', filterString + '&sector_vocabulary=8', 'sector', vm.pageSize, vm.currentPage).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.totalCount = data.data.count;

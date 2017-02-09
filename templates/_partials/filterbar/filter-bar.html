@@ -44,6 +44,14 @@
             </span>
             <span 
                 class="filter-pop"
+                ng-click="vm.toggleOpenPanel('sdgs')" 
+                ng-class="{'active': vm.isOpenedHeader('sdgs')}"
+                ng-show="vm.isIncludedFilter('sdgs')"
+                ng-if="vm.pageName != 'sector'">
+              SDG targets
+            </span>
+            <span 
+                class="filter-pop"
                 ng-click="vm.toggleOpenPanel('activity_status')" 
                 ng-class="{'active': vm.isOpenedHeader('activity_status')}"
                 ng-show="vm.isIncludedFilter('recipient_activity_status')">
@@ -116,6 +124,7 @@
             <filter-panel-recipient-countries ng-show="vm.isOpenedHeader('recipient_countries')" class="ng-hide slideDown"></filter-panel-recipient-countries>
             <filter-panel-budget ng-show="vm.isOpenedHeader('budget')" class="ng-hide slideDown"></filter-panel-budget>
             <filter-panel-sectors ng-show="vm.isOpenedHeader('sectors')" class="ng-hide slideDown"></filter-panel-sectors>
+            <filter-panel-sdgs ng-show="vm.isOpenedHeader('sdgs')" class="ng-hide slideDown"></filter-panel-sdgs>
             <filter-panel-transaction-year ng-show="vm.isOpenedHeader('transaction_year')" class="ng-hide slideDown"></filter-panel-transaction-year>
             <filter-panel-result-period-end-year ng-show="vm.isOpenedHeader('result_indicator_period_end_year')" class="ng-hide slideDown"></filter-panel-result-period-end-year>
             <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('recipient_implementing_organisations')" class="ng-hide slideDown"></filter-panel-implementing-organisations>

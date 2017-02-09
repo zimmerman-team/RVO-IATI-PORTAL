@@ -50,6 +50,26 @@
                     <div class="map">
                         <activity-geomap map-height="350px" activity="vm.activity"></activity-geomap>
                     </div>
+
+                    <div class="white no-margin-bottom no-padding-bottom">
+                        <h3>Sustainable development goal contribution</h3>
+                    </div>
+                    <div>
+                        <div
+                            class="sdg-icon"
+                            ng-repeat="goalId in vm.sdg_targets" 
+                            tooltips 
+                            tooltip-class="sdg-tooltip zz_tooltip"
+                            tooltip-template="{{vm.tooltip(goalId)}}">
+                            <img 
+                                class="sdg-img" 
+                                width="144" 
+                                height="144" 
+                                ng-src="{{vm.templateBaseUrl + '/images/sdg/sdg_goal_' + goalId + '.png'}}" 
+                                 />
+                        </div>
+                        <span ng-if="vm.sdg_targets.length == 0">Data to be added</span>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="panel with-table lightblue">
@@ -371,7 +391,7 @@
 
                 <div class="panel lightblue with-table">
 
-                    <h3>Related sectors</h3>
+                    <h3>Sectors</h3>
                     
                     <table class="finance no-blue" ng-if="vm.activity.sectors.length != 0">
                         <thead>
@@ -402,6 +422,44 @@
                     </div>
 
                 </div>
+
+
+
+                <div class="panel lightblue with-table">
+
+                    <h3>Sustainable development goals</h3>
+                    
+                    <table class="finance no-blue" ng-if="vm.sdg_sectors.length != 0">
+                        <thead>
+                            <tr>
+                                <th width="20%">SDG goal</th>
+                                <th width="60%">SDG target</th>
+                                <th width="20%">Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(key, sector) in vm.sdg_sectors">
+                                <td>
+                                    {{vm.sdg_goals[sector.sector.code.split('.')[0]]}}
+                                </td>
+                                <td>
+                                    {{vm.sdg_target_titles[sector.sector.code]}}.
+                                </td>
+                                <td>
+                                    {{sector.percentage}}%
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div ng-if="vm.sdg_sectors.length == 0">
+                        <hr>
+                        <p style="padding-left:15px;padding-bottom:10px;">Data to be added</p>
+                    </div>
+
+                </div>
+
+
 
                 <div class="panel lightblue with-table">
                     <h3>Policy markers</h3>

@@ -68,7 +68,7 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
-      TransactionAggregations.aggregation('sector', 'activity_count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=2', 'sector').then(succesFn, errorFn);
+      TransactionAggregations.aggregation('sector', 'activity_count,incoming_fund', vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=2&sector_vocabulary=1', 'sector').then(succesFn, errorFn);
 
       function replaceDac5(arr){
         for (var i = 0;i < arr.length;i++){
@@ -155,7 +155,7 @@
     }
 
     vm.download = function(format){
-      var aggregation_url = TransactionAggregations.prepare_url('sector', 'incoming_fund,activity_count', vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=2', 'sector');
+      var aggregation_url = TransactionAggregations.prepare_url('sector', 'incoming_fund,activity_count', vm.filterSelection.selectionString + vm.extraSelectionString + '&hierarchy=2&sector_vocabulary=1', 'sector');
       var url = homeUrl + '/export/?type=aggregated-list&format='+format+'&aggregation_group=sector&aggregation_url=' + encodeURIComponent(aggregation_url);
       window.open(url);
     }

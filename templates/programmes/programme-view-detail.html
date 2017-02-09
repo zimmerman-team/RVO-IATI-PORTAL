@@ -87,6 +87,26 @@
                     <div class="white">
                         <financials-line-chart has-to-contain="related_activity_id"></financials-line-chart>
                     </div>
+
+                    <div class="white no-margin-bottom no-padding-bottom">
+                        <h3>Sustainable development goal contribution</h3>
+                    </div>
+                    <div>
+                        <div
+                            class="sdg-icon"
+                            ng-repeat="goalId in vm.sdg_targets" 
+                            tooltips 
+                            tooltip-class="sdg-tooltip zz_tooltip"
+                            tooltip-template="{{vm.tooltip(goalId)}}">
+                            <img 
+                                class="sdg-img" 
+                                width="144" 
+                                height="144" 
+                                ng-src="{{vm.templateBaseUrl + '/images/sdg/sdg_goal_' + goalId + '.png'}}" 
+                                 />
+                        </div>
+                        <span ng-if="vm.sdg_targets.length == 0">Data to be added</span>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="panel lightblue with-pie">

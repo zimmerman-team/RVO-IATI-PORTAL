@@ -50,7 +50,7 @@
         vm.programmeCount = data.data.count;
       }, errorFn);
 
-      Aggregations.aggregation('sector', 'count', selectionString, 'sector', 1).then(function(data, status, headers, config){
+      Aggregations.aggregation('sector', 'count', selectionString + '&sector_vocabulary=1', 'sector', 1).then(function(data, status, headers, config){
         vm.sectorCount = data.data.count;
       }, errorFn);
 

@@ -95,8 +95,9 @@
     };
 
     vm.loadData = function(filterString){
+      var extraFilter = vm.groupBy == 'sector' ? '&sector_vocabulary=1' : '';
 
-      TransactionAggregations.aggregation(vm.groupBy, vm.aggregations, filterString + '&hierarchy=2').then(succesFn, errorFn);
+      TransactionAggregations.aggregation(vm.groupBy, vm.aggregations, filterString + '&hierarchy=2' + extraFilter).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.chartData = vm.reformatData(data.data.results);

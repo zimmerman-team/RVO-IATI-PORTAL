@@ -372,6 +372,13 @@ SEARCH
   }
 }
 
+
+
+
+
+
+
+
 .filter-panel-header-wrapper {
   .search-box {
     width: 100%;
@@ -2503,4 +2510,90 @@ Safari 6.1+ (9.0 is the latest version of Safari at this time)
     -webkit-filter: none;
     filter: none;
   }
+}
+
+
+
+
+/*********************
+SDG
+*********************/
+
+.sdg-test{
+  ul{
+    list-style-type: disc;
+  }
+}
+
+
+.sdg-tooltip{
+
+  font-size: 14px;
+  padding:10px;
+  width: 420px !important;
+  max-width: 420px !important;
+  border-radius: 0px;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+  color: $rvo-zwart;
+  background-color: #fff;
+  border:0;
+  margin-top:-40px;
+  margin-left:-20px;
+  text-align:left;
+  h4 {
+    margin-top:0;
+    color:$rvo-donkerblauw;
+    text-align:left;
+    width: 100%;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+  }
+  p {
+    margin:0 0 2px;
+    font-size: 14px;
+    color: $rvo-zwart;
+    text-align:left;
+    padding:0.4em 0;
+  }
+  hr {
+    margin:10px -10px;
+    border-top:1px dotted $rvo-donkerblauw;
+  }
+  .icon {
+    margin-right: 3px;
+  }
+
+
+  .sdg-img{
+    padding: 1em 1em 0 0;
+  }
+
+  ul{
+    list-style-type: disc;
+  }
+
+  &.zz_tooltip {
+    position: absolute;
+    transition: all .2s ease-in-out;
+    filter: drop-shadow(rgba(0, 0, 0, 0.5) 0 2px 10px);
+    -webkit-filter: drop-shadow(rgba(0,0,0,0.5) 0 2px 10px);
+    pointer-events: none;
+    &:after {
+      top: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: rgba(0, 0, 0, 0);
+      border-top-color: #fff;
+      border-width: 10px;
+      margin-left: -10px;
+    }
+  }
+
+
 }

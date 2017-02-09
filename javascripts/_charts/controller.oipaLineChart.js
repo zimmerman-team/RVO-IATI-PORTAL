@@ -73,7 +73,9 @@
 
 
     vm.loadData = function(){
-      Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters).then(succesFn, errorFn);
+      var extraFilter = vm.groupBy == 'sector' ? '&sector_vocabulary=1' : '';
+
+      Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters + extraFilter).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         

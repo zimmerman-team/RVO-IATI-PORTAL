@@ -94,9 +94,8 @@
         vm.searchData.countries.loaded = true;
       }, errorFn);
 
-
       // get results from sectors aggregation
-      Aggregations.aggregation('sector', 'count', '&q_fields=sector&q=' + vm.searchString).then(function(data, status, headers, config){
+      Aggregations.aggregation('sector', 'count', '&q_fields=sector&q=' + vm.searchString + '&sector_vocabulary=1').then(function(data, status, headers, config){
         vm.searchData.sectors.data = data.data.results.slice(0,3);
         vm.searchData.sectors.total = data.data.count;
         vm.searchData.sectors.loaded = true;

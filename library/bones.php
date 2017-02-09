@@ -246,6 +246,14 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'directive.sectors.list', get_stylesheet_directory_uri() . '/javascripts/sectors/directive.sectors.list.js', array('oipa'), '', true );
 		wp_register_script( 'service.sectors', get_stylesheet_directory_uri() . '/javascripts/sectors/service.sectors.js', array('oipa'), '', true );
 
+
+		wp_register_script( 'controller.sdgs', get_stylesheet_directory_uri() . '/javascripts/sectors/controller.sdgs.js', array('oipa'), '', true );
+		wp_register_script( 'service.sdgs', get_stylesheet_directory_uri() . '/javascripts/sectors/service.sdgs.js', array('oipa'), '', true );
+
+
+
+
+
 		wp_register_script( 'module.activitystatus', get_stylesheet_directory_uri() . '/javascripts/activityStatus/module.activityStatus.js', array('oipa'), '', true );
 		wp_register_script( 'controller.activitystatus', get_stylesheet_directory_uri() . '/javascripts/activityStatus/controller.activityStatus.js', array('oipa'), '', true );
 		wp_register_script( 'service.activitystatus', get_stylesheet_directory_uri() . '/javascripts/activityStatus/service.activityStatus.js', array('oipa'), '', true );
@@ -287,6 +295,9 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'directive.filters.resultPeriodEnd.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.resultPeriodEnd.js', array('oipa'), '', true );
 
 		wp_register_script( 'directive.filters.sectors.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.sectors.js', array('oipa'), '', true );
+
+		wp_register_script( 'directive.filters.sdgs.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.sdgs.js', array('oipa'), '', true );
+
 		wp_register_script( 'directive.filters.budget.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.budget.js', array('oipa'), '', true );
 		wp_register_script( 'directive.filters.activity.status.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.activitystatus.js', array('oipa'), '', true );
 		wp_register_script( 'directive.filters.implementing.organisations.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.implementingOrganisations.js', array('oipa'), '', true );
@@ -502,6 +513,11 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'directive.sectors.explore' );
 		wp_enqueue_script( 'service.sectors' );
 
+		wp_enqueue_script( 'controller.sdgs' );
+		wp_enqueue_script( 'directive.sdgs' );
+		wp_enqueue_script( 'service.sdgs' );
+
+
 		wp_enqueue_script( 'module.results' );
 		wp_enqueue_script( 'controller.results' );
 		wp_enqueue_script( 'controller.results.page' );
@@ -526,6 +542,9 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'directive.filters.recipientcountries.panel' );
 		wp_enqueue_script( 'directive.filters.transactionYear.panel' );
 		wp_enqueue_script( 'directive.filters.sectors.panel' );
+		
+		wp_enqueue_script( 'directive.filters.sdgs.panel' );
+
 		wp_enqueue_script( 'directive.filters.budget.panel' );
 		wp_enqueue_script( 'directive.filters.activity.status.panel' );
 		wp_enqueue_script( 'directive.filters.implementing.organisations.panel' );

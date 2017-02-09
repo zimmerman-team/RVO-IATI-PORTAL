@@ -17,12 +17,12 @@
     .module('oipa.activities')
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl', 'programmaAfkortingen', 'programmesMapping', '$sce'];
+  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl', 'programmaAfkortingen', 'programmesMapping', '$sce', 'sdgGoals', 'sdgTargetTitles'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, programmaAfkortingen, programmesMapping, $sce) {
+  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, programmaAfkortingen, programmesMapping, $sce, sdgGoals, sdgTargetTitles) {
     var vm = this;
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
@@ -35,6 +35,30 @@
     vm.end_actual = null;
     vm.busy = true;
     vm.selectedTab = 'summary';
+    
+    vm.sdg_sectors = [];
+    vm.sdg_targets = [];
+
+    vm.sdg_goals = sdgGoals;
+    vm.sdg_target_titles = sdgTargetTitles;
+
+    vm.tooltip = function(goalId){
+      var targets = [];
+
+      for(var i = 0;i < vm.sdg_sectors.length; i++){
+        if(vm.sdg_sectors[i].sector.code.split('.')[0] == goalId){
+          targets.push("<p>&#8226; "+vm.sdg_target_titles[vm.sdg_sectors[i].sector.code]+".</p>")
+        }
+      }
+
+      var plural = targets.length > 1 ? 's' : ''
+
+      return '<div><h4>SDG Goal: '+vm.sdg_goals[goalId]+'</h4><hr/>'
+      + '<div><b>Reported SDG Target'+plural+' </b>'
+      + targets.join('')
+      + '</div>'
+      + '</div>';
+    }
 
     vm.relatedVimeo = [];
     vm.relatedYoutube = [];
@@ -83,6 +107,28 @@
 
           vm.description = $sce.trustAsHtml(desc);
         }
+
+        // SDG functionality
+        for(var i = 0;i < vm.activity.sectors.length;i++){
+          if(vm.activity.sectors[i].vocabulary.code == '8'){
+            vm.sdg_sectors.push(vm.activity.sectors[i])
+            var sdg_goal_code = vm.activity.sectors[i].sector.code.split('.')[0]
+            vm.sdg_targets.push(sdg_goal_code)
+
+          }
+        }
+
+        if(vm.sdg_targets.length > 0){
+          var uniqueNames = [];
+          $.each(vm.sdg_targets, function(i, el){
+              if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+          });
+
+          vm.sdg_targets = uniqueNames.sort();
+        }
+
+        // end SDG functionality
+
 
         for(var i = 0;i < vm.activity.activity_dates.length;i++){
           if(vm.activity.activity_dates[i].type.code == 1){

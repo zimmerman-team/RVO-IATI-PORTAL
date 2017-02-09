@@ -41,7 +41,10 @@
     }
 
     vm.loadData = function(){
-      Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters + vm.extraFilters).then(succesFn, errorFn);
+      var extraFilter = vm.groupBy == 'sector' ? '&sector_vocabulary=1' : '';
+
+
+      Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters + vm.extraFilters + extraFilter).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
 
@@ -60,6 +63,7 @@
           }
 
           vm.aggregationExtraSelect = 'iati-identifier-add';
+          
           Aggregations.aggregation(vm.groupBy, 'iati-identifier', '&activity_status__in=' + $scope.activityStatus +'&' + vm.aggregationExtraSelectIn + '=' + filter__in).then(succesFn, errorFn);
           
           
