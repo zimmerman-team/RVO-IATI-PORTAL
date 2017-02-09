@@ -35,6 +35,7 @@
       'recipient_countries': {'text': 'Recipient country', hoverShow: false},
       'recipient_budget': {'text': 'Budget', hoverShow: false},
       'recipient_sectors': {'text': 'Sector', hoverShow: false},
+      'recipient_sdgs': {'text': 'SDG targets', hoverShow: false},
       'transaction_year': {'text': 'Transaction date', 'hoverShow': false},
       'recipient_activity_status': {'text': 'Activity status', hoverShow: false},
       'recipient_implementing_organisations': {'text': 'Implementing organisation', hoverShow: false},

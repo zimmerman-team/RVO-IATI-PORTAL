@@ -4,7 +4,7 @@
                 <div class="col-md-4">
                     <div class="search-box">
                         <div class="form-group">
-                            <input ng-model="vm.q" class="form-control" placeholder="Search by sector name...">
+                            <input ng-model="vm.q" class="form-control" placeholder="Search by SDG target name...">
                             <button class="btn-search" type="button">
                                 <span class="fa fa-search"></span>
                             </button>
@@ -12,29 +12,29 @@
                     </div>
                 </div>
             </div>
-            <div class="row" ng-show="vm.recipientSectors.length == 0">
+            <div class="row" ng-show="vm.recipientSdgs.length == 0">
                 <div class="svg-loader">
-                    There are no sectors found within your current selection. 
+                    There are no SDG targets found within your current selection. 
                 </div>
             </div>
-            <div class="row" ng-show="vm.recipientSectors.length != 0">
+            <div class="row" ng-show="vm.recipientSdgs.length != 0">
                 <div class="col-md-12">
                     <table class="table">
                         <thead>
                             <tr>
-                                <td class="th-first">Select one or more sectors</td>
+                                <td class="th-first">Select one or more SDG targets</td>
                                 <td>Projects</td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr 
-                                dir-paginate="item in vm.recipientSectors | orderBy: 'name' | itemsPerPage: 4"
+                                dir-paginate="item in vm.recipientSdgs | orderBy: 'name' | itemsPerPage: 4"
                                 total-items="vm.totalCount" 
-                                pagination-id="sectors">
+                                pagination-id="sdg_targets">
                                 <td>
                                     <div class="checkbox">
                                         <label class="switch">
-                                            <input type="checkbox" checklist-model="vm.selectedSectors" checklist-value="item"><i></i>
+                                            <input type="checkbox" checklist-model="vm.selectedSdgs" checklist-value="item"><i></i>
                                             <span>{{item.sector.code}}. {{ item.sector.name }}</span>
                                         </label>
                                     </div>
@@ -49,7 +49,7 @@
                 <div class="col-md-12 text-center">
                     <button class="btn btn-default btn-save btn-openaid" ng-click="vm.save()">Save</button>
                     <dir-pagination-controls 
-                        pagination-id="sectors"
+                        pagination-id="sdg_targets"
                         on-page-change="vm.pageChanged(newPageNumber)"></dir-pagination-controls>
                 </div>
             </div>

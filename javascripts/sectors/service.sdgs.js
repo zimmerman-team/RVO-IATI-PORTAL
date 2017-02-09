@@ -18,7 +18,7 @@
     function Sdgs($http, oipaUrl, reportingOrganisationId) {
         this.selectedSdgs = [];
         var Sdgs = {
-            selectedSectors: this.selectedSectors,
+            selectedSdgs: this.selectedSdgs,
             all: all,
             get: get,
             getSectors: getSectors

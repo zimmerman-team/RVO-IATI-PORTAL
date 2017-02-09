@@ -19,6 +19,7 @@
   'Countries', 
   'Budget', 
   'Sectors', 
+  'Sdgs',
   'Transaction', 
   'ImplementingOrganisations', 
   'ImplementingOrganisationType', 
@@ -27,10 +28,11 @@
   'programmesMapping',
   'Results'];
 
-  function FiltersSelectionController($scope, $state, $stateParams, $location, FilterSelection, Programmes, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ImplementingOrganisationType, ActivityStatus, Search, programmesMapping, Results) {
+  function FiltersSelectionController($scope, $state, $stateParams, $location, FilterSelection, Programmes, Countries, Budget, Sectors, Sdgs, Transaction, ImplementingOrganisations, ImplementingOrganisationType, ActivityStatus, Search, programmesMapping, Results) {
     var vm = this;
     vm.selectedCountries = Countries.selectedCountries;
     vm.selectedSectors = Sectors.selectedSectors;
+    vm.selectedSdgs = Sdgs.selectedSdgs;
     vm.selectedProgrammes = Programmes.selectedProgrammes;
     vm.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
     vm.selectedImplementingOrganisationTypes = ImplementingOrganisationType.selectedImplementingOrganisationTypes;
@@ -45,11 +47,12 @@
     vm.filterCount = 0;
 
     vm.updateFilterCount = function(){
-
+      console.log(vm.selectedSdgs)
       var count = 0;
       if(vm.currentPage != 'country'){ count += vm.selectedCountries.length; }
       if(vm.currentPage != 'programme'){ count += vm.selectedProgrammes.length; }
       if(vm.currentPage != 'sector'){ count += vm.selectedSectors.length; }
+      if(vm.currentPage != 'sector'){ count += vm.selectedSdgs.length; }
       if(vm.currentPage != 'organisation'){ count += vm.selectedImplementingOrganisations.length; }
       count += vm.selectedImplementingOrganisationTypes.length;
       count += vm.selectedActivityStatuses.length;

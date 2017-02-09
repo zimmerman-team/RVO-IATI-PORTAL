@@ -9,17 +9,18 @@
 		.module('oipa.filters')
 		.factory('FilterSelection', FilterSelection);
 
-	FilterSelection.$inject = ['$http', 'reportingOrganisationId', 'Programmes', 'Countries', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search', 'ImplementingOrganisationType', 'Results'];
+	FilterSelection.$inject = ['$http', 'reportingOrganisationId', 'Programmes', 'Countries', 'Budget', 'Sectors', 'Sdgs', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search', 'ImplementingOrganisationType', 'Results'];
 
 	/**
 	* @namespace Filters
 	* @returns {Factory}
 	*/
-	function FilterSelection($http, reportingOrganisationId, Programmes, Countries, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search, ImplementingOrganisationType, Results) {
+	function FilterSelection($http, reportingOrganisationId, Programmes, Countries, Budget, Sectors, Sdgs, Transaction, ImplementingOrganisations, ActivityStatus, Search, ImplementingOrganisationType, Results) {
 		var m = this;
 		m.selectedProgrammes = Programmes.selectedProgrammes;
 	    m.selectedCountries = Countries.selectedCountries;
 	    m.selectedSectors = Sectors.selectedSectors;
+	    m.selectedSdgs = Sdgs.selectedSdgs;
 	    m.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
 	    m.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
 	    m.selectedImplementingOrganisationTypes = ImplementingOrganisationType.selectedImplementingOrganisationTypes;
@@ -74,9 +75,12 @@
 		}
 
 		m.updateSelectionString = function(){
+
+			console.log(m.selectedSdgs)
       		
 			var selectList = [
 				m.selectArrayToString('recipient_country', 'code', m.selectedCountries),
+				m.selectArrayToString('sector', 'code', m.selectedSdgs),
 				m.selectArrayToString('activity_status', 'code', m.selectedActivityStatuses),
 				m.selectArrayToString('participating_organisation_type', 'code', m.selectedImplementingOrganisationTypes),
 			];
@@ -153,6 +157,7 @@
 				m.removeAll(m.selectedProgrammes);
 			}
 
+			m.removeAll(m.selectedSdgs);
 			m.removeAll(m.selectedActivityStatuses);
 
 			Search.searchString = '';

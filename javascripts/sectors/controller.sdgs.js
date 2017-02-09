@@ -9,17 +9,17 @@
     .module('oipa.sectors')
     .controller('SdgsController', SdgsController);
 
-  SdgsController.$inject = ['$scope', 'Aggregations', 'Sectors', 'FilterSelection', 'templateBaseUrl'];
+  SdgsController.$inject = ['$scope', 'Aggregations', 'Sdgs', 'FilterSelection', 'templateBaseUrl'];
 
   /**
   * @namespace SectorsController
   */
-  function SdgsController($scope, Aggregations, Sectors, FilterSelection, templateBaseUrl) {
+  function SdgsController($scope, Aggregations, Sdgs, FilterSelection, templateBaseUrl) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
-    vm.recipientSectors = [];
-    vm.sectors = Sectors;
-    vm.selectedSectors = Sectors.selectedSectors;
+    vm.recipientSdgs = [];
+    vm.sdgs = Sdgs;
+    vm.selectedSdgs = Sdgs.selectedSdgs;
     vm.currentPage = 1;
     vm.pageSize = 4;
     vm.totalCount = 0;
@@ -76,7 +76,7 @@
 
       function successFn(data, status, headers, config) {
         vm.totalCount = data.data.count;
-        vm.recipientSectors = data.data.results;
+        vm.recipientSdgs = data.data.results;
       }
 
       function errorFn(data, status, headers, config) {
