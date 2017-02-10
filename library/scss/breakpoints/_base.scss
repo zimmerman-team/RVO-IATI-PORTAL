@@ -2520,8 +2520,15 @@ SDG
 *********************/
 
 
-.sdg-icons img{
-  padding: 1em 1em 0 0;
+.sdg-icons{
+  img{
+    padding: 1em 1em 0 0;
+  }
+
+  .tooltips{
+    display: inline-block !important;
+  }
+
 }
 
 .sdg-tooltip{
