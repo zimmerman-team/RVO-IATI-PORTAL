@@ -56,7 +56,7 @@
                     </div>
                     <div class="sdg-icons">
                         <div
-                            ng-repeat="goalId in vm.sdg_targets" 
+                            ng-repeat="goalId in vm.sdg_goal_ids" 
                             tooltips 
                             tooltip-class="sdg-tooltip zz_tooltip"
                             tooltip-template="{{vm.tooltip(goalId)}}">
@@ -67,7 +67,7 @@
                                 ng-src="{{vm.templateBaseUrl + '/images/sdg/sdg_goal_' + goalId + '.png'}}" 
                                  />
                         </div>
-                        <span ng-if="vm.sdg_targets.length == 0">Data to be added</span>
+                        <span ng-if="vm.sdg_goal_ids.length == 0">Data to be added</span>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -427,7 +427,7 @@
 
                     <h3>Sustainable development goals</h3>
                     
-                    <table class="finance no-blue" ng-if="vm.sdg_sectors.length != 0">
+                    <table class="finance no-blue" ng-if="vm.sdg_targets.length != 0">
                         <thead>
                             <tr>
                                 <th width="20%">SDG goal</th>
@@ -436,12 +436,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="(key, sector) in vm.sdg_sectors">
+                            <tr ng-repeat="(key, sector) in vm.sdg_targets">
                                 <td>
-                                    {{vm.sdg_goals[sector.sector.code.split('.')[0]]}}
+                                    {{sector.sector.code.split('.')[0] + '. ' + vm.sdg_goals[sector.sector.code.split('.')[0]]}}
                                 </td>
                                 <td>
-                                    {{vm.sdg_target_titles[sector.sector.code]}}.
+                                    {{sector.sector.code + '. ' + vm.sdg_target_titles[sector.sector.code]}}.
                                 </td>
                                 <td>
                                     {{sector.percentage}}%
@@ -450,7 +450,7 @@
                         </tbody>
                     </table>
 
-                    <div ng-if="vm.sdg_sectors.length == 0">
+                    <div ng-if="vm.sdg_targets.length == 0">
                         <hr>
                         <p style="padding-left:15px;padding-bottom:10px;">Data to be added</p>
                     </div>

@@ -36,8 +36,8 @@
     vm.busy = true;
     vm.selectedTab = 'summary';
     
-    vm.sdg_sectors = [];
     vm.sdg_targets = [];
+    vm.sdg_goal_ids = [];
 
     vm.sdg_goals = sdgGoals;
     vm.sdg_target_titles = sdgTargetTitles;
@@ -45,9 +45,9 @@
     vm.tooltip = function(goalId){
       var targets = [];
 
-      for(var i = 0;i < vm.sdg_sectors.length; i++){
-        if(vm.sdg_sectors[i].sector.code.split('.')[0] == goalId){
-          targets.push("<p>&#8226; "+vm.sdg_target_titles[vm.sdg_sectors[i].sector.code]+".</p>")
+      for(var i = 0;i < vm.sdg_targets.length; i++){
+        if(vm.sdg_targets[i].sector.code.split('.')[0] == goalId){
+          targets.push("<p>&#8226; "+vm.sdg_target_titles[vm.sdg_targets[i].sector.code]+".</p>")
         }
       }
 
@@ -109,22 +109,59 @@
         }
 
         // SDG functionality
+        var sdg_targets = []
         for(var i = 0;i < vm.activity.sectors.length;i++){
           if(vm.activity.sectors[i].vocabulary.code == '8'){
-            vm.sdg_sectors.push(vm.activity.sectors[i])
+            sdg_targets.push(vm.activity.sectors[i])
             var sdg_goal_code = vm.activity.sectors[i].sector.code.split('.')[0]
-            vm.sdg_targets.push(sdg_goal_code)
-
+            vm.sdg_goal_ids.push(sdg_goal_code)
           }
         }
 
-        if(vm.sdg_targets.length > 0){
+        sdg_targets = sdg_targets.sort(function(a,b){
+
+            var a_goal = parseInt(a.sector.code.split('.')[0])
+            var a_target = parseInt(a.sector.code.split('.')[1])
+            var b_goal = parseInt(b.sector.code.split('.')[0])
+            var b_target = parseInt(b.sector.code.split('.')[1])
+
+            if(a_goal < b_goal){
+              return -1;
+            }
+            if(a_goal > b_goal){
+              return 1;
+            }
+
+            if(a_target < b_target){
+              return -1;
+            }
+            if(a_target > b_target){
+              return 1;
+            }
+
+            return 0;
+        });
+        
+
+        vm.sdg_targets = sdg_targets;
+
+        if(vm.sdg_goal_ids.length > 0){
           var uniqueNames = [];
-          $.each(vm.sdg_targets, function(i, el){
+          $.each(vm.sdg_goal_ids, function(i, el){
               if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
           });
 
-          vm.sdg_targets = uniqueNames.sort();
+          vm.sdg_goal_ids = uniqueNames.sort(function(a,b){
+            a = parseInt(a)
+            b = parseInt(b)
+            if(a < b){
+              return -1;
+            }
+            if(a > b){
+              return 1;
+            }
+            return 0;
+          });
         }
 
         // end SDG functionality
