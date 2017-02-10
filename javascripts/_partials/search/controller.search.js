@@ -74,7 +74,6 @@
       // get results from programmes
       Activities.list('&hierarchy=1&q_fields=iati_identifier,title,description&q='+vm.searchString, 3, 'count', 1).then(function(data, status, headers, config){
         vm.searchData.programmes.data = data.data.results;
-        console.log(vm.searchData.programmes.data);
         vm.searchData.programmes.total = data.data.count;
         vm.searchData.programmes.loaded = true;
       }, errorFn);

@@ -76,7 +76,6 @@
 
 		m.updateSelectionString = function(){
 
-			console.log(m.selectedSdgs)
       		
 			var selectList = [
 				m.selectArrayToString('recipient_country', 'code', m.selectedCountries),
