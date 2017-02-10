@@ -6585,7 +6585,7 @@ Safari 6.1+ (9.0 is the latest version of Safari at this time)
 SDG
 *********************/
 /* line 2523, ../scss/breakpoints/_base.scss */
-.sdg-icons > tooltip {
+.sdg-icons img {
   padding: 1em 1em 0 0;
 }
 
