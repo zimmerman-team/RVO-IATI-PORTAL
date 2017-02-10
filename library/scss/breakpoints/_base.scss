@@ -2519,12 +2519,10 @@ Safari 6.1+ (9.0 is the latest version of Safari at this time)
 SDG
 *********************/
 
-.sdg-test{
-  ul{
-    list-style-type: disc;
-  }
-}
 
+.sdg-icons > tooltip{
+  padding: 1em 1em 0 0;
+}
 
 .sdg-tooltip{
 
@@ -2565,9 +2563,6 @@ SDG
   }
 
 
-  .sdg-img{
-    padding: 1em 1em 0 0;
-  }
 
   ul{
     list-style-type: disc;

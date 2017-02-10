@@ -47,7 +47,6 @@
     vm.filterCount = 0;
 
     vm.updateFilterCount = function(){
-      console.log(vm.selectedSdgs)
       var count = 0;
       if(vm.currentPage != 'country'){ count += vm.selectedCountries.length; }
       if(vm.currentPage != 'programme'){ count += vm.selectedProgrammes.length; }
