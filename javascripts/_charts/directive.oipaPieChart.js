@@ -32,6 +32,7 @@
         chartYAxisEuroFormat: '@',
         chartXAxisEuroFormat: '@',
         chartXAxisStaggerLabels: '@',
+        extraFilter: '@',
       },
       templateUrl: templateBaseUrl + '/templates/_charts/oipa-pie-chart.html'
     };

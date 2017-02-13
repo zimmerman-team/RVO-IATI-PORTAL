@@ -227,11 +227,16 @@ function bones_scripts_and_styles() {
 
 		wp_register_script( 'module.programmes', get_stylesheet_directory_uri() . '/javascripts/programmes/module.programmes.js', array('oipa'), '', true );
 		wp_register_script( 'controller.programme', get_stylesheet_directory_uri() . '/javascripts/programmes/controller.programme.js', array('oipa'), '', true );
+
+		wp_register_script( 'controller.programme.sdgs', get_stylesheet_directory_uri() . '/javascripts/programmes/controller.programme.sdgs.js', array('oipa'), '', true );
+
 		wp_register_script( 'controller.programmes', get_stylesheet_directory_uri() . '/javascripts/programmes/controller.programmes.js', array('oipa'), '', true );
 		wp_register_script( 'controller.programmes.explore', get_stylesheet_directory_uri() . '/javascripts/programmes/controller.programmes.explore.js', array('oipa'), '', true );
 		wp_register_script( 'service.programmes', get_stylesheet_directory_uri() . '/javascripts/programmes/service.programmes.js', array('oipa'), '', true );
 		wp_register_script( 'controller.programmes.list', get_stylesheet_directory_uri() . '/javascripts/programmes/controller.programmes.list.js', array('oipa'), '', true );
 		wp_register_script( 'directive.programmes.list', get_stylesheet_directory_uri() . '/javascripts/programmes/directive.programmes.list.js', array('oipa'), '', true );
+		
+		wp_register_script( 'directive.programme.sdgs', get_stylesheet_directory_uri() . '/javascripts/programmes/directive.programme.sdgs.js', array('oipa'), '', true );
 		
 
 
@@ -497,10 +502,12 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'module.programmes' );
 		wp_enqueue_script( 'service.programmes' );
 		wp_enqueue_script( 'controller.programme' );
+		wp_enqueue_script( 'controller.programme.sdgs' );
 		wp_enqueue_script( 'controller.programmes' );
 		wp_enqueue_script( 'controller.programmes.explore' );
 		wp_enqueue_script( 'controller.programmes.list' );
 		wp_enqueue_script( 'directive.programmes.list' );
+		wp_enqueue_script( 'directive.programme.sdgs' );
 
 		wp_enqueue_script( 'module.sectors' );
 		wp_enqueue_script( 'controller.sectors' );

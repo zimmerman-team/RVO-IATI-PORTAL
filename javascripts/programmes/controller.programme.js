@@ -9,12 +9,13 @@
     .module('oipa.programmes')
     .controller('ProgrammeController', ProgrammeController);
 
-  ProgrammeController.$inject = ['Activities', '$stateParams', 'FilterSelection', 'templateBaseUrl', 'Programmes', 'homeUrl', 'sdgGoals', 'sdgTargetTitles'];
+  ProgrammeController.$inject = ['Activities', '$stateParams', 'FilterSelection', 'templateBaseUrl', 'Programmes', 'homeUrl'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ProgrammeController(Activities, $stateParams, FilterSelection, templateBaseUrl, Programmes, homeUrl, sdgGoals, sdgTargetTitles) {
+  function ProgrammeController(Activities, $stateParams, FilterSelection, templateBaseUrl, Programmes, homeUrl) {
+
     var vm = this;
     vm.activity = null;
     vm.programmeId = $stateParams.programme_id;
@@ -43,31 +44,6 @@
       "NL-KVK-27378529-23583": null,
       "NL-KVK-27378529-GACC160005": null
     }
-
-    vm.sdg_sectors = [];
-    vm.sdg_targets = [];
-    
-    vm.sdg_goals = sdgGoals
-    vm.sdg_target_titles = sdgTargetTitles
-
-    vm.tooltip = function(goalId){
-      var targets = [];
-
-      for(var i = 0;i < vm.sdg_sectors.length; i++){
-        if(vm.sdg_sectors[i].sector.code.split('.')[0] == goalId){
-          targets.push("<p>&#8226; "+vm.sdg_target_titles[vm.sdg_sectors[i].sector.code]+".</p>")
-        }
-      }
-
-      var plural = targets.length > 1 ? 's' : ''
-
-      return '<div><h4>SDG Goal: '+vm.sdg_goals[goalId]+'</h4><hr/>'
-      + '<div><b>Reported SDG Target'+plural+' </b>'
-      + targets.join('')
-      + '</div>'
-      + '</div>';
-    }
-
     
     vm.programmeUrl = null;
     vm.budgetLeft = 0;
@@ -95,32 +71,10 @@
       Activities.get(vm.programmeId).then(successFn, errorFn);
       Activities.getTransactions(vm.programmeId).then(procesTransactions, errorFn);
 
+
       function successFn(data, status, headers, config) {
         vm.activity = data.data;
 
-
-        // SDG functionality
-        for(var i = 0;i < vm.activity.sectors.length;i++){
-          if(vm.activity.sectors[i].vocabulary.code == '8'){
-            vm.sdg_sectors.push(vm.activity.sectors[i])
-            var sdg_goal_code = vm.activity.sectors[i].sector.code.split('.')[0]
-            vm.sdg_targets.push(sdg_goal_code)
-
-          }
-        }
-
-        if(vm.sdg_targets.length > 0){
-          var uniqueNames = [];
-          $.each(vm.sdg_targets, function(i, el){
-              if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
-          });
-
-          vm.sdg_targets = uniqueNames.sort();
-        }
-
-        // end SDG functionality
-
-        
 
 
         Programmes.selectedProgrammes.push({'related_activity': vm.activity.id, 'count': 0, 'name': vm.activity.title.narratives[0].text});
@@ -137,6 +91,9 @@
         console.log("getting activity failed");
         vm.busy = false;
       }
+
+
+
     }
 
     vm.setBudgetLeft = function(){

@@ -21,6 +21,8 @@
     vm.aggregationKey = $scope.aggregationKey;
     vm.hasToContain = $scope.hasToContain;
     vm.chartData = [];
+    vm.extraFilter = $scope.extraFilter;
+
     vm.chartOptions = {
       chart: {
         type: 'pieChart',
@@ -95,8 +97,8 @@
     };
 
     vm.loadData = function(filterString){
-      var extraFilter = vm.groupBy == 'sector' ? '&sector_vocabulary=1' : '';
 
+      let extraFilter = vm.extraFilter !== undefined ? vm.extraFilter : ''; 
       TransactionAggregations.aggregation(vm.groupBy, vm.aggregations, filterString + '&hierarchy=2' + extraFilter).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
