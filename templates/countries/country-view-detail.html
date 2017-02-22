@@ -99,9 +99,9 @@
                         <h3>Projects per sector</h3>
                         <hr>
                         <oipa-pie-chart group-by="sector" aggregation-key="activity_count" aggregations="activity_count,incoming_fund" extra-filter="&sector_vocabulary=1"></oipa-pie-chart>    
-                        <!-- <h3>Projects per SDG</h3>
+                        <h3>Projects per SDG</h3>
                         <hr>
-                        <oipa-pie-chart group-by="sector" aggregation-key="activity_count" aggregations="activity_count,incoming_fund" extra-filter="&sector_vocabulary=8"></oipa-pie-chart>   -->  
+                        <sdg-pie-chart group-by="sector" aggregation-key="activity_count" aggregations="activity_count,incoming_fund" extra-filter="&sector_vocabulary=8" tooltip="vm.sdgTooltip"></sdg-pie-chart>    
                     </div>
                      <div class="panel lightblue">
                         <h3>More information</h3>

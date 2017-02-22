@@ -23,6 +23,23 @@
     vm.chartData = [];
     vm.extraFilter = $scope.extraFilter;
 
+    vm.tooltip = function(key, date, e, graph){
+      var name = key.data[0][vm.groupBy].name;
+      var flag = '';
+      if (vm.groupBy == 'recipient_country'){
+        flag = '<span class="flag-icon flag-icon-'+key.data[0][vm.groupBy].code.toLowerCase()+'"></span> ';
+      }
+      var content = '<h4>'+flag+name+'</h4>'+
+                    '<hr>'+
+                    '<p><i class="icon lightbulb"></i><b>Projects:</b>'+key.data[0].activity_count+'</p>'+
+                    '<p><i class="icon euro"></i><b>Total budget:</b>'+ $filter('shortcurrency')(key.data[0].incoming_fund,'€') +'</p>';
+      return content;
+    }
+
+    if($scope.tooltip != undefined){
+      vm.tooltip = $scope.tooltip;
+    }
+
     vm.chartOptions = {
       chart: {
         type: 'pieChart',
@@ -66,18 +83,7 @@
           }
         },
         tooltip: {
-          contentGenerator: function(key, date, e, graph){
-            var name = key.data[0][vm.groupBy].name;
-            var flag = '';
-            if (vm.groupBy == 'recipient_country'){
-              flag = '<span class="flag-icon flag-icon-'+key.data[0][vm.groupBy].code.toLowerCase()+'"></span> ';
-            }
-            var content = '<h4>'+flag+name+'</h4>'+
-                          '<hr>'+
-                          '<p><i class="icon lightbulb"></i><b>Projects:</b>'+key.data[0].activity_count+'</p>'+
-                          '<p><i class="icon euro"></i><b>Total budget:</b>'+ $filter('shortcurrency')(key.data[0].incoming_fund,'€') +'</p>';
-            return content;
-          }
+          contentGenerator: vm.tooltip
         },
         xAxis: {
             axisLabel: vm.xAxis,

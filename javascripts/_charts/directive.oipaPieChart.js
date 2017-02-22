@@ -33,6 +33,7 @@
         chartXAxisEuroFormat: '@',
         chartXAxisStaggerLabels: '@',
         extraFilter: '@',
+        tooltip: '='
       },
       templateUrl: templateBaseUrl + '/templates/_charts/oipa-pie-chart.html'
     };

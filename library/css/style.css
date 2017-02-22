@@ -6433,8 +6433,18 @@ Tooltips donuts
 .nvtooltip .icon, .nvtooltip .subnav .summary a, .subnav .summary .nvtooltip a, .nvtooltip .subnav .samenvatting a, .subnav .samenvatting .nvtooltip a, .nvtooltip .subnav .detailedreport a, .subnav .detailedreport .nvtooltip a, .nvtooltip .subnav .activities a, .subnav .activities .nvtooltip a, .nvtooltip .subnav .mediapage a, .subnav .mediapage .nvtooltip a, .nvtooltip .subnav .sectors a, .subnav .sectors .nvtooltip a, .nvtooltip .subnav .regions a, .subnav .regions .nvtooltip a, .nvtooltip .subnav .countries a, .subnav .countries .nvtooltip a, .nvtooltip .subnav .programmes a, .subnav .programmes .nvtooltip a, .nvtooltip .subnav .implementing-organisations a, .subnav .implementing-organisations .nvtooltip a, .nvtooltip .subnav .organisations a, .subnav .organisations .nvtooltip a, .nvtooltip .subnav .results a, .subnav .results .nvtooltip a, .zz_tooltip .icon, .zz_tooltip .subnav .summary a, .subnav .summary .zz_tooltip a, .zz_tooltip .subnav .samenvatting a, .subnav .samenvatting .zz_tooltip a, .zz_tooltip .subnav .detailedreport a, .subnav .detailedreport .zz_tooltip a, .zz_tooltip .subnav .activities a, .subnav .activities .zz_tooltip a, .zz_tooltip .subnav .mediapage a, .subnav .mediapage .zz_tooltip a, .zz_tooltip .subnav .sectors a, .subnav .sectors .zz_tooltip a, .zz_tooltip .subnav .regions a, .subnav .regions .zz_tooltip a, .zz_tooltip .subnav .countries a, .subnav .countries .zz_tooltip a, .zz_tooltip .subnav .programmes a, .subnav .programmes .zz_tooltip a, .zz_tooltip .subnav .implementing-organisations a, .subnav .implementing-organisations .zz_tooltip a, .zz_tooltip .subnav .organisations a, .subnav .organisations .zz_tooltip a, .zz_tooltip .subnav .results a, .subnav .results .zz_tooltip a {
   margin-right: 3px;
 }
+/* line 2343, ../scss/breakpoints/_base.scss */
+.nvtooltip .sdg-title, .zz_tooltip .sdg-title {
+  margin-top: 0;
+  color: #114476;
+  text-align: left;
+  width: 100%;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: initial;
+}
 
-/* line 2345, ../scss/breakpoints/_base.scss */
+/* line 2354, ../scss/breakpoints/_base.scss */
 .zz_tooltip {
   position: absolute;
   transition: all .2s ease-in-out;
@@ -6442,7 +6452,7 @@ Tooltips donuts
   -webkit-filter: drop-shadow(rgba(0, 0, 0, 0.5) 0 2px 10px);
   pointer-events: none;
 }
-/* line 2351, ../scss/breakpoints/_base.scss */
+/* line 2360, ../scss/breakpoints/_base.scss */
 .zz_tooltip:after {
   top: 100%;
   left: 50%;
@@ -6461,103 +6471,103 @@ Tooltips donuts
 /*********************
 Icons
 *********************/
-/* line 2370, ../scss/breakpoints/_base.scss */
+/* line 2379, ../scss/breakpoints/_base.scss */
 .icon, .subnav .summary a, .subnav .samenvatting a, .subnav .detailedreport a, .subnav .activities a, .subnav .mediapage a, .subnav .sectors a, .subnav .regions a, .subnav .countries a, .subnav .programmes a, .subnav .implementing-organisations a, .subnav .organisations a, .subnav .results a {
   display: inline-block;
 }
-/* line 2372, ../scss/breakpoints/_base.scss */
+/* line 2381, ../scss/breakpoints/_base.scss */
 .icon:before, .subnav .summary a:before, .subnav .samenvatting a:before, .subnav .detailedreport a:before, .subnav .activities a:before, .subnav .mediapage a:before, .subnav .sectors a:before, .subnav .regions a:before, .subnav .countries a:before, .subnav .programmes a:before, .subnav .implementing-organisations a:before, .subnav .organisations a:before, .subnav .results a:before {
   font-family: 'AGNL-Icon-Font';
   font-style: normal;
 }
-/* line 2379, ../scss/breakpoints/_base.scss */
+/* line 2388, ../scss/breakpoints/_base.scss */
 .icon.right, .subnav .summary a.right, .subnav .samenvatting a.right, .subnav .detailedreport a.right, .subnav .activities a.right, .subnav .mediapage a.right, .subnav .sectors a.right, .subnav .regions a.right, .subnav .countries a.right, .subnav .programmes a.right, .subnav .implementing-organisations a.right, .subnav .organisations a.right, .subnav .results a.right {
   margin-left: 7px;
   margin-right: 0;
   font-size: 16px;
 }
-/* line 2385, ../scss/breakpoints/_base.scss */
+/* line 2394, ../scss/breakpoints/_base.scss */
 .icon.lightbulb:before, .subnav .summary a.lightbulb:before, .subnav .samenvatting a.lightbulb:before, .subnav .detailedreport a.lightbulb:before, .subnav .activities a:before, .subnav .mediapage a.lightbulb:before, .subnav .sectors a.lightbulb:before, .subnav .regions a.lightbulb:before, .subnav .countries a.lightbulb:before, .subnav .programmes a.lightbulb:before, .subnav .implementing-organisations a.lightbulb:before, .subnav .organisations a.lightbulb:before, .subnav .results a.lightbulb:before {
   content: '\e010';
 }
-/* line 2390, ../scss/breakpoints/_base.scss */
+/* line 2399, ../scss/breakpoints/_base.scss */
 .icon.satelite:before, .subnav .summary a.satelite:before, .subnav .samenvatting a.satelite:before, .subnav .detailedreport a.satelite:before, .subnav .activities a.satelite:before, .subnav .mediapage a.satelite:before, .subnav .sectors a.satelite:before, .subnav .regions a.satelite:before, .subnav .countries a.satelite:before, .subnav .programmes a.satelite:before, .subnav .implementing-organisations a.satelite:before, .subnav .organisations a.satelite:before, .subnav .results a.satelite:before {
   content: '\e015';
 }
-/* line 2395, ../scss/breakpoints/_base.scss */
+/* line 2404, ../scss/breakpoints/_base.scss */
 .icon.globe:before, .subnav .summary a.globe:before, .subnav .samenvatting a.globe:before, .subnav .detailedreport a.globe:before, .subnav .activities a.globe:before, .subnav .mediapage a.globe:before, .subnav .sectors a.globe:before, .subnav .regions a.globe:before, .subnav .countries a:before, .subnav .programmes a.globe:before, .subnav .implementing-organisations a.globe:before, .subnav .organisations a.globe:before, .subnav .results a.globe:before {
   content: '\e00e';
 }
-/* line 2400, ../scss/breakpoints/_base.scss */
+/* line 2409, ../scss/breakpoints/_base.scss */
 .icon.handshake:before, .subnav .summary a.handshake:before, .subnav .samenvatting a.handshake:before, .subnav .detailedreport a.handshake:before, .subnav .activities a.handshake:before, .subnav .mediapage a.handshake:before, .subnav .sectors a.handshake:before, .subnav .regions a.handshake:before, .subnav .countries a.handshake:before, .subnav .programmes a:before, .subnav .implementing-organisations a.handshake:before, .subnav .organisations a.handshake:before, .subnav .results a.handshake:before {
   content: '\e614';
 }
-/* line 2405, ../scss/breakpoints/_base.scss */
+/* line 2414, ../scss/breakpoints/_base.scss */
 .icon.presentation:before, .subnav .summary a:before, .subnav .samenvatting a:before, .subnav .detailedreport a.presentation:before, .subnav .activities a.presentation:before, .subnav .mediapage a.presentation:before, .subnav .sectors a.presentation:before, .subnav .regions a.presentation:before, .subnav .countries a.presentation:before, .subnav .programmes a.presentation:before, .subnav .implementing-organisations a.presentation:before, .subnav .organisations a.presentation:before, .subnav .results a.presentation:before {
   content: '\e606';
 }
-/* line 2410, ../scss/breakpoints/_base.scss */
+/* line 2419, ../scss/breakpoints/_base.scss */
 .icon.clock:before, .subnav .summary a.clock:before, .subnav .samenvatting a.clock:before, .subnav .detailedreport a.clock:before, .subnav .activities a.clock:before, .subnav .mediapage a.clock:before, .subnav .sectors a.clock:before, .subnav .regions a.clock:before, .subnav .countries a.clock:before, .subnav .programmes a.clock:before, .subnav .implementing-organisations a.clock:before, .subnav .organisations a.clock:before, .subnav .results a.clock:before {
   content: '\e604';
 }
-/* line 2415, ../scss/breakpoints/_base.scss */
+/* line 2424, ../scss/breakpoints/_base.scss */
 .icon.euro:before, .subnav .summary a.euro:before, .subnav .samenvatting a.euro:before, .subnav .detailedreport a.euro:before, .subnav .activities a.euro:before, .subnav .mediapage a.euro:before, .subnav .sectors a.euro:before, .subnav .regions a.euro:before, .subnav .countries a.euro:before, .subnav .programmes a.euro:before, .subnav .implementing-organisations a.euro:before, .subnav .organisations a.euro:before, .subnav .results a.euro:before {
   content: '\e00d';
 }
-/* line 2420, ../scss/breakpoints/_base.scss */
+/* line 2429, ../scss/breakpoints/_base.scss */
 .icon.search:before, .subnav .summary a.search:before, .subnav .samenvatting a.search:before, .subnav .detailedreport a.search:before, .subnav .activities a.search:before, .subnav .mediapage a.search:before, .subnav .sectors a.search:before, .subnav .regions a.search:before, .subnav .countries a.search:before, .subnav .programmes a.search:before, .subnav .implementing-organisations a.search:before, .subnav .organisations a.search:before, .subnav .results a.search:before {
   content: '\007a';
 }
-/* line 2425, ../scss/breakpoints/_base.scss */
+/* line 2434, ../scss/breakpoints/_base.scss */
 .icon.download:before, .subnav .summary a.download:before, .subnav .samenvatting a.download:before, .subnav .detailedreport a.download:before, .subnav .activities a.download:before, .subnav .mediapage a.download:before, .subnav .sectors a.download:before, .subnav .regions a.download:before, .subnav .countries a.download:before, .subnav .programmes a.download:before, .subnav .implementing-organisations a.download:before, .subnav .organisations a.download:before, .subnav .results a.download:before {
   content: '\e00f';
 }
-/* line 2430, ../scss/breakpoints/_base.scss */
+/* line 2439, ../scss/breakpoints/_base.scss */
 .icon.twitter:before, .subnav .summary a.twitter:before, .subnav .samenvatting a.twitter:before, .subnav .detailedreport a.twitter:before, .subnav .activities a.twitter:before, .subnav .mediapage a.twitter:before, .subnav .sectors a.twitter:before, .subnav .regions a.twitter:before, .subnav .countries a.twitter:before, .subnav .programmes a.twitter:before, .subnav .implementing-organisations a.twitter:before, .subnav .organisations a.twitter:before, .subnav .results a.twitter:before {
   content: '\e01a';
 }
-/* line 2435, ../scss/breakpoints/_base.scss */
+/* line 2444, ../scss/breakpoints/_base.scss */
 .icon.facebook:before, .subnav .summary a.facebook:before, .subnav .samenvatting a.facebook:before, .subnav .detailedreport a.facebook:before, .subnav .activities a.facebook:before, .subnav .mediapage a.facebook:before, .subnav .sectors a.facebook:before, .subnav .regions a.facebook:before, .subnav .countries a.facebook:before, .subnav .programmes a.facebook:before, .subnav .implementing-organisations a.facebook:before, .subnav .organisations a.facebook:before, .subnav .results a.facebook:before {
   content: '\e011';
 }
-/* line 2440, ../scss/breakpoints/_base.scss */
+/* line 2449, ../scss/breakpoints/_base.scss */
 .icon.linkedin:before, .subnav .summary a.linkedin:before, .subnav .samenvatting a.linkedin:before, .subnav .detailedreport a.linkedin:before, .subnav .activities a.linkedin:before, .subnav .mediapage a.linkedin:before, .subnav .sectors a.linkedin:before, .subnav .regions a.linkedin:before, .subnav .countries a.linkedin:before, .subnav .programmes a.linkedin:before, .subnav .implementing-organisations a.linkedin:before, .subnav .organisations a.linkedin:before, .subnav .results a.linkedin:before {
   content: '\e014';
 }
-/* line 2445, ../scss/breakpoints/_base.scss */
+/* line 2454, ../scss/breakpoints/_base.scss */
 .icon.email:before, .subnav .summary a.email:before, .subnav .samenvatting a.email:before, .subnav .detailedreport a.email:before, .subnav .activities a.email:before, .subnav .mediapage a.email:before, .subnav .sectors a.email:before, .subnav .regions a.email:before, .subnav .countries a.email:before, .subnav .programmes a.email:before, .subnav .implementing-organisations a.email:before, .subnav .organisations a.email:before, .subnav .results a.email:before {
   font-family: 'FontAwesome';
   content: '\f0e0';
 }
-/* line 2451, ../scss/breakpoints/_base.scss */
+/* line 2460, ../scss/breakpoints/_base.scss */
 .icon.graph:before, .subnav .summary a.graph:before, .subnav .samenvatting a.graph:before, .subnav .detailedreport a:before, .subnav .activities a.graph:before, .subnav .mediapage a.graph:before, .subnav .sectors a.graph:before, .subnav .regions a.graph:before, .subnav .countries a.graph:before, .subnav .programmes a.graph:before, .subnav .implementing-organisations a.graph:before, .subnav .organisations a.graph:before, .subnav .results a.graph:before {
   content: '\e61e';
 }
-/* line 2456, ../scss/breakpoints/_base.scss */
+/* line 2465, ../scss/breakpoints/_base.scss */
 .icon.medal:before, .subnav .summary a.medal:before, .subnav .samenvatting a.medal:before, .subnav .detailedreport a.medal:before, .subnav .activities a.medal:before, .subnav .mediapage a.medal:before, .subnav .sectors a:before, .subnav .regions a.medal:before, .subnav .countries a.medal:before, .subnav .programmes a.medal:before, .subnav .implementing-organisations a.medal:before, .subnav .organisations a.medal:before, .subnav .results a.medal:before {
   content: '\e60f';
 }
-/* line 2461, ../scss/breakpoints/_base.scss */
+/* line 2470, ../scss/breakpoints/_base.scss */
 .icon.buildings:before, .subnav .summary a.buildings:before, .subnav .samenvatting a.buildings:before, .subnav .detailedreport a.buildings:before, .subnav .activities a.buildings:before, .subnav .mediapage a.buildings:before, .subnav .sectors a.buildings:before, .subnav .regions a.buildings:before, .subnav .countries a.buildings:before, .subnav .programmes a.buildings:before, .subnav .implementing-organisations a:before, .subnav .organisations a:before, .subnav .results a.buildings:before {
   content: '\e61a';
 }
-/* line 2466, ../scss/breakpoints/_base.scss */
+/* line 2475, ../scss/breakpoints/_base.scss */
 .icon.pin:before, .subnav .summary a.pin:before, .subnav .samenvatting a.pin:before, .subnav .detailedreport a.pin:before, .subnav .activities a.pin:before, .subnav .mediapage a.pin:before, .subnav .sectors a.pin:before, .subnav .regions a:before, .subnav .countries a.pin:before, .subnav .programmes a.pin:before, .subnav .implementing-organisations a.pin:before, .subnav .organisations a.pin:before, .subnav .results a.pin:before {
   content: '\e60b';
 }
-/* line 2471, ../scss/breakpoints/_base.scss */
+/* line 2480, ../scss/breakpoints/_base.scss */
 .icon.refresh:before, .subnav .summary a.refresh:before, .subnav .samenvatting a.refresh:before, .subnav .detailedreport a.refresh:before, .subnav .activities a.refresh:before, .subnav .mediapage a.refresh:before, .subnav .sectors a.refresh:before, .subnav .regions a.refresh:before, .subnav .countries a.refresh:before, .subnav .programmes a.refresh:before, .subnav .implementing-organisations a.refresh:before, .subnav .organisations a.refresh:before, .subnav .results a.refresh:before {
   content: '\e605';
 }
-/* line 2476, ../scss/breakpoints/_base.scss */
+/* line 2485, ../scss/breakpoints/_base.scss */
 .icon.link:before, .subnav .summary a.link:before, .subnav .samenvatting a.link:before, .subnav .detailedreport a.link:before, .subnav .activities a.link:before, .subnav .mediapage a.link:before, .subnav .sectors a.link:before, .subnav .regions a.link:before, .subnav .countries a.link:before, .subnav .programmes a.link:before, .subnav .implementing-organisations a.link:before, .subnav .organisations a.link:before, .subnav .results a.link:before {
   content: '\0021';
 }
-/* line 2481, ../scss/breakpoints/_base.scss */
+/* line 2490, ../scss/breakpoints/_base.scss */
 .icon.film:before, .subnav .summary a.film:before, .subnav .samenvatting a.film:before, .subnav .detailedreport a.film:before, .subnav .activities a.film:before, .subnav .mediapage a:before, .subnav .sectors a.film:before, .subnav .regions a.film:before, .subnav .countries a.film:before, .subnav .programmes a.film:before, .subnav .implementing-organisations a.film:before, .subnav .organisations a.film:before, .subnav .results a.film:before {
   content: '\e602';
 }
-/* line 2486, ../scss/breakpoints/_base.scss */
+/* line 2495, ../scss/breakpoints/_base.scss */
 .icon.check:before, .subnav .summary a.check:before, .subnav .samenvatting a.check:before, .subnav .detailedreport a.check:before, .subnav .activities a.check:before, .subnav .mediapage a.check:before, .subnav .sectors a.check:before, .subnav .regions a.check:before, .subnav .countries a.check:before, .subnav .programmes a.check:before, .subnav .implementing-organisations a.check:before, .subnav .organisations a.check:before, .subnav .results a:before {
   content: '\e61c';
 }
@@ -6566,7 +6576,7 @@ Icons
 Mobile only fix
 *********************/
 @media (max-width: 767px) {
-  /* line 2496, ../scss/breakpoints/_base.scss */
+  /* line 2505, ../scss/breakpoints/_base.scss */
   .page-wrap {
     width: 100%;
     overflow: hidden;
@@ -6575,7 +6585,7 @@ Mobile only fix
 /*********************
 Safari 6.1+ (9.0 is the latest version of Safari at this time)
 *********************/
-/* line 2509, ../scss/breakpoints/_base.scss */
+/* line 2518, ../scss/breakpoints/_base.scss */
 .visualize:not(:root:root) svg, .cirkle-vis:not(:root:root) svg {
   -webkit-filter: none;
   filter: none;
@@ -6584,16 +6594,16 @@ Safari 6.1+ (9.0 is the latest version of Safari at this time)
 /*********************
 SDG
 *********************/
-/* line 2524, ../scss/breakpoints/_base.scss */
+/* line 2533, ../scss/breakpoints/_base.scss */
 .sdg-icons img {
   padding: 1em 1em 0 0;
 }
-/* line 2528, ../scss/breakpoints/_base.scss */
+/* line 2537, ../scss/breakpoints/_base.scss */
 .sdg-icons .tooltips {
   display: inline-block !important;
 }
 
-/* line 2534, ../scss/breakpoints/_base.scss */
+/* line 2543, ../scss/breakpoints/_base.scss */
 .sdg-tooltip {
   font-size: 14px;
   padding: 10px;
@@ -6608,7 +6618,7 @@ SDG
   margin-left: -20px;
   text-align: left;
 }
-/* line 2548, ../scss/breakpoints/_base.scss */
+/* line 2557, ../scss/breakpoints/_base.scss */
 .sdg-tooltip h4 {
   margin-top: 0;
   color: #114476;
@@ -6618,7 +6628,7 @@ SDG
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-/* line 2557, ../scss/breakpoints/_base.scss */
+/* line 2566, ../scss/breakpoints/_base.scss */
 .sdg-tooltip p {
   margin: 0 0 2px;
   font-size: 14px;
@@ -6626,20 +6636,20 @@ SDG
   text-align: left;
   padding: 0.4em 0;
 }
-/* line 2564, ../scss/breakpoints/_base.scss */
+/* line 2573, ../scss/breakpoints/_base.scss */
 .sdg-tooltip hr {
   margin: 10px -10px;
   border-top: 1px dotted #114476;
 }
-/* line 2568, ../scss/breakpoints/_base.scss */
+/* line 2577, ../scss/breakpoints/_base.scss */
 .sdg-tooltip .icon, .sdg-tooltip .subnav .summary a, .subnav .summary .sdg-tooltip a, .sdg-tooltip .subnav .samenvatting a, .subnav .samenvatting .sdg-tooltip a, .sdg-tooltip .subnav .detailedreport a, .subnav .detailedreport .sdg-tooltip a, .sdg-tooltip .subnav .activities a, .subnav .activities .sdg-tooltip a, .sdg-tooltip .subnav .mediapage a, .subnav .mediapage .sdg-tooltip a, .sdg-tooltip .subnav .sectors a, .subnav .sectors .sdg-tooltip a, .sdg-tooltip .subnav .regions a, .subnav .regions .sdg-tooltip a, .sdg-tooltip .subnav .countries a, .subnav .countries .sdg-tooltip a, .sdg-tooltip .subnav .programmes a, .subnav .programmes .sdg-tooltip a, .sdg-tooltip .subnav .implementing-organisations a, .subnav .implementing-organisations .sdg-tooltip a, .sdg-tooltip .subnav .organisations a, .subnav .organisations .sdg-tooltip a, .sdg-tooltip .subnav .results a, .subnav .results .sdg-tooltip a {
   margin-right: 3px;
 }
-/* line 2574, ../scss/breakpoints/_base.scss */
+/* line 2583, ../scss/breakpoints/_base.scss */
 .sdg-tooltip ul {
   list-style-type: disc;
 }
-/* line 2578, ../scss/breakpoints/_base.scss */
+/* line 2587, ../scss/breakpoints/_base.scss */
 .sdg-tooltip.zz_tooltip {
   position: absolute;
   transition: all .2s ease-in-out;
@@ -6647,7 +6657,7 @@ SDG
   -webkit-filter: drop-shadow(rgba(0, 0, 0, 0.5) 0 2px 10px);
   pointer-events: none;
 }
-/* line 2584, ../scss/breakpoints/_base.scss */
+/* line 2593, ../scss/breakpoints/_base.scss */
 .sdg-tooltip.zz_tooltip:after {
   top: 100%;
   left: 50%;

@@ -2340,6 +2340,15 @@ Tooltips donuts
   .icon {
     margin-right: 3px;
   }
+  .sdg-title{
+    margin-top:0;
+    color:$rvo-donkerblauw;
+    text-align:left;
+    width: 100%;
+    overflow: hidden;
+    white-space:normal;
+    text-overflow: initial;
+  }
 }
 
 .zz_tooltip {

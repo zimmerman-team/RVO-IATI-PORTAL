@@ -38,6 +38,16 @@
       {'id': 'implementing-organisations', 'name': 'Project partners', 'count': -1},
     ]
 
+    vm.sdgTooltip = function(key, date, e, graph){
+      var name = key.data[0]['sector'].code + '. ' + vm.sdgTargetTitles[key.data[0]['sector'].code];
+
+      var content = '<div class="sdg-title">'+name+'</div>'+
+                    '<hr>'+
+                    '<p><i class="icon lightbulb"></i><b>Projects:</b>'+key.data[0].activity_count+'</p>'+
+                    '<p><i class="icon euro"></i><b>Total budget:</b>'+ vm.sdgFilter(key.data[0].incoming_fund,'€') +'</p>';
+      return content;
+    }
+
     /**
     * @name activate
     * @desc Actions to be performed when this controller is instantiated
@@ -84,7 +94,7 @@
     }
 
     vm.update = function(selectionString){
-      if (selectionString.indexOf("recipient_country") < 0){ return false;}
+      if (selectionString == undefined || selectionString.indexOf("recipient_country") < 0){ return false;}
       
       TransactionAggregations.aggregation('recipient_country', 'disbursement,expenditure,incoming_fund', selectionString).then(function(data, status, headers, config){
 
