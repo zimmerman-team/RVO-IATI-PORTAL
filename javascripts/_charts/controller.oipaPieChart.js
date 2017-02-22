@@ -73,7 +73,14 @@
               if(item.recipient_country != undefined){
                 $state.go('country', { country_id: item.recipient_country.code, tab: 'summary' });
               } else if(item.sector != undefined){
-                $state.go('sector', { sector_id: item.sector.code, tab: 'summary' });
+                console.log(item.sector)
+                
+                if(item.sector.code.indexOf('.') > 0){
+                  $state.go('sdg', { sdg_id: item.sector.code, tab: 'summary' });
+                } else {
+                  $state.go('sector', { sector_id: item.sector.code, tab: 'summary' });
+                }
+                
               } else if(item.related_activity != undefined){
                 $state.go('programme', { programme_id: item.related_activity.code, tab: 'summary' });
               } else if(item.recipient_region != undefined){

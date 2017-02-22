@@ -1,4 +1,4 @@
-<div id="main-content" ng-if="!vm.country && !vm.busy">
+<div id="main-content" ng-if="!vm.sector">
 
     <div class="container extra">
 
@@ -11,17 +11,16 @@
 
 </div>
 
-<div id="main-content" ng-if="vm.country">
+<div id="main-content" ng-if="vm.sector">
 
     <filter-bar 
         views="[]"
         current-page="themas"></filter-bar>
 
     <div class="container extra">
-        
+
         <div class="detailview white no-margin-bottom">
-            <span class="flag-icon flag-icon-{{vm.country.code | lowercase }} big"></span>
-            <h1 class="title no-margin-bottom">{{vm.country.name}}</h1>
+            <h1 class="no-margin-bottom">{{vm.sector.sector_id}}. {{vm.sector.name}}</h1>
         </div>
 
         <hr class="darkblue no-margin-bottom">
@@ -30,47 +29,39 @@
             tabs='vm.tabs' 
             selected-tab='vm.selectedTab'>
         </sub-navbar>
-
     </div>
 
     <div class="content-offset" ng-show="vm.selectedTab == 'summary'">
 
-        <div class="container extra detailview">
+        <div class="container detailview extra">
 
             <div class="row">
                 <div class="col-md-8">
-                    <div class="featured-image">
-                        <img ng-src="{{vm.uploadBaseUrl}}/{{vm.country_id}}-745x300.jpg">
-                    </div>
-                    <div class="white no-margin-bottom no-padding-bottom">
-                        <h3>Related project map</h3>
-                    </div>
-                    <div class="map country">
-                        <locations-geo-map map-height="350px" country="vm.country_id"></locations-geo-map>
-                    </div>
                     <div class="white no-margin-bottom no-padding-bottom">
                         <h3>Financial</h3>
                     </div>
                     <div class="panel lightblue with-table no-header">
                         <table class="no-format">
                             <tbody>
+
                                 <tr>
-                                    <td width="200">
-                                        Total country budget
+                                    <td>
+                                        Total sector budget
                                     </td>
                                     <td>
                                         {{vm.budget | shortcurrency :'€'}}
                                     </td>
                                 </tr>
+                                
                                 <tr>
-                                    <td>
-                                        Total country expenditure
+                                    <td width="200">
+                                        Total sector expenditure
                                     </td>
                                     <td>
-                                        <span ng-if="vm.disbursements">{{vm.disbursements | shortcurrency :'€'}}</span>
-                                        <span ng-if="!vm.disbursements">Data to be added</span>
+                                        {{vm.expenditure | shortcurrency :'€'}}
                                     </td>
                                 </tr>
+                                
                                 <tr>
                                     <td>
                                         Budget depletion
@@ -78,7 +69,7 @@
                                     <td>
                                         <div class="progress">
                                           <div class="progress-bar" role="progressbar" aria-valuenow="vm.budgetLeft" aria-valuemin="0" aria-valuemax="100" ng-style="vm.progressStyle">
-                                                <span class="spent">{{vm.budgetLeft}}% spent</span>
+                                            <span class="spent">{{vm.budgetLeft}}% spent</span>
                                             <div class="gradient"></div>
                                           </div>
                                         </div>
@@ -87,26 +78,26 @@
                             </tbody>
                         </table>
                     </div>
-<!--                     <div class="graph">
-                        <financials-line-chart has-to-contain="countries__in"></financials-line-chart>
-                    </div> -->
+                    <div class="graph">
+                        <!-- <financials-line-chart 
+                            has-to-contain="sectors__in">
+                        </financials-line-chart> -->
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="panel lightblue with-pie">
                         <h3>Projects per programme</h3>
                         <hr>
-                        <oipa-pie-chart group-by="related_activity" aggregation-key="activity_count" aggregations="activity_count,incoming_fund"></oipa-pie-chart> 
-                        <h3>Projects per sector</h3>
+                        <oipa-pie-chart 
+                            group-by="related_activity" 
+                            aggregation-key="activity_count" 
+                            aggregations="activity_count,incoming_fund"></oipa-pie-chart>
+                        <h3>Projects per country</h3>
                         <hr>
-                        <oipa-pie-chart group-by="sector" aggregation-key="activity_count" aggregations="activity_count,incoming_fund" extra-filter="&sector_vocabulary=1"></oipa-pie-chart>    
-                        <h3>Projects per SDG</h3>
-                        <hr>
-                        <sdg-pie-chart group-by="sector" aggregation-key="activity_count" aggregations="activity_count,incoming_fund" extra-filter="&sector_vocabulary=8"></sdg-pie-chart>    
-                    </div>
-                     <div class="panel lightblue">
-                        <h3>More information</h3>
-                        <hr>
-                        <p><a ng-href="{{vm.countryPageUrl}}" target="_blank"><i class="icon link"></i>Visit country site on RVO.nl</a>
+                        <oipa-pie-chart 
+                            group-by="recipient_country" 
+                            aggregation-key="activity_count" 
+                            aggregations="activity_count,incoming_fund"></oipa-pie-chart>
                     </div>
                     <div class="panel lightblue with-table share">
                         <h3>Export & share</h3>
@@ -137,57 +128,57 @@
         <div class="container extra detailview">
             <div class="row">
                 <div class="col-md-12">
-
                     <programme-list 
-                        has-to-contain="recipient_country" 
+                        has-to-contain="sector" 
                         count="vm.tabs[1].count"
                         shown="vm.selectedTab == 'programmes'"></programme-list>
-
                 </div>
             </div>
         </div>
     </div>
 
     <div ng-show="vm.selectedTab == 'activities'">
-        <div class="container extra detailview">
+        <div class="container detailview extra">
+
             <div class="row">
                 <div class="col-md-12">
-
                     <activity-list 
-                        has-to-contain="recipient_country" 
+                        has-to-contain="sector"  
                         count="vm.tabs[2].count"
                         shown="vm.selectedTab == 'activities'"></activity-list>
-
                 </div>
             </div>
         </div>
     </div>
 
-    <div ng-show="vm.selectedTab == 'sectors'">
-        <div class="container extra detailview">
+    <div ng-show="vm.selectedTab == 'countries'">
+        <div class="container detailview extra">
+
             <div class="row">
                 <div class="col-md-12">
-
-                    <sector-list 
-                        has-to-contain="recipient_country" 
+                    <country-list 
+                        has-to-contain="sector" 
                         count="vm.tabs[3].count"
-                        shown="vm.selectedTab == 'sectors'"></sector-list>
+                        shown="vm.selectedTab == 'countries'"></country-list>
                 </div>
             </div>
         </div>
     </div>
 
     <div ng-show="vm.selectedTab == 'implementing-organisations'">
-        <div class="container extra detailview">
+        <div class="container detailview extra">
+
             <div class="row">
                 <div class="col-md-12">
-
                     <implementing-organisations-list 
-                        has-to-contain="recipient_country"
+                        has-to-contain="sector" 
                         count="vm.tabs[4].count"
                         shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
+
+

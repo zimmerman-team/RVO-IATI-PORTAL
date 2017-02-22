@@ -64,7 +64,6 @@
 				}
 
 				m.sector_count = m.selectedSectors.length;
-				
 				if(m.sector_count > 0){
 					m.sector_filter = '&sector=' + list.join(','); 
 				} else {

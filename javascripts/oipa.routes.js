@@ -151,7 +151,14 @@
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sector-view-detail.html'
         })
-        
+        .state({
+            name:        'sdg',
+            url:         '/sdgs/:sdg_id/' + filters,
+            reloadOnSearch: false,
+            controller:  'SdgController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/sectors/sdg-view-detail.html'
+        })
         .state({
             name:        'about',
             url:         '/about/',

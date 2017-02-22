@@ -28,18 +28,13 @@
 						{{item.sector.name}}
 					</a>
 
-
-
 					<a 
 						class="selected filter-selected-button selectedSdgs" 
 						ng-repeat="item in vm.selectedSdgs" 
 						ng-click="vm.removeFilter(vm.selectedSdgs, 'sector', item.sector.code, true)" 
-						ng-if="vm.currentPage != 'sector'">
+						ng-if="vm.currentPage != 'sdg'">
 						{{item.sector.name}}
 					</a>
-
-
-
 
 					<a 
 						class="selected filter-selected-button selectedImplementingOrganisations" 
