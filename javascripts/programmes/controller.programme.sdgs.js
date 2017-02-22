@@ -62,7 +62,7 @@
             // SDG functionality
             for(var i = 0;i < results.length;i++){
                 var sdg_goal_code = results[i].sector.code.split('.')[0]
-                vm.sdg_goal_ids.push(sdg_goal_code)
+                vm.sdg_goal_ids.push(parseInt(sdg_goal_code))
             }
 
             if(vm.sdg_goal_ids.length > 0){
@@ -70,8 +70,7 @@
               $.each(vm.sdg_goal_ids, function(i, el){
                   if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
               });
-
-              vm.sdg_goal_ids = uniqueNames.sort()
+              vm.sdg_goal_ids = uniqueNames.sort(function(a,b){return a - b})
             }
 
         // end SDG functionality

@@ -6594,16 +6594,21 @@ Safari 6.1+ (9.0 is the latest version of Safari at this time)
 /*********************
 SDG
 *********************/
-/* line 2533, ../scss/breakpoints/_base.scss */
+/* line 2532, ../scss/breakpoints/_base.scss */
 .sdg-icons img {
   padding: 1em 1em 0 0;
 }
-/* line 2537, ../scss/breakpoints/_base.scss */
+/* line 2536, ../scss/breakpoints/_base.scss */
 .sdg-icons .tooltips {
   display: inline-block !important;
 }
 
-/* line 2543, ../scss/breakpoints/_base.scss */
+/* line 2544, ../scss/breakpoints/_base.scss */
+.panel .sdg-icons img {
+  padding: 1em 0 0 0.7em;
+}
+
+/* line 2550, ../scss/breakpoints/_base.scss */
 .sdg-tooltip {
   font-size: 14px;
   padding: 10px;
@@ -6618,7 +6623,7 @@ SDG
   margin-left: -20px;
   text-align: left;
 }
-/* line 2557, ../scss/breakpoints/_base.scss */
+/* line 2564, ../scss/breakpoints/_base.scss */
 .sdg-tooltip h4 {
   margin-top: 0;
   color: #114476;
@@ -6628,7 +6633,7 @@ SDG
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-/* line 2566, ../scss/breakpoints/_base.scss */
+/* line 2573, ../scss/breakpoints/_base.scss */
 .sdg-tooltip p {
   margin: 0 0 2px;
   font-size: 14px;
@@ -6636,20 +6641,20 @@ SDG
   text-align: left;
   padding: 0.4em 0;
 }
-/* line 2573, ../scss/breakpoints/_base.scss */
+/* line 2580, ../scss/breakpoints/_base.scss */
 .sdg-tooltip hr {
   margin: 10px -10px;
   border-top: 1px dotted #114476;
 }
-/* line 2577, ../scss/breakpoints/_base.scss */
+/* line 2584, ../scss/breakpoints/_base.scss */
 .sdg-tooltip .icon, .sdg-tooltip .subnav .summary a, .subnav .summary .sdg-tooltip a, .sdg-tooltip .subnav .samenvatting a, .subnav .samenvatting .sdg-tooltip a, .sdg-tooltip .subnav .detailedreport a, .subnav .detailedreport .sdg-tooltip a, .sdg-tooltip .subnav .activities a, .subnav .activities .sdg-tooltip a, .sdg-tooltip .subnav .mediapage a, .subnav .mediapage .sdg-tooltip a, .sdg-tooltip .subnav .sectors a, .subnav .sectors .sdg-tooltip a, .sdg-tooltip .subnav .regions a, .subnav .regions .sdg-tooltip a, .sdg-tooltip .subnav .countries a, .subnav .countries .sdg-tooltip a, .sdg-tooltip .subnav .programmes a, .subnav .programmes .sdg-tooltip a, .sdg-tooltip .subnav .implementing-organisations a, .subnav .implementing-organisations .sdg-tooltip a, .sdg-tooltip .subnav .organisations a, .subnav .organisations .sdg-tooltip a, .sdg-tooltip .subnav .results a, .subnav .results .sdg-tooltip a {
   margin-right: 3px;
 }
-/* line 2583, ../scss/breakpoints/_base.scss */
+/* line 2590, ../scss/breakpoints/_base.scss */
 .sdg-tooltip ul {
   list-style-type: disc;
 }
-/* line 2587, ../scss/breakpoints/_base.scss */
+/* line 2594, ../scss/breakpoints/_base.scss */
 .sdg-tooltip.zz_tooltip {
   position: absolute;
   transition: all .2s ease-in-out;
@@ -6657,7 +6662,7 @@ SDG
   -webkit-filter: drop-shadow(rgba(0, 0, 0, 0.5) 0 2px 10px);
   pointer-events: none;
 }
-/* line 2593, ../scss/breakpoints/_base.scss */
+/* line 2600, ../scss/breakpoints/_base.scss */
 .sdg-tooltip.zz_tooltip:after {
   top: 100%;
   left: 50%;

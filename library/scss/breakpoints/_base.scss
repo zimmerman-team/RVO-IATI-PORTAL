@@ -2528,7 +2528,6 @@ Safari 6.1+ (9.0 is the latest version of Safari at this time)
 SDG
 *********************/
 
-
 .sdg-icons{
   img{
     padding: 1em 1em 0 0;
@@ -2539,6 +2538,14 @@ SDG
   }
 
 }
+
+
+.panel .sdg-icons{
+  img{
+    padding: 1em 0 0 0.7em;
+  }
+}
+
 
 .sdg-tooltip{
 

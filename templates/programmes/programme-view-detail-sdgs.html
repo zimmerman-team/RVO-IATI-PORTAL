@@ -1,3 +1,30 @@
+<div class="panel lightblue">
+    <h3>Sustainable development goal contribution</h3>
+    <hr>
+    <div>
+        <div class="sdg-icons">
+            <div
+                ng-repeat="goalId in vm.sdg_goal_ids" 
+                tooltips 
+                tooltip-class="sdg-tooltip zz_tooltip"
+                tooltip-template="{{vm.tooltip(goalId)}}">
+                <img 
+                    class="sdg-img" 
+                    width="155" 
+                    height="155" 
+                    ng-src="{{vm.templateBaseUrl + '/images/sdg/sdg_goal_' + goalId + '.png'}}" 
+                     />
+            </div>
+            <span ng-if="vm.sdg_goal_ids.length == 0">Data to be added</span>
+        </div>
+        <span ng-if="vm.sdg_targets.length == 0">Data to be added</span>
+    </div>
+</div>
+
+
+
+
+<!-- 
 <div class="white no-margin-bottom no-padding-bottom">
     <h3>Sustainable development goal contribution</h3>
 </div>
@@ -18,4 +45,4 @@
         <span ng-if="vm.sdg_goal_ids.length == 0">Data to be added</span>
     </div>
     <span ng-if="vm.sdg_targets.length == 0">Data to be added</span>
-</div>
+</div> -->
