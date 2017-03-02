@@ -1,0 +1,24 @@
+
+
+# upgrade issues
+from iati.parser import post_save
+
+#for activity in Activity.objects.all():
+#    post_save.set_related_activities(activity)
+#    post_save.set_transaction_provider_receiver_activity(activity)
+#    post_save.set_derived_activity_dates(activity)
+#    post_save.set_activity_aggregations(activity)
+#    post_save.update_activity_search_index(activity)
+#    post_save.set_country_region_transaction(activity)
+#    post_save.set_sector_transaction(activity)
+#    post_save.set_sector_budget(activity)
+#    
+#for po in ActivityParticipatingOrganisation.objects.filter(primary_name=''):
+#    if po.narratives.all().count() > 0:
+#        po.primary_name = po.narratives.all()[0].content.strip()
+#        po.save()
+#
+#for ro in TransactionReceiver.objects.filter(primary_name=''):
+#    if ro.narratives.all().count() > 0:
+#        ro.primary_name = ro.narratives.all()[0].content.strip()
+#        ro.save()

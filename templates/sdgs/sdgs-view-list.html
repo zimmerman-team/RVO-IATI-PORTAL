@@ -6,9 +6,15 @@
 
 
     <div class="row">
-        <div class="col-xs-12 col-sm-3" ng-repeat=""></div>
+        <div class="col-xs-12 col-sm-3" ng-repeat="goalId in vm.sdg_goal_ids"></div>
+            
+            <img 
+                class="sdg-img" 
+                width="144" 
+                height="144" 
+                ng-src="{{vm.templateBaseUrl + '/images/sdg/sdg_goal_' + goalId + '.png'}}" 
+                 />
+
+        </div>
     </div>
-
-
-
 </div>

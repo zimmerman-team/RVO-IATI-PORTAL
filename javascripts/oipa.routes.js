@@ -128,6 +128,14 @@
             templateUrl: templateBaseUrl + '/templates/programmes/programme-view-detail.html'
         })
         .state({
+            name:        'sdgs',
+            url:         '/sustainable-development-goals/' + filters,
+            reloadOnSearch: false,
+            controller:  'SdgsExploreController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/sdgs/sdgs-view-list.html'
+        })
+        .state({
             name:        'sectors',
             url:         '/sectors/' + filters,
             reloadOnSearch: false,
