@@ -7,6 +7,7 @@ for ri in ResultIndicator.objects.filter(resultindicatortitle__narratives__conte
     #
     total_actual_value = 0
     for p in total.resultindicatorperiod_set.all():
+        # TODO: chage to most recent period
         if p.actual:
             total_actual_value += p.actual
     #
@@ -16,6 +17,7 @@ for ri in ResultIndicator.objects.filter(resultindicatortitle__narratives__conte
     female_actual_value = 0
     female_rip = None
     for p in ri.resultindicatorperiod_set.all():
+        # TODO: chage to most recent period
         female_rip = p
         if p.actual:
             female_actual_value += p.actual
@@ -25,6 +27,25 @@ for ri in ResultIndicator.objects.filter(resultindicatortitle__narratives__conte
     if male_value < 1:
         continue
     #
+    # check if male indicator already exists, if so and not same value, update, else add
+    male = ResultIndicator.objects.get(
+        result__activity__id=ri.result.activity.id, 
+        resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Male")
+    male_actual_value = 0
+    for p in male.resultindicatorperiod_set.all():
+        # TODO: chage to most recent period
+        if p.actual:
+            total_actual_value += p.actual
+    #
+    if total_actual_value == 0:
+        continue
+
+
+
+
+
+
+
     ri_new = ResultIndicator(
         result=ri.result,
         measure=ri.measure,
