@@ -1,57 +1,120 @@
+from django.core.exceptions import ObjectDoesNotExist
+
 for ri in ResultIndicator.objects.filter(resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Female"):
+    # INIT PART
     # if result does not have "... - Male" indicator, add. 
     # print ri.result.activity.id
-    total = ResultIndicator.objects.get(
-        result__activity__id=ri.result.activity.id, 
-        resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Total")
-    #
-    total_actual_value = 0
-    for p in total.resultindicatorperiod_set.all():
-        if p.actual:
-            total_actual_value += p.actual
-    #
-    if total_actual_value == 0:
+    try:
+        total_count = ResultIndicator.objects.filter(
+            result__activity__id=ri.result.activity.id, 
+            resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Total").count()
+        if total_count > 1:
+            print 'duplicate totals for {}'.format(ri.result.activity.iati_identifier)
+            continue
+        else:
+            total = ResultIndicator.objects.get(
+                result__activity__id=ri.result.activity.id, 
+                resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Total")
+    except ObjectDoesNotExist:
+        print 'total does not exist for {}'.format(ri.result.activity.iati_identifier)
         continue
     #
-    female_actual_value = 0
-    female_rip = None
-    for p in ri.resultindicatorperiod_set.all():
-        female_rip = p
-        if p.actual:
-            female_actual_value += p.actual
     #
-    male_value = total_actual_value - female_actual_value
     #
-    if male_value < 1:
-        continue
+    try:
+        total_count = ResultIndicator.objects.filter(
+            result__activity__id=ri.result.activity.id, 
+            resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Male").count()
+        if total_count > 1:
+            print 'duplicate totals for {}'.format(ri.result.activity.iati_identifier)
+            continue
+        elif total_count is 0:
+            print 'no totals for {}'.format(ri.result.activity.iati_identifier)
+        else:
+            male = ResultIndicator.objects.get(
+                result__activity__id=ri.result.activity.id, 
+                resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Male")
+    except ObjectDoesNotExist:
+        male = None
     #
-    ri_new = ResultIndicator(
-        result=ri.result,
-        measure=ri.measure,
-    )
-    ri_new.save()
     #
-    print ri_new
-    ri_new_title = ResultIndicatorTitle(
-        result_indicator=ri_new,
-        primary_name="Number of full-time (equivalent) direct jobs supported - Male"
-    )
-    ri_new_title.save()
     #
-    language = Language.objects.get(pk='en')
-    narrative = Narrative(
-        language=language,
-        content="Number of full-time (equivalent) direct jobs supported - Male",
-        related_object=ri_new_title,
-        activity=ri.result.activity
-    )
-    narrative.save()
-    # add ResultIndicatorPeriod
-    rip = ResultIndicatorPeriod(
-        result_indicator=ri_new,
-        period_start=female_rip.period_start,
-        period_end=female_rip.period_end,
-        target=None,
-        actual=male_value
-    )
-    rip.save()
+    years = ["2015", "2016"]
+    #
+    for curyear in years:
+        #
+        total_actual_value = 0
+        female_actual_value = 0
+        male_actual_value = 0
+        female_rip = None
+        male_rip = None
+        #
+        #
+        for p in total.resultindicatorperiod_set.filter(period_end__year=curyear):
+            if p.actual:
+                total_actual_value = p.actual
+        #
+        if total_actual_value == 0:
+            continue
+        #
+        #
+        for p in ri.resultindicatorperiod_set.filter(period_end__year=curyear):
+            female_rip = p
+            if p.actual:
+                female_actual_value = p.actual
+        #
+        #
+        male_value = total_actual_value - female_actual_value
+        if male_value < 1:
+            print 'male value below zero for {}'.format(ri.result.activity.iati_identifier)
+            continue
+        #
+        if not female_rip:
+            print 'no female indicator for {} while there is a female result?'.format(ri.result.activity.iati_identifier)
+            continue
+        # if male period already exists for this year, then update
+        if male:
+            if male.resultindicatorperiod_set.filter(period_end__year=curyear).exists():
+                rip = male.resultindicatorperiod_set.get(period_end__year=curyear)
+                rip.actual = male_value
+                rip.save()
+            else:
+                rip = ResultIndicatorPeriod(
+                    result_indicator=male,
+                    period_start=female_rip.period_start,
+                    period_end=female_rip.period_end,
+                    target=None,
+                    actual=male_value
+                )
+                rip.save()
+        else:
+            # create new resultindicator
+            ri_new = ResultIndicator(
+                result=ri.result,
+                measure=ri.measure,
+            )
+            ri_new.save()
+            #
+            ri_new_title = ResultIndicatorTitle(
+                result_indicator=ri_new,
+                primary_name="Number of full-time (equivalent) direct jobs supported - Male"
+            )
+            ri_new_title.save()
+            #
+            language = Language.objects.get(pk='en')
+            narrative = Narrative(
+                language=language,
+                content="Number of full-time (equivalent) direct jobs supported - Male",
+                related_object=ri_new_title,
+                activity=ri.result.activity
+            )
+            narrative.save()
+            #
+            rip = ResultIndicatorPeriod(
+                result_indicator=ri_new,
+                period_start=female_rip.period_start,
+                period_end=female_rip.period_end,
+                target=None,
+                actual=male_value
+            )
+            rip.save()
