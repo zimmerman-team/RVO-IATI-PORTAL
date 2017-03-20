@@ -520,10 +520,7 @@
 
     vm.sortDocs = function(documents) {
       for (var i =0; i < documents.length;i++){
-        var obj = {};
-
-        console.log(documents[i].url)
-        console.log(documents[i].format.code)
+        var obj = {}
 
         if(documents[i].title){
           obj.title = documents[i].title.narratives[0].text;
