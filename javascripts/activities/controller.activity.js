@@ -62,6 +62,7 @@
 
     vm.relatedVimeo = [];
     vm.relatedYoutube = [];
+    vm.relatedVideo = [];
     vm.relatedImages = [];
     vm.relatedDocuments = [];
     vm.featuredImage = vm.templateBaseUrl + '/images/Develop2Build header.jpg';
@@ -521,13 +522,21 @@
       for (var i =0; i < documents.length;i++){
         var obj = {};
 
+        console.log(documents[i].url)
+        console.log(documents[i].format.code)
+
         if(documents[i].title){
           obj.title = documents[i].title.narratives[0].text;
         }
 
         if (documents[i].format == null){
           vm.relatedImages.push(obj);
-        }else if (documents[i].format.code == 'text/html' && documents[i].url.indexOf('vimeo') != -1 ) {
+        }
+        else if(documents[i].url.indexOf('.MOV') > 0 || documents[i].url.indexOf('.mp4') > 0){
+          obj.url = $sce.trustAsResourceUrl(documents[i].url);
+          vm.relatedVideo.push(obj);
+        }
+        else if (documents[i].format.code == 'text/html' && documents[i].url.indexOf('vimeo') != -1 ) {
           obj.url = $sce.trustAsResourceUrl(documents[i].url);
           vm.relatedVimeo.push(obj);
         }
