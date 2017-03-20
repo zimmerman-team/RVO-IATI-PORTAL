@@ -1,13 +1,43 @@
+from django.core.exceptions import ObjectDoesNotExist
+
 for ri in ResultIndicator.objects.filter(resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Female"):
+    """
+    INIT PART
+    """
     # if result does not have "... - Male" indicator, add. 
     # print ri.result.activity.id
-    total = ResultIndicator.objects.get(
-        result__activity__id=ri.result.activity.id, 
-        resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Total")
+    try:
+        total_count = ResultIndicator.objects.filter(
+            result__activity__id=ri.result.activity.id, 
+            resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Total").count()
+        if total_count > 1:
+            print 'duplicate totals for {}'.format(ri.result.activity.iati_identifier)
+            continue
+        else:
+            total = ResultIndicator.objects.get(
+                result__activity__id=ri.result.activity.id, 
+                resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Total")
+    except ObjectDoesNotExist:
+        print 'total does not exist for {}'.format(ri.result.activity.iati_identifier)
+        continue
     #
-    male = ResultIndicator.objects.get(
-        result__activity__id=ri.result.activity.id, 
-        resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Male")
+    #
+    #
+    try:
+        total_count = ResultIndicator.objects.filter(
+            result__activity__id=ri.result.activity.id, 
+            resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Male").count()
+        if total_count > 1:
+            print 'duplicate totals for {}'.format(ri.result.activity.iati_identifier)
+            continue
+        else:
+            male = ResultIndicator.objects.get(
+                result__activity__id=ri.result.activity.id, 
+                resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Male")
+    except ObjectDoesNotExist:
+        male = None
+    #
+    #
     #
     years = [2015, 2016]
     #
@@ -38,11 +68,12 @@ for ri in ResultIndicator.objects.filter(resultindicatortitle__narratives__conte
         if male_value < 1:
             print 'male value below zero, should not happen too often'
         #
-        # if male period already exists for this year, then update. Else create new resultindicator
+        # if male period already exists for this year, then update
         if male:
             if male.resultindicatorperiod_set.get(period_end__year=years[curyear]).exists():
                 male.resultindicatorperiod_set.get(period_end__year=years[curyear]).update(actual=male_value)
         else:
+            # create new resultindicator
             ri_new = ResultIndicator(
                 result=ri.result,
                 measure=ri.measure,
@@ -63,7 +94,7 @@ for ri in ResultIndicator.objects.filter(resultindicatortitle__narratives__conte
                 activity=ri.result.activity
             )
             narrative.save()
-            # add ResultIndicatorPeriod
+            #
             rip = ResultIndicatorPeriod(
                 result_indicator=ri_new,
                 period_start=female_rip.period_start,
