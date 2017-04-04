@@ -584,7 +584,7 @@
 
                     <h3>Results</h3>
                     <div class="table-responsive">
-                        <table class="finance no-blue" ng-if="vm.activity.results.length != 0">
+                        <table class="finance no-blue" ng-if="vm.detailedResultRows.length != 0">
                             <thead>
                                 <tr>
                                     <th>Title</th>
@@ -600,36 +600,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="result in vm.activity.results">
+                                <tr ng-repeat="result in vm.detailedResultRows">
                                     <td>
-                                        {{result.title.narratives[0].text ? result.title.narratives[0].text : '-'}}
+                                        {{result.title}}
                                     </td>
                                     <td>
-                                        {{result.description.narratives[0].text ? result.description.narratives[0].text : '-'}}
+                                        {{result.result_indicator_description}}
                                     </td>
                                     <td>
-                                        {{result.type.name ? result.type.name : '-'}}
+                                        {{result.result_type}}
                                     </td>
                                     <td>
-                                        {{result.indicator[0].title.narratives[0].text ? result.indicator[0].title.narratives[0].text : '-'}}
+                                        {{result.result_indicator_title}}
                                     </td>
                                     <td>
-                                        {{result.indicator[0].baseline.year ? result.indicator[0].baseline.year : '-'}}
+                                        {{result.baseline_year}}
                                     </td>
                                     <td>
-                                        {{result.indicator[0].baseline.value ? result.indicator[0].baseline.value : '-'}}
+                                        {{result.baseline_value}}
                                     </td>
                                     <td>
-                                        {{result.indicator[0].period[0].period_start ? result.indicator[0].period[0].period_start : '-' | date : 'dd-MM-yyyy'}}
+                                        {{result.period_start | date : 'dd-MM-yyyy'}}
                                     </td>
                                     <td>
-                                        {{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : '-' | date : 'dd-MM-yyyy'}}
+                                        {{result.period_end | date : 'dd-MM-yyyy'}}
                                     </td>
                                     <td>
-                                        {{result.indicator[0].period[0].target.value ? result.indicator[0].period[0].target.value : '-' | number : 0}}
+                                        {{result.period_target_value | number : 0}}
                                     </td>
                                     <td>
-                                        {{result.indicator[0].period[0].actual.value ? result.indicator[0].period[0].actual.value : '-' | number : 0}}
+                                        {{result.period_actual_value | number : 0}}
                                     </td>
                                 </tr>
                             </tbody>

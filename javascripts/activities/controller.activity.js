@@ -68,6 +68,7 @@
     vm.featuredImage = vm.templateBaseUrl + '/images/Develop2Build header.jpg';
 
     vm.resultRows = [];
+    vm.detailedResultRows = [];
 
     vm.tabs = [
       {'id': 'summary', 'name': 'Summary', 'count': -1},
@@ -200,6 +201,7 @@
         }
 
         processResults(data.data);
+        processDetailedResults(data.data);
       }
 
       function processResults(activity){
@@ -368,6 +370,82 @@
 
         _.sortBy(rows, function(row){ return row.result_type; });
         vm.resultRows = rows;
+      }
+
+
+      function processDetailedResults(activity){
+        var results = activity.results;
+
+        var curX = -1;
+        var curY = -1; // = result indicator counter
+        var lastActual = '0000-00-00';
+        var updated = false;
+
+        var rows = [];
+        for(var x = 0;x < results.length;x++){
+          for(var y = 0;y < results[x].indicator.length;y++){
+            for (var z = 0;z < results[x].indicator[y].period.length;z++){
+
+              var period_actual_value = results[x].indicator[y].period[z].actual.value;
+              var period_start = results[x].indicator[y].period[z].period_start;
+              var period_actual_comment = results[x].indicator[y].period[z].actual.comment;
+              
+              var period_target_value = results[x].indicator[y].period[z].target.value;
+              var period_end = results[x].indicator[y].period[z].period_end;
+              var period_target_comment = results[x].indicator[y].period[z].target.comment;
+
+              // add
+              var result_indicator_description = '';
+              var result_indicator_description_short = '';
+
+              if (results[x].indicator[y].description != null){
+                result_indicator_description = results[x].indicator[y].description.narratives[0].text;
+              }
+
+
+              if(curY == y && curX == x){
+
+              }
+
+              curX = x;
+              curY = y;
+
+
+              rows.push({
+                'title': activity.title.narratives[0].text,
+                'result_type': results[x].type.name,
+                'result_indicator_title': results[x].indicator[y].title.narratives[0].text,
+                'result_indicator_description': result_indicator_description,
+                'baseline_value': results[x].indicator[y].baseline.value,
+                'baseline_year': results[x].indicator[y].baseline.year,
+                'period_target_value': period_target_value,
+                'period_start': period_start,
+                'period_target_comment': period_target_comment,
+                'period_actual_value': period_actual_value,
+                'period_end': period_end,
+                'period_actual_comment': period_actual_comment,
+              });
+            }
+          }
+        }
+
+        function mysortfunction(a, b) {
+
+          var o1 = a['result_indicator_title'].toLowerCase();
+          var o2 = b['result_indicator_title'].toLowerCase();
+
+          var p1 = a['period_start'].toLowerCase();
+          var p2 = b['period_start'].toLowerCase();
+
+          if (o1 < o2) return -1;
+          if (o1 > o2) return 1;
+          if (p1 < p2) return -1;
+          if (p1 > p2) return 1;
+          return 0;
+        }
+
+        rows = rows.sort(mysortfunction);
+        vm.detailedResultRows = rows;
       }
 
       function procesTransactions(data, status, headers, config){
