@@ -205,69 +205,6 @@
       }
 
       function processResults(activity){
-        vm.activity = data.data;
-
-        vm.activity.participating_organisations = vm.activity.participating_organisations.sort(function(a,b){
-          if(a.role.code < b.role.code){
-            return -1;
-          }
-          if(a.role.code > b.role.code){
-            return 1;
-          }
-          return 0;
-        });
-
-        vm.busy = false;
-        vm.description = null;
-        vm.sortDocs(vm.activity.document_links);
-        var desc = '';
-
-        if(vm.activity.descriptions.length){
-
-          for (var i = 0; i < vm.activity.descriptions.length;i++){
-            if(vm.activity.descriptions[i].type.code == '1'){
-              desc += vm.activity.descriptions[i].narratives[0].text;
-            }
-          }
-
-          vm.description = $sce.trustAsHtml(desc.replace(/\\n/g, '<br>'));
-        }
-
-        for(var i = 0;i < vm.activity.activity_dates.length;i++){
-          if(vm.activity.activity_dates[i].type.code == 1){
-            vm.start_planned = vm.activity.activity_dates[i].iso_date;
-          } else if(vm.activity.activity_dates[i].type.code == 2){
-            vm.start_actual = vm.activity.activity_dates[i].iso_date;
-          } else if(vm.activity.activity_dates[i].type.code == 3){
-            vm.end_planned = vm.activity.activity_dates[i].iso_date;
-          } else if(vm.activity.activity_dates[i].type.code == 4){
-            vm.end_actual = vm.activity.activity_dates[i].iso_date;
-          }
-        }
-        for (var i = 0; i < vm.activity.related_activities.length;i++){
-          vm.activity.related_activities[i].name = programmesMapping[vm.activity.related_activities[i].ref];
-        }
-
-        if(vm.end_actual != null){
-          vm.end_date = vm.end_actual;
-        } else if(vm.end_planned != null){
-          vm.end_date = vm.end_planned;
-        } else {
-          vm.end_date = 'Data to be added';
-        }
-
-        if(vm.start_actual != null){
-          vm.start_date = vm.start_actual;
-        } else if(vm.start_planned != null){
-          vm.start_date = vm.start_planned;
-        } else {
-          vm.start_date = 'Data to be added';
-        }
-
-        processResults(data.data);
-      }
-
-      function processResults(activity){
         var results = activity.results;
 
         var curX = -1;
@@ -402,17 +339,14 @@
                 result_indicator_description = results[x].indicator[y].description.narratives[0].text;
               }
 
-
-              if(curY == y && curX == x){
-
+              var result_description = '';
+              if (results[x].description != null && results[x].description.narratives.length > 0){
+                result_description = results[x].description.narratives[0].text;
               }
 
-              curX = x;
-              curY = y;
-
-
               rows.push({
-                'title': activity.title.narratives[0].text,
+                'result_title': results[x].title.narratives[0].text,
+                'result_description': result_description,
                 'result_type': results[x].type.name,
                 'result_indicator_title': results[x].indicator[y].title.narratives[0].text,
                 'result_indicator_description': result_indicator_description,

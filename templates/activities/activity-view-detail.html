@@ -591,6 +591,7 @@
                                     <th>Description</th>
                                     <th>Type</th>
                                     <th>Indicator</th>
+                                    <th>Indicator description</th>
                                     <th>Baseline year</th>
                                     <th>Baseline value</th>
                                     <th>Period start</th>
@@ -602,16 +603,19 @@
                             <tbody>
                                 <tr ng-repeat="result in vm.detailedResultRows">
                                     <td>
-                                        {{result.title}}
+                                        {{result.result_title}}
                                     </td>
                                     <td>
-                                        {{result.result_indicator_description}}
+                                        {{result.result_description}}
                                     </td>
                                     <td>
                                         {{result.result_type}}
                                     </td>
                                     <td>
                                         {{result.result_indicator_title}}
+                                    </td>
+                                    <td>
+                                        {{result.result_indicator_description}}
                                     </td>
                                     <td>
                                         {{result.baseline_year}}
