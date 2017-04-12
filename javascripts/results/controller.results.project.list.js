@@ -23,6 +23,8 @@
     vm.selectedIndicators = $scope.selectedIndicators;
     vm.templateBaseUrl = templateBaseUrl;
 
+    vm.resultsYear = Results.year
+    vm.currentYear = 2016
 
     function activate() {
       $scope.$watch("selectedIndicators", function (selectedIndicators) {
@@ -40,6 +42,26 @@
         searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q='+searchValue;
         vm.update();
       }, true);
+
+
+
+      $scope.$watch("vm.resultsYear.value", function (year) {
+
+        if(year != vm.currentYear && vm.resultsYear.on == true){
+          
+          vm.currentYear = year
+          vm.page = 1
+          vm.rows = []
+        
+        } else if(vm.currentYear != '2016' && vm.resultsYear.on == false){
+
+          vm.currentYear = '2016'
+          vm.page = 1
+          vm.rows = []
+        }
+      }, true)
+
+
 
       // do not prefetch when the list is hidden
       if($scope.shown != undefined){
@@ -123,6 +145,8 @@
               var period_actual_value = activities[i].results[x].indicator[y].period[z].actual.value;
               var period_actual_year = activities[i].results[x].indicator[y].period[z].period_end;
               var period_actual_comment = activities[i].results[x].indicator[y].period[z].actual.comment;
+
+              if(period_actual_year.substring(0,4) != vm.currentYear){ continue; }
               
               var period_target_value = activities[i].results[x].indicator[y].period[z].target.value;
               var period_target_year = activities[i].results[x].indicator[y].period[z].period_end;
