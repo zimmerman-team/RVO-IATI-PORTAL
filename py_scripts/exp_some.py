@@ -13,9 +13,7 @@ import csv
 # ]
 
 source_titles = [
-'Number of companies with supported plans to invest or trade - Dutch companies',
-'Number of companies with supported plans to invest or trade - Local companies',
-'Number of companies with supported plans to invest or trade - Other companies'
+'Aggregated PSD results'
 ]
 
 with open('rvo.csv', 'wb') as csvfile:
@@ -43,8 +41,8 @@ with open('rvo.csv', 'wb') as csvfile:
         'result_period_actual_comment']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
-    for a in Activity.objects.filter(hierarchy=2,reporting_organisations__ref='NL-KVK-27378529'):
-        for r in a.result_set.filter(resultindicator__resultindicatortitle__narratives__content__in=source_titles):
+    for a in Activity.objects.filter(hierarchy=2,reporting_organisations__ref='NL-KVK-27378529',relatedactivity__ref='NL-KVK-27378529-23408'):
+        for r in a.result_set.exclude(resultdescription__narratives__content__in=source_titles):
             result_type = r.type.code
             result_type_name = r.type.name
             result_aggregation_status = int(r.aggregation_status)

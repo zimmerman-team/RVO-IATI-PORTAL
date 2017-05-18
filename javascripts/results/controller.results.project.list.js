@@ -23,6 +23,10 @@
     vm.selectedIndicators = $scope.selectedIndicators;
     vm.templateBaseUrl = templateBaseUrl;
 
+    vm.resultsYear = Results.year
+    vm.currentYear = 2016
+
+    vm.filtersWhenLoadingNextpage = ''
 
     function activate() {
       $scope.$watch("selectedIndicators", function (selectedIndicators) {
@@ -40,6 +44,26 @@
         searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q='+searchValue;
         vm.update();
       }, true);
+
+
+
+      $scope.$watch("vm.resultsYear.value", function (year) {
+
+        if(year != vm.currentYear && vm.resultsYear.on == true){
+          
+          vm.currentYear = year
+          vm.page = 1
+          vm.rows = []
+        
+        } else if(vm.currentYear != '2016' && vm.resultsYear.on == false){
+
+          vm.currentYear = '2016'
+          vm.page = 1
+          vm.rows = []
+        }
+      }, true)
+
+
 
       // do not prefetch when the list is hidden
       if($scope.shown != undefined){
@@ -61,24 +85,10 @@
       if (!vm.hasContains()) return false;
 
       vm.busy = true;
+      vm.page = 0;
+      vm.rows = [];
 
-      vm.page = 1;
-
-      var resultAddition = '&indicator_title=' + vm.selectedIndicators.join(',');
-
-      Activities.resultList(vm.filterSelection.selectionString + vm.extraSelectionString + resultAddition, vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
-
-      function succesFn(data, status, headers, config){
-        vm.rows = [];
-        vm.reformatPerPeriod(data.data.results);
-        vm.totalActivities = data.data.count;
-        $scope.count = vm.totalActivities;
-        vm.busy = false;      
-      }
-
-      function errorFn(data, status, headers, config){
-        console.warn('error getting data for activity.list.block');
-      }
+      vm.nextPage(true);
     }
 
     vm.getPeriodValue = function(indicatorTitle, periodValue, periodYear){
@@ -123,6 +133,8 @@
               var period_actual_value = activities[i].results[x].indicator[y].period[z].actual.value;
               var period_actual_year = activities[i].results[x].indicator[y].period[z].period_end;
               var period_actual_comment = activities[i].results[x].indicator[y].period[z].actual.comment;
+
+              if(period_actual_year.substring(0,4) != vm.currentYear){ continue; }
               
               var period_target_value = activities[i].results[x].indicator[y].period[z].target.value;
               var period_target_year = activities[i].results[x].indicator[y].period[z].period_end;
@@ -221,17 +233,31 @@
       }
     }
 
-    vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalActivities <= (vm.page * vm.pageSize))) return;
+    vm.nextPage = function(first){
+
+
+      if(!first){
+        if (!vm.hasContains() || vm.busy || (vm.totalActivities <= (vm.page * vm.pageSize))) return;
+      }
+      
       var resultAddition = '&indicator_title=' + vm.selectedIndicators.join(',');
+      var filtersWhenLoadingNextpage = vm.filterSelection.selectionString + vm.extraSelectionString + resultAddition
+
+      console.log(filtersWhenLoadingNextpage)
+
 
       vm.busy = true;
       vm.page += 1;
       Activities.resultList(vm.filterSelection.selectionString + vm.extraSelectionString + resultAddition, vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        vm.reformatPerPeriod(data.data.results);
-        vm.busy = false;   
+        console.log(vm.filterSelection.selectionString + vm.extraSelectionString + '&indicator_title=' + vm.selectedIndicators.join(','))
+        if(filtersWhenLoadingNextpage == vm.filterSelection.selectionString + vm.extraSelectionString + '&indicator_title=' + vm.selectedIndicators.join(',')){
+          vm.reformatPerPeriod(data.data.results);
+          vm.totalActivities = data.data.count;
+          $scope.count = vm.totalActivities;
+          vm.busy = false;  
+        } 
       }
 
       function errorFn(data, status, headers, config){

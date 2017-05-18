@@ -63,7 +63,7 @@
                 ng-click="vm.toggleOpenPanel('transaction_year')" 
                 ng-class="{'active': vm.isOpenedHeader('transaction_year')}"
                 ng-show="vm.isIncludedFilter('transaction_year')"
-                ng-if="vm.pageName != 'results'">
+                ng-if="vm.pageName != 'results' && vm.pageName != 'programme'">
               Time range
             </span>
 
@@ -72,7 +72,7 @@
                 ng-click="vm.toggleOpenPanel('result_indicator_period_end_year')" 
                 ng-class="{'active': vm.isOpenedHeader('result_indicator_period_end_year')}"
                 ng-show="vm.isIncludedFilter('result_indicator_period_end_year')"
-                ng-if="vm.pageName == 'results'">
+                ng-if="vm.pageName == 'results' || vm.pageName == 'programme'">
               Result time range
             </span>
 

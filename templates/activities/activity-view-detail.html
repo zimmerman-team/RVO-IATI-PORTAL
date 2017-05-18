@@ -582,13 +582,14 @@
 
                     <h3>Results</h3>
                     <div class="table-responsive">
-                        <table class="finance no-blue" ng-if="vm.activity.results.length != 0">
+                        <table class="finance no-blue" ng-if="vm.detailedResultRows.length != 0">
                             <thead>
                                 <tr>
                                     <th>Title</th>
                                     <th>Description</th>
                                     <th>Type</th>
                                     <th>Indicator</th>
+                                    <th>Indicator description</th>
                                     <th>Baseline year</th>
                                     <th>Baseline value</th>
                                     <th>Period start</th>
@@ -598,36 +599,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="result in vm.activity.results">
+                                <tr ng-repeat="result in vm.detailedResultRows">
                                     <td>
-                                        {{result.title.narratives[0].text ? result.title.narratives[0].text : '-'}}
+                                        {{result.result_title}}
                                     </td>
                                     <td>
-                                        {{result.description.narratives[0].text ? result.description.narratives[0].text : '-'}}
+                                        {{result.result_description}}
                                     </td>
                                     <td>
-                                        {{result.type.name ? result.type.name : '-'}}
+                                        {{result.result_type}}
                                     </td>
                                     <td>
-                                        {{result.indicator[0].title.narratives[0].text ? result.indicator[0].title.narratives[0].text : '-'}}
+                                        {{result.result_indicator_title}}
                                     </td>
                                     <td>
-                                        {{result.indicator[0].baseline.year ? result.indicator[0].baseline.year : '-'}}
+                                        {{result.result_indicator_description}}
                                     </td>
                                     <td>
-                                        {{result.indicator[0].baseline.value ? result.indicator[0].baseline.value : '-'}}
+                                        {{result.baseline_year}}
                                     </td>
                                     <td>
-                                        {{result.indicator[0].period[0].period_start ? result.indicator[0].period[0].period_start : '-' | date : 'dd-MM-yyyy'}}
+                                        {{result.baseline_value}}
                                     </td>
                                     <td>
-                                        {{result.indicator[0].period[0].period_end ? result.indicator[0].period[0].period_end : '-' | date : 'dd-MM-yyyy'}}
+                                        {{result.period_start | date : 'dd-MM-yyyy'}}
                                     </td>
                                     <td>
-                                        {{result.indicator[0].period[0].target.value ? result.indicator[0].period[0].target.value : '-' | number : 0}}
+                                        {{result.period_end | date : 'dd-MM-yyyy'}}
                                     </td>
                                     <td>
-                                        {{result.indicator[0].period[0].actual.value ? result.indicator[0].period[0].actual.value : '-' | number : 0}}
+                                        {{result.period_target_value | number : 0}}
+                                    </td>
+                                    <td>
+                                        {{result.period_actual_value | number : 0}}
                                     </td>
                                 </tr>
                             </tbody>
@@ -649,7 +653,7 @@
                     <div class="panel lightblue">
                         <h3>Related videos</h3>
                         <hr>
-                        <div class="row" ng-if="vm.relatedYoutube.length != 0 || vm.relatedVimeo.length != 0">
+                        <div class="row" ng-if="vm.relatedYoutube.length != 0 || vm.relatedVimeo.length != 0 || vm.relatedVideo.length != 0">
                             <div class="col-md-6 item" ng-repeat="video in vm.relatedVimeo">
                                 <div class="embed-responsive embed-responsive-16by9">
                                     <iframe class="embed-responsive-item" ng-src="{{video.url}}" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
@@ -660,8 +664,19 @@
                                     <iframe class="embed-responsive-item" width="560" height="315" ng-src="{{video.url}}" frameborder="0" allowfullscreen></iframe>
                                 </div>
                             </div>
+
+                            <div class="col-md-6 item" ng-repeat="video in vm.relatedVideo">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <video width="560" height="315" controls>
+                                      <source ng-src="{{video.url}}" type="video/mp4">
+                                      <source ng-src="{{video.url}}" type="video/ogg">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+
                         </div>
-                        <p ng-if="vm.relatedYoutube.length == 0 && vm.relatedVimeo.length == 0">Data to be added</p>
+                        <p ng-if="vm.relatedYoutube.length == 0 && vm.relatedVimeo.length == 0 && vm.relatedVideo.length == 0">Data to be added</p>
                     </div>
                     <div class="panel lightblue images">
                         <h3>Related images</h3>

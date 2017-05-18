@@ -62,11 +62,13 @@
 
     vm.relatedVimeo = [];
     vm.relatedYoutube = [];
+    vm.relatedVideo = [];
     vm.relatedImages = [];
     vm.relatedDocuments = [];
     vm.featuredImage = vm.templateBaseUrl + '/images/Develop2Build header.jpg';
 
     vm.resultRows = [];
+    vm.detailedResultRows = [];
 
     vm.tabs = [
       {'id': 'summary', 'name': 'Summary', 'count': -1},
@@ -199,69 +201,7 @@
         }
 
         processResults(data.data);
-      }
-
-      function processResults(activity){
-        vm.activity = data.data;
-
-        vm.activity.participating_organisations = vm.activity.participating_organisations.sort(function(a,b){
-          if(a.role.code < b.role.code){
-            return -1;
-          }
-          if(a.role.code > b.role.code){
-            return 1;
-          }
-          return 0;
-        });
-
-        vm.busy = false;
-        vm.description = null;
-        vm.sortDocs(vm.activity.document_links);
-        var desc = '';
-
-        if(vm.activity.descriptions.length){
-
-          for (var i = 0; i < vm.activity.descriptions.length;i++){
-            if(vm.activity.descriptions[i].type.code == '1'){
-              desc += vm.activity.descriptions[i].narratives[0].text;
-            }
-          }
-
-          vm.description = $sce.trustAsHtml(desc.replace(/\\n/g, '<br>'));
-        }
-
-        for(var i = 0;i < vm.activity.activity_dates.length;i++){
-          if(vm.activity.activity_dates[i].type.code == 1){
-            vm.start_planned = vm.activity.activity_dates[i].iso_date;
-          } else if(vm.activity.activity_dates[i].type.code == 2){
-            vm.start_actual = vm.activity.activity_dates[i].iso_date;
-          } else if(vm.activity.activity_dates[i].type.code == 3){
-            vm.end_planned = vm.activity.activity_dates[i].iso_date;
-          } else if(vm.activity.activity_dates[i].type.code == 4){
-            vm.end_actual = vm.activity.activity_dates[i].iso_date;
-          }
-        }
-        for (var i = 0; i < vm.activity.related_activities.length;i++){
-          vm.activity.related_activities[i].name = programmesMapping[vm.activity.related_activities[i].ref];
-        }
-
-        if(vm.end_actual != null){
-          vm.end_date = vm.end_actual;
-        } else if(vm.end_planned != null){
-          vm.end_date = vm.end_planned;
-        } else {
-          vm.end_date = 'Data to be added';
-        }
-
-        if(vm.start_actual != null){
-          vm.start_date = vm.start_actual;
-        } else if(vm.start_planned != null){
-          vm.start_date = vm.start_planned;
-        } else {
-          vm.start_date = 'Data to be added';
-        }
-
-        processResults(data.data);
+        processDetailedResults(data.data);
       }
 
       function processResults(activity){
@@ -367,6 +307,79 @@
 
         _.sortBy(rows, function(row){ return row.result_type; });
         vm.resultRows = rows;
+      }
+
+
+      function processDetailedResults(activity){
+        var results = activity.results;
+
+        var curX = -1;
+        var curY = -1; // = result indicator counter
+        var lastActual = '0000-00-00';
+        var updated = false;
+
+        var rows = [];
+        for(var x = 0;x < results.length;x++){
+          for(var y = 0;y < results[x].indicator.length;y++){
+            for (var z = 0;z < results[x].indicator[y].period.length;z++){
+
+              var period_actual_value = results[x].indicator[y].period[z].actual.value;
+              var period_start = results[x].indicator[y].period[z].period_start;
+              var period_actual_comment = results[x].indicator[y].period[z].actual.comment;
+              
+              var period_target_value = results[x].indicator[y].period[z].target.value;
+              var period_end = results[x].indicator[y].period[z].period_end;
+              var period_target_comment = results[x].indicator[y].period[z].target.comment;
+
+              // add
+              var result_indicator_description = '';
+              var result_indicator_description_short = '';
+
+              if (results[x].indicator[y].description != null){
+                result_indicator_description = results[x].indicator[y].description.narratives[0].text;
+              }
+
+              var result_description = '';
+              if (results[x].description != null && results[x].description.narratives.length > 0){
+                result_description = results[x].description.narratives[0].text;
+              }
+
+              rows.push({
+                'result_title': results[x].title.narratives[0].text,
+                'result_description': result_description,
+                'result_type': results[x].type.name,
+                'result_indicator_title': results[x].indicator[y].title.narratives[0].text,
+                'result_indicator_description': result_indicator_description,
+                'baseline_value': results[x].indicator[y].baseline.value,
+                'baseline_year': results[x].indicator[y].baseline.year,
+                'period_target_value': period_target_value,
+                'period_start': period_start,
+                'period_target_comment': period_target_comment,
+                'period_actual_value': period_actual_value,
+                'period_end': period_end,
+                'period_actual_comment': period_actual_comment,
+              });
+            }
+          }
+        }
+
+        function mysortfunction(a, b) {
+
+          var o1 = a['result_indicator_title'].toLowerCase();
+          var o2 = b['result_indicator_title'].toLowerCase();
+
+          var p1 = a['period_start'].toLowerCase();
+          var p2 = b['period_start'].toLowerCase();
+
+          if (o1 < o2) return -1;
+          if (o1 > o2) return 1;
+          if (p1 < p2) return -1;
+          if (p1 > p2) return 1;
+          return 0;
+        }
+
+        rows = rows.sort(mysortfunction);
+        vm.detailedResultRows = rows;
       }
 
       function procesTransactions(data, status, headers, config){
@@ -519,7 +532,7 @@
 
     vm.sortDocs = function(documents) {
       for (var i =0; i < documents.length;i++){
-        var obj = {};
+        var obj = {}
 
         if(documents[i].title){
           obj.title = documents[i].title.narratives[0].text;
@@ -527,7 +540,12 @@
 
         if (documents[i].format == null){
           vm.relatedImages.push(obj);
-        }else if (documents[i].format.code == 'text/html' && documents[i].url.indexOf('vimeo') != -1 ) {
+        }
+        else if(documents[i].url.indexOf('.MOV') > 0 || documents[i].url.indexOf('.mp4') > 0){
+          obj.url = $sce.trustAsResourceUrl(documents[i].url);
+          vm.relatedVideo.push(obj);
+        }
+        else if (documents[i].format.code == 'text/html' && documents[i].url.indexOf('vimeo') != -1 ) {
           obj.url = $sce.trustAsResourceUrl(documents[i].url);
           vm.relatedVimeo.push(obj);
         }

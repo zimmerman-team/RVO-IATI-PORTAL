@@ -1,7 +1,9 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 for ri in ResultIndicator.objects.filter(resultindicatortitle__narratives__content="Number of full-time (equivalent) direct jobs supported - Female"):
-    # INIT PART
+    """
+    INIT PART
+    """
     # if result does not have "... - Male" indicator, add. 
     # print ri.result.activity.id
     try:
@@ -39,7 +41,7 @@ for ri in ResultIndicator.objects.filter(resultindicatortitle__narratives__conte
     #
     #
     #
-    years = ["2015", "2016"]
+    years = [2015, 2016]
     #
     for curyear in years:
         #
@@ -87,7 +89,6 @@ for ri in ResultIndicator.objects.filter(resultindicatortitle__narratives__conte
                     actual=male_value
                 )
                 rip.save()
-        else:
             # create new resultindicator
             ri_new = ResultIndicator(
                 result=ri.result,
