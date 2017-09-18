@@ -27,7 +27,7 @@
       "NL-KVK-27378529-25717": "Ghana WASH Window (GWW-FDW)",
       "NL-KVK-27378529-27528": "Product Development Partnerships III Fund",
       "NL-KVK-27378529-IM201601G": "Partners for Water",
-      "NL-KVK-27378529-27416": "Water Program Myanmar",
+      "NL-KVK-27378529-27416": "Water Programme Myanmar",
       "NL-KVK-27378529-23583": "Jakarta Coastal Defence Strategy",
       "NL-KVK-27378529-GACC160005": "Clean Cooking Sector Support",
       "NL-KVK-27378529-27803": "Develop2Build",
