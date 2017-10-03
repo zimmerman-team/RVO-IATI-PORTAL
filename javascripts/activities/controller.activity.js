@@ -85,13 +85,17 @@
         vm.activity = data.data;
 
         vm.activity.participating_organisations = vm.activity.participating_organisations.sort(function(a,b){
-          if(a.role.code < b.role.code){
-            return -1;
+          try {
+            if(a.role.code < b.role.code){
+              return -1;
+            }
+            if(a.role.code > b.role.code){
+              return 1;
+            }
+            return 0;
+          } catch(err) {
+            return 0;
           }
-          if(a.role.code > b.role.code){
-            return 1;
-          }
-          return 0;
         });
 
         vm.busy = false;
@@ -102,9 +106,9 @@
         if(vm.activity.descriptions.length){
 
           for (var i = 0; i < vm.activity.descriptions.length;i++){
-            if(vm.activity.descriptions[i].type.code == '1'){
+            // if(vm.activity.descriptions[i].type.code == '1'){
               desc += vm.activity.descriptions[i].narratives[0].text;
-            }
+            // }
           }
 
           vm.description = $sce.trustAsHtml(desc);
