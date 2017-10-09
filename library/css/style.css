@@ -186,8 +186,6 @@ p {
   -epub-hyphens: manual;
   -moz-hyphens: manual;
   hyphens: manual;
-  -ms-word-break: break-all;
-  word-break: break-all;
 }
 
 /*
