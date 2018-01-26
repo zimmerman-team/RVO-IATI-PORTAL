@@ -59,6 +59,5 @@ temp/
 *.scssc
 
 bower_components/*
-constants.php
 
 node_modules/*
