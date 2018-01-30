@@ -105,7 +105,7 @@ function dateupdated() {
   $json = file_get_contents('https://iatiregistry.org/api/3/action/package_show?id=rvo-01');
   $obj = json_decode($json, true);
   $extras = $obj['result']['extras'];
-  $date_updated = '2017-11-18 12:00';
+  $date_updated = '2018-01-29 12:00';
   
   for ($i = 0; $i < count($extras); $i++){
     if ($extras[$i]['key'] == 'data_updated'){
