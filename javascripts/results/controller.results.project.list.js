@@ -126,6 +126,10 @@
         for(var x = 0;x < activities[i].results.length;x++){
           for(var y = 0;y < activities[i].results[x].indicator.length;y++){
 
+            if(activities[i].results[x].indicator[y].title.narratives.length == 0){
+              activities[i].results[x].indicator[y].title.narratives.push({text: '-'})
+            }
+
             if(vm.selectedIndicators.indexOf(activities[i].results[x].indicator[y].title.narratives[0].text) == -1){ continue; }
 
             for (var z = 0;z < activities[i].results[x].indicator[y].period.length;z++){
@@ -243,15 +247,11 @@
       var resultAddition = '&indicator_title=' + vm.selectedIndicators.join(',');
       var filtersWhenLoadingNextpage = vm.filterSelection.selectionString + vm.extraSelectionString + resultAddition
 
-      console.log(filtersWhenLoadingNextpage)
-
-
       vm.busy = true;
       vm.page += 1;
       Activities.resultList(vm.filterSelection.selectionString + vm.extraSelectionString + resultAddition, vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        console.log(vm.filterSelection.selectionString + vm.extraSelectionString + '&indicator_title=' + vm.selectedIndicators.join(','))
         if(filtersWhenLoadingNextpage == vm.filterSelection.selectionString + vm.extraSelectionString + '&indicator_title=' + vm.selectedIndicators.join(',')){
           vm.reformatPerPeriod(data.data.results);
           vm.totalActivities = data.data.count;

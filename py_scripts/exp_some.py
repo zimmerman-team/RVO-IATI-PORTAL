@@ -47,8 +47,11 @@ with open('rvo.csv', 'wb') as csvfile:
             result_type_name = r.type.name
             result_aggregation_status = int(r.aggregation_status)
             for ri in r.resultindicator_set.all():
-                result_title = r.resulttitle.narratives.all()[0].content;
-                result_title = unicode(result_title).encode("utf-8")
+                if r.resulttitle.narratives.all().count() == 0:
+                    result_title = '-'
+                else:
+                    result_title = r.resulttitle.narratives.all()[0].content
+                    result_title = unicode(result_title).encode("utf-8")
                 try: 
                     result_description = ri.resultdescription.narratives.all()[0].content
                     result_description = unicode(result_description).encode("utf-8")

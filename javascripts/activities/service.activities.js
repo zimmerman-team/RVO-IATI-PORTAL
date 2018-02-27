@@ -33,7 +33,7 @@
 
 
         function list(filters, page_size, order_by, page){
-            var url = oipaUrl + '/activities/?format=json'
+            var url = oipaUrl + '/activities/?format=json&title_narrative_language=en'
             url += '&fields=id,title,related_activities,recipient_countries,aggregations'
 
             if(reportingOrganisationId){

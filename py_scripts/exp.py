@@ -1,7 +1,4 @@
-
-
 import csv
-
 with open('rvo.csv', 'wb') as csvfile:
     fieldnames = [
         'programme_id', 
@@ -27,7 +24,10 @@ with open('rvo.csv', 'wb') as csvfile:
         'result_period_actual_comment']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
-    for a in Activity.objects.filter(hierarchy=2,reporting_organisations__ref='NL-KVK-27378529'):
+    for a in Activity.objects.filter(
+        hierarchy=2, 
+        reporting_organisations__ref='NL-KVK-27378529', 
+        relatedactivity__ref_activity__in=["NL-KVK-27378529-23710", "NL-KVK-27378529-23877"]):
         for r in a.result_set.all():
             result_type = r.type.code
             result_type_name = r.type.name
@@ -46,12 +46,31 @@ with open('rvo.csv', 'wb') as csvfile:
                         result_indicator_title = unicode(result_indicator_title).encode("utf-8")
                     else:
                         result_indicator_title = ''
-                    try: 
+                    try:
                         result_indicator_description = ri.resultindicatordescription.narratives.all()[0].content
                         result_indicator_description = unicode(result_indicator_description).encode("utf-8")
                     except Exception:
                         result_indicator_description = ''
-                    programme = a.relatedactivity_set.all()[0].ref_activity
+                    if a.relatedactivity_set.all().count() > 0:
+                        programme = a.relatedactivity_set.all()[0].ref_activity
+                    else:
+                        print "result of {} has no programme".format(a.iati_identifier)
+                        continue
+                    baseline_value = str(ri.baseline_value).split('.')[0]
+                    target_value = str(rip.target).split('.')[0]
+                    actual_value = str(rip.actual).split('.')[0]
+                    if baseline_value == 'None':
+                        baseline_value = '' 
+                    elif baseline_value == '0E-10':
+                        baseline_value = '0'
+                    if target_value == 'None':
+                        target_value = '' 
+                    elif target_value == '0E-10':
+                        target_value = '0'
+                    if actual_value == 'None':
+                        actual_value = '' 
+                    elif actual_value == '0E-10':
+                        actual_value = '0'
                     writer.writerow({
                         'programme_id':programme.id, 
                         'programme_name':programme.title.narratives.all()[0].content, 
@@ -66,13 +85,13 @@ with open('rvo.csv', 'wb') as csvfile:
                         'result_indicator_title': result_indicator_title,
                         'result_indicator_description': result_indicator_description,
                         'result_baseline_year': ri.baseline_year,
-                        'result_baseline_value': ri.baseline_value,
+                        'result_baseline_value': baseline_value,
                         'result_indicator_period_id': rip.id,
                         'result_period_start_date': rip.period_start,
                         'result_period_end_date': rip.period_end,
-                        'result_period_target': rip.target,
+                        'result_period_target': target_value,
                         'result_period_target_comment': '',
-                        'result_period_actual': rip.actual,
+                        'result_period_actual': actual_value,
                         'result_period_actual_comment': '',
                     })
                     for i in range(7):

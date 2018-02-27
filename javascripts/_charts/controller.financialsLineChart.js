@@ -39,7 +39,7 @@
                 // return d3.time.format('%Y-%m-%d')(new Date(d))
             },
             showMaxMin: false,
-            staggerLabels: true
+            staggerLabels: false
         },
         yAxis: {
             axisLabel: '',
@@ -47,7 +47,8 @@
               return $filter('shortcurrency')(d,'€');
             },
             axisLabelDistance: 20
-        }
+        },
+        reduceXTicks: false
       }
     };
 

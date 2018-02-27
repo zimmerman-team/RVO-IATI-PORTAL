@@ -85,13 +85,17 @@
         vm.activity = data.data;
 
         vm.activity.participating_organisations = vm.activity.participating_organisations.sort(function(a,b){
-          if(a.role.code < b.role.code){
-            return -1;
+          try {
+            if(a.role.code < b.role.code){
+              return -1;
+            }
+            if(a.role.code > b.role.code){
+              return 1;
+            }
+            return 0;
+          } catch(err) {
+            return 0;
           }
-          if(a.role.code > b.role.code){
-            return 1;
-          }
-          return 0;
         });
 
         vm.busy = false;
@@ -266,13 +270,19 @@
                 result_indicator_description_short = result_indicator_description.substr(0, 75);
               }
 
+              var result_indicator_title = "";
+
+              if (results[x].indicator[y].title.narratives.length > 0) {
+                result_indicator_title = results[x].indicator[y].title.narratives[0].text;
+              }
+
               rows.push({
                 'activity_id': activity.id,
                 'title': activity.title.narratives[0].text,
                 'programme': activity.related_activities[0].ref,
                 'programme_afk': programmaAfkortingen[activity.related_activities[0].ref],
                 'result_type': results[x].type.name,
-                'result_indicator_title': results[x].indicator[y].title.narratives[0].text,
+                'result_indicator_title': result_indicator_title,
                 'result_indicator_description': result_indicator_description,
                 'result_indicator_description_short': result_indicator_description_short,
                 'baseline_value': results[x].indicator[y].baseline.value,
@@ -344,11 +354,21 @@
                 result_description = results[x].description.narratives[0].text;
               }
 
+              var result_title = "";
+              if (results[x].title != null && results[x].title.narratives.length > 0) {
+                result_title = results[x].title.narratives[0].text;
+              }
+
+              var result_indicator_title = "";
+              if (results[x].indicator[y].title.narratives.length > 0) {
+                result_indicator_title = results[x].indicator[y].title.narratives[0].text;
+              }
+
               rows.push({
-                'result_title': results[x].title.narratives[0].text,
+                'result_title': result_title,
                 'result_description': result_description,
                 'result_type': results[x].type.name,
-                'result_indicator_title': results[x].indicator[y].title.narratives[0].text,
+                'result_indicator_title': result_indicator_title,
                 'result_indicator_description': result_indicator_description,
                 'baseline_value': results[x].indicator[y].baseline.value,
                 'baseline_year': results[x].indicator[y].baseline.year,

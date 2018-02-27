@@ -182,16 +182,16 @@ hr {
 */
 /* line 166, ../scss/partials/_normalize.scss */
 p {
-  -webkit-hyphens: auto;
-  -epub-hyphens: auto;
-  -moz-hyphens: auto;
-  hyphens: auto;
+  -webkit-hyphens: manual;
+  -epub-hyphens: manual;
+  -moz-hyphens: manual;
+  hyphens: manual;
 }
 
 /*
  * Addresses margins set differently in IE6/7.
  */
-/* line 177, ../scss/partials/_normalize.scss */
+/* line 178, ../scss/partials/_normalize.scss */
 pre {
   margin: 0;
 }
@@ -199,7 +199,7 @@ pre {
 /**
  * Correct font family set oddly in Safari 5 and Chrome.
  */
-/* line 188, ../scss/partials/_normalize.scss */
+/* line 189, ../scss/partials/_normalize.scss */
 code,
 kbd,
 pre,
@@ -211,7 +211,7 @@ samp {
 /**
  * Improve readability of pre-formatted text in all browsers.
  */
-/* line 197, ../scss/partials/_normalize.scss */
+/* line 198, ../scss/partials/_normalize.scss */
 pre {
   white-space: pre-wrap;
 }
@@ -219,7 +219,7 @@ pre {
 /**
  * Set consistent quote types.
  */
-/* line 205, ../scss/partials/_normalize.scss */
+/* line 206, ../scss/partials/_normalize.scss */
 q {
   quotes: "\201C" "\201D" "\2018" "\2019";
 }
@@ -227,14 +227,14 @@ q {
 /**
  * Address inconsistent and variable font size in all browsers.
  */
-/* line 213, ../scss/partials/_normalize.scss */
+/* line 214, ../scss/partials/_normalize.scss */
 q:before,
 q:after {
   content: '';
   content: none;
 }
 
-/* line 218, ../scss/partials/_normalize.scss */
+/* line 219, ../scss/partials/_normalize.scss */
 small, .small {
   font-size: 75%;
 }
@@ -242,7 +242,7 @@ small, .small {
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-/* line 227, ../scss/partials/_normalize.scss */
+/* line 228, ../scss/partials/_normalize.scss */
 sub,
 sup {
   font-size: 75%;
@@ -251,12 +251,12 @@ sup {
   vertical-align: baseline;
 }
 
-/* line 234, ../scss/partials/_normalize.scss */
+/* line 235, ../scss/partials/_normalize.scss */
 sup {
   top: -0.5em;
 }
 
-/* line 238, ../scss/partials/_normalize.scss */
+/* line 239, ../scss/partials/_normalize.scss */
 sub {
   bottom: -0.25em;
 }
@@ -267,7 +267,7 @@ sub {
 /*
  * Addresses margins set differently in IE6/7.
  */
-/* line 253, ../scss/partials/_normalize.scss */
+/* line 254, ../scss/partials/_normalize.scss */
 dl,
 menu,
 ol,
@@ -275,7 +275,7 @@ ul {
   margin: 1em 0;
 }
 
-/* line 257, ../scss/partials/_normalize.scss */
+/* line 258, ../scss/partials/_normalize.scss */
 dd {
   margin: 0;
 }
@@ -283,12 +283,12 @@ dd {
 /*
  * Addresses paddings set differently in IE6/7.
  */
-/* line 265, ../scss/partials/_normalize.scss */
+/* line 266, ../scss/partials/_normalize.scss */
 menu {
   padding: 0 0 0 40px;
 }
 
-/* line 270, ../scss/partials/_normalize.scss */
+/* line 271, ../scss/partials/_normalize.scss */
 ol,
 ul {
   padding: 0;
@@ -298,7 +298,7 @@ ul {
 /*
  * Corrects list images handled incorrectly in IE7.
  */
-/* line 280, ../scss/partials/_normalize.scss */
+/* line 281, ../scss/partials/_normalize.scss */
 nav ul,
 nav ol {
   list-style: none;
@@ -311,7 +311,7 @@ nav ol {
 /**
  * Remove border when inside `a` element in IE 8/9.
  */
-/* line 293, ../scss/partials/_normalize.scss */
+/* line 294, ../scss/partials/_normalize.scss */
 img {
   border: 0;
 }
@@ -319,7 +319,7 @@ img {
 /**
  * Correct overflow displayed oddly in IE 9.
  */
-/* line 301, ../scss/partials/_normalize.scss */
+/* line 302, ../scss/partials/_normalize.scss */
 svg:not(:root) {
   overflow: hidden;
 }
@@ -330,7 +330,7 @@ svg:not(:root) {
 /**
  * Address margin not present in IE 8/9 and Safari 5.
  */
-/* line 313, ../scss/partials/_normalize.scss */
+/* line 314, ../scss/partials/_normalize.scss */
 figure {
   margin: 0;
 }
@@ -341,7 +341,7 @@ figure {
 /**
  * Define consistent border, margin, and padding.
  */
-/* line 325, ../scss/partials/_normalize.scss */
+/* line 326, ../scss/partials/_normalize.scss */
 fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
@@ -352,7 +352,7 @@ fieldset {
  * 1. Correct `color` not being inherited in IE 8/9.
  * 2. Remove padding so people aren't caught out if they zero out fieldsets.
  */
-/* line 336, ../scss/partials/_normalize.scss */
+/* line 337, ../scss/partials/_normalize.scss */
 legend {
   border: 0;
   /* 1 */
@@ -365,7 +365,7 @@ legend {
  * 2. Correct font size not being inherited in all browsers.
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
  */
-/* line 350, ../scss/partials/_normalize.scss */
+/* line 351, ../scss/partials/_normalize.scss */
 button,
 input,
 select,
@@ -382,7 +382,7 @@ textarea {
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-/* line 362, ../scss/partials/_normalize.scss */
+/* line 363, ../scss/partials/_normalize.scss */
 button,
 input {
   line-height: normal;
@@ -394,7 +394,7 @@ input {
  * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
  * Correct `select` style inheritance in Firefox 4+ and Opera.
  */
-/* line 374, ../scss/partials/_normalize.scss */
+/* line 375, ../scss/partials/_normalize.scss */
 button,
 select {
   text-transform: none;
@@ -407,7 +407,7 @@ select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-/* line 389, ../scss/partials/_normalize.scss */
+/* line 390, ../scss/partials/_normalize.scss */
 button,
 html input[type="button"],
 input[type="reset"],
@@ -421,7 +421,7 @@ input[type="submit"] {
 /**
  * Re-set default cursor for disabled elements.
  */
-/* line 399, ../scss/partials/_normalize.scss */
+/* line 400, ../scss/partials/_normalize.scss */
 button[disabled],
 html input[disabled] {
   cursor: default;
@@ -431,7 +431,7 @@ html input[disabled] {
  * 1. Address box sizing set to `content-box` in IE 8/9/10.
  * 2. Remove excess padding in IE 8/9/10.
  */
-/* line 409, ../scss/partials/_normalize.scss */
+/* line 410, ../scss/partials/_normalize.scss */
 input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box;
@@ -445,7 +445,7 @@ input[type="radio"] {
  * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
  *    (include `-moz` to future-proof).
  */
-/* line 420, ../scss/partials/_normalize.scss */
+/* line 421, ../scss/partials/_normalize.scss */
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
@@ -459,7 +459,7 @@ input[type="search"] {
  * Remove inner padding and search cancel button in Safari 5 and Chrome
  * on OS X.
  */
-/* line 433, ../scss/partials/_normalize.scss */
+/* line 434, ../scss/partials/_normalize.scss */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
@@ -468,7 +468,7 @@ input[type="search"]::-webkit-search-decoration {
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-/* line 442, ../scss/partials/_normalize.scss */
+/* line 443, ../scss/partials/_normalize.scss */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
@@ -479,7 +479,7 @@ input::-moz-focus-inner {
  * 1. Remove default vertical scrollbar in IE 8/9.
  * 2. Improve readability and alignment in all browsers.
  */
-/* line 452, ../scss/partials/_normalize.scss */
+/* line 453, ../scss/partials/_normalize.scss */
 textarea {
   overflow: auto;
   /* 1 */
@@ -493,20 +493,20 @@ textarea {
 /**
  * Remove most spacing between table cells.
  */
-/* line 465, ../scss/partials/_normalize.scss */
+/* line 466, ../scss/partials/_normalize.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 472, ../scss/partials/_normalize.scss */
+/* line 473, ../scss/partials/_normalize.scss */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-/* line 480, ../scss/partials/_normalize.scss */
+/* line 481, ../scss/partials/_normalize.scss */
 .image-replacement,
 .ir {
   text-indent: 100%;
@@ -514,16 +514,16 @@ table {
   overflow: hidden;
 }
 
-/* line 487, ../scss/partials/_normalize.scss */
+/* line 488, ../scss/partials/_normalize.scss */
 .clearfix, .switch-view, .fake-table .parent + .children, .cf {
   zoom: 1;
 }
-/* line 489, ../scss/partials/_normalize.scss */
+/* line 490, ../scss/partials/_normalize.scss */
 .clearfix:before, .switch-view:before, .fake-table .parent + .children:before, .clearfix:after, .switch-view:after, .fake-table .parent + .children:after, .cf:before, .cf:after {
   content: "";
   display: table;
 }
-/* line 490, ../scss/partials/_normalize.scss */
+/* line 491, ../scss/partials/_normalize.scss */
 .clearfix:after, .switch-view:after, .fake-table .parent + .children:after, .cf:after {
   clear: both;
 }
@@ -532,7 +532,7 @@ table {
 use the best ampersand
 http://simplebits.com/notebook/2008/08/14/ampersands-2/
 */
-/* line 497, ../scss/partials/_normalize.scss */
+/* line 498, ../scss/partials/_normalize.scss */
 span.amp {
   font-family: Baskerville,'Goudy Old Style',Palatino,'Book Antiqua',serif !important;
   font-style: italic;
