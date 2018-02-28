@@ -24,7 +24,7 @@
     vm.templateBaseUrl = templateBaseUrl;
 
     vm.resultsYear = Results.year
-    vm.currentYear = 2016
+    vm.currentYear = 2017
 
     vm.filtersWhenLoadingNextpage = ''
 
@@ -55,9 +55,9 @@
           vm.page = 1
           vm.rows = []
         
-        } else if(vm.currentYear != '2016' && vm.resultsYear.on == false){
+        } else if(vm.currentYear != '2017' && vm.resultsYear.on == false){
 
-          vm.currentYear = '2016'
+          vm.currentYear = '2017'
           vm.page = 1
           vm.rows = []
         }
