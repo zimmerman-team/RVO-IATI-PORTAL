@@ -239,7 +239,7 @@
       if(vm.programmeId != undefined){
         programme_addition = '&related_activity=' + vm.programmeId;
       }
-      Results.aggregation('result_indicator_title', 'activity_count,actual', "&result_indicator_period_end_year=2016" + vm.filterSelection.selectionString + programme_addition + '&indicator_period_actual_null=False', 'result_indicator_title').then(succesFn, errorFn);
+      Results.aggregation('result_indicator_title', 'activity_count,actual', "&result_indicator_period_end_year=2017" + vm.filterSelection.selectionString + programme_addition + '&indicator_period_actual_not=0&indicator_period_actual_null=False', 'result_indicator_title').then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         var results = data.data.results;
