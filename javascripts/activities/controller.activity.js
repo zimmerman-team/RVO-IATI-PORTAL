@@ -83,7 +83,6 @@
 
       function successFn(data, status, headers, config) {
         vm.activity = data.data;
-
         vm.activity.participating_organisations = vm.activity.participating_organisations.sort(function(a,b){
           try {
             if(a.role.code < b.role.code){
@@ -212,7 +211,6 @@
 
       function processResults(activity){
         var results = activity.results;
-
         var curX = -1;
         var curY = -1; // = result indicator counter
         var lastActual = '0000-00-00';
@@ -231,8 +229,9 @@
               var period_target_year = results[x].indicator[y].period[z].period_end;
               var period_target_comment = results[x].indicator[y].period[z].target.comment;
 
-              if(curY == y && curX == x){
 
+              /*if(curY == y && curX == x){
+                console.log('Triggered here ', results[x].indicator[y])
                 var curIndex = rows.length - 1;
 
                 // check if target in here
@@ -251,7 +250,7 @@
                 }
 
                 updated = true;
-              }
+              }*/
 
               curX = x;
               curY = y;
@@ -264,6 +263,7 @@
               }
 
               // add
+
               var result_indicator_description = '';
               var result_indicator_description_short = '';
 
@@ -329,6 +329,7 @@
         var curY = -1; // = result indicator counter
         var lastActual = '0000-00-00';
         var updated = false;
+
 
         var rows = [];
         for(var x = 0;x < results.length;x++){
@@ -448,7 +449,6 @@
       }
 
       function errorFn(data, status, headers, config) {
-        console.log("getting activity failed");
         vm.busy = false;
       }
     }
