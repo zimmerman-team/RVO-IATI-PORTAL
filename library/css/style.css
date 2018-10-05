@@ -4786,6 +4786,17 @@ Sorteren
   margin-bottom: 4px;
   font-weight: bold;
 }
+.about-page ul {
+  margin-top: 0;
+  list-style: disc;
+  padding-left: 40px;
+}
+.about-page .subtitle {
+  display: block;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
 
 /*********************
 Switch iOS style checkbox
