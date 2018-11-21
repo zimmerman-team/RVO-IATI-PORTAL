@@ -34,7 +34,7 @@
       'NL-KVK-27378529-29299':'European Partnership for Responsible Minerals (EPRM)',
       "NL-KVK-27378529-29557": "Fund against Child Labour (FBK)",
       "NL-KVK-27378529-27230": "Knowledge Fund Jakarta (KFJ)",
-      "NL-KVK-27378529-29715": "Embassy of the Kingdom of the Netherlands in Beira, Mozambique (EKN)",
+      "NL-KVK-27378529-29715": "Masterplan Beira (EKN)",
       "NL-KVK-27378529-4000000171": "Energy Transition Facility (ETF)",
       "NL-KVK-27378529-26663TA": "Dutch Good Growth Fund – Technical Assistance (DGGF-TA)",
       "NL-KVK-27378529-27804": "Development Related Infrastructure Investment Vehicle (DRIVE)",
