@@ -261,13 +261,13 @@
                             <tbody>
                                 <tr ng-repeat="related_activity in vm.activity.related_activities">
                                     <td>
-                                        {{vm.activity.related_activities[0].name}}<span ng-if="!vm.activity.related_activities[0].name">Data to be added</span>
+                                        {{related_activity.name}}<span ng-if="!related_activity.name">Data to be added</span>
                                     </td>
                                     <td>
-                                        {{vm.activity.related_activities[0].ref}}<span ng-if="!vm.activity.related_activities[0].ref">Data to be added</span>
+                                        {{related_activity.ref}}<span ng-if="!related_activity.ref">Data to be added</span>
                                     </td>
                                     <td>
-                                        {{vm.activity.related_activities[0].type.name}}<span ng-if="!vm.activity.related_activities[0].type.name">Data to be added</span>
+                                        {{related_activity.type.name}}<span ng-if="!related_activity.type.name">Data to be added</span>
                                     </td>
                                 </tr>
                             </tbody>

@@ -39,6 +39,7 @@
       "NL-KVK-27378529-26663TA": "Dutch Good Growth Fund – Technical Assistance (DGGF-TA)",
       "NL-KVK-27378529-27804": "Development Related Infrastructure Investment Vehicle (DRIVE)",
       "NL-KVK-27378529-28385": "Demonstration projects, feasibility studies and investment preparation studies (DHI)",
+      "NL-KVK-27378529-ORIO09BH21": "Poverty alleviation through road development",
     }
 
     var programmaAfkortingen = {
