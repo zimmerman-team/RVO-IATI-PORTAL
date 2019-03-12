@@ -17,12 +17,12 @@
     .module('oipa.activities')
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl', 'programmaAfkortingen', 'programmesMapping', '$sce', 'sdgGoals', 'sdgTargetTitles'];
+  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'templateBaseUrl', 'homeUrl', 'programmaAfkortingen', 'relatedActivitiesMapping', '$sce', 'sdgGoals', 'sdgTargetTitles'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, programmaAfkortingen, programmesMapping, $sce, sdgGoals, sdgTargetTitles) {
+  function ActivityController(Activities, $stateParams, FilterSelection, $filter, templateBaseUrl, homeUrl, programmaAfkortingen, relatedActivitiesMapping, $sce, sdgGoals, sdgTargetTitles) {
     var vm = this;
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
@@ -186,7 +186,7 @@
           }
         }
         for (var i = 0; i < vm.activity.related_activities.length;i++){
-          vm.activity.related_activities[i].name = programmesMapping[vm.activity.related_activities[i].ref];
+          vm.activity.related_activities[i].name = relatedActivitiesMapping[vm.activity.related_activities[i].ref];
         }
 
         if(vm.end_actual != null){
