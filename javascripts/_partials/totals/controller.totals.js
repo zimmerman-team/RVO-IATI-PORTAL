@@ -9,12 +9,12 @@
     .module('oipa.partials')
     .controller('TotalsController', TotalsController);
 
-  TotalsController.$inject = ['$scope', 'Activities', 'Aggregations', 'FilterSelection'];
+  TotalsController.$inject = ['$scope', 'Activities', 'Aggregations', 'FilterSelection', 'programmesMapping'];
 
   /**
   * @namespace TotalsController
   */
-  function TotalsController($scope, Activities, Aggregations, FilterSelection) {
+  function TotalsController($scope, Activities, Aggregations, FilterSelection, programmesMapping) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.programmeCount = null;
@@ -46,8 +46,15 @@
         vm.countryCount = data.data.count;
       }, errorFn);
 
-      Aggregations.aggregation('related_activity', 'count', selectionString, 'related_activity', 1).then(function(data, status, headers, config){
-        vm.programmeCount = data.data.count;
+      Aggregations.aggregation('related_activity', 'count', selectionString, 'related_activity', 100, 1).then(function(data, status, headers, config){
+        var count = 0;
+        var results = data.data.results;
+        for(var i = 0;i < results.length;i++){
+          if (programmesMapping[results[i].related_activity]) {
+            count++;
+          }
+        }
+        vm.programmeCount = count;
       }, errorFn);
 
       Aggregations.aggregation('sector', 'count', selectionString + '&sector_vocabulary=1', 'sector', 1).then(function(data, status, headers, config){
