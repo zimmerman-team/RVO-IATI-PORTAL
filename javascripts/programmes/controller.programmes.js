@@ -70,10 +70,8 @@
         var filteredResults = [];
         for(var i = 0;i < results.length;i++){
           if (programmesMapping[results[i].related_activity]) {
-            filteredResults.push({
-              ...results[i],
-              name: programmesMapping[results[i].related_activity]
-            });
+            results[i].name = programmesMapping[results[i].related_activity];
+            filteredResults.push(results[i]);
           }
         }
         vm.totalCount = data.data.count;
