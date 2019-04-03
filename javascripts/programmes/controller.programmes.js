@@ -67,11 +67,15 @@
       function successFn(data, status, headers, config) {
 
         var results = data.data.results;
+        var filteredResults = [];
         for(var i = 0;i < results.length;i++){
-          results[i].name = programmesMapping[results[i].related_activity];
+          if (programmesMapping[results[i].related_activity]) {
+            results[i].name = programmesMapping[results[i].related_activity];
+            filteredResults.push(results[i]);
+          }
         }
         vm.totalCount = data.data.count;
-        vm.programmes_list = results;
+        vm.programmes_list = filteredResults;
       }
 
       function errorFn(data, status, headers, config) {

@@ -83,13 +83,17 @@
 
       function aggregationSuccessFn(data, status, headers, config){
         var results = data.data.results;
+        var filteredResults = [];
 
         for(var i = 0;i < results.length;i++){
-          results[i].name = programmesMapping[results[i].related_activity];
+          if (programmesMapping[results[i].related_activity]) {
+            results[i].name = programmesMapping[results[i].related_activity];
+            filteredResults.push(results[i]);
+          }
         }
 
-        vm.activities = results;
-        vm.totalActivities = data.data.count;
+        vm.activities = filteredResults;
+        vm.totalActivities = filteredResults.length;
         $scope.count = vm.totalActivities;
         vm.changeOrderBy();
 

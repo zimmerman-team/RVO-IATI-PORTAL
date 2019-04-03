@@ -39,6 +39,42 @@
       "NL-KVK-27378529-26663TA": "Dutch Good Growth Fund – Technical Assistance (DGGF-TA)",
       "NL-KVK-27378529-27804": "Development Related Infrastructure Investment Vehicle (DRIVE)",
       "NL-KVK-27378529-28385": "Demonstration projects, feasibility studies and investment preparation studies (DHI)",
+      "NL-KVK-27378529-4000002159": "Dutch Surge Support (DSS Water) – Phase 2",
+      "NL-KVK-27378529-4000000768": "Dutch Risk Reduction Team (DRR-Team) – Phase 2",
+    }
+
+    var relatedActivitiesMapping = {
+      "NL-KVK-27378529-23408": "Private Sector Investment programme (PSI)",
+      "NL-KVK-27378529-26663": "Dutch Good Growth Fund (DGGF)",
+      "NL-KVK-27378529-19390": "Facility for Infrastructure Development (ORIO)",
+      "NL-KVK-27378529-25403": "Centre for the Promotion of Imports from developing countries (CBI)",
+      "NL-KVK-27378529-26225": "Life Sciences and Health for Development (LS&H4D)",
+      "NL-KVK-27378529-23188": "Transition Facility (TF)",
+      "NL-KVK-27378529-23310": "Pilot 2g@there-OS (2getthere-OS)",
+      "NL-KVK-27378529-26067": "PSD Apps",
+      "NL-KVK-27378529-26742": "Demonstration projects. Feasibility studies and Knowledge acquisition projects (DHKF)",
+      "NL-KVK-27378529-18232": "Daey Ouwens Fund - Kleinschalige hernieuwbare energieprojecten (KHED)",
+      "NL-KVK-27378529-25588": "Dutch Risk Reduction Team (DRR-Team)",
+      "NL-KVK-27378529-27115": "Dutch Surge Support (DSS Water)",
+      "NL-KVK-27378529-23877": "Facility for Sustainable Entrepreneurship and Food Security (FDOV)",
+      "NL-KVK-27378529-23710": "Sustainable Water Fund (FDW)",
+      "NL-KVK-27378529-25717": "Ghana WASH Window (GWW-FDW)",
+      "NL-KVK-27378529-27528": "Product Development Partnerships III Fund",
+      "NL-KVK-27378529-IM201601G": "Partners for Water",
+      "NL-KVK-27378529-27416": "Water Programme Myanmar",
+      "NL-KVK-27378529-23583": "Jakarta Coastal Defence Strategy",
+      "NL-KVK-27378529-GACC160005": "Clean Cooking Sector Support",
+      "NL-KVK-27378529-27803": "Develop2Build",
+      'NL-KVK-27378529-29299':'European Partnership for Responsible Minerals (EPRM)',
+      "NL-KVK-27378529-29557": "Fund against Child Labour (FBK)",
+      "NL-KVK-27378529-27230": "Knowledge Fund Jakarta (KFJ)",
+      "NL-KVK-27378529-29715": "Masterplan Beira (EKN)",
+      "NL-KVK-27378529-4000000171": "Energy Transition Facility (ETF)",
+      "NL-KVK-27378529-26663TA": "Dutch Good Growth Fund – Technical Assistance (DGGF-TA)",
+      "NL-KVK-27378529-27804": "Development Related Infrastructure Investment Vehicle (DRIVE)",
+      "NL-KVK-27378529-28385": "Demonstration projects, feasibility studies and investment preparation studies (DHI)",
+      "NL-KVK-27378529-4000002159": "Dutch Surge Support (DSS Water) – Phase 2",
+      "NL-KVK-27378529-4000000768": "Dutch Risk Reduction Team (DRR-Team) – Phase 2",
       "NL-KVK-27378529-ORIO09BH21": "Poverty alleviation through road development",
     }
 
@@ -97,6 +133,7 @@
         .constant("programmesMapping", programmesMapping)
         .constant("programmaAfkortingen", programmaAfkortingen)
         .constant("sdgGoals", sdgGoals)
-        .constant("sdgTargetTitles", sdgTargetTitles);
+        .constant("sdgTargetTitles", sdgTargetTitles)
+        .constant("relatedActivitiesMapping", relatedActivitiesMapping);
 
 })();
