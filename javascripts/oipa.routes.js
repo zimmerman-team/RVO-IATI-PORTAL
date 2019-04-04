@@ -105,7 +105,7 @@
         })
         .state({
             name:        'organisation',
-            url:         '/organisations/:organisation_id//:type' + filters,
+            url:         '/organisations/:organisation_id/:type' + filters,
             reloadOnSearch: false,
             controller:  'ImplementingOrganisationController',
             controllerAs: 'vm',
