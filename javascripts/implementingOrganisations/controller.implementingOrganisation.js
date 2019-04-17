@@ -79,8 +79,18 @@
       vm.budget = 0;
       vm.disbursements = 0;
 
-      var adjustedSelectionString = selectionString.replace('participating_organisation_name', 'receiver_organisation_name');
-      TransactionAggregations.aggregation('receiver_org', 'commitment,disbursement,expenditure', adjustedSelectionString).then(function(data, status, headers, config){
+      var adjustedSelectionString = selectionString;
+      var group_by = "";
+
+      if ($stateParams.type === "funding") {
+        adjustedSelectionString = selectionString.replace('participating_organisation_name', 'provider_organisation_name');
+        group_by = "provider_org";
+      } else {
+        adjustedSelectionString = selectionString.replace('participating_organisation_name', 'receiver_organisation_name');
+        group_by = "receiver_org";
+      }
+
+      TransactionAggregations.aggregation(group_by, 'commitment,disbursement,expenditure', adjustedSelectionString).then(function(data, status, headers, config){
         vm.disbursements = data.data.results[0].disbursement + data.data.results[0].expenditure;
         vm.budget = data.data.results[0].commitment;
         vm.setBudgetLeft();

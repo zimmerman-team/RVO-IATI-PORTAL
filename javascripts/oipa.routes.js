@@ -105,7 +105,7 @@
         })
         .state({
             name:        'organisation',
-            url:         '/organisations/:organisation_id/' + filters,
+            url:         '/organisations/:organisation_id/:type' + filters,
             reloadOnSearch: false,
             controller:  'ImplementingOrganisationController',
             controllerAs: 'vm',
@@ -151,7 +151,6 @@
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sector-view-detail.html'
         })
-        
         .state({
             name:        'about',
             url:         '/about/',
@@ -184,7 +183,5 @@
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/search/search-page.html'
         });
-
-     
     }
 })();
