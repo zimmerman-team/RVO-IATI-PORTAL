@@ -166,7 +166,7 @@
                             <tr>
                                 <td>Policy marker(s):</td>
                                 <td>
-                                    <span ng-repeat="pm in vm.activity.policy_markers" ng-if="pm.significance.code != 0">{{pm.code.name}}</span>
+                                    <span ng-repeat="pm in vm.activity.policy_markers" ng-if="pm.significance.code != 0">{{pm.code.name}}{{$last ? '' : ', '}}</span>
                                     <span ng-if='!vm.activity.policy_markers.length'>Data to be added</span>
                                 </td>
                             </tr>
