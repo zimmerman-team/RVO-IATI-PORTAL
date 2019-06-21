@@ -16,7 +16,7 @@ function openaid_init() {
     array(
       'oipa'
     ));
-  
+
   //Allow editor style.
   add_editor_style( get_stylesheet_directory_uri() . '/library/css/editor-style.css' );
 
@@ -80,7 +80,7 @@ function bones_custom_image_sizes( $sizes ) {
 }
 
 
-function add_rewrite_rules( $wp_rewrite ) 
+function add_rewrite_rules( $wp_rewrite )
 {
   $new_rules = array(
     'programmes/([^/]+)/?$' => 'index.php?pagename=programme&iati_id='.$wp_rewrite->preg_index(1),
@@ -99,14 +99,14 @@ add_action('generate_rewrite_rules', 'add_rewrite_rules');
 
 add_action( 'wp_ajax_nopriv_dateupdated', 'dateupdated' );
 add_action( 'wp_ajax_dateupdated', 'dateupdated' );
- 
+
 function dateupdated() {
 
   $json = file_get_contents('https://iatiregistry.org/api/3/action/package_show?id=rvo-01');
   $obj = json_decode($json, true);
   $extras = $obj['result']['extras'];
-  $date_updated = '2019-03-04 12:00';
-  
+  $date_updated = '2019-06-12 12:00';
+
   for ($i = 0; $i < count($extras); $i++){
     if ($extras[$i]['key'] == 'data_updated'){
       $date_updated = $extras[$i]['value'];
