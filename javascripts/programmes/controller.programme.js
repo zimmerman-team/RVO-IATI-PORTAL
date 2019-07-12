@@ -37,6 +37,7 @@
       "NL-KVK-27378529-27115": "http://english.rvo.nl/subsidies-programmes/dutch-surge-support-dss-water",
       "NL-KVK-27378529-23877": "http://english.rvo.nl/subsidies-programmes/facility-sustainable-entrepreneurship-and-food-security-fdov",
       "NL-KVK-27378529-23710": "http://english.rvo.nl/subsidies-programmes/sustainable-water-fund-fdw",
+      "NL-KVK-27378529-4000001360": "https://english.rvo.nl/subsidies-programmes/sdg-partnership-facility-sdgp",
       "NL-KVK-27378529-25717": "http://english.rvo.nl/subsidies-programmes/ghana-wash-window",
       "NL-KVK-27378529-27528": null,
       "NL-KVK-27378529-IM201601G": null,
@@ -45,7 +46,7 @@
       "NL-KVK-27378529-GACC160005": null,
       "NL-KVK-27378529-29557": null
     }
-    
+
     vm.programmeUrl = null;
     vm.budgetLeft = 0;
     vm.progressStyle = {};
