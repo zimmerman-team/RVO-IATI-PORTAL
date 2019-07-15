@@ -41,7 +41,8 @@
       "NL-KVK-27378529-28385": "Demonstration projects, feasibility studies and investment preparation studies (DHI)",
       "NL-KVK-27378529-4000002159": "Dutch Surge Support (DSS Water) – Phase 2",
       "NL-KVK-27378529-4000000768": "Dutch Risk Reduction Team (DRR-Team) – Phase 2",
-      "NL-KVK-27378529-4000001360": "SDG Partnership Facility (SDGP)"
+      "NL-KVK-27378529-4000001360": "SDG Partnership Facility (SDGP)",
+      "NL-KVK-27378529-26844": "Dutch Good Growth Fund - Technical Assistance (DGGF-TA)"
     }
 
     var relatedActivitiesMapping = {
@@ -77,7 +78,8 @@
       "NL-KVK-27378529-4000002159": "Dutch Surge Support (DSS Water) – Phase 2",
       "NL-KVK-27378529-4000000768": "Dutch Risk Reduction Team (DRR-Team) – Phase 2",
       "NL-KVK-27378529-ORIO09BH21": "Poverty alleviation through road development",
-      "NL-KVK-27378529-4000001360": "SDG Partnership Facility (SDGP)"
+      "NL-KVK-27378529-4000001360": "SDG Partnership Facility (SDGP)",
+      "NL-KVK-27378529-26844": "Dutch Good Growth Fund - Technical Assistance (DGGF-TA)"
     }
 
     var programmaAfkortingen = {
@@ -110,7 +112,8 @@
       "NL-KVK-27378529-26663TA": "DGGF-TA",
       "NL-KVK-27378529-27804": "DRIVE",
       "NL-KVK-27378529-28385": "DHI",
-      "NL-KVK-27378529-4000001360": "SDGP"
+      "NL-KVK-27378529-4000001360": "SDGP",
+      "NL-KVK-27378529-26844": "DGGF-TA"
     }
 
     var sdgGoals = {"1":"No poverty","2":"Zero hunger","3":"Good health and well-being","4":"Quality education","5":"Gender equality","6":"Clean water and sanitation","7":"Affordable and clean energy","8":"Decent work and economic growth","9":"Industry, innovation and infrastructure","10":"Reduced inequalities","11":"Sustainable cities and communities","12":"Responsible consumption and production","13":"Climate action","14":"Life below water","15":"Life on land","16":"Peace, justice and strong institutions","17":"Partnerships for the goals"}
